@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.PropertyEntity.EntityMapper">
+	<resultMap id="department" type="com.PropertyEntity.Department">
+		<id column="dept_id" property="dept_id" jdbcType="CHAR"/>
+		<result column="dept_name" property="dept_name" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="staff" type="com.PropertyEntity.Staff">
+		<id column="staff_id" property="staff_id" jdbcType="CHAR"/>
+		<result column="staff_name" property="staff_name" jdbcType="VARCHAR"/>
+		<result column="gender" property="gender" jdbcType="VARCHAR"/>
+		<result column="tel" property="tel" jdbcType="VARCHAR"/>
+		<result column="address" property="address" jdbcType="VARCHAR"/>
+		<result column="position" property="position" jdbcType="VARCHAR"/>
+		<result column="salary" property="salary" jdbcType="DECIMAL"/>
+		<result column="dept" property="dept" jdbcType="CHAR"/>
+		<result column="elec_qlfy" property="elec_qlfy" jdbcType="BOOLEAN"/>
+		<result column="plbr_qlfy" property="plbr_qlfy" jdbcType="BOOLEAN"/>
+	</resultMap>
+	<resultMap id="subarea" type="com.PropertyEntity.Subarea">
+		<id column="subarea_id" property="subarea_id" jdbcType="CHAR"/>
+	</resultMap>
+	<resultMap id="building" type="com.PropertyEntity.Building">
+		<id column="building_id" property="building_id" jdbcType="CHAR"/>
+		<result column="subarea_id" property="subarea_id" jdbcType="CHAR"/>
+		<result column="max_floor" property="max_floor" jdbcType="INTEGER"/>
+		<result column="max_room_num" property="max_room_num" jdbcType="INTEGER"/>
+	</resultMap>
+	<resultMap id="overhaulRecord" type="com.PropertyEntity.OverhaulRecord">
+		<id column="overhaul_id" property="overhaul_id" jdbcType="CHAR"/>
+		<result column="fclt_id" property="fclt_id" jdbcType="CHAR"/>
+		<result column="overhaul_type" property="overhaul_type" jdbcType="VARCHAR"/>
+		<result column="overhaul_time" property="overhaul_time" jdbcType="DATETIME"/>
+		<result column="overhaul_handler" property="overhaul_handler" jdbcType="CHAR"/>
+		<result column="overhaul_result" property="overhaul_result" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="proprietor" type="com.PropertyEntity.Proprietor">
+		<id column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+		<result column="prprt_name" property="prprt_name" jdbcType="VARCHAR"/>
+		<result column="gender" property="gender" jdbcType="VARCHAR"/>
+		<result column="tel" property="tel" jdbcType="VARCHAR"/>
+		<result column="birthday" property="birthday" jdbcType="DATE"/>
+		<result column="aprt_building" property="aprt_building" jdbcType="CHAR"/>
+		<result column="aprt_floor" property="aprt_floor" jdbcType="INTEGER"/>
+		<result column="aprt_room_num" property="aprt_room_num" jdbcType="INTEGER"/>
+	</resultMap>
+	<resultMap id="carpark" type="com.PropertyEntity.Carpark">
+		<id column="carpark_id" property="carpark_id" jdbcType="CHAR"/>
+		<result column="subarea_id" property="subarea_id" jdbcType="CHAR"/>
+		<result column="owner_id" property="owner_id" jdbcType="CHAR"/>
+		<result column="valid_term" property="valid_term" jdbcType="DATE"/>
+	</resultMap>
+	<resultMap id="ticket" type="com.PropertyEntity.Ticket">
+		<id column="ticket_id" property="ticket_id" jdbcType="CHAR"/>
+		<result column="ticket_type" property="ticket_type" jdbcType="VARCHAR"/>
+		<result column="ticket_time" property="ticket_time" jdbcType="DATETIME"/>
+		<result column="initiator_id" property="initrator_id" jdbcType="CHAR"/>
+		<result column="handler_id" property="handler_id" jdbcType="CHAR"/>
+		<result column="handle_time" property="handle_time" jdbcType="DATETIME"/>
+		<result column="ticket_result" property="ticket_result" jdbcType="VARCHAR"/>
+		<result column="ticket_fdbk" property="ticket_fdbk" jdbcType="INTEGER"/>
+	</resultMap>
+	<resultMap id="dailyTask" type="com.PropertyEntity.DaliyTask">
+		<id column="task_id" property="task_id" jdbcType="CHAR"/>
+		<result column="task_type" property="task_type" jdbcType="VARCHAR"/>
+		<result column="task_time" property="task_time" jdbcType="DATETIME"/>
+		<result column="task_area" property="task_area" jdbcType="CHAR"/>
+		<result column="task_handler" property="task_handler" jdbcType="CHAR"/>
+		<result column="task_result" property="task_result" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="buildingEntranceRecord" type="com.PropertyEntity.BuildingEntranceRecord">
+		<id column="entrance_record_id" property="entrance_record_id" jdbcType="CHAR"/>
+		<result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+		<result column="building_id" property="building_id" jdbcType="CHAR"/>
+		<result column="access_time" property="access_time" jdbcType="DATETIME"/>
+		<result column="verify_type" property="verify_type" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="chargingItem" type="com.PropertyEntity.ChargingItem">
+		<id column="item_id" property="item_id" jdbcType="CHAR"/>
+		<result column="item_title" property="item_title" jdbcType="VARCHAR"/>
+	</resultMap>
+	<resultMap id="Fee" type="com.PropertyEntity.Fee">
+		<id column="fee_id" property="fee_id" jdbcType="CHAR"/>
+		<result column="item_id" property="item_id" jdbcType="CHAR"/>
+		<result column="start_date" property="start_date" jdbcType="DATE"/>
+		<result column="end_date" property="end_date" jdbcType="DATE"/>
+		<result column="price" property="price" jdbcType="DECIMAL"/>
+	</resultMap>
+	<resultMap id="chargingSituation" type="com.PropertyEntity.ChargingSituation">
+		<id column="situation_id" property="situation_id" jdbcType="CHAR"/>
+		<result column="fee_id" property="fee_id" jdbcType="CHAR"/>
+		<result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+		<result column="collector_id" property="collector_id" jdbcType="CHAR"/>
+		<result column="charge_date" property="charge_date" jdbcType="DATE"/>
+	</resultMap>
+	<resultMap id="carIORecord" type="com.PropertyEntity.CarIORecord">
+		<id column="io_record_id" property="io_record_id" jdbcType="CHAR"/>
+		<result column="plate_number" property="plate_number" jdbcType="CHAR"/>
+		<result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+		<result column="record_type" property="record_type" jdbcType="CHAR"/>
+		<result column="record_time" property="record_time" jdbcType="DATETIME"/>
+	</resultMap>
+</mapper>
