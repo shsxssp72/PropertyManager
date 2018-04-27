@@ -1,4 +1,4 @@
-package com.PropertyEntity;
+package com.Property.Entity;
 
 import java.sql.Timestamp;
 
