@@ -23,6 +23,7 @@ proprietor						P+num10
 staff							SF+num10
 subarea							SA+num5
 ticket							T+num10
+suggestion						SG+num10
  */
 
 int stringCmp(const string &a,const string &b)
@@ -156,16 +157,21 @@ void SpecializedForPropertyManagement::staff(int number)
 	for(int i=0;i<staff_id.getUsage();i++)
 	{
 		string staff_id_loc=staff_id[i];
-		string staff_name=Lastname[getRandom()%Lastname.size()]+FirstName[getRandom()%FirstName.size()]+FirstName[getRandom()%FirstName.size()];
+		string staff_name=Lastname[getRandom()%Lastname.size()]
+						  +FirstName[getRandom()%FirstName.size()]
+						  +FirstName[getRandom()%FirstName.size()];
 		string gender=(getRandom()%2==0 ? "男" : "女");
 		string tel=getNumberString(11);
-		string address=RoadName[getRandom()%RoadName.size()]+getNumberString(3)+"弄"+getNumberString(2)+"号"+getNumberString(3)+"室";
+		string address=RoadName[getRandom()%RoadName.size()]
+					   +getNumberString(3)+"弄"+getNumberString(2)+"号"+getNumberString(3)+"室";
 		string position=PositionData[getRandom()%PositionData.size()];
 		string salary=getNumberString(4);
 		string dept=department_id[getRandom()%department_id.getUsage()];
 		string elec_qlfy=(getRandom()%2==0 ? "true" : "false");
 		string plbr_qlfy=(getRandom()%2==0 ? "true" : "false");
-		cout<<"INSERT INTO staff"<<endl<<"VALUES ('"<<staff_id_loc<<"','"<<staff_name<<"','"<<gender<<"','"<<tel<<"','"<<address<<"','"<<position<<"',"<<salary<<",'"<<dept<<"',"<<elec_qlfy<<","<<plbr_qlfy<<");"<<endl;
+		cout<<"INSERT INTO staff"<<endl<<"VALUES ('"<<staff_id_loc<<"','"<<staff_name
+			<<"','"<<gender<<"','"<<tel<<"','"<<address<<"','"<<position<<"',"<<salary
+			<<",'"<<dept<<"',"<<elec_qlfy<<","<<plbr_qlfy<<");"<<endl;
 	}
 
 }
@@ -200,7 +206,8 @@ void SpecializedForPropertyManagement::building(int number)
 		string subarea_id_loc=subarea_id[getRandom()%subarea_id.getUsage()];
 		string max_floor=getNumberString(2);
 		string max_room=getNumberString(2);
-		cout<<"INSERT INTO building"<<endl<<"VALUES ('"<<building_id_loc<<"','"<<subarea_id_loc<<"',"<<max_floor<<","<<max_room<<");"<<endl;
+		cout<<"INSERT INTO building"<<endl<<"VALUES ('"<<building_id_loc<<"','"<<subarea_id_loc<<"',"
+			<<max_floor<<","<<max_room<<");"<<endl;
 	}
 }
 
@@ -249,7 +256,8 @@ void SpecializedForPropertyManagement::overhaulRecord(int number)
 		string overhaul_time=getDateString(true)+getTimeString();
 		string handler=staff_id[getRandom()%staff_id.getUsage()];
 		string overhaul_result="NULL";
-		cout<<"INSERT INTO overhaulRecord"<<endl<<"VALUES ('"<<overhaul_id<<"','"<<fclt_id<<"','"<<overhaul_type<<"',"<<overhaul_time<<",'"<<handler<<"','"<<overhaul_result<<"');"<<endl;
+		cout<<"INSERT INTO overhaulRecord"<<endl<<"VALUES ('"<<overhaul_id<<"','"<<fclt_id<<"','"
+			<<overhaul_type<<"',"<<overhaul_time<<",'"<<handler<<"','"<<overhaul_result<<"');"<<endl;
 	}
 
 }
@@ -265,14 +273,17 @@ void SpecializedForPropertyManagement::proprietor(int number)
 	for(int i=0;i<proprietor_id.getUsage();i++)
 	{
 		string prprt_id=proprietor_id[i];
-		string prprt_name=Lastname[getRandom()%Lastname.size()]+FirstName[getRandom()%FirstName.size()]+FirstName[getRandom()%FirstName.size()];
+		string prprt_name=Lastname[getRandom()%Lastname.size()]
+						  +FirstName[getRandom()%FirstName.size()]
+						  +FirstName[getRandom()%FirstName.size()];
 		string gender=(getRandom()%2==0 ? "男" : "女");
 		string tel=getNumberString(11);
 		string birthday=getDateString(false)+getTimeString();
 		string aprt_building=building_id[getRandom()%building_id.getUsage()];
 		string aprt_floor=getNumberString(3);
 		string aprt_room_num=getNumberString(2);
-		cout<<"INSERT INTO proprietor"<<endl<<"VALUES ('"<<prprt_id<<"','"<<prprt_name<<"','"<<gender<<"','"<<tel<<"',"<<birthday<<",'"<<aprt_building<<"','"<<aprt_floor<<"','"<<aprt_room_num<<"');"<<endl;
+		cout<<"INSERT INTO proprietor"<<endl<<"VALUES ('"<<prprt_id<<"','"<<prprt_name<<"','"<<gender
+			<<"','"<<tel<<"',"<<birthday<<",'"<<aprt_building<<"',"<<aprt_floor<<","<<aprt_room_num<<");"<<endl;
 	}
 }
 
@@ -289,8 +300,10 @@ void SpecializedForPropertyManagement::carpark(int number)
 		string carpark_id_loc=carpark_id[i];
 		string subarea_id_loc=subarea_id[getRandom()%subarea_id.getUsage()];
 		string owner_id=proprietor_id[getRandom()%proprietor_id.getUsage()];
+		string plate_number="沪"+getCharacterString(1)+getNumberArea(10000,100000,5);
 		string valid_term=getDateString(true)+getTimeString();
-		cout<<"INSERT INTO carpark"<<endl<<"VALUES ('"<<carpark_id_loc<<"','"<<subarea_id_loc<<"','"<<owner_id<<"',"<<valid_term<<");"<<endl;
+		cout<<"INSERT INTO carpark"<<endl<<"VALUES ('"<<carpark_id_loc<<"','"<<subarea_id_loc
+			<<"','"<<owner_id<<"','"<<plate_number<<"',"<<valid_term<<");"<<endl;
 	}
 }
 
@@ -307,12 +320,22 @@ void SpecializedForPropertyManagement::ticket(int number)
 		string ticket_id_loc=ticket_id[i];
 		string ticket_type="NULL";
 		string ticket_time=getDateString(true)+getTimeString();
-		string initiator_id=proprietor_id[getRandom()%proprietor_id.getUsage()];
+		string initiator_prprt_id=proprietor_id[getRandom()%proprietor_id.getUsage()];
+		string initiator_staff_id=staff_id[getRandom()%staff_id.getUsage()];
+		string subarea_id_loc=subarea_id[getRandom()%subarea_id.getUsage()];
+		string aprt_building=building_id[getRandom()%building_id.getUsage()];
+		string aprt_floor=getNumberString(3);
+		string aprt_room_num=getNumberString(2);
+		string description="NULL";
 		string handler_id=staff_id[getRandom()%staff_id.getUsage()];
 		string handle_time=getDateString(true)+getTimeString();
 		string ticket_result="NULL";
 		string ticket_fdbk=getNumberString(1);
-		cout<<"INSERT INTO ticket"<<endl<<"VALUES ('"<<ticket_id_loc<<"','"<<ticket_type<<"',"<<ticket_time<<",'"<<initiator_id<<"','"<<handler_id<<"',"<<handle_time<<",'"<<ticket_result<<"',"<<ticket_fdbk<<");"<<endl;
+		cout<<"INSERT INTO ticket"<<endl<<"VALUES ('"<<ticket_id_loc<<"','"<<ticket_type<<"',"
+			<<ticket_time<<",'"<<initiator_prprt_id<<"','"<<initiator_staff_id<<"','"
+			<<subarea_id_loc<<"','"<<aprt_building<<"',"<<aprt_floor<<","<<aprt_room_num
+			<<",'"<<description<<"','"<<handler_id<<"',"<<handle_time<<",'"<<ticket_result
+			<<"',"<<ticket_fdbk<<");"<<endl;
 	}
 }
 
@@ -332,7 +355,9 @@ void SpecializedForPropertyManagement::dailyTask(int number)
 		string task_area=subarea_id[getRandom()%subarea_id.getUsage()];
 		string handler=staff_id[getRandom()%staff_id.getUsage()];
 		string task_result="NULL";
-		cout<<"INSERT INTO dailyTask"<<endl<<"VALUES ('"<<task_id<<"','"<<task_type<<"',"<<task_time<<",'"<<task_area<<"','"<<handler<<"','"<<task_result<<"');"<<endl;
+		string isException=(getRandom()%2==0 ? "TRUE" : "FALSE");
+		cout<<"INSERT INTO dailyTask"<<endl<<"VALUES ('"<<task_id<<"','"<<task_type<<"',"
+			<<task_time<<",'"<<task_area<<"','"<<handler<<"','"<<task_result<<"',"<<isException<<");"<<endl;
 	}
 }
 
@@ -351,7 +376,8 @@ void SpecializedForPropertyManagement::buildingEntranceRecord(int number)
 		string building_id_loc=building_id[getRandom()%building_id.getUsage()];
 		string access_time=getDateString(true)+getTimeString();
 		string verify_type=(getRandom()%2==0 ? "key" : "card");
-		cout<<"INSERT INTO buildingEntranceRecord"<<endl<<"VALUES ('"<<record_id<<"','"<<prprt_id<<"','"<<building_id_loc<<"',"<<access_time<<",'"<<verify_type<<"');"<<endl;
+		cout<<"INSERT INTO buildingEntranceRecord"<<endl<<"VALUES ('"<<record_id<<"','"
+			<<prprt_id<<"','"<<building_id_loc<<"',"<<access_time<<",'"<<verify_type<<"');"<<endl;
 	}
 }
 
@@ -386,7 +412,8 @@ void SpecializedForPropertyManagement::fee(int number)
 		string start_date=getDateString(true);
 		string end_date=getDateString(true);
 		string price=getNumberString(3);
-		cout<<"INSERT INTO fee"<<endl<<"VALUES ('"<<fee_id_loc<<"','"<<item_id<<"',"<<start_date<<","<<end_date<<","<<price<<");"<<endl;
+		cout<<"INSERT INTO fee"<<endl<<"VALUES ('"<<fee_id_loc<<"','"<<item_id<<"',"<<start_date
+			<<","<<end_date<<","<<price<<");"<<endl;
 	}
 }
 
@@ -405,7 +432,8 @@ void SpecializedForPropertyManagement::chargingSituation(int number)
 		string prprt_id=proprietor_id[getRandom()%proprietor_id.getUsage()];
 		string collector_id=staff_id[getRandom()%staff_id.getUsage()];
 		string charge_date=getDateString(true);
-		cout<<"INSERT INTO chargingSituation"<<endl<<"VALUES ('"<<situation_id<<"','"<<fee_id_loc<<"','"<<prprt_id<<"','"<<collector_id<<"',"<<charge_date<<");"<<endl;
+		cout<<"INSERT INTO chargingSituation"<<endl<<"VALUES ('"<<situation_id<<"','"<<fee_id_loc
+			<<"','"<<prprt_id<<"','"<<collector_id<<"',"<<charge_date<<");"<<endl;
 	}
 }
 
@@ -421,12 +449,44 @@ void SpecializedForPropertyManagement::carIORecord(int number)
 	{
 		string io_record_id=carIORecord_id[i];
 		string plate_number="沪"+getCharacterString(1)+getNumberArea(10000,100000,5);
-		string prprt_id=proprietor_id[getRandom()%proprietor_id.getUsage()];
-		string record_type=(getRandom()%2==0 ? "进" : "出");
-		string record_time=getDateString(true)+getTimeString();
-		cout<<"INSERT INTO carIORecord"<<endl<<"VALUES ('"<<io_record_id<<"','"<<plate_number<<"','"<<prprt_id<<"','"<<record_type<<"',"<<record_time<<");"<<endl;
+		string prprt_id=(getRandom()%2==0 ? proprietor_id[getRandom()%proprietor_id.getUsage()] : "NULL");
+		string record_in_time=getDateString(true)+getTimeString();
+		string record_out_time=getDateString(true)+getTimeString();
+		string price=getNumberString(2);
+
+		cout<<"INSERT INTO carIORecord"<<endl<<"VALUES ('"<<io_record_id<<"','"<<plate_number;
+		if(prprt_id=="NULL")
+			cout<<"',"<<prprt_id<<",";
+		else
+			cout<<"','"<<prprt_id<<"',";
+		cout<<record_in_time<<","<<record_out_time<<","<<price<<");"<<endl;
 	}
 }
+
+void SpecializedForPropertyManagement::suggestion(int number)
+{
+	for(int i=0;i<number;i++)
+	{
+		string suggestion_id_loc="SG"+getNumberString(10);
+		suggestion_id.AddFinal(suggestion_id_loc);
+	}
+	suggestion_id.MakeUnique(stringCmp);
+	for(int i=0;i<suggestion_id.getUsage();i++)
+	{
+		string suggestion_id_loc=suggestion_id[i];
+		string prprt_id=(getRandom()%2==0 ? proprietor_id[getRandom()%proprietor_id.getUsage()] : "NULL");
+		string suggestion_type=TaskType[getRandom()%TaskType.size()];
+		string suggestion_detail="NULL";
+
+		cout<<"INSERT INTO suggestion"<<endl<<"VALUES ('"<<suggestion_id_loc;
+		if(prprt_id=="NULL")
+			cout<<"',"<<prprt_id<<",'";
+		else
+			cout<<"','"<<prprt_id<<"','";
+		cout<<suggestion_type<<"','"<<suggestion_detail<<"');"<<endl;
+	}
+}
+
 const default_random_engine &SpecializedForPropertyManagement::getGetRandom() const
 {
 	return getRandom;
@@ -490,5 +550,9 @@ const Sequence<string> &SpecializedForPropertyManagement::getStaff_id() const
 const Sequence<string> &SpecializedForPropertyManagement::getTicket_id() const
 {
 	return ticket_id;
+}
+const Sequence<string> &SpecializedForPropertyManagement::getSuggestion_id() const
+{
+	return suggestion_id;
 }
 

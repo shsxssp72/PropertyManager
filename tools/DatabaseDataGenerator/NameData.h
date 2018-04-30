@@ -175,11 +175,11 @@ vector<string> RoadName
 		};
 vector<string> PositionData
 		{
-				"manager","supervisor","guard","cleaner","repairman","accountant"
+				"manager","supervisor","guard","cleaner","repairman","accountant","receptionist"
 		};
 vector<string> FacilityType
 		{
-				"electricity","pipe"
+				"electricity","pipe","guard", "clean"
 		};
 vector<string> TaskType
 		{

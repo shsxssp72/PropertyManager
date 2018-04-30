@@ -1,4 +1,4 @@
-DROP DATABASE PropertyManagement;
+DROP DATABASE IF EXISTS PropertyManagement;
 CREATE DATABASE PropertyManagement;
 USE PropertyManagement;
 
@@ -22,7 +22,7 @@ CREATE TABLE staff
   elec_qlfy  BOOL, ##电工资质
   plbr_qlfy  BOOL, ##水管工资质
   FOREIGN KEY (dept) REFERENCES department (dept_ID),
-  CHECK (position IN ('manager', 'supervisor', 'guard', 'cleaner', 'repairman', 'accountant'))##工作人员的职位
+  CHECK (position IN ('manager', 'supervisor', 'guard', 'cleaner', 'repairman', 'accountant', 'receptionist'))##工作人员的职位
 );
 
 CREATE TABLE subarea
@@ -87,28 +87,37 @@ CREATE TABLE proprietor
 
 CREATE TABLE carpark
 (
-  carpark_id CHAR(20) PRIMARY KEY,
-  subarea_id CHAR(20),
-  owner_id   CHAR(20),
-  valid_term DATE,
+  carpark_id   CHAR(20) PRIMARY KEY,
+  subarea_id   CHAR(20),
+  owner_id     CHAR(20),
+  plate_number CHAR(20),
+  valid_term   DATE,
   FOREIGN KEY (owner_id) REFERENCES proprietor (prprt_id),
   FOREIGN KEY (subarea_id) REFERENCES subarea (subarea_id)
 );
 
 CREATE TABLE ticket
 (
-  ticket_id     CHAR(20) PRIMARY KEY,
-  ticket_type   VARCHAR(20), ##注意，此处应用自建类型加以枚举指定或用外键约束
-  ticket_time   DATETIME,
-  initiator_id  CHAR(20),
-  handler_id    CHAR(20),
-  handle_date   DATE,
-  handle_time   TIME,
-  ticket_result VARCHAR(1000),
-  ticket_fdbk   INT, ## 注意，此处定义评价等级映射关系
-  FOREIGN KEY (initiator_id) REFERENCES proprietor (prprt_id),
+  ticket_id          CHAR(20) PRIMARY KEY,
+  ticket_type        VARCHAR(20), ##注意，此处应用自建类型加以枚举指定或用外键约束
+  ticket_time        DATETIME,
+  initiator_prprt_id CHAR(20), ##二选一
+  initiator_staff_id CHAR(20), ##二选一
+  subarea_id         CHAR(20),
+  aprt_building      CHAR(20),
+  aprt_floor         INT,
+  apart_room_num     INT,
+  description        VARBINARY(1000),
+  handler_id         CHAR(20),
+  handle_time        DATETIME,
+  ticket_result      VARCHAR(1000),
+  ticket_fdbk        INT, ## 注意，此处定义评价等级映射关系
+  FOREIGN KEY (initiator_prprt_id) REFERENCES proprietor (prprt_id),
+  FOREIGN KEY (initiator_staff_id) REFERENCES staff (staff_id),
+  FOREIGN KEY (subarea_id) REFERENCES subarea (subarea_id),
+  FOREIGN KEY (aprt_building) REFERENCES building (building_id),
   FOREIGN KEY (handler_id) REFERENCES staff (staff_ID),
-  CHECK (ticket_type IN ('electricity', 'pipe')) ##将报修设施制定为电器和管道两种类型
+  CHECK (ticket_type IN ('electricity', 'pipe', 'guard', 'clean'))
 );
 
 CREATE TABLE dailyTask
@@ -119,6 +128,7 @@ CREATE TABLE dailyTask
   task_area    CHAR(20),
   task_handler CHAR(20),
   task_result  VARCHAR(1000),
+  isException  BOOL,
   FOREIGN KEY (task_handler) REFERENCES staff (staff_ID),
   FOREIGN KEY (task_area) REFERENCES subarea (subarea_id),
   CHECK (task_type IN ('guard', 'clean', 'overhaul'))
@@ -155,11 +165,11 @@ CREATE TABLE fee
 
 CREATE TABLE chargingSituation
 (
-  fee_id       CHAR(20),
-  prprt_id     CHAR(20),
-  collector_id CHAR(20),
-  charge_date  DATE,
-  PRIMARY KEY (fee_id, prprt_id),
+  chargingSituation_id CHAR(20) PRIMARY KEY,
+  fee_id               CHAR(20),
+  prprt_id             CHAR(20),
+  collector_id         CHAR(20),
+  charge_date          DATE,
   FOREIGN KEY (fee_id) REFERENCES fee (fee_id),
   FOREIGN KEY (prprt_id) REFERENCES proprietor (prprt_id),
   FOREIGN KEY (collector_id) REFERENCES staff (staff_ID)
@@ -167,11 +177,21 @@ CREATE TABLE chargingSituation
 
 CREATE TABLE carIORecord
 (
-  io_record_id CHAR(20) PRIMARY KEY,
-  plate_number CHAR(20),
-  prprt_id     CHAR(20), ##可为空，代表外部车辆
-  record_type  CHAR(5), ##进或出
-  record_time  DATETIME,
+  io_record_id    CHAR(20) PRIMARY KEY,
+  plate_number    CHAR(20),
+  prprt_id        CHAR(20), ##可为空，代表外部车辆
+  record_in_time  DATETIME,
+  record_out_time DATETIME,
+  price           DECIMAL(5, 2),
+  FOREIGN KEY (prprt_id) REFERENCES proprietor (prprt_id)
+);
+
+CREATE TABLE suggestion
+(
+  suggestion_id     CHAR(20) PRIMARY KEY,
+  prprt_id          CHAR(20),
+  suggestion_type   VARCHAR(20),
+  suggestion_detail VARCHAR(1000),
   FOREIGN KEY (prprt_id) REFERENCES proprietor (prprt_id)
 );
 
@@ -189,4 +209,3 @@ CREATE TABLE carIORecord
 # SELECT *
 # FROM carIORecord;
 
-SHOW TABLES;

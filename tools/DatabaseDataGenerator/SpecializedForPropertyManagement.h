@@ -41,6 +41,7 @@ public:
 	void proprietor(int number);
 	void staff(int number);
 	void ticket(int number);
+	void suggestion(int number);
 	const default_random_engine &getGetRandom() const;
 	const Sequence<string> &getSubarea_id() const;
 	const Sequence<string> &getBuilding_id() const;
@@ -57,6 +58,7 @@ public:
 	const Sequence<string> &getProprietor_id() const;
 	const Sequence<string> &getStaff_id() const;
 	const Sequence<string> &getTicket_id() const;
+	const Sequence<string> &getSuggestion_id() const;
 private:
 	default_random_engine getRandom;
 	Sequence<string> subarea_id;
@@ -74,6 +76,7 @@ private:
 	Sequence<string> proprietor_id;
 	Sequence<string> staff_id;
 	Sequence<string> ticket_id;
+	Sequence<string> suggestion_id;
 
 };
 int stringCmp(const string &a,const string &b);
