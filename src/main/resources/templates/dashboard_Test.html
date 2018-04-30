@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TestTable</title>
+
+    <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
+    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet" th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
+
+    <!-- Morris -->
+    <link href="../static/INSPINIA/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet"
+    th:href="@{/INSPINIA/css/plugins/morris/morris-0.4.3.min.css}">
+
+    <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
+    <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
+
+</head>
+
+<body>
+<div id="wrapper">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Test Table </h5>
+            </div>
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>building_id</th>
+                            <th>subarea_id</th>
+                            <th>max_floor</th>
+                            <th>max_room_num</th>
+                            <!--<th>e</th>-->
+                            <!--<th>f</th>-->
+                            <!--<th>g</th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="Test:${testLists}">
+                            <td th:text="${Test.building_id}">1</td>
+                            <td th:text="${Test.subarea_id}">Project</td>
+                            <td th:text="${Test.max_floor}">Patrick Smith</td>
+                            <td th:text="${Test.max_room_num}">0800 051213</td>
+                            <!--<td th:text="${Test.e}">Inceptos Hymenaeos Ltd</td>-->
+                            <!--<td><span class="pie" th:text="${Test.f}">0.52/1.561</span></td>-->
+                            <!--<td><a href="#"><i class="fa fa-check text-navy"></i></a></td>-->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
+<script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
+        th:src="@{/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
+        th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/peity/jquery.peity.min.js"
+        th:src="@{/INSPINIA/js/plugins/peity/jquery.peity.min.js}"></script>
+<script src="../static/INSPINIA/js/demo/peity-demo.js" th:src="@{/INSPINIA/js/demo/peity-demo.js}"></script>
+
+</body>
+</html>
