@@ -85,7 +85,7 @@ string SpecializedForPropertyManagement::getDateString(bool isNew)
 		year="20";
 	else
 		year="19";
-	year+=getNumberString(2);
+	year+=getNumberArea(0,100,2);
 	month=getNumberArea(1,13,2);
 	int month_num=stoi(month);
 	switch(month_num)
@@ -320,8 +320,14 @@ void SpecializedForPropertyManagement::ticket(int number)
 		string ticket_id_loc=ticket_id[i];
 		string ticket_type="NULL";
 		string ticket_time=getDateString(true)+getTimeString();
+
+		bool flag=(getRandom()%2==0);
 		string initiator_prprt_id=proprietor_id[getRandom()%proprietor_id.getUsage()];
 		string initiator_staff_id=staff_id[getRandom()%staff_id.getUsage()];
+		if(flag)
+			initiator_prprt_id="NULL";
+		else
+			initiator_staff_id="NULL";
 		string subarea_id_loc=subarea_id[getRandom()%subarea_id.getUsage()];
 		string aprt_building=building_id[getRandom()%building_id.getUsage()];
 		string aprt_floor=getNumberString(3);
@@ -331,11 +337,13 @@ void SpecializedForPropertyManagement::ticket(int number)
 		string handle_time=getDateString(true)+getTimeString();
 		string ticket_result="NULL";
 		string ticket_fdbk=getNumberString(1);
-		cout<<"INSERT INTO ticket"<<endl<<"VALUES ('"<<ticket_id_loc<<"','"<<ticket_type<<"',"
-			<<ticket_time<<",'"<<initiator_prprt_id<<"','"<<initiator_staff_id<<"','"
-			<<subarea_id_loc<<"','"<<aprt_building<<"',"<<aprt_floor<<","<<aprt_room_num
-			<<",'"<<description<<"','"<<handler_id<<"',"<<handle_time<<",'"<<ticket_result
-			<<"',"<<ticket_fdbk<<");"<<endl;
+		cout<<"INSERT INTO ticket"<<endl<<"VALUES ('"<<ticket_id_loc<<"','"<<ticket_type<<"',"<<ticket_time;
+		if(flag)
+			cout<<","<<initiator_prprt_id<<",'"<<initiator_staff_id<<"','";
+		else
+			cout<<",'"<<initiator_prprt_id<<"',"<<initiator_staff_id<<",'";
+		cout<<subarea_id_loc<<"','"<<aprt_building<<"',"<<aprt_floor<<","<<aprt_room_num<<",'"<<description
+			<<"','"<<handler_id<<"',"<<handle_time<<",'"<<ticket_result<<"',"<<ticket_fdbk<<");"<<endl;
 	}
 }
 

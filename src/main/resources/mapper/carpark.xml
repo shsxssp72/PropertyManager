@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Mapper.CarparkMapper">
+	<resultMap id="carpark" type="com.Property.Entity.Carpark">
+		<id column="carpark_id" property="carpark_id" jdbcType="CHAR"/>
+		<result column="subarea_id" property="subarea_id" jdbcType="CHAR"/>
+		<result column="owner_id" property="owner_id" jdbcType="CHAR"/>
+		<result column="plate_number" property="plate_number" jdbcType="CHAR"/>
+		<result column="valid_term" property="valid_term" jdbcType="DATE"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		carpark_id,subarea_id,owner_id,plate_number,valid_term
+	</sql>
+
+	<select id="getAll" resultMap="carpark">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM carpark
+	</select>
+</mapper>

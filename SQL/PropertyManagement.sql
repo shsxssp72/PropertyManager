@@ -54,8 +54,8 @@ CREATE TABLE facilities
   location    VARCHAR(20),
   #FOREIGN KEY (fclt_type) REFERENCES facilityType (facilityType),
   FOREIGN KEY (building_id) REFERENCES building (building_ID),
-  FOREIGN KEY (subarea_id) REFERENCES subarea (subarea_id),
-  CHECK (fclt_type IN ('electricity', 'pipe')) ##将设施制定为电器和管道两种类型
+  FOREIGN KEY (subarea_id) REFERENCES subarea (subarea_id)
+  #CHECK (fclt_type IN ('electricity', 'pipe')) ##将设施制定为电器和管道两种类型
 );
 
 CREATE TABLE overhaulRecord
@@ -106,7 +106,7 @@ CREATE TABLE ticket
   subarea_id         CHAR(20),
   aprt_building      CHAR(20),
   aprt_floor         INT,
-  apart_room_num     INT,
+  aprt_room_num     INT,
   description        VARBINARY(1000),
   handler_id         CHAR(20),
   handle_time        DATETIME,

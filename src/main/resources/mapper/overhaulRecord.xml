@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Mapper.OverhaulRecordMapper">
+	<resultMap id="overhaulRecord" type="com.Property.Entity.OverhaulRecord">
+		<id column="overhaul_id" property="overhaul_id" jdbcType="CHAR"/>
+		<result column="fclt_id" property="fclt_id" jdbcType="CHAR"/>
+		<result column="overhaul_type" property="overhaul_type" jdbcType="VARCHAR"/>
+		<result column="overhaul_time" property="overhaul_time" jdbcType="TIMESTAMP"/>
+		<result column="overhaul_handler" property="overhaul_handler" jdbcType="CHAR"/>
+		<result column="overhaul_result" property="overhaul_result" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		overhaul_id,fclt_id,overhaul_type,overhaul_time,overhaul_handler,overhaul_result
+	</sql>
+
+	<select id="getAll" resultMap="overhaulRecord">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM overhaulRecord
+	</select>
+</mapper>

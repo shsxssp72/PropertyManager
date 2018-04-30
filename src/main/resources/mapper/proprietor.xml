@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Mapper.ProprietorMapper">
+	<resultMap id="proprietor" type="com.Property.Entity.Proprietor">
+		<id column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+		<result column="prprt_name" property="prprt_name" jdbcType="VARCHAR"/>
+		<result column="gender" property="gender" jdbcType="VARCHAR"/>
+		<result column="tel" property="tel" jdbcType="VARCHAR"/>
+		<result column="birthday" property="birthday" jdbcType="DATE"/>
+		<result column="aprt_building" property="aprt_building" jdbcType="CHAR"/>
+		<result column="aprt_floor" property="aprt_floor" jdbcType="INTEGER"/>
+		<result column="aprt_room_num" property="aprt_room_num" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		prprt_id,prprt_name,gender,tel,birthday,aprt_building,aprt_floor,aprt_room_num
+	</sql>
+
+	<select id="getAll" resultMap="proprietor">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM proprietor
+	</select>
+</mapper>

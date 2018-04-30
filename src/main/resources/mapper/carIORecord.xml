@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Mapper.CarIORecordMapper">
+	<resultMap id="carIORecord" type="com.Property.Entity.CarIORecord">
+		<id column="io_record_id" property="io_record_id" jdbcType="CHAR"/>
+		<result column="plate_number" property="plate_number" jdbcType="CHAR"/>
+		<result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+		<result column="record_in_time" property="record_in_time" jdbcType="TIMESTAMP"/>
+		<result column="record_out_time" property="record_out_time" jdbcType="TIMESTAMP"/>
+		<result column="price" property="price" jdbcType="DECIMAL"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		io_record_id,plate_number,prprt_id,record_in_time,record_out_time,price
+	</sql>
+
+	<select id="getAll" resultMap="carIORecord">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM carIORecord
+	</select>
+</mapper>

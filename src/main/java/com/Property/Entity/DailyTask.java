@@ -2,7 +2,7 @@ package com.Property.Entity;
 
 import java.sql.Timestamp;
 
-public class DaliyTask
+public class DailyTask
 {
 	private String task_id;
 	private String task_type;
@@ -10,6 +10,7 @@ public class DaliyTask
 	private String task_area;
 	private String task_handler;
 	private String task_result;
+	private boolean isException;
 
 	public String getTask_id()
 	{
@@ -69,5 +70,15 @@ public class DaliyTask
 	public void setTask_result(String task_result)
 	{
 		this.task_result = task_result;
+	}
+
+	public boolean isException()
+	{
+		return isException;
+	}
+
+	public void setException(boolean exception)
+	{
+		isException=exception;
 	}
 }
