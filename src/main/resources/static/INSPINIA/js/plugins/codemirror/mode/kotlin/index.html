@@ -26,7 +26,7 @@
 <h2>Kotlin mode</h2>
 
 
-<div><textarea id="code" name="code">
+<div><textarea id="code" display_name="code">
 package org.wasabi.http
 
 import java.util.concurrent.Executors
@@ -78,7 +78,7 @@ public class HttpServer(private val appServer: AppServer) {
 
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-            mode: {name: "kotlin"},
+            mode: {display_name: "kotlin"},
             lineNumbers: true,
             indentUnit: 4
         });

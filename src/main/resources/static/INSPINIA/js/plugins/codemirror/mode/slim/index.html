@@ -35,13 +35,13 @@
 
 <article>
   <h2>SLIM mode</h2>
-  <form><textarea id="code" name="code">
+  <form><textarea id="code" display_name="code">
 body
   table
     - for user in users
       td id="user_#{user.id}" class=user.role
-        a href=user_action(user, :edit) Edit #{user.name}
-        a href=(path_to_user user) = user.name
+        a href=user_action(user, :edit) Edit #{user.display_name}
+        a href=(path_to_user user) = user.display_name
 body
   h1(id="logo") = page_logo
   h2[id="tagline" class="small tagline"] = page_tagline

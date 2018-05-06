@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta display_name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Login</title>
+
+    <link href="/INSPINIA/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/INSPINIA/css/animate.css" rel="stylesheet">
+    <link href="/INSPINIA/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-display_name">PM</h1>
+
+            </div>
+            <h3>Welcome to Property Management</h3>
+            <p>A Property Management Project For Test
+                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+            </p>
+            <p>Login in. To see more details.</p>
+            <form class="m-t" role="form" method="post">
+                <div class="" th:text="${msg}">
+                    <!--Invalid Username/Password.-->
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+                <a href="#"><small>Forgot user_password?</small></a>
+                <!--<p class="text-muted text-center"><small>Do not have an account?</small></p>-->
+                <!--<a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>-->
+            </form>
+            <p class="m-t"> <small>UI From Inspinia &copy; 2018</small> </p>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="/INSPINIA/js/jquery-3.1.1.min.js"></script>
+    <script src="/INSPINIA/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Login</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--错误信息：<h4 th:text="${msg}"></h4>-->
+<!--<form action="" method="post" role="form">-->
+    <!--<p>账号：<input type="text" name="username" placeholder="U" value="admin"/></p>-->
+    <!--<p>密码：<input type="password" name="password" placeholder="P" value="123456"/></p>-->
+    <!--<p><input type="submit" value="登录"/></p>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->

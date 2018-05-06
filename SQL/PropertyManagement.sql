@@ -106,7 +106,7 @@ CREATE TABLE ticket
   subarea_id         CHAR(20),
   aprt_building      CHAR(20),
   aprt_floor         INT,
-  aprt_room_num     INT,
+  aprt_room_num      INT,
   description        VARBINARY(1000),
   handler_id         CHAR(20),
   handle_time        DATETIME,
@@ -209,3 +209,74 @@ CREATE TABLE suggestion
 # SELECT *
 # FROM carIORecord;
 
+DROP TABLE IF EXISTS UserRole;
+DROP TABLE IF EXISTS RolePermission;
+DROP TABLE IF EXISTS UserInfo;
+DROP TABLE IF EXISTS SysPermission;
+DROP TABLE IF EXISTS SysRole;
+
+CREATE TABLE SysRole
+(
+  role_id      INT PRIMARY KEY,
+  role_name    VARCHAR(50),
+  descryption  VARCHAR(100),
+  is_available BOOL
+);
+
+CREATE TABLE SysPermission
+(
+  perm_id       INT PRIMARY KEY,
+  perm_name     VARCHAR(100),
+  resource_type VARCHAR(20),
+  permit_url    VARCHAR(50),
+  permission VARCHAR(100),
+  parent_id     INT,
+  parent_ids    VARCHAR(50),
+  is_available  BOOL
+);
+
+CREATE TABLE UserInfo
+(
+  uid           INT PRIMARY KEY,
+  user_name     VARCHAR(20),
+  display_name  VARCHAR(20),
+  user_password CHAR(255),
+  salt          CHAR(255),
+  state         INT
+);
+
+CREATE TABLE RolePermission
+(
+  role_id INT,
+  perm_id INT,
+  PRIMARY KEY (role_id, perm_id),
+  FOREIGN KEY (role_id) REFERENCES SysRole (role_id),
+  FOREIGN KEY (perm_id) REFERENCES SysPermission (perm_id)
+);
+
+CREATE TABLE UserRole
+(
+  uid     INT,
+  role_id INT,
+  PRIMARY KEY (uid, role_id),
+  FOREIGN KEY (uid) REFERENCES UserInfo (uid),
+  FOREIGN KEY (role_id) REFERENCES SysRole (role_id)
+);
+
+INSERT INTO UserInfo
+VALUES (1, 'Test', 'Test-<', '49a4afbc2862d18ad095e095d717e43485ae89d3b6e249239deb041b0d0bbcb1d24250128037d6b853272d8c595c60f10edf00be9efc7c1c315f5169dc8667ed', 'C14E16225482E32714D3831E3E927DE2DDB4F9BF2DB21', 1);
+# INSERT INTO SysPermission
+# VALUES (1, 'ticket', 'ticket-<', '/ticket/list','ticket:view', 0, '0', TRUE);
+# INSERT INTO SysRole
+# VALUES (1, 'test', 'test->', 1);
+INSERT INTO UserRole
+VALUES (1, 0);
+
+
+UPDATE UserInfo
+SET user_password='49a4afbc2862d18ad095e095d717e43485ae89d3b6e249239deb041b0d0bbcb1d24250128037d6b853272d8c595c60f10edf00be9efc7c1c315f5169dc8667ed',salt='C14E16225482E32714D3831E3E927DE2DDB4F9BF2DB21',user_name='Test'
+WHERE uid=1;
+
+SELECT * FROM SysRole JOIN UserRole Role ON SysRole.role_id = Role.role_id;
+
+show tables;

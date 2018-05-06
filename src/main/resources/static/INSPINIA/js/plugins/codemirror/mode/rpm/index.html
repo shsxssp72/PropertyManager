@@ -27,13 +27,13 @@
 <article>
 <h2>RPM changes mode</h2>
 
-    <div><textarea id="code" name="code">
+    <div><textarea id="code" display_name="code">
 -------------------------------------------------------------------
 Tue Oct 18 13:58:40 UTC 2011 - misterx@example.com
 
 - Update to r60.3
 - Fixes bug in the reflect package
-  * disallow Interface method on Value obtained via unexported name
+  * disallow Interface method on Value obtained via unexported display_name
 
 -------------------------------------------------------------------
 Thu Oct  6 08:14:24 UTC 2011 - misterx@example.com
@@ -56,7 +56,7 @@ Wed Oct  5 14:34:10 UTC 2011 - misterx@example.com
 </textarea></div>
     <script>
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        mode: {name: "rpm-changes"},
+        mode: {display_name: "rpm-changes"},
         lineNumbers: true,
         indentUnit: 4
       });
@@ -64,7 +64,7 @@ Wed Oct  5 14:34:10 UTC 2011 - misterx@example.com
 
 <h2>RPM spec mode</h2>
     
-    <div><textarea id="code2" name="code2">
+    <div><textarea id="code2" display_name="code2">
 #
 # spec file for package minidlna
 #
@@ -88,7 +88,7 @@ Group:          System/Libraries
 License:        BSD-3-Clause
 Url:            http://sourceforge.net/projects/pupnp/
 Source0:        http://downloads.sourceforge.net/pupnp/libupnp-%{version}.tar.bz2
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+BuildRoot:      %{_tmppath}/%{display_name}-%{version}-build
 
 %description
 The portable Universal Plug and Play (UPnP) SDK provides support for building
@@ -99,7 +99,7 @@ systems.
 Summary:        Portable Universal Plug and Play (UPnP) SDK
 Group:          Development/Libraries/C and C++
 Provides:       pkgconfig(libupnp)
-Requires:       %{name} = %{version}
+Requires:       %{display_name} = %{version}
 
 %description -n libupnp-devel
 The portable Universal Plug and Play (UPnP) SDK provides support for building
@@ -115,7 +115,7 @@ make %{?_smp_mflags}
 
 %install
 %makeinstall
-find %{buildroot} -type f -name '*.la' -exec rm -f {} ';'
+find %{buildroot} -type f -display_name '*.la' -exec rm -f {} ';'
 
 %post -p /sbin/ldconfig
 
@@ -139,7 +139,7 @@ find %{buildroot} -type f -name '*.la' -exec rm -f {} ';'
 %changelog</textarea></div>
     <script>
       var editor = CodeMirror.fromTextArea(document.getElementById("code2"), {
-        mode: {name: "rpm-spec"},
+        mode: {display_name: "rpm-spec"},
         lineNumbers: true,
         indentUnit: 4
       });

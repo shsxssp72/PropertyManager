@@ -25,7 +25,7 @@
 <article>
 <h2>Julia mode</h2>
 
-    <div><textarea id="code" name="code">
+    <div><textarea id="code" display_name="code">
 #numbers
 1234
 1234im
@@ -183,7 +183,7 @@ true false enumerate
     </textarea></div>
     <script>
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        mode: {name: "julia",
+        mode: {display_name: "julia",
                },
         lineNumbers: true,
         indentUnit: 4,

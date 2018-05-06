@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta display_name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>INSPINIA | Basic Form</title>
 
@@ -130,7 +130,7 @@
                         <li><a href="invoice.html">Invoice</a></li>
                         <li><a href="login.html">Login</a></li>
                         <li><a href="login_two_columns.html">Login v.2</a></li>
-                        <li><a href="forgot_password.html">Forget password</a></li>
+                        <li><a href="forgot_password.html">Forget user_password</a></li>
                         <li><a href="register.html">Register</a></li>
                         <li><a href="404.html">404 Page</a></li>
                         <li><a href="500.html">500 Page</a></li>
@@ -265,7 +265,7 @@
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" action="search_results.html">
                 <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                    <input type="text" placeholder="Search for something..." class="form-control" display_name="top-search" id="top-search">
                 </div>
             </form>
         </div>
@@ -428,7 +428,7 @@
                                 <p>Sign in today for more expirience.</p>
                                 <form role="form">
                                     <div class="form-group"><label>Email</label> <input type="email" placeholder="Enter email" class="form-control"></div>
-                                    <div class="form-group"><label>Password</label> <input type="password" placeholder="Password" class="form-control"></div>
+                                    <div class="form-group"><label>Password</label> <input type="user_password" placeholder="Password" class="form-control"></div>
                                     <div>
                                         <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
                                         <label> <input type="checkbox" class="i-checks"> Remember me </label>
@@ -477,7 +477,7 @@
                                 </div>
                                 <div class="form-group"><label class="col-lg-2 control-label">Password</label>
 
-                                    <div class="col-lg-10"><input type="password" placeholder="Password" class="form-control"></div>
+                                    <div class="col-lg-10"><input type="user_password" placeholder="Password" class="form-control"></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">
@@ -526,7 +526,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword2" class="sr-only">Password</label>
-                                    <input type="password" placeholder="Password" id="exampleInputPassword2"
+                                    <input type="user_password" placeholder="Password" id="exampleInputPassword2"
                                            class="form-control">
                                 </div>
                                 <div class="checkbox m-r-xs">
@@ -577,7 +577,7 @@
 
                                                     <form role="form">
                                                         <div class="form-group"><label>Email</label> <input type="email" placeholder="Enter email" class="form-control"></div>
-                                                        <div class="form-group"><label>Password</label> <input type="password" placeholder="Password" class="form-control"></div>
+                                                        <div class="form-group"><label>Password</label> <input type="user_password" placeholder="Password" class="form-control"></div>
                                                         <div>
                                                             <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
                                                             <label> <input type="checkbox" class="i-checks"> Remember me </label>
@@ -636,7 +636,7 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Password</label>
 
-                                    <div class="col-sm-10"><input type="password" class="form-control" name="password"></div>
+                                    <div class="col-sm-10"><input type="user_password" class="form-control" display_name="user_password"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Placeholder</label>
@@ -659,9 +659,9 @@
 
                                     <div class="col-sm-10">
                                         <div><label> <input type="checkbox" value=""> Option one is this and that&mdash;be sure to include why it's great </label></div>
-                                        <div><label> <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios"> Option one is this and that&mdash;be sure to
+                                        <div><label> <input type="radio" checked="" value="option1" id="optionsRadios1" display_name="optionsRadios"> Option one is this and that&mdash;be sure to
                                             include why it's great </label></div>
-                                        <div><label> <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios"> Option two can be something else and selecting it will
+                                        <div><label> <input type="radio" value="option2" id="optionsRadios2" display_name="optionsRadios"> Option two can be something else and selecting it will
                                             deselect option one </label></div>
                                     </div>
                                 </div>
@@ -680,10 +680,10 @@
                                         <div class="i-checks"><label> <input type="checkbox" value="" checked=""> <i></i> Option two checked </label></div>
                                         <div class="i-checks"><label> <input type="checkbox" value="" disabled="" checked=""> <i></i> Option three checked and disabled </label></div>
                                         <div class="i-checks"><label> <input type="checkbox" value="" disabled=""> <i></i> Option four disabled </label></div>
-                                        <div class="i-checks"><label> <input type="radio" value="option1" name="a"> <i></i> Option one </label></div>
-                                        <div class="i-checks"><label> <input type="radio" checked="" value="option2" name="a"> <i></i> Option two checked </label></div>
+                                        <div class="i-checks"><label> <input type="radio" value="option1" display_name="a"> <i></i> Option one </label></div>
+                                        <div class="i-checks"><label> <input type="radio" checked="" value="option2" display_name="a"> <i></i> Option two checked </label></div>
                                         <div class="i-checks"><label> <input type="radio" disabled="" checked="" value="option2"> <i></i> Option three checked and disabled </label></div>
-                                        <div class="i-checks"><label> <input type="radio" disabled="" name="a"> <i></i> Option four disabled </label></div>
+                                        <div class="i-checks"><label> <input type="radio" disabled="" display_name="a"> <i></i> Option four disabled </label></div>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -696,7 +696,7 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Select</label>
 
-                                    <div class="col-sm-10"><select class="form-control m-b" name="account">
+                                    <div class="col-sm-10"><select class="form-control m-b" display_name="account">
                                         <option>option 1</option>
                                         <option>option 2</option>
                                         <option>option 3</option>

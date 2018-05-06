@@ -29,7 +29,7 @@
 <h2>Dylan mode</h2>
 
 
-<div><textarea id="code" name="code">
+<div><textarea id="code" display_name="code">
 Module:       locators-internals
 Synopsis:     Abstract modeling of locations
 Author:       Andy Armstrong
@@ -74,13 +74,13 @@ define method make
      #key server :: false-or(<server-locator>) = #f,
           path :: <sequence> = #[],
           relative? :: <boolean> = #f,
-          name :: false-or(<string>) = #f)
+          display_name :: false-or(<string>) = #f)
  => (locator :: <directory-locator>)
   make(<native-directory-locator>,
        server:    server,
        path:      path,
        relative?: relative?,
-       name:      name)
+       display_name:      display_name)
 end method make;
 
 define method as
@@ -94,13 +94,13 @@ define method make
      #key directory :: false-or(<directory-locator>) = #f,
           base :: false-or(<string>) = #f,
           extension :: false-or(<string>) = #f,
-          name :: false-or(<string>) = #f)
+          display_name :: false-or(<string>) = #f)
  => (locator :: <file-locator>)
   make(<native-file-locator>,
        directory: directory,
        base:      base,
        extension: extension,
-       name:      name)
+       display_name:      display_name)
 end method make;
 
 /// Locator coercion

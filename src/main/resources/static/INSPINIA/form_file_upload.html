@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta display_name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>INSPINIA | File Upload</title>
 
@@ -131,7 +131,7 @@
                         <li><a href="invoice.html">Invoice</a></li>
                         <li><a href="login.html">Login</a></li>
                         <li><a href="login_two_columns.html">Login v.2</a></li>
-                        <li><a href="forgot_password.html">Forget password</a></li>
+                        <li><a href="forgot_password.html">Forget user_password</a></li>
                         <li><a href="register.html">Register</a></li>
                         <li><a href="404.html">404 Page</a></li>
                         <li><a href="500.html">500 Page</a></li>
@@ -266,7 +266,7 @@
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" action="search_results.html">
                 <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                    <input type="text" placeholder="Search for something..." class="form-control" display_name="top-search" id="top-search">
                 </div>
             </form>
         </div>
@@ -438,7 +438,7 @@
                         <div class="ibox-content">
                             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                 <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-                                <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                                <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" display_name="..."></span>
                                 <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                             </div>
                             <p>
@@ -453,7 +453,7 @@
     &lt;span class="input-group-addon btn btn-default btn-file"&gt;
         &lt;span class="fileinput-new"&gt;Select file&lt;/span&gt;
         &lt;span class="fileinput-exists"&gt;Change&lt;/span&gt;
-        &lt;input type="file" name="..."/&gt;
+        &lt;input type="file" display_name="..."/&gt;
     &lt;/span&gt;
     &lt;a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove&lt;/a&gt;
 &lt;/div&gt; </textarea>
@@ -485,7 +485,7 @@
                         </div>
                         <div class="ibox-content">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                                <span class="btn btn-default btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span><input type="file" display_name="..."></span>
                                 <span class="fileinput-filename"></span>
                                 <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
                             </div>
@@ -495,7 +495,7 @@
 <textarea id="code2">
 &lt;div class="fileinput fileinput-new" data-provides="fileinput"&gt;
     &lt;span class="btn btn-default btn-file"&gt;&lt;span class="fileinput-new"&gt;Select file&lt;/span&gt;
-    &lt;span class="fileinput-exists"&gt;Change&lt;/span&gt;&lt;input type="file" name="..."/&gt;&lt;/span&gt;
+    &lt;span class="fileinput-exists"&gt;Change&lt;/span&gt;&lt;input type="file" display_name="..."/&gt;&lt;/span&gt;
     &lt;span class="fileinput-filename"&gt;&lt;/span&gt;
     &lt;a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;&lt;/a&gt;
 &lt;/div&gt; </textarea>
@@ -517,7 +517,7 @@
 
                             <form action="#" class="dropzone" id="dropzoneForm">
                                 <div class="fallback">
-                                    <input name="file" type="file" multiple />
+                                    <input display_name="file" type="file" multiple />
                                 </div>
                             </form>
 
@@ -527,7 +527,7 @@
 <textarea id="code3">
 &lt;form action="#" class="dropzone" id="dropzoneForm"&gt;
     &lt;div class="fallback"&gt;
-        &lt;input name="file" type="file" multiple /&gt;
+        &lt;input display_name="file" type="file" multiple /&gt;
     &lt;/div&gt;
 &lt;/form&gt; </textarea>
                             <p class="m-t-xs">All avalible options and full documentation you can find: <a href="http://www.dropzonejs.com/#configuration-options">http://www.dropzonejs.com/#configuration-options</a> </p>
@@ -579,7 +579,7 @@
 
     <script>
         Dropzone.options.dropzoneForm = {
-            paramName: "file", // The name that will be used to transfer the file
+            paramName: "file", // The display_name that will be used to transfer the file
             maxFilesize: 2, // MB
             dictDefaultMessage: "<strong>Drop files here or click to upload. </strong></br> (This is just a demo dropzone. Selected files are not actually uploaded.)"
         };

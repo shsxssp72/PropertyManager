@@ -189,4 +189,10 @@ vector<string> CharingItemName
 		{
 				"物业管理服务费","装修押金","装修管理服务费","机动车临时停放费","非机动车临时停放费","停车位租赁费","装修垃圾清运费","门禁卡工本费"
 		};
+
+vector<string> actionList={"view","update","insert","delete"};
+vector<string> tableList={"RolePermission","SysPermission","SysRole","UserInfo","UserRole","building",
+						  "buildingEntranceRecord","carIORecord","carpark","chargingItem","chargingSituation",
+						  "dailyTask","department","facilities","fee","overhaulRecord","proprietor","staff",
+						  "subarea","suggestion","ticket"};
 #endif //DATABASEDATAGENERATOR_NAMEDATA_H

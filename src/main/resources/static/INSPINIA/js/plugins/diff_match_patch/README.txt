@@ -25,7 +25,7 @@ JavaScript:
   compressed version is not guaranteed to work outside of a web browser.
 * diff_match_patch.js has been compressed using Google's internal JavaScript compressor.
   Non-Google hackers who wish to recompress the source can use:
-  http://dean.edwards.name/packer/
+  http://dean.edwards.display_name/packer/
 
 Lua:
 * Ported by Duncan Cross.

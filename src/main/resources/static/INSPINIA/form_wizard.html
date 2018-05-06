@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta display_name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>INSPINIA | Wizards</title>
 
@@ -129,7 +129,7 @@
                         <li><a href="invoice.html">Invoice</a></li>
                         <li><a href="login.html">Login</a></li>
                         <li><a href="login_two_columns.html">Login v.2</a></li>
-                        <li><a href="forgot_password.html">Forget password</a></li>
+                        <li><a href="forgot_password.html">Forget user_password</a></li>
                         <li><a href="register.html">Register</a></li>
                         <li><a href="404.html">404 Page</a></li>
                         <li><a href="500.html">500 Page</a></li>
@@ -264,7 +264,7 @@
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" action="search_results.html">
                 <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                    <input type="text" placeholder="Search for something..." class="form-control" display_name="top-search" id="top-search">
                 </div>
             </form>
         </div>
@@ -508,15 +508,15 @@
                                         <div class="col-lg-8">
                                             <div class="form-group">
                                                 <label>Username *</label>
-                                                <input id="userName" name="userName" type="text" class="form-control required">
+                                                <input id="userName" display_name="userName" type="text" class="form-control required">
                                             </div>
                                             <div class="form-group">
                                                 <label>Password *</label>
-                                                <input id="password" name="password" type="text" class="form-control required">
+                                                <input id="user_password" display_name="user_password" type="text" class="form-control required">
                                             </div>
                                             <div class="form-group">
                                                 <label>Confirm Password *</label>
-                                                <input id="confirm" name="confirm" type="text" class="form-control required">
+                                                <input id="confirm" display_name="confirm" type="text" class="form-control required">
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
@@ -535,22 +535,22 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label>First name *</label>
-                                                <input id="name" name="name" type="text" class="form-control required">
+                                                <label>First display_name *</label>
+                                                <input id="display_name" display_name="display_name" type="text" class="form-control required">
                                             </div>
                                             <div class="form-group">
-                                                <label>Last name *</label>
-                                                <input id="surname" name="surname" type="text" class="form-control required">
+                                                <label>Last display_name *</label>
+                                                <input id="surname" display_name="surname" type="text" class="form-control required">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Email *</label>
-                                                <input id="email" name="email" type="text" class="form-control required email">
+                                                <input id="email" display_name="email" type="text" class="form-control required email">
                                             </div>
                                             <div class="form-group">
                                                 <label>Address *</label>
-                                                <input id="address" name="address" type="text" class="form-control">
+                                                <input id="address" display_name="address" type="text" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -566,7 +566,7 @@
                                 <h1>Finish</h1>
                                 <fieldset>
                                     <h2>Terms and Conditions</h2>
-                                    <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+                                    <input id="acceptTerms" display_name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
                                 </fieldset>
                             </form>
                         </div>
@@ -680,7 +680,7 @@
                         },
                         rules: {
                             confirm: {
-                                equalTo: "#password"
+                                equalTo: "#user_password"
                             }
                         }
                     });

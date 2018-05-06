@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta display_name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>INSPINIA | Advanced Form Elements</title>
 
@@ -162,7 +162,7 @@
                         <li><a href="invoice.html">Invoice</a></li>
                         <li><a href="login.html">Login</a></li>
                         <li><a href="login_two_columns.html">Login v.2</a></li>
-                        <li><a href="forgot_password.html">Forget password</a></li>
+                        <li><a href="forgot_password.html">Forget user_password</a></li>
                         <li><a href="register.html">Register</a></li>
                         <li><a href="404.html">404 Page</a></li>
                         <li><a href="500.html">500 Page</a></li>
@@ -297,7 +297,7 @@
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" action="search_results.html">
                 <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                    <input type="text" placeholder="Search for something..." class="form-control" display_name="top-search" id="top-search">
                 </div>
             </form>
         </div>
@@ -1111,20 +1111,20 @@
                                         Basic example with empty value
                                     </p>
 
-                                    <input class="touchspin1" type="text" value="" name="demo1">
+                                    <input class="touchspin1" type="text" value="" display_name="demo1">
                                 </div>
                                 <div class="col-md-4">
                                     <p class="font-bold">
                                         Example with postfix
                                     </p>
-                                    <input class="touchspin2" type="text" value="55" name="demo2">
+                                    <input class="touchspin2" type="text" value="55" display_name="demo2">
                                 </div>
                                 <div class="col-md-4">
 
                                     <p class="font-bold">
                                         Example with vertical button alignment:
                                     </p>
-                                    <input class="touchspin3" type="text" value="" name="demo3">
+                                    <input class="touchspin3" type="text" value="" display_name="demo3">
                                 </div>
                             </div>
 
@@ -1370,9 +1370,9 @@
                             <div class="form-group" id="data_5">
                                 <label class="font-normal">Range select</label>
                                 <div class="input-daterange input-group" id="datepicker">
-                                    <input type="text" class="input-sm form-control" name="start" value="05/14/2014"/>
+                                    <input type="text" class="input-sm form-control" display_name="start" value="05/14/2014"/>
                                     <span class="input-group-addon">to</span>
-                                    <input type="text" class="input-sm form-control" name="end" value="05/22/2014" />
+                                    <input type="text" class="input-sm form-control" display_name="end" value="05/22/2014" />
                                 </div>
                             </div>
                         </div>
@@ -1445,7 +1445,7 @@
                                 Designed to work with the Bootstrap CSS framework.
                             </p>
 
-                            <input class="form-control" type="text" name="daterange" value="01/01/2015 - 01/31/2015" />
+                            <input class="form-control" type="text" display_name="daterange" value="01/01/2015 - 01/31/2015" />
 
                             <h4>All options example</h4>
                             <div id="reportrange" class="form-control">
@@ -1758,7 +1758,7 @@
                                 </p>
                                 <div class="btn-group">
                                     <label title="Upload image file" for="inputImage" class="btn btn-primary">
-                                        <input type="file" accept="image/*" name="file" id="inputImage" class="hide">
+                                        <input type="file" accept="image/*" display_name="file" id="inputImage" class="hide">
                                         Upload new image
                                     </label>
                                     <label title="Donload image" id="download" class="btn btn-primary">Download</label>
@@ -1907,13 +1907,13 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="radio">
-                                                    <input type="radio" name="radio1" id="radio1" value="option1" checked="">
+                                                    <input type="radio" display_name="radio1" id="radio1" value="option1" checked="">
                                                     <label for="radio1">
                                                         Small
                                                     </label>
                                                 </div>
                                                 <div class="radio">
-                                                    <input type="radio" name="radio1" id="radio2" value="option2">
+                                                    <input type="radio" display_name="radio1" id="radio2" value="option2">
                                                     <label for="radio2">
                                                         Big
                                                     </label>
@@ -1921,13 +1921,13 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="radio radio-danger">
-                                                    <input type="radio" name="radio2" id="radio3" value="option1">
+                                                    <input type="radio" display_name="radio2" id="radio3" value="option1">
                                                     <label for="radio3">
                                                         Next
                                                     </label>
                                                 </div>
                                                 <div class="radio radio-danger">
-                                                    <input type="radio" name="radio2" id="radio4" value="option2" checked="">
+                                                    <input type="radio" display_name="radio2" id="radio4" value="option2" checked="">
                                                     <label for="radio4">
                                                         One
                                                     </label>
@@ -1936,20 +1936,20 @@
                                         </div>
                                         <p>Radios without label text</p>
                                         <div class="radio">
-                                            <input type="radio" id="singleRadio1" value="option1" name="radioSingle1" aria-label="Single radio One">
+                                            <input type="radio" id="singleRadio1" value="option1" display_name="radioSingle1" aria-label="Single radio One">
                                             <label></label>
                                         </div>
                                         <div class="radio radio-success">
-                                            <input type="radio" id="singleRadio2" value="option2" name="radioSingle1" checked="" aria-label="Single radio Two">
+                                            <input type="radio" id="singleRadio2" value="option2" display_name="radioSingle1" checked="" aria-label="Single radio Two">
                                             <label></label>
                                         </div>
                                         <p>Inline radios</p>
                                         <div class="radio radio-info radio-inline">
-                                            <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                                            <input type="radio" id="inlineRadio1" value="option1" display_name="radioInline" checked="">
                                             <label for="inlineRadio1"> Inline One </label>
                                         </div>
                                         <div class="radio radio-inline">
-                                            <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                            <input type="radio" id="inlineRadio2" value="option2" display_name="radioInline">
                                             <label for="inlineRadio2"> Inline Two </label>
                                         </div>
                                     </fieldset>
@@ -2172,7 +2172,7 @@
 
             $('.clockpicker').clockpicker();
 
-            $('input[name="daterange"]').daterangepicker();
+            $('input[display_name="daterange"]').daterangepicker();
 
             $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
 

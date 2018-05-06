@@ -11,6 +11,7 @@
 #include <random>
 #include <fstream>
 #include <sstream>
+#include <map>
 #include "MultipurposeSequence.h"
 
 
@@ -42,6 +43,13 @@ public:
 	void staff(int number);
 	void ticket(int number);
 	void suggestion(int number);
+
+	//void userInfo(int number);
+	void sysRole();
+	void sysPermission();
+	//void userRole();
+	void rolePermission();
+
 	const default_random_engine &getGetRandom() const;
 	const Sequence<string> &getSubarea_id() const;
 	const Sequence<string> &getBuilding_id() const;
@@ -59,6 +67,8 @@ public:
 	const Sequence<string> &getStaff_id() const;
 	const Sequence<string> &getTicket_id() const;
 	const Sequence<string> &getSuggestion_id() const;
+
+	const map<string,int> &getPermissionMapper() const;
 private:
 	default_random_engine getRandom;
 	Sequence<string> subarea_id;
@@ -78,7 +88,12 @@ private:
 	Sequence<string> ticket_id;
 	Sequence<string> suggestion_id;
 
+	map<string,int> permissionMapper;
+
+
+
 };
+
 int stringCmp(const string &a,const string &b);
 
 #endif //DATABASEDATAGENERATOR_SPECIALIZEDFORPROPERTYMANAGEMENT_H

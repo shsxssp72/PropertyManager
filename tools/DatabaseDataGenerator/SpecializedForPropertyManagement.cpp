@@ -495,6 +495,114 @@ void SpecializedForPropertyManagement::suggestion(int number)
 	}
 }
 
+void SpecializedForPropertyManagement::sysRole()
+{
+	int i=0;
+	for(;i<PositionData.size();i++)
+		cout<<"INSERT INTO SysRole"<<endl<<"VALUES ("<<i<<",'"<<PositionData[i]<<"','NULL',TRUE);"<<endl;
+	cout<<"INSERT INTO SysRole"<<endl<<"VALUES ("<<i<<",'proprietor','NULL',TRUE);"<<endl;
+
+}
+
+void SpecializedForPropertyManagement::sysPermission()
+{
+	cout<<"INSERT INTO SysPermission"<<endl<<"VALUES ("<<0<<",'"<<"all:all"<<"','NULL','NULL','"<<"all:all"<<"',"<<0<<",'"<<0<<"',TRUE);"<<endl;
+	int i=1;//0设为所有的parent
+	for(auto &r :tableList)
+	{
+		string name=r+":all";
+		cout<<"INSERT INTO SysPermission"<<endl<<"VALUES ("<<i<<",'"<<name<<"','NULL','NULL','"<<name<<"',"<<0<<",'"<<0<<"',TRUE);"<<endl;
+		permissionMapper.insert(std::move(make_pair(name,i)));
+		i++;
+	}
+
+	for(auto &t:tableList)
+	{
+		for(auto &r:actionList)
+		{
+			string name=t+":"+r;
+			int parent=permissionMapper[t+":all"];
+			cout<<"INSERT INTO SysPermission"<<endl<<"VALUES ("<<i<<",'"<<name<<"','NULL','NULL','"<<name<<"',"<<parent<<",'"<<parent<<"',TRUE);"<<endl;
+			permissionMapper.insert(std::move(make_pair(name,i)));
+			i++;
+		}
+	}
+
+
+}
+
+void SpecializedForPropertyManagement::rolePermission()
+{
+	vector<string> basicViewList={"building","chargingItem","department","subarea"};
+	vector<string> keyRecordViewList={"buildingEntranceRecord","carIORecord","overhaulRecord","proprietor","staff","suggestion"};
+	vector<string> supervisorControlList={"dailyTask","ticket"};
+	vector<string> staffViewList={"carpark","facilities"};
+	vector<string> accountantControlList={"chargingSituation","fee"};
+	vector<string> staffInsertList={"dailyTask","ticket"};
+
+	//manager
+	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<0<<","<<0<<");"<<endl;
+	//supervisor
+	for(auto &r:supervisorControlList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<1<<","<<permissionMapper[r+":all"]<<");"<<endl;
+	for(auto &r:keyRecordViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<1<<","<<permissionMapper[r+":all"]<<");"<<endl;
+	for(auto &r:basicViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<1<<","<<permissionMapper[r+":view"]<<");"<<endl;
+
+	//guard
+	for(auto &r:staffInsertList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<2<<","<<permissionMapper[r+":insert"]<<");"<<endl;
+	for(auto &r:staffViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<2<<","<<permissionMapper[r+":view"]<<");"<<endl;
+	for(auto &r:basicViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<2<<","<<permissionMapper[r+":view"]<<");"<<endl;
+
+	//cleaner
+	for(auto &r:staffInsertList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<3<<","<<permissionMapper[r+":insert"]<<");"<<endl;
+	for(auto &r:staffViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<3<<","<<permissionMapper[r+":view"]<<");"<<endl;
+	for(auto &r:basicViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<3<<","<<permissionMapper[r+":view"]<<");"<<endl;
+
+	//repairman
+	for(auto &r:staffInsertList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<4<<","<<permissionMapper[r+":insert"]<<");"<<endl;
+	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<4<<","<<permissionMapper["overhaulRecord:insert"]<<");"<<endl;
+	for(auto &r:staffViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<4<<","<<permissionMapper[r+":view"]<<");"<<endl;
+	for(auto &r:basicViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<4<<","<<permissionMapper[r+":view"]<<");"<<endl;
+
+	//accountant
+	for(auto &r:accountantControlList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<5<<","<<permissionMapper[r+":all"]<<");"<<endl;
+	for(auto &r:staffViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<5<<","<<permissionMapper[r+":view"]<<");"<<endl;
+	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<5<<","<<permissionMapper["proprietor:view"]<<");"<<endl;
+	for(auto &r:basicViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<5<<","<<permissionMapper[r+":view"]<<");"<<endl;
+
+	//receptionist
+	for(auto &r:staffViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<6<<","<<permissionMapper[r+":view"]<<");"<<endl;
+	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<6<<","<<permissionMapper["proprietor:view"]<<");"<<endl;
+	for(auto &r:basicViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<6<<","<<permissionMapper[r+":view"]<<");"<<endl;
+	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<6<<","<<permissionMapper["chargingSituation:update"]<<");"<<endl;
+	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<6<<","<<permissionMapper["suggestion:insert"]<<");"<<endl;
+
+	//proprietor
+	for(auto &r:basicViewList)
+		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<7<<","<<permissionMapper[r+":view"]<<");"<<endl;
+	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<7<<","<<permissionMapper["ticket:view"]<<");"<<endl;
+	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<7<<","<<permissionMapper["ticket:insert"]<<");"<<endl;
+	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<7<<","<<permissionMapper["ticket:update"]<<");"<<endl;
+
+}
+
+
 const default_random_engine &SpecializedForPropertyManagement::getGetRandom() const
 {
 	return getRandom;
@@ -562,5 +670,9 @@ const Sequence<string> &SpecializedForPropertyManagement::getTicket_id() const
 const Sequence<string> &SpecializedForPropertyManagement::getSuggestion_id() const
 {
 	return suggestion_id;
+}
+const map<string,int> &SpecializedForPropertyManagement::getPermissionMapper() const
+{
+	return permissionMapper;
 }
 
