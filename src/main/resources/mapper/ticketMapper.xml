@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.TicketDao">
+	<resultMap id="ticket" type="com.Property.Domain.Ticket">
+		<id column="ticket_id" property="ticket_id" jdbcType="CHAR"/>
+		<result column="ticket_type" property="ticket_type" jdbcType="VARCHAR"/>
+		<result column="ticket_time" property="ticket_time" jdbcType="TIMESTAMP"/>
+		<result column="initiator_prprt_id" property="initiator_prprt_id" jdbcType="CHAR"/>
+		<result column="initiator_staff_id" property="initiator_staff_id" jdbcType="CHAR"/>
+		<result column="subarea_id" property="subarea_id" jdbcType="CHAR"/>
+		<result column="aprt_building" property="aprt_building" jdbcType="CHAR"/>
+		<result column="aprt_floor" property="aprt_floor" jdbcType="INTEGER"/>
+		<result column="aprt_room_num" property="aprt_room_num" jdbcType="INTEGER"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="handler_id" property="handler_id" jdbcType="CHAR"/>
+		<result column="handle_time" property="handle_time" jdbcType="TIMESTAMP"/>
+		<result column="ticket_result" property="ticket_result" jdbcType="VARCHAR"/>
+		<result column="ticket_fdbk" property="ticket_fdbk" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<resultMap id="totalView" type="com.Property.Domain.Ticket">
+		<id column="ticket_id" property="ticket_id" jdbcType="CHAR"/>
+		<result column="ticket_type" property="ticket_type" jdbcType="VARCHAR"/>
+		<result column="ticket_time" property="ticket_time" jdbcType="TIMESTAMP"/>
+		<result column="initiator_prprt_id" property="initiator_prprt_id" jdbcType="CHAR"/>
+		<result column="initiator_staff_id" property="initiator_staff_id" jdbcType="CHAR"/>
+		<result column="subarea_id" property="subarea_id" jdbcType="CHAR"/>
+		<result column="aprt_building" property="aprt_building" jdbcType="CHAR"/>
+		<result column="aprt_floor" property="aprt_floor" jdbcType="INTEGER"/>
+		<result column="aprt_room_num" property="aprt_room_num" jdbcType="INTEGER"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="handler_id" property="handler_id" jdbcType="CHAR"/>
+		<result column="handle_time" property="handle_time" jdbcType="TIMESTAMP"/>
+		<result column="ticket_result" property="ticket_result" jdbcType="VARCHAR"/>
+		<result column="ticket_fdbk" property="ticket_fdbk" jdbcType="INTEGER"/>
+
+		<association property="staff" javaType="com.Property.Domain.Staff">
+			<id column="staff_id" property="staff_id" jdbcType="CHAR"/>
+			<result column="staff_name" property="staff_name" jdbcType="VARCHAR"/>
+			<result column="gender" property="gender" jdbcType="VARCHAR"/>
+			<result column="tel" property="tel" jdbcType="VARCHAR"/>
+			<result column="dept" property="dept" jdbcType="CHAR"/>
+			<result column="elec_qlfy" property="elec_qlfy" jdbcType="BOOLEAN"/>
+			<result column="plbr_qlfy" property="plbr_qlfy" jdbcType="BOOLEAN"/>
+		</association>
+
+		<association property="department" javaType="com.Property.Domain.Department">
+			<id column="dept_id" property="dept_id" jdbcType="CHAR"/>
+			<result column="dept_name" property="dept_name" jdbcType="VARCHAR"/>
+		</association>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		ticket_id,ticket_type,ticket_time,initiator_prprt_id,initiator_staff_id,subarea_id,aprt_building,aprt_floor,aprt_room_num,description,handler_id,handle_time,ticket_result,ticket_fdbk
+	</sql>
+
+	<select id="getAll" resultMap="ticket">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM ticket
+	</select>
+
+	<insert id="prprtCallRepair" parameterType="com.Property.Domain.Ticket">
+		INSERT INTO ticket (ticket_id,ticket_type,ticket_time,initiator_prprt_id,subarea_id,aprt_building,aprt_floor,aprt_room_num,description)
+				values (#{ticket_id}, #{ticket_type}, #{ticket_time}, #{initiator_prprt_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description})
+	</insert>
+
+	<select id="getRepairHistory" parameterType="java.lang.String" resultMap="totalView">
+		SELECT ticket.*,staff.*,department.*
+		FROM ticket,staff,department
+		WHERE ticket.initiator_prprt_id = #{id} and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
+	</select>
+
+	<update id="updateRepairFB">
+		UPDATE ticket SET ticket_fdbk = #{feedback} WHERE initiator_prprt_id = #{prprt_id} and ticket_id = #{ticket_id}
+	</update>
+
+	<update id="finishTicket">
+		UPDATE ticket
+		SET handle_time = #{handle_time}, handle_result = #{result}
+		WHERE ticket_id = #{ticket_id}
+	</update>
+
+	<insert id="staffTicket" parameterType="com.Property.Domain.Ticket">
+		INSERT INTO ticket (ticket_id,ticket_type,ticket_time,initiator_staff_id,subarea_id,aprt_building,aprt_floor,aprt_room_num,description)
+		values (#{ticket_id}, #{ticket_type}, #{ticket_time}, #{initiator_staff_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description})
+	</insert>
+
+	<select id="getHistoryCreated" parameterType="java.lang.String" resultMap="totalView">
+		SELECT ticket.*,staff.*,department.*
+		FROM ticket,staff,department
+		WHERE initiator_staff_id = #{id} and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
+	</select>
+
+	<select id="getHistoryFinished" parameterType="java.lang.String" resultMap="totalView">
+		SELECT ticket.*,staff.*,department.*
+		FROM ticket,staff,department
+		WHERE handler_id = #{id} and ticket_result is not null and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
+	</select>
+
+	<select id="tbdTicket" parameterType="java.lang.String" resultMap="totalView">
+		SELECT ticket.*,staff.*,department.*
+		FROM ticket,staff,department
+		WHERE handler_id = #{id} and ticket_result = null and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
+	</select>
+
+	<update id="changeTicketHandler">
+		UPDATE ticket
+		SET handler_id = #{new_handler}
+		WHERE ticket_id = #{ticket_id}
+	</update>
+
+	<select id="getTicketbyParams" resultMap="totalView" parameterType="java.util.HashMap">
+		SELECT ticket.*,staff.*,department.*
+		FROM ticket,staff,department
+		<where>
+			ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
+			<if test="staff_name!=null and staff_name!=''">
+				AND staff.staff_name like CONCAT(CONCAT('%',#{staff_name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="dept_name!=null and dept_name!=''">
+				AND department.dept_name like CONCAT(CONCAT('%',#{dept_name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="ticket_type!=null and ticket_type!=''">
+				AND ticket.ticket_type like CONCAT(CONCAT('%',#{ticket_type,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="ticket_time!=null">
+				AND ticket.ticket_time = #{ticket_time,jdbcType=TIMESTAMP}
+			</if>
+			<if test="subarea_id!=null and subarea_id!=''">
+				AND ticket.subarea_id = #{subarea_id,jdbcType=CHAR}
+			</if>
+			<if test="aprt_building!=null and aprt_building!=''">
+				AND ticket.aprt_building = #{aprt_building,jdbcType=CHAR}
+			</if>
+			<if test="aprt_floor!=null">
+				AND ticket.aprt_floor = #{aprt_floor,jdbcType=INTEGER}
+			</if>
+			<if test="aprt_room_num!=null">
+				AND ticket.aprt_room_num = #{aprt_room_num,jdbcType=INTEGER}
+			</if>
+			<if test="ticket_fdbk!=null">
+				AND ticket.ticket_fdbk = #{ticket_fdbk,jdbcType=INTEGER}
+			</if>
+			<if test="initiator_prprt_id!=null and initiator_prprt_id!=''">
+				AND ticket.initiator_prprt_id = #{initiator_prprt_id,jdbcType=CHAR}
+			</if>
+			<if test="initiator_staff_id!=null and initiator_staff_id!=''">
+				AND ticket.initiator_staff_id = #{initiator_staff_id,jdbcType=CHAR}
+			</if>
+		</where>
+	</select>
+</mapper>

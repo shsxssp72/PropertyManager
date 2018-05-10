@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.FacilitiesDao">
+	<resultMap id="facilities" type="com.Property.Domain.Facilities">
+		<id column="fclt_id" property="fclt_id" jdbcType="CHAR"/>
+		<result column="fclt_type" property="fclt_type" jdbcType="VARCHAR"/>
+		<result column="subarea_id" property="subarea_id" jdbcType="CHAR"/>
+		<result column="building_id" property="building_id" jdbcType="CHAR"/>
+		<result column="floor" property="floor" jdbcType="INTEGER"/>
+		<result column="location" property="location" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		fclt_id,fclt_type,subarea_id,building_id,floor,location
+	</sql>
+
+	<select id="getAll" resultMap="facilities">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM facilities
+	</select>
+
+	<select id="getFacilitiesbyParams" resultMap="facilities" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM facilities
+		<where>
+			1 = 1
+			<if test="fclt_id!=null and fclt_id!=''">
+				AND fclt_id = #{fclt_id,jdbcType=CHAR}
+			</if>
+			<if test="fclt_type!=null and fclt_type!=''">
+				AND fclt_type like CONCAT(CONCAT('%',#{fclt_type,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="subarea_id!=null and subarea_id!=''">
+				AND subarea_id = #{subarea_id,jdbcType=CHAR}
+			</if>
+			<if test="building_id!=null and building_id!=''">
+				AND building_id = #{building_id,jdbcType=CHAR}
+			</if>
+			<if test="floor!=null">
+				AND floor = #{floor,jdbcType=INTEGER}
+			</if>
+			<if test="location!=null and location!=''">
+				AND location like CONCAT(CONCAT('%',#{location,jdbcType=VARCHAR}),'%')
+			</if>
+		</where>
+	</select>
+</mapper>

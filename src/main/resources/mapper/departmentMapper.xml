@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.DepartmentDao">
+	<resultMap id="department" type="com.Property.Domain.Department">
+		<id column="dept_id" property="dept_id" jdbcType="CHAR"/>
+		<result column="dept_name" property="dept_name" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		dept_id,dept_name
+	</sql>
+
+	<select id="getAll" resultMap="department">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM department
+	</select>
+
+	<select id="getDeptbyParams" resultMap="department" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM department
+		<where>
+			1 = 1
+			<if test="dept_id!=null and dept_id!=''">
+				AND dept_id = #{dept_id,jdbcType=CHAR}
+			</if>
+			<if test="dept_name!=null and dept_name!=''">
+				AND dept_name like CONCAT(CONCAT('%',#{dept_name,jdbcType=VARCHAR}),'%')
+			</if>
+		</where>
+	</select>
+</mapper>

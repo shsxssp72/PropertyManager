@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.FeeDao">
+	<resultMap id="Fee" type="com.Property.Domain.Fee">
+		<id column="fee_id" property="fee_id" jdbcType="CHAR"/>
+		<result column="item_id" property="item_id" jdbcType="CHAR"/>
+		<result column="start_date" property="start_date" jdbcType="DATE"/>
+		<result column="end_date" property="end_date" jdbcType="DATE"/>
+		<result column="price" property="price" jdbcType="DECIMAL"/>
+	</resultMap>
+
+	<resultMap id="FeeMap" type="com.Property.Domain.Fee">
+		<id column="fee_id" property="fee_id" jdbcType="CHAR"/>
+		<result column="item_id" property="item_id" jdbcType="CHAR"/>
+		<result column="start_date" property="start_date" jdbcType="DATE"/>
+		<result column="end_date" property="end_date" jdbcType="DATE"/>
+		<result column="price" property="price" jdbcType="DECIMAL"/>
+		<association property="chargingItem" javaType="com.Property.Domain.ChargingItem">
+		<id column="item_id" property="item_id"></id>
+		<result column="item_title" property="item_title"></result>
+		</association>
+		<!--<association property="chargingItem" column="item_id" resultMap="chargingItem"/>-->
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		fee_id,item_id,start_date,end_date,price
+	</sql>
+
+	<select id="getAll" resultMap="Fee">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM fee
+	</select>
+
+	<select id="getFee" resultMap="FeeMap">
+		SELECT fee.*,chargingitem.*
+		FROM fee,chargingitem
+		WHERE fee.item_id = chargingitem.item_id
+	</select>
+
+	<select id="getFeebyParams" resultMap="FeeMap" parameterType="java.util.HashMap">
+		SELECT fee.*,chargingitem.*
+		FROM fee,chargingitem
+		<where>
+			fee.item_id = chargingitem.item_id
+			<if test="fee_id!=null and fee_id!=''">
+				AND fee.fee_id = #{fee_id,jdbcType=CHAR}
+			</if>
+			<if test="item_id!=null and item!=''">
+				AND fee.item_id = #{item_id,jdbcType=CHAR}
+			</if>
+			<if test="item_title!=null and item_title!=''">
+				AND chargingitem.item_title like CONCAT(CONCAT('%',#{item_title,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="start_date!=null">
+				AND fee.start_date &gt; #{start_date,jdbcType=DATE}
+			</if>
+		</where>
+	</select>
+
+</mapper>

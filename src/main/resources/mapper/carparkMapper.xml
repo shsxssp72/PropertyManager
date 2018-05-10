@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.CarparkDao">
+	<resultMap id="carpark" type="com.Property.Domain.Carpark">
+		<id column="carpark_id" property="carpark_id" jdbcType="CHAR"/>
+		<result column="subarea_id" property="subarea_id" jdbcType="CHAR"/>
+		<result column="owner_id" property="owner_id" jdbcType="CHAR"/>
+		<result column="plate_number" property="plate_number" jdbcType="CHAR"/>
+		<result column="valid_term" property="valid_term" jdbcType="DATE"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		carpark_id,subarea_id,owner_id,plate_number,valid_term
+	</sql>
+
+	<select id="getAll" resultMap="carpark">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM carpark
+	</select>
+
+	<select id="getCarparkbyParams" resultMap="carpark" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM carpark
+		<where>
+			1 = 1
+			<if test="carpark_id!=null and carpark_id!=''">
+				AND carpark_id = #{carpark_id,jdbcType=CHAR}
+			</if>
+			<if test="subarea_id!=null and subarea_id!=''">
+				AND subarea_id = #{subarea_id,jdbcType=CHAR}
+			</if>
+			<if test="owner_id!=null and owner_id!=''">
+				AND owner_id = #{owner_id,jdbcType=CHAR}
+			</if>
+			<if test="plate_number!=null and plate_number!=''">
+				AND plate_number = #{plate_number,jdbcType=CHAR}
+			</if>
+			<if test="valid_term!=null">
+				AND valid_term = #{valid_term,jdbcType=DATE}
+			</if>
+		</where>
+	</select>
+</mapper>
