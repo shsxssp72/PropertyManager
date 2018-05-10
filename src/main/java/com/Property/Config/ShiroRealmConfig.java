@@ -39,7 +39,6 @@ public class ShiroRealmConfig extends AuthorizingRealm
 			throws AuthenticationException
 	{
 		String userName=(String)authenticationToken.getPrincipal();
-			System.out.println("Username:"+userName);
 		UserInfo userInfo=userInfoService.getUserInfo(userName);
 		System.out.println("----->>userInfo="+userInfo);
 

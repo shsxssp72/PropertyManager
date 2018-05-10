@@ -23,4 +23,5 @@
 	<!--<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager"/>-->
 	<property name="securityManager" ref="securityManager" />
 	</bean>
+	<!--<mvc:resources mapping="/favicon.ico" location="templates"/>-->
 </beans>

@@ -19,57 +19,59 @@ import java.util.Properties;
 @ImportResource(locations={"classpath:shiro-config.xml"})
 public class ShiroConfig
 {
-	@Bean
-	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager)
-	{
-		ShiroFilterFactoryBean shiroFilterFactoryBean=new ShiroFilterFactoryBean();
-		shiroFilterFactoryBean.setSecurityManager(securityManager);
-		Map<String,String> filterChainDefinitionMap=new LinkedHashMap<>();
-		shiroFilterFactoryBean.setLoginUrl("/login");
-		shiroFilterFactoryBean.setSuccessUrl("/ticket/list");
-		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
-
-		filterChainDefinitionMap.put("/INSPINIA/**","anon");
-		filterChainDefinitionMap.put("../public/**","anon");
-		filterChainDefinitionMap.put("/display","anon");
-//		filterChainDefinitionMap.put("/logout","logout");
-		filterChainDefinitionMap.put("/**","authc");
-
-		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-		return shiroFilterFactoryBean;
-	}
-
-
-	@Bean
-	public HashedCredentialsMatcher hashedCredentialsMatcher(){
-		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-		hashedCredentialsMatcher.setHashAlgorithmName("SHA-512");
-		hashedCredentialsMatcher.setHashIterations(5);
-		return hashedCredentialsMatcher;
-	}
-
-	@Bean
-	public ShiroRealmConfig myShiroRealm(){
-		ShiroRealmConfig myShiroRealm = new ShiroRealmConfig();
-		myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
-		return myShiroRealm;
-	}
+//	@Bean
+//	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager)
+//	{
+//		ShiroFilterFactoryBean shiroFilterFactoryBean=new ShiroFilterFactoryBean();
+//		shiroFilterFactoryBean.setSecurityManager(securityManager);
+//		Map<String,String> filterChainDefinitionMap=new LinkedHashMap<>();
+//		shiroFilterFactoryBean.setLoginUrl("/login");
+//		shiroFilterFactoryBean.setSuccessUrl("/ticket/list");
+//		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+//
+//		filterChainDefinitionMap.put("/INSPINIA/**","anon");
+//		filterChainDefinitionMap.put("/jsencrypt/jsencrypt.min.js","anon");
+//		filterChainDefinitionMap.put("/favicon.ico","anon");
+//		filterChainDefinitionMap.put("../public/**","anon");
+//		filterChainDefinitionMap.put("/display","anon");
+////		filterChainDefinitionMap.put("/logout","logout");
+//		filterChainDefinitionMap.put("/**","authc");
+//
+//		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+//		return shiroFilterFactoryBean;
+//	}
 
 
-	@Bean
-	public SecurityManager securityManager(){
-		DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
-		securityManager.setRealm(myShiroRealm());
-		return securityManager;
-	}
-
-
-	@Bean
-	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
-		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
-		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
-		return authorizationAttributeSourceAdvisor;
-	}
+//	@Bean
+//	public HashedCredentialsMatcher hashedCredentialsMatcher(){
+//		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+//		hashedCredentialsMatcher.setHashAlgorithmName("SHA-512");
+//		hashedCredentialsMatcher.setHashIterations(5);
+//		return hashedCredentialsMatcher;
+//	}
+//
+//	@Bean
+//	public ShiroRealmConfig myShiroRealm(){
+//		ShiroRealmConfig myShiroRealm = new ShiroRealmConfig();
+//		myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+//		return myShiroRealm;
+//	}
+//
+//
+//	@Bean
+//	public SecurityManager securityManager(){
+//		DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
+//		securityManager.setRealm(myShiroRealm());
+//		return securityManager;
+//	}
+//
+//
+//	@Bean
+//	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){
+//		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+//		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+//		return authorizationAttributeSourceAdvisor;
+//	}
 
 	@Bean(name="simpleMappingExceptionResolver")
 	public SimpleMappingExceptionResolver

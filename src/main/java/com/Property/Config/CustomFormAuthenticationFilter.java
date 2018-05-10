@@ -12,6 +12,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.Key;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -24,53 +28,47 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter
 		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		HttpServletRequest httpServletRequest=(HttpServletRequest)request;
 		HttpSession session=httpServletRequest.getSession();
-		Key key=(Key)session.getAttribute("LoginKey");
 		CryptoUtil cryptoUtil=new CryptoUtil();
+		PrivateKey privateKey=(PrivateKey)session.getAttribute("LoginPrivateKey");
+		PublicKey publicKey=(PublicKey)session.getAttribute("LoginPublicKeyOriginal");
+
 		String username=request.getParameter("username");
 		String passwd=request.getParameter("password");
 
-//				passwd=cryptoUtil.Base64Decoder(passwd);
-//				passwd=cryptoUtil.AESDecrypt(passwd,key);
-//
-//				username=cryptoUtil.Base64Decoder(username);
-//				username=cryptoUtil.AESDecrypt(username,key);
+		System.out.println("Initial:"+username);
+		System.out.println(passwd);
+
+		passwd=cryptoUtil.RSADecrypt(privateKey,passwd);
+
+		username=cryptoUtil.RSADecrypt(privateKey,username);
 
 
-		username="Test";
-		passwd="111";
-		System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+		System.out.println("AFTER INJECT USERNAME:"+username);
+		System.out.println("AFTER INJECT PASSWORD:"+passwd);
 
-		Map map =request.getParameterMap();
-		Iterator iter=map.entrySet().iterator();
-		while(iter.hasNext())
-		{
-			Map.Entry entry=(Map.Entry)iter.next();
-			Object key1=entry.getKey();
-			Object val=entry.getValue();
-			System.out.println(key1+":"+val);
-		}
-			AuthenticationToken token=this.createToken(username,passwd,request,response);
+
+		AuthenticationToken token=this.createToken(username,passwd,request,response);
 
 //		AuthenticationToken token=this.createToken(request,response);
-			if(token==null)
+		if(token==null)
+		{
+			String msg="createToken method implementation returned null. A valid non-null AuthenticationToken must be created in order to execute a login attempt.";
+			throw new IllegalStateException(msg);
+		}
+		else
+		{
+			try
 			{
-				String msg="createToken method implementation returned null. A valid non-null AuthenticationToken must be created in order to execute a login attempt.";
-				throw new IllegalStateException(msg);
-			}
-			else
-			{
-				try
-				{
-					Subject subject=this.getSubject(request,response);
+				Subject subject=this.getSubject(request,response);
 
-					subject.login(token);
-					return this.onLoginSuccess(token,subject,request,response);
-				}
-				catch(AuthenticationException var5)
-				{
-					return this.onLoginFailure(token,var5,request,response);
-				}
+				subject.login(token);
+				return this.onLoginSuccess(token,subject,request,response);
+			}
+			catch(AuthenticationException var5)
+			{
+				return this.onLoginFailure(token,var5,request,response);
 			}
 		}
-
 	}
+
+}

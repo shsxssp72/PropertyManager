@@ -8,22 +8,16 @@
 
     <title>INSPINIA | Login</title>
 
-    <link href="INSPINIA/css/bootstrap.min.css" rel="stylesheet">
-    <link href="INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet">
 
-    <link href="INSPINIA/css/animate.css" rel="stylesheet">
-    <link href="INSPINIA/css/style.css" rel="stylesheet">
+    <link href="../static/INSPINIA/css/animate.css" rel="stylesheet">
+    <link href="../static/INSPINIA/css/style.css" rel="stylesheet">
     <!--<link rel="icon" href="data:;base64,=">-->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
 
-    <script src="jsencrypt/jsencrypt.min.js"></script>
+    <script src="../static/jsencrypt/jsencrypt.min.js"></script>
     <!--修改src-->
-    <script type="text/javascript">
-        // var crypt = new JSEncrypt({default_key_size: 2048});
-        // crypt.getKey();
-        // // crypt.setPublicKey(crypt.getPublicKey());
-        // alert(crypt.encrypt('11111'));
-    </script>
 
 </head>
 
@@ -67,10 +61,17 @@
         </p>
     </div>
 </div>
-
-<textarea class="" id="publicKey" th:text="${session.LoginPublicKey}" hidden="hidden">
+<!--th:text="${session.LoginPublicKey}"-->
+<textarea class="" id="publicKey"  hidden="hidden">-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAozsJwfzwGwXhLV82UdJ7
+fhxHn2iPFUBihsq3zgCVcemVNZ65SXykvfceCl4GisG/s1MFc7wKYjrPkiEnUUEl
+eVagAUffIO6ooXI42tvenx6twu4eGOZ93cuLfelm7l3oZBWHKd2ik3f0iArgTifd
+wsQnLNk+n0oLd44boHlaTrzvlGnOl7SXuWomC3OGvlQkS0YIrbCMgWGn3UqxFJ1g
+vW9qk3toRXol6455iTtmgB8HY8mI4ZlQU4N/N8BtkV0byMUu6SpEmAikRbsho+LY
+vI5QzB9GrMjUWKR97L0MIiKgZovXLJQYQLJjJ5wmaqtasCC9ODXWaOjymARC3+aF
+VwIDAQAB
+-----END PUBLIC KEY-----
 </textarea>
-
 
 
 <script type="text/javascript">
@@ -85,29 +86,24 @@
 
 
 
+        alert(publickey.value);
         encypt.setPublicKey(publickey.value);
-        // encypt.setPrivateKey(privatekey.value);
-        // encypt.getKey();
-        var username_enc = encypt.encrypt(username.value);
-        var password_enc = encypt.encrypt(password.value);
-
-        // alert(publickey.value);
-
-
-        username.value=username_enc;
-        password.value=password_enc;
-
-        // alert(username_enc);
-        // alert(encypt.decrypt(username_enc));
-
+        var username_enc = encypt.encrypt(username);
+        // var password_enc = encypt.encrypt(password);
+        //
+        alert(username_enc);
         // alert(password_enc);
+        //
+        // alert(encypt.default_key_size);
+        // alert(encypt.key);
+        // alert(encypt.log);
 
     }
 
 </script>
 <!-- Mainly scripts -->
-<script src="INSPINIA/js/jquery-3.1.1.min.js"></script>
-<script src="INSPINIA/js/bootstrap.min.js"></script>
+<script src="../static/INSPINIA/js/jquery-3.1.1.min.js"></script>
+<script src="../static/INSPINIA/js/bootstrap.min.js"></script>
 
 </body>
 
@@ -123,7 +119,7 @@
 <!--<body>-->
 <!--错误信息：<h4 th:text="${msg}"></h4>-->
 <!--<form action="" method="post" role="form">-->
-<!--<p>账号：<input type="text" name="username" placeholder="U" value="admin"../static/></p>-->
+<!--<p>账号：<input type="text" name="username" placeholder="U" value="admin"/></p>-->
 <!--<p>密码：<input type="password" name="password" placeholder="P" value="123456"/></p>-->
 <!--<p><input type="submit" value="登录"/></p>-->
 <!--</form>-->

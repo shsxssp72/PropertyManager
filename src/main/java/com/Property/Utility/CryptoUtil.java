@@ -3,16 +3,27 @@ package com.Property.Utility;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.Sha2Crypt;
-import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.bouncycastle.asn1.ASN1Primitive;
+import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
+import org.bouncycastle.util.io.pem.PemObject;
+import org.bouncycastle.util.io.pem.PemWriter;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+
+import static org.apache.commons.codec.binary.Base64.encodeBase64String;
 
 public class CryptoUtil
 {
@@ -72,23 +83,24 @@ public class CryptoUtil
 		return stringBuffer.toString();
 	}
 
-	public static final String PUBLIC_ALGORITHM="RSA";
-	public static final String PUBLIC_CIPHER_ALGORITHM="RSA/ECB/PKCS1Padding";
-	public static final int KEY_LENGTH=2048;
 
 	public Pair<RSAPrivateKey,RSAPublicKey> generateRSAKey()
 	{
 		try
 		{
-			KeyPairGenerator keyPairGenerator=KeyPairGenerator.getInstance("RSA");
+			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			KeyPairGenerator keyPairGenerator=KeyPairGenerator
+					.getInstance("RSA","BC");
 			keyPairGenerator.initialize(2048);
 			KeyPair keyPair=keyPairGenerator.generateKeyPair();
 			RSAPublicKey publicKey=(RSAPublicKey)keyPair.getPublic();
 			RSAPrivateKey privateKey=(RSAPrivateKey)keyPair.getPrivate();
+
+
 			Pair<RSAPrivateKey,RSAPublicKey> resultPair=new Pair<>(privateKey,publicKey);
 			return resultPair;
 		}
-		catch(NoSuchAlgorithmException e)
+		catch(NoSuchAlgorithmException|NoSuchProviderException e)
 		{
 			e.printStackTrace();
 		}
@@ -99,11 +111,14 @@ public class CryptoUtil
 	{
 		try
 		{
-			Cipher cipher=Cipher.getInstance("RSA/ECB/PKCS1Padding");
+//			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			Cipher cipher=Cipher.getInstance("RSA/ECB/PKCS1Padding","BC");
+//					("RSA/ECB/PKCS1Padding");
 			cipher.init(Cipher.ENCRYPT_MODE,publicKey);
-			return Base64.encodeBase64String(cipher.doFinal(input.getBytes()));
+			return encodeBase64String(cipher.doFinal(input.getBytes()));
+//			return new String(cipher.doFinal(input.getBytes()));
 		}
-		catch(NoSuchAlgorithmException|NoSuchPaddingException|InvalidKeyException|IllegalBlockSizeException|BadPaddingException e)
+		catch(NoSuchAlgorithmException|NoSuchPaddingException|InvalidKeyException|IllegalBlockSizeException|BadPaddingException|NoSuchProviderException e)
 		{
 			e.printStackTrace();
 		}
@@ -112,17 +127,88 @@ public class CryptoUtil
 
 	public String RSADecrypt(PrivateKey privateKey,String input)
 	{
-		try{
-			byte [] encryptedText=Base64.decodeBase64(input);
-			Cipher cipher=Cipher.getInstance("RSA");
+		try
+		{
+			byte[] encryptedText=Base64.decodeBase64(input);
+			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+			Cipher cipher=Cipher.getInstance("RSA/ECB/PKCS1Padding","BC");
+//					("RSA/ECB/PKCS1Padding");
 			cipher.init(Cipher.DECRYPT_MODE,privateKey);
 			return new String(cipher.doFinal(encryptedText));
 		}
-		catch(NoSuchAlgorithmException|NoSuchPaddingException|InvalidKeyException|IllegalBlockSizeException|BadPaddingException e)
+		catch(NoSuchAlgorithmException|NoSuchPaddingException|InvalidKeyException|IllegalBlockSizeException|BadPaddingException|NoSuchProviderException e)
 		{
 			e.printStackTrace();
 		}
 		return null;
 	}
+
+	public PublicKey getPublicKeyFromString(String input)
+	{
+		byte[] keyBytes=Base64.decodeBase64(input);
+		X509EncodedKeySpec keySpec=new X509EncodedKeySpec(keyBytes);
+		try
+		{
+			KeyFactory keyFactory=KeyFactory.getInstance("RSA");
+			PublicKey publicKey=keyFactory.generatePublic(keySpec);
+			return publicKey;
+		}
+		catch(NoSuchAlgorithmException|InvalidKeySpecException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public PrivateKey getPrivateKeyFromString(String input)
+	{
+		try
+		{
+			byte[] keyBytes=Base64.decodeBase64(input);
+			PKCS8EncodedKeySpec keySpec=new PKCS8EncodedKeySpec(keyBytes);
+			KeyFactory keyFactory=KeyFactory.getInstance("RSA");
+			PrivateKey privateKey=keyFactory.generatePrivate(keySpec);
+			return privateKey;
+		}
+		catch(NoSuchAlgorithmException|InvalidKeySpecException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String getPKCS1PublicKey(RSAPublicKey publicKey)
+	{
+		try
+		{
+			SubjectPublicKeyInfo pkInfo=SubjectPublicKeyInfo.getInstance(publicKey.getEncoded());
+			ASN1Primitive primitive=pkInfo.parsePublicKey();
+			byte[] publ=primitive.getEncoded();
+//			return Base64.encodeBase64String(publ);
+			PemObject pemObject = new PemObject("RSA PUBLIC KEY", publ);
+			StringWriter stringWriter = new StringWriter();
+			PemWriter pemWriter = new PemWriter(stringWriter);
+			pemWriter.writeObject(pemObject);
+			pemWriter.close();
+			String pemString = stringWriter.toString();
+			return pemString;
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	public String getHashedPassword(String password,String username,String salt)
+	{
+		String alg="SHA-512";
+		Object salt_real=username+salt;
+		int iter=5;
+		Object result=new SimpleHash(alg,password,salt_real,iter);
+		return result.toString();
+	}
+
 
 }
