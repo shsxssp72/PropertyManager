@@ -20,4 +20,10 @@ public interface ProprietorDao
 
 	/*根据参数值查询*/
 	List<Proprietor> getProprietorbyParams(Map<String, Object> params);
+
+	int addProprietor(Proprietor proprietor);
+
+	int deleteProprietor(String id);
+
+	int updateProprietor(Proprietor proprietor);
 }

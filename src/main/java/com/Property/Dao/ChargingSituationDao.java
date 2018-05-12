@@ -27,4 +27,10 @@ public interface ChargingSituationDao
 
 	/*根据参数值查询*/
 	List<ChargingSituation> getPaymentbyParams(Map<String, Object> params);
+
+	int addChargingSituation(ChargingSituation chargingSituation);
+
+	int deleteChargingSituation(String id);
+
+	int updateChargingSituation(ChargingSituation chargingSituation);
 }

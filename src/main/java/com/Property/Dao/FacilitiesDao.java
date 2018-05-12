@@ -15,4 +15,10 @@ public interface FacilitiesDao
 
 	/*根据参数值查询*/
 	List<Facilities> getFacilitiesbyParams(Map<String, Object> params);
+
+	int addFacility(Facilities facilities);
+
+	int deleteFacility(String id);
+
+	int updateFacility(Facilities facilities);
 }

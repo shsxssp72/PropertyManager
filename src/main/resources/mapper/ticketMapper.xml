@@ -156,4 +156,22 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="addTicket" parameterType="com.Property.Domain.Ticket">
+		INSERT INTO ticket (ticket_type, ticket_time, initiator_prprt_id, initiator_staff_id, subarea_id, aprt_building, aprt_floor, aprt_room_num, description, handler_id, handle_time, ticket_result, ticket_fdbk)
+				VALUES (#{ticket_type}, #{ticket_time}, #{initiator_prprt_id}, #{initiator_staff_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description}, #{handler_id}, #{handle_time}, #{ticket_result}, #{ticket_fdbk})
+	</insert>
+
+	<delete id="deleteTicket" parameterType="java.lang.String">
+		DELETE FROM ticket
+			WHERE ticket_id  = #{id}
+	</delete>
+
+	<update id="updateTicket" parameterType="com.Property.Domain.Ticket">
+		UPDATE ticket SET ticket_type = #{ticket_type}, ticket_time = #{ticket_time}, initiator_prprt_id = #{initiator_prprt_id},
+						  initiator_staff_id  = #{initiator_staff_id}, subarea_id = #{subarea_id}, aprt_building = #{aprt_building},
+						  aprt_floor = #{aprt_floor}, aprt_room_num = #{aprt_room_num}, description = #{description}, handler_id =#{handler_id},
+						  handle_time = #{handle_time}, ticket_result = #{ticket_result}, ticket_fdbk = #{ticket_fdbk}
+			WHERE ticket_id = #{ticket_id}
+	</update>
 </mapper>

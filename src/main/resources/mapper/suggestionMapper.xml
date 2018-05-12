@@ -54,4 +54,19 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="addSuggestion" parameterType="com.Property.Domain.Suggestion">
+		INSERT INTO suggestion (prprt_id, suggestion_type, suggestion_detail)
+				VALUES (#{prprt_id}, #{suggestion_type}, #{suggestion_detail})
+	</insert>
+
+	<delete id="deleteSuggestion" parameterType="java.lang.String">
+		DELETE FROM suggestion
+			WHERE suggestion_id = #{id}
+	</delete>
+
+	<update id="updateSuggestion" parameterType="com.Property.Domain.Suggestion">
+		UPDATE suggestion SET prpt_id = #{prprt_id}, suggestion_type = #{suggestion_type}, suggestion_detail = #{suggestion_detail}
+			WHERE suggestion_id = #{suggestion_id}
+	</update>
 </mapper>

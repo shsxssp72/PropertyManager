@@ -15,4 +15,10 @@ public interface ChargingItemDao
 
 	/*根据参数值查询*/
 	List<ChargingItem> getChargingItembyParams(Map<String, Object> params);
+
+	int addChargingItem(ChargingItem chargingItem);
+
+	int deleteChargingItem(String id);
+
+	int updateChargingItem(ChargingItem chargingItem);
 }

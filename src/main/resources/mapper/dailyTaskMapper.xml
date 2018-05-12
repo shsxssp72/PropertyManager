@@ -76,4 +76,19 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="addTask" parameterType="com.Property.Domain.DailyTask">
+		INSERT INTO dailyTask (task_type, task_time, task_area, task_handler, task_result, isException)
+				VALUES (#{task_type}, #{task_time}, #{task_area}, #{task_handler}, #{task_result}, #{isException})
+	</insert>
+
+	<delete id="deleteTask" parameterType="java.lang.String">
+		DELETE FROM dailyTask
+			WHERE task_id = #{id}
+	</delete>
+
+	<update id="updateTask" parameterType="com.Property.Domain.DailyTask">
+		UPDATE dailyTask SET task_type = #{task_type}, task_time = #{task_time}, task_area = #{task_area}, task_handler = #{task_handler}, task_result = #{task_result}, isException = #{isException}
+			WHERE task_id = #{task_id}
+	</update>
 </mapper>

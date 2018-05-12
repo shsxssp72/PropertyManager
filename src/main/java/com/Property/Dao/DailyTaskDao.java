@@ -10,8 +10,7 @@ import java.util.Map;
 
 @Component
 @Mapper
-public interface DailyTaskDao
-{
+public interface DailyTaskDao {
 	List<DailyTask> getAll();
 
 	int finishTask(@Param("result") String result, @Param("isException") Boolean isException, @Param("task_id") String task_id);
@@ -26,4 +25,10 @@ public interface DailyTaskDao
 
 	/*根据参数值查询*/
 	List<DailyTask> getTaskbyParams(Map<String, Object> params);
+
+	int addTask(DailyTask dailyTask);
+
+	int deleteTask(String id);
+
+	int updateTask(DailyTask dailyTask);
 }

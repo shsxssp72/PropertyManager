@@ -15,4 +15,10 @@ public interface BuildingDao
 
 	/*根据参数值查询*/
 	List<Building> getBuildingbyParams(Map<String, Object> params);
+
+	int addBuilding(Building building);
+
+	int deleteBuilding(String id);
+
+	int updateBuilding(Building building);
 }

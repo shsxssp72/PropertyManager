@@ -15,4 +15,10 @@ public interface BuildingEntranceRecordDao
 
 	/*根据参数值查询*/
 	List<BuildingEntranceRecord> getBERbyParams(Map<String, Object> params);
+
+	int addBER(BuildingEntranceRecord buildingEntranceRecord);
+
+	int deleteBER(String id);
+
+	int updateBER(BuildingEntranceRecord buildingEntranceRecord);
 }

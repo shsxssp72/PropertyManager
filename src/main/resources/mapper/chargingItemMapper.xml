@@ -30,4 +30,19 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="addChargingItem" parameterType="com.Property.Domain.ChargingItem">
+		INSERT INTO chargingItem (item_title)
+				VALUES (#{item_title})
+	</insert>
+
+	<delete id="deleteChargingItem" parameterType="java.lang.String">
+		DELETE FROM chargingItem
+			WHERE item_id = #{id}
+	</delete>
+
+	<update id="updateChargingItem" parameterType="com.Property.Domain.ChargingItem">
+		UPDATE chargingItem SET item_title = #{item_title}
+			WHERE item_id = #{item_id}
+	</update>
 </mapper>

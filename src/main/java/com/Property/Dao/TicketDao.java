@@ -3,6 +3,7 @@ package com.Property.Dao;
 import com.Property.Domain.Ticket;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.eclipse.jetty.util.DateCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,4 +36,10 @@ public interface TicketDao {
 
 	/*根据参数值查询*/
 	List<Ticket> getTicketbyParams(Map<String, Object> params);
+
+	int addTicket(Ticket ticket);
+
+	int deleteTicket(String id);
+
+	int updateTicket(Ticket ticket);
 }

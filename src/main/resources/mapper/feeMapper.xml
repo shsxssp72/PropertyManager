@@ -64,4 +64,19 @@
 		</where>
 	</select>
 
+	<insert id="addFee" parameterType="com.Property.Domain.Fee">
+		INSERT INTO fee (item_id, start_date, end_date, price)
+				VALUES (#{item_id}, #{start_date}, #{end_date}, #{price})
+	</insert>
+
+	<delete id="deleteFee" parameterType="java.lang.String">
+		DELETE FROM fee
+			WHERE fee_id = #{id}
+	</delete>
+
+	<update id="updateFee" parameterType="com.Property.Domain.Fee">
+		UPDATE fee SET item_id = #{item_id}, start_date = #{start_date}, end_date = #{end_date}, price = #{price}
+			WHERE fee_id = #{fee_id}
+	</update>
+
 </mapper>

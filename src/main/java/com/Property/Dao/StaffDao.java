@@ -19,4 +19,10 @@ public interface StaffDao
 
 	/*根据参数值查询*/
 	List<Staff> getStaffbyParams(Map<String, Object> params);
+
+	int addStaff(Staff staff);
+
+	int deleteStaff(String id);
+
+	int updateStaff(Staff staff);
 }

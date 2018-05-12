@@ -15,4 +15,10 @@ public interface CarparkDao
 
 	/*根据参数值查询*/
 	List<Carpark> getCarparkbyParams(Map<String, Object> params);
+
+	int addCarpark(Carpark carpark);
+
+	int deleteCarpark(String id);
+
+	int updateCarpark(Carpark carpark);
 }

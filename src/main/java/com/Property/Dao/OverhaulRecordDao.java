@@ -27,4 +27,10 @@ public interface OverhaulRecordDao
 
 	/*根据参数值查询*/
 	List<OverhaulRecord> getOverhaulbyParams(Map<String, Object> params);
+
+	int addOverhaulRecord(OverhaulRecord overhaulRecord);
+
+	int deleteOverhaulRecord(String id);
+
+	int updateOverhaulRecord(OverhaulRecord overhaulRecord);
 }

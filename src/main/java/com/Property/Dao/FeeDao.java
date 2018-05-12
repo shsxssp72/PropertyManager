@@ -18,4 +18,10 @@ public interface FeeDao
 
 	/*根据参数值查询*/
 	List<Fee> getFeebyParams(Map<String, Object> params);
+
+	int addFee(Fee fee);
+
+	int deleteFee(String id);
+
+	int updateFee(Fee fee);
 }

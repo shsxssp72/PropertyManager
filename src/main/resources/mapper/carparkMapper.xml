@@ -42,4 +42,19 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="addCarpark" parameterType="com.Property.Domain.Carpark">
+		INSERT INTO carpark (subarea_id, owner_id, plate_number, valid_term)
+				VALUES (#{subarea_id}, #{owner_id}, #{plate_number}, #{valid_term})
+	</insert>
+
+	<delete id="deleteCarpark" parameterType="java.lang.String">
+		DELETE FROM carpark
+			WHERE carpark_id = #{id}
+	</delete>
+
+	<update id="updateCarpark" parameterType="com.Property.Domain.Carpark">
+		UPDATE carpark SET subarea_id = #{subarea_id}, owner_id = #{owner_id}, plate_number = #{plate_number}, valid_term = #{valid_term}
+			WHERE carpark_id = #{carpark_id}
+	</update>
 </mapper>

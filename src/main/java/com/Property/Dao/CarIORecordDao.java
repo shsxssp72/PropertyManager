@@ -17,4 +17,10 @@ public interface CarIORecordDao
 
 	/*根据参数值查询*/
 	List<CarIORecord> getCarIORecordbyParams(Map<String, Object> params);
+
+	int addCarIORecord(CarIORecord carIORecord);
+
+	int deleteCarIORecord(String id);
+
+	int updateCarIORecord(CarIORecord carIORecord);
 }

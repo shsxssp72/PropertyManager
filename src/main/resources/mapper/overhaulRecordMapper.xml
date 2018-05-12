@@ -105,4 +105,19 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="addOverhaulRecord" parameterType="com.Property.Domain.OverhaulRecord">
+		INSERT INTO overhaulRecord (fclt_id, overhaul_type, overhaul_time, overhaul_handler, overhaul_result)
+				VALUES (#{fclt_id}, #{overhaul_type}, #{overhaul_time}, #{overhaul_handler}, #{overhaul_result})
+	</insert>
+
+	<delete id="deleteOverhaulRecord" parameterType="java.lang.String">
+		DELETE FROM overhaulRecord
+			WHERE overhaul_id = #{id}
+	</delete>
+
+	<update id="updateOverhaulRecord" parameterType="com.Property.Domain.OverhaulRecord">
+		UPDATE overhaulRecord SET fclt_id = #{fclt_id}, overhaul_type = #{overhaul_type}, overhaul_time = #{overhaul_time}, overhaul_handler = #{overhaul_handler}, overhaul_result = #{overhaul_result}
+			WHERE overhaul_id = #{overhaul_id}
+	</update>
 </mapper>

@@ -46,4 +46,19 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="addFacility" parameterType="com.Property.Domain.Facilities">
+		INSERT INTO facilities (fclt_type, subarea_id, building_id, floor, location)
+				VALUES (#{fclt_type}, #{subarea_id}, #{building_id}, #{floor}, #{location})
+	</insert>
+
+	<delete id="deleteFacility" parameterType="java.lang.String">
+		DELETE FROM facilities
+			WHERE fclt_id = #{id}
+	</delete>
+
+	<update id="updateFacility" parameterType="com.Property.Domain.Facilities">
+		UPDATE facilities SET fclt_type = #{fclt_type}, subarea_id = #{subarea_id}, building_id = #{building_id}, floor = #{floor}, location = #{location}
+			WHERE fclt_id = #{fclt_id}
+	</update>
 </mapper>

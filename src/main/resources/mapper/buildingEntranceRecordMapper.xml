@@ -42,4 +42,19 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="addBER" parameterType="com.Property.Domain.BuildingEntranceRecord">
+		INSERT INTO buildingEntranceRecord (prprt_id, building_id, access_time, verify_type)
+				VALUES (#{prprt_id}, #{building_id}, #{access_time}, #{verify_type})
+	</insert>
+
+	<delete id="deleteBER" parameterType="java.lang.String">
+		DELETE FROM buildingEntranceRecord
+			WHERE entrance_record_id = #{id}
+	</delete>
+
+	<update id="updateBER" parameterType="com.Property.Domain.BuildingEntranceRecord">
+		UPDATE buildingEntranceRecord SET prprt_id = #{prprt_id}, building_id = #{building_id}, access_time = #{access_time}, verify_type = #{verify_type}
+			WHERE entrance_record_id = #{entrance_record_id}
+	</update>
 </mapper>

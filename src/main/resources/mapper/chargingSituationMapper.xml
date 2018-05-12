@@ -130,4 +130,19 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="addChargingSituation" parameterType="com.Property.Domain.ChargingSituation">
+		INSERT INTO chargingSituation (fee_id, prprt_id, collector_id, charge_date)
+				VALUES (#{fee_id}, #{prprt_id}, #{collector_id}, #{charge_date})
+	</insert>
+
+	<delete id="deleteChargingSituation" parameterType="java.lang.String">
+		DELETE FROM chargingSituation
+			WHERE situation_id = #{id}
+	</delete>
+
+	<update id="updateChargingSituation" parameterType="com.Property.Domain.ChargingSituation">
+		UPDATE chargingSituation SET fee_id = #{fee_id}, prprt_id = #{prprt_id}, collector_id = #{collector_id}, charge_date = #{charge_date}
+			WHERE situation_id = #{situation_id}
+	</update>
 </mapper>
