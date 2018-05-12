@@ -75,6 +75,12 @@
 		WHERE chargingSituation.prprt_id = #{id} and chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and chargingSituation.collector_id = null
 	</select>
 
+	<select id="getLatestPayment" resultType="java.util.Date">
+		SELECT max(fee.end_date)
+		FROM chargingSituation,fee
+		WHERE chargingSituation.prprt_id = #{id} and chargingSituation.fee_id = fee.fee_id and fee.item_id = #{item_id}
+	</select>
+
 	<select id="getPaymentHistory" resultMap="totalView" parameterType="java.lang.String">
 		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*
 		FROM chargingSituation,fee,chargingItem,staff,proprietor
@@ -98,6 +104,9 @@
 		FROM chargingSituation,fee,chargingItem,staff,proprietor
 		<where>
 			chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and chargingSituation.collector_id = staff.staff_id
+			<if test="situation_id!=null and situation_id!=''">
+				AND chargingSituation.situation_id = #{situation_id,jdbcType=CHAR}
+			</if>
 			<if test="prprt_name!=null and prprt_name!=''">
 				AND proprietor.prprt_name like CONCAT(CONCAT('%',#{prprt_name,jdbcType=VARCHAR}),'%')
 			</if>

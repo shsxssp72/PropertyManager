@@ -39,6 +39,12 @@
 		WHERE task_handler = #{id} and task_result = null
 	</select>
 
+	<select id="tbdTaskCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM dailyTask
+		WHERE task_handler = #{id} and task_result = null
+	</select>
+
 	<update id="changeTaskHandler" >
 		UPDATE dailyTask
 		SET task_handler = #{new_handler}
@@ -50,6 +56,9 @@
 		FROM dailyTask
 		<where>
 			1 = 1
+			<if test="task_id!=null and task_id!=''">
+				AND task_id = #{task_id,jdbcType=CHAR}
+			</if>
 			<if test="task_handler!=null and task_handler!=''">
 				AND task_handler = #{task_handler,jdbcType=CHAR}
 			</if>

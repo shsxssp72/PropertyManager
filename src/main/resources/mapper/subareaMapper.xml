@@ -14,4 +14,16 @@
 		<include refid="BaseColumnList"/>
 		FROM subarea
 	</select>
+
+	<select id="getSubareabyParams" resultMap="subarea" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM subarea
+		<where>
+			1 = 1
+			<if test="subarea_id!=null and subarea_id!=''">
+				AND subarea_id = #{subarea_id,jdbcType=CHAR}
+			</if>
+		</where>
+	</select>
 </mapper>

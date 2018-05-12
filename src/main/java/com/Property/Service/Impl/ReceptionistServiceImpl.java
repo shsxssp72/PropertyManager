@@ -7,9 +7,11 @@ import com.Property.Domain.Staff;
 import com.Property.Domain.Suggestion;
 import com.Property.Service.ReceptionistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 
+@Service
 public class ReceptionistServiceImpl implements ReceptionistService {
 
     @Autowired

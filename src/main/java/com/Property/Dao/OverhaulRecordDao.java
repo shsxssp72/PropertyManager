@@ -19,6 +19,8 @@ public interface OverhaulRecordDao
 
 	List<OverhaulRecord> tbdOverhaul(String id);
 
+	int tbdOverhaulCount(String id);
+
 	List<OverhaulRecord> overhaulHistory(String id);
 
 	int changeOverhaulHandler(@Param("new_handler") String new_handler, @Param("overhaul_id") String overhaul_id);

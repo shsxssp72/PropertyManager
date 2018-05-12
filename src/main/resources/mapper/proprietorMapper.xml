@@ -33,4 +33,37 @@
 		SET proprietor.tel = #{tel}
 		WHERE proprietor.prprt_id = #{id}
 	</update>
+
+	<select id="getProprietorbyParams" resultMap="proprietor" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM proprietor
+		<where>
+			1 = 1
+			<if test="prprt_id!=null and prprt_id!=''">
+				AND prprt_id = #{prprt_id,jdbcType=CHAR}
+			</if>
+			<if test="prprt_name!=null and prprt_name!=''">
+				AND prprt_name like CONCAT(CONCAT('%',#{prprt_name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="gender!=null and gender!=''">
+				AND gender = #{gender,jdbcType=VARCHAR}
+			</if>
+			<if test="tel!=null and tel !=''">
+				AND tel = #{tel,jdbcType=VARCHAR}
+			</if>
+			<if test="birthday!=null">
+				AND birthday = #{birthday,jdbcType=DATE}
+			</if>
+			<if test="aprt_building!=null and aprt_building!=''">
+				AND aprt_building = #{aprt_building,jdbcType=CHAR}
+			</if>
+			<if test="aprt_floor!=null">
+				AND aprt_floor = #{aprt_floor,jdbcType=INTEGER}
+			</if>
+			<if test="aprt_room_num!=null">
+				AND aprt_room_num = #{aprt_room_num,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
 </mapper>

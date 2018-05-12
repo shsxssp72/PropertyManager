@@ -33,4 +33,25 @@
 		INSERT INTO suggestion
 				VALUES (#{suggestion_id}, #{prprt_id}, #{suggestion_type}, #{suggestion_detail})
 	</insert>
+
+	<select id="getSuggestionbyParams" resultMap="suggestion" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM suggestion
+		<where>
+			1 = 1
+			<if test="suggestion_id!=null and suggestion_id!=''">
+				AND suggestion_id = #{suggestion_id,jdbcType=CHAR}
+			</if>
+			<if test="prprt_id!=null and prprt_id!=''">
+				AND prprt_id = #{prprt_id,jdbcType=CHAR}
+			</if>
+			<if test="suggestion_type!=null and suggestion_type!=''">
+				AND suggestion_type = #{suggestion_type,jdbcType=VARCHAR}
+			</if>
+			<if test="suggestion_detail!=null and suggestion_detail!=''">
+				AND suggestion_detail like CONCAT(CONCAT('%',#{suggestion_detail,jdbcType=VARCHAR}),'%')
+			</if>
+		</where>
+	</select>
 </mapper>

@@ -35,4 +35,43 @@
 		FROM staff
 		WHERE dept = #{dept}
 	</select>
+
+	<select id="getStaffbyParams" resultMap="staff" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM  staff
+		<where>
+			1 = 1
+			<if test="staff_id!=null and staff_id!=''">
+				AND staff_id = #{staff_id,jdbcType=CHAR}
+			</if>
+			<if test="staff_name!=null and staff_name!=''">
+				AND staff_name like CONCAT(CONCAT('%',#{staff_name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="gender!=null and gender!=''">
+				AND gender = #{gender,jdbcType=VARCHAR}
+			</if>
+			<if test="tel!=null and tel !=''">
+				AND tel = #{tel,jdbcType=VARCHAR}
+			</if>
+			<if test="address!=null and address!=''">
+				AND address like CONCAT(CONCAT('%',#{address,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="position!=null and position!=''">
+				AND position = #{position,jdbcType=VARCHAR}
+			</if>
+			<if test="salary!=null">
+				AND salary = #{salary,jdbcType=DECIMAL}
+			</if>
+			<if test="dept!=null and dept!=''">
+				AND dept = #{dept,jdbcType=CHAR}
+			</if>
+			<if test="elec_qlfy!=null">
+				AND elec_qlfy = #{elec_qlfy,jdbcType=BOOLEAN}
+			</if>
+			<if test="plbr_qlfy!=null">
+				AND plbr_qlfy = #{plbr_qlfy,jdbcType=BOOLEAN}
+			</if>
+		</where>
+	</select>
 </mapper>

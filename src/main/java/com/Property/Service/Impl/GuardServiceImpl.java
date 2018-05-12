@@ -10,10 +10,12 @@ import com.Property.Domain.Staff;
 import com.Property.Domain.Ticket;
 import com.Property.Service.GuardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+@Service
 public class GuardServiceImpl implements GuardService {
 
     @Autowired
@@ -28,6 +30,11 @@ public class GuardServiceImpl implements GuardService {
     @Override
     public List<DailyTask> tbdTask(String id) {
         return dailyTaskDao.tbdTask(id);
+    }
+
+    @Override
+    public int tbdTaskCount(String id) {
+        return dailyTaskDao.tbdTaskCount(id);
     }
 
     @Override

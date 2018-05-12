@@ -4,6 +4,7 @@ import com.Property.Domain.DailyTask;
 import com.Property.Domain.OverhaulRecord;
 import com.Property.Domain.Staff;
 import com.Property.Domain.Ticket;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 

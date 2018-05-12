@@ -4,6 +4,7 @@ import com.Property.Domain.ChargingSituation;
 import com.Property.Domain.Proprietor;
 import com.Property.Domain.Suggestion;
 import com.Property.Domain.Ticket;
+import org.springframework.stereotype.Component;
 
 
 import java.util.List;

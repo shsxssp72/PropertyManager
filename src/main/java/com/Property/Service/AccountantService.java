@@ -3,6 +3,7 @@ package com.Property.Service;
 import com.Property.Domain.CarIORecord;
 import com.Property.Domain.ChargingSituation;
 import com.Property.Domain.Staff;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;

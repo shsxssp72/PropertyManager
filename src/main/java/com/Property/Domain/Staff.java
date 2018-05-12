@@ -9,6 +9,7 @@ public class Staff
 	private String address;
 	private String position;
 	private double salary;
+	private String dept;
 	private boolean elec_qlfy;
 	private boolean plbr_qlfy;
 
@@ -80,6 +81,14 @@ public class Staff
 	public void setSalary(double salary)
 	{
 		this.salary = salary;
+	}
+
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
 	}
 
 	public boolean isElec_qlfy()

@@ -3,6 +3,7 @@ package com.Property.Service;
 import com.Property.Domain.DailyTask;
 import com.Property.Domain.Staff;
 import com.Property.Domain.Ticket;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -11,6 +12,9 @@ public interface CleanService {
 
     /*查看待完成任务*/
     List<DailyTask> tbdTask(String id);
+
+    /*待完成任务数*/
+    int tbdTaskCount(String id);
 
     /*完成日常任务*/
     int finishTask(String result, Boolean isException, String task_id);

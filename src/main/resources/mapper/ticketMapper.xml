@@ -115,6 +115,9 @@
 		FROM ticket,staff,department
 		<where>
 			ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
+			<if test="ticket_id!=null and ticket_id!=''">
+				AND ticket.ticket_id = #{ticket_id,jdbcType=CHAR}
+			</if>
 			<if test="staff_name!=null and staff_name!=''">
 				AND staff.staff_name like CONCAT(CONCAT('%',#{staff_name,jdbcType=VARCHAR}),'%')
 			</if>
@@ -138,6 +141,9 @@
 			</if>
 			<if test="aprt_room_num!=null">
 				AND ticket.aprt_room_num = #{aprt_room_num,jdbcType=INTEGER}
+			</if>
+			<if test="handle_time!=null">
+				AND ticket.handle_time = #{handle_time,jdbcType=TIMESTAMP}
 			</if>
 			<if test="ticket_fdbk!=null">
 				AND ticket.ticket_fdbk = #{ticket_fdbk,jdbcType=INTEGER}

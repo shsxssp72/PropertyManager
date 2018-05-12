@@ -8,10 +8,12 @@ import com.Property.Domain.ChargingSituation;
 import com.Property.Domain.Staff;
 import com.Property.Service.AccountantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class AccountantServiceImpl implements AccountantService {
 
     @Autowired

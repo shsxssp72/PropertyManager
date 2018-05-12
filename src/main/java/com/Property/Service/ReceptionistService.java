@@ -2,6 +2,7 @@ package com.Property.Service;
 
 import com.Property.Domain.Staff;
 import com.Property.Domain.Suggestion;
+import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 

@@ -20,6 +20,8 @@ public interface DailyTaskDao
 
 	List<DailyTask> tbdTask(String id);
 
+	int tbdTaskCount(String id);
+
 	int changeTaskHandler(@Param("new_handler") String new_handler, @Param("task_id") String task_id);
 
 	/*根据参数值查询*/

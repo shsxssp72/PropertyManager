@@ -17,6 +17,8 @@ public interface ChargingSituationDao
 
 	List<ChargingSituation> getPayment(String id);
 
+	java.util.Date getLatestPayment(@Param("id") String id, @Param("item_id") String item_id);
+
 	List<ChargingSituation> getPaymentHistory(String id);
 
 	List<ChargingSituation> getAllCharging();

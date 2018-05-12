@@ -25,6 +25,9 @@
 		FROM buildingEntranceRecord
 		<where>
 			1 = 1
+			<if test="entrance_record_id!=null and entrance_record_id!=''">
+				AND entrance_record_id = #{entrance_record_id,jdbcType=CHAR}
+			</if>
 			<if test="prprt_id!=null and prprt_id!=''">
 				AND prprt_id = #{prprt_id,jdbcType=CHAR}
 			</if>

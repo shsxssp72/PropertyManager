@@ -32,6 +32,9 @@
 		FROM carIORecord
 		<where>
 			1 = 1
+			<if test="io_record_id!=null and io_record_id!=''">
+				AND io_record_id = #{io_record_id,jdbcType=CHAR}
+			</if>
 			<if test="plate_number!=null and plate_number!=''">
 				AND plate_number = #{plate_number,jdbcType=CHAR}
 			</if>

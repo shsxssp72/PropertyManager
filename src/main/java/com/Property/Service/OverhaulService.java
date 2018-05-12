@@ -3,6 +3,7 @@ package com.Property.Service;
 import com.Property.Domain.OverhaulRecord;
 import com.Property.Domain.Staff;
 import com.Property.Domain.Ticket;
+import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -32,6 +33,9 @@ public interface OverhaulService {
 
     /*查看待完成检修任务*/
     List<OverhaulRecord> tbdOverhaul(String id);
+
+    /*已完成检修任务数*/
+    int tbdOverhaulCount(String id);
 
     /*查看检修任务历史*/
     List<OverhaulRecord> overhaulHistory(String id);

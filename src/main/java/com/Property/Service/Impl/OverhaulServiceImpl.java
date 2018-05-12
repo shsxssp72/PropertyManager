@@ -8,10 +8,12 @@ import com.Property.Domain.Staff;
 import com.Property.Domain.Ticket;
 import com.Property.Service.OverhaulService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+@Service
 public class OverhaulServiceImpl implements OverhaulService {
 
     @Autowired
@@ -54,6 +56,11 @@ public class OverhaulServiceImpl implements OverhaulService {
     @Override
     public List<OverhaulRecord> tbdOverhaul(String id) {
         return overhaulRecordDao.tbdOverhaul(id);
+    }
+
+    @Override
+    public int tbdOverhaulCount(String id) {
+        return overhaulRecordDao.tbdOverhaulCount(id);
     }
 
     @Override
