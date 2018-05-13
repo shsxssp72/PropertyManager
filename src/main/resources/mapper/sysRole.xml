@@ -25,4 +25,6 @@
 		WHERE uid=#{uid}
 	</select>
 
+
+
 </mapper>

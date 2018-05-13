@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 
 <head>
 
     <meta charset="utf-8">
-    <meta display_name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TestTable</title>
 
@@ -20,6 +21,9 @@
 
 </head>
 
+
+
+
 <body>
 <div id="wrapper">
     <div class="col-lg-12">
@@ -32,38 +36,12 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>ticket_id</th>
-                            <th>ticket_type</th>
-                            <th>ticket_time</th>
-                            <th>initiator_prprt_id</th>
-                            <th>initiator_staff_id</th>
-                            <th>subarea_id</th>
-                            <th>aprt_building</th>
-                            <th>aprt_floor</th>
-                            <th>aprt_room_num</th>
-                            <th>description</th>
-                            <th>handler_id</th>
-                            <th>handle_time</th>
-                            <th>ticket_result</th>
-                            <th>ticket_fdbk</th>
+                            <th th:each="attrList:${AttrList}" th:text="${attrList}">
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="Test:${testLists}">
-                            <td th:text="${Test.ticket_id}">1</td>
-                            <td th:text="${Test.ticket_type}">2</td>
-                            <td th:text="${Test.ticket_time}">3</td>
-                            <td th:text="${Test.initiator_prprt_id}">4</td>
-                            <td th:text="${Test.initiator_staff_id}">5</td>
-                            <td th:text="${Test.subarea_id}">6</td>
-                            <td th:text="${Test.aprt_building}">7</td>
-                            <td th:text="${Test.aprt_floor}">8</td>
-                            <td th:text="${Test.aprt_room_num}">9</td>
-                            <td th:text="${Test.description}">10</td>
-                            <td th:text="${Test.handler_id}">11</td>
-                            <td th:text="${Test.handle_time}">12</td>
-                            <td th:text="${Test.ticket_result}">13</td>
-                            <td th:text="${Test.ticket_fdbk}">14</td>
+                        <tr th:each="line:${dataList}">
+                            <td th:each="attr:${line}" th:text="${attr}"></td>
 
                             <!--<td th:text="${Test.e}">Inceptos Hymenaeos Ltd</td>-->
                             <!--<td><span class="pie" th:text="${Test.f}">0.52/1.561</span></td>-->
@@ -76,7 +54,6 @@
         </div>
     </div>
 </div>
-
 <script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
 <script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
 <script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"

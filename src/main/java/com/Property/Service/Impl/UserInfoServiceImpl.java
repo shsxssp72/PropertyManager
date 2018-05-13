@@ -10,6 +10,7 @@ import com.Property.Service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,9 +43,22 @@ public class UserInfoServiceImpl implements UserInfoService
 	{
 		SysRole role=sysRoleMapper.getByUid(uid);
 		List<SysPermission> result=sysPermissionMapper.getByRoleId(role.getRole_id());
-		for(SysPermission r : result)
+		List<SysPermission> tempParentPermission=new ArrayList<>();
+		if(result!=null)
 		{
-			result.addAll(sysPermissionMapper.getChildPermission(r.getPerm_id()));
+			for(int i=0;i<result.size();)
+			{
+				List<SysPermission> ChildPermission=sysPermissionMapper.getChildPermission(result.get(i).getPerm_id());
+				if(ChildPermission.size()!=0)
+				{
+					tempParentPermission.add(result.get(i));
+					result.remove(i);
+					result.addAll(ChildPermission);
+				}
+				else
+					i++;
+			}
+			result.addAll(tempParentPermission);
 		}
 		return result;
 	}
@@ -53,5 +67,12 @@ public class UserInfoServiceImpl implements UserInfoService
 	public SysRole getUserRole(int uid)
 	{
 		return sysRoleMapper.getByUid(uid);
+	}
+
+	@Override
+	public void updatePassword(int uid,String newPassword,String newSalt)
+	{
+		userInfoMapper.updatePassword(uid,newPassword,newSalt);
+		System.out.println("Update Success");
 	}
 }

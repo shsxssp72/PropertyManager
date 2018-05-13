@@ -1,5 +1,5 @@
 INSERT INTO SysPermission
-VALUES (0,'all:all','NULL','NULL','all:all',0,'0',TRUE);
+VALUES (0,'all:all','NULL','NULL','all:all',-1,'-1',TRUE);
 INSERT INTO SysPermission
 VALUES (1,'RolePermission:all','NULL','NULL','RolePermission:all',0,'0',TRUE);
 INSERT INTO SysPermission
@@ -312,6 +312,8 @@ INSERT INTO RolePermission
 VALUES (5,74);
 INSERT INTO RolePermission
 VALUES (5,86);
+INSERT INTO RolePermission
+VALUES (5,50);
 INSERT INTO RolePermission
 VALUES (5,42);
 INSERT INTO RolePermission

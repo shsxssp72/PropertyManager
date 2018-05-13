@@ -1,5 +1,7 @@
 package com.Property.Config;
 
+
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -40,8 +42,8 @@ public class ShiroConfig
 //		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 //		return shiroFilterFactoryBean;
 //	}
-
-
+//
+//
 //	@Bean
 //	public HashedCredentialsMatcher hashedCredentialsMatcher(){
 //		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
@@ -72,6 +74,12 @@ public class ShiroConfig
 //		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
 //		return authorizationAttributeSourceAdvisor;
 //	}
+//
+
+	@Bean
+	public ShiroDialect shiroDialect() {
+		return new ShiroDialect();
+	}
 
 	@Bean(name="simpleMappingExceptionResolver")
 	public SimpleMappingExceptionResolver

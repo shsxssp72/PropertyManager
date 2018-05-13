@@ -25,7 +25,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter
 	@Override
 	protected boolean executeLogin(ServletRequest request,ServletResponse response) throws Exception
 	{
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		System.out.println("From AuthenticationFilter: Login Injection Started.");
 		HttpServletRequest httpServletRequest=(HttpServletRequest)request;
 		HttpSession session=httpServletRequest.getSession();
 		CryptoUtil cryptoUtil=new CryptoUtil();
@@ -35,16 +35,18 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter
 		String username=request.getParameter("username");
 		String passwd=request.getParameter("password");
 
-		System.out.println("Initial:"+username);
-		System.out.println(passwd);
+		System.out.println("From AuthenticationFilter: INITIAL USERNAME: "+username);
+		System.out.println("From AuthenticationFilter: INITIAL PASSWORD: "+passwd);
 
 		passwd=cryptoUtil.RSADecrypt(privateKey,passwd);
 
 		username=cryptoUtil.RSADecrypt(privateKey,username);
 
 
-		System.out.println("AFTER INJECT USERNAME:"+username);
-		System.out.println("AFTER INJECT PASSWORD:"+passwd);
+		System.out.println("From AuthenticationFilter: INJECT USERNAME: "+username);
+		System.out.println("From AuthenticationFilter: INJECT PASSWORD: "+passwd);
+
+		session.setAttribute("username",username);
 
 
 		AuthenticationToken token=this.createToken(username,passwd,request,response);
@@ -62,11 +64,13 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter
 				Subject subject=this.getSubject(request,response);
 
 				subject.login(token);
+				System.out.println("From AuthenticationFilter: Login Injection Ended. -Success");
 				return this.onLoginSuccess(token,subject,request,response);
 			}
-			catch(AuthenticationException var5)
+			catch(AuthenticationException e)
 			{
-				return this.onLoginFailure(token,var5,request,response);
+				System.out.println("From AuthenticationFilter: Login Injection Ended. -Fail");
+				return this.onLoginFailure(token,e,request,response);
 			}
 		}
 	}

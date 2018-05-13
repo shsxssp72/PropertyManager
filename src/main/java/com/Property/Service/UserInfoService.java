@@ -12,4 +12,6 @@ public interface UserInfoService
 	UserInfo getUserInfo(String userName);
 	SysRole getUserRole(int uid);
 	List<SysPermission> getUserPermission(int uid);
+	void updatePassword(int uid,String newPassword,String newSalt);
+
 }

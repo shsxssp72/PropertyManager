@@ -11,7 +11,7 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		uid,user_name,display_name,user_password,salt,state
+		uid, user_name, display_name, user_password, salt, state
 	</sql>
 
 	<select id="getAll" resultMap="userInfo">
@@ -26,5 +26,11 @@
 		FROM UserInfo
 		WHERE user_name=#{userName}
 	</select>
+
+	<update id="updatePassword">
+		UPDATE UserInfo
+		SET user_password = #{newPassword}, salt = #{newSalt}
+		WHERE uid = #{uid}
+	</update>
 
 </mapper>

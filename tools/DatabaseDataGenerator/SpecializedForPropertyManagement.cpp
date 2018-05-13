@@ -506,7 +506,7 @@ void SpecializedForPropertyManagement::sysRole()
 
 void SpecializedForPropertyManagement::sysPermission()
 {
-	cout<<"INSERT INTO SysPermission"<<endl<<"VALUES ("<<0<<",'"<<"all:all"<<"','NULL','NULL','"<<"all:all"<<"',"<<0<<",'"<<0<<"',TRUE);"<<endl;
+	cout<<"INSERT INTO SysPermission"<<endl<<"VALUES ("<<0<<",'"<<"all:all"<<"','NULL','NULL','"<<"all:all"<<"',"<<-1<<",'"<<-1<<"',TRUE);"<<endl;
 	int i=1;//0设为所有的parent
 	for(auto &r :tableList)
 	{
@@ -581,6 +581,7 @@ void SpecializedForPropertyManagement::rolePermission()
 	for(auto &r:staffViewList)
 		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<5<<","<<permissionMapper[r+":view"]<<");"<<endl;
 	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<5<<","<<permissionMapper["proprietor:view"]<<");"<<endl;
+	cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<5<<","<<permissionMapper["carIORecord:view"]<<");"<<endl;
 	for(auto &r:basicViewList)
 		cout<<"INSERT INTO RolePermission"<<endl<<"VALUES ("<<5<<","<<permissionMapper[r+":view"]<<");"<<endl;
 

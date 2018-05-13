@@ -1,5 +1,8 @@
 package com.Property.Controller;
 
+import com.Property.Entity.Ticket;
+import com.Property.Mapper.TicketMapper;
+import com.Property.Service.Impl.UserInfoServiceImpl;
 import com.Property.Service.UserInfoService;
 import com.Property.Utility.CryptoUtil;
 import com.Property.Utility.Pair;
@@ -14,12 +17,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Base64;
+import java.util.List;
 import java.util.Map;
 
 
@@ -51,42 +56,39 @@ public class TestApplicationController
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String LoginVerify(HttpServletRequest request,Map<String,Object> map) throws Exception
 	{
-//		Subject currentUser=SecurityUtils.getSubject();
-//		String username =request.getParameter("username");
-//		String passwd=request.getParameter("password");
-//		UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,passwd);
-//		System.out.println("*******************************************");
-//
-//		currentUser.login(usernamePasswordToken);
-//		System.out.println("*******************************************");
-
+		System.out.println("From LoginVerify: Login Verify Started.");
 		String exception=(String)request.getAttribute("shiroLoginFailure");
 		System.out.println("exception="+exception);
 		String msg="";
 		if(exception!=null)
 		{
+			String errorMessage;
 			if(UnknownAccountException.class.getName().equals(exception))
 			{
-				System.out.println("UnknownAccountException -- > 账号不存在：");
-				msg="UnknownAccountException -- > 账号不存在：";
+				errorMessage="Non-existent Username.";
+				System.out.println("From LoginVerify: "+errorMessage);
+				msg="Invalid username or password ";
 			}
 			else if(IncorrectCredentialsException.class.getName().equals(exception))
 			{
-				System.out.println("IncorrectCredentialsException -- > 密码不正确：");
-				msg="IncorrectCredentialsException -- > 密码不正确：";
+				errorMessage="Invalid Password.";
+				System.out.println("From LoginVerify: "+errorMessage);
+				msg="Invalid username or password ";
 			}
-			else if("kaptchaValidateFailed".equals(exception))
-			{
-				System.out.println("kaptchaValidateFailed -- > 验证码错误");
-				msg="kaptchaValidateFailed -- > 验证码错误";
-			}
+//			else if("kaptchaValidateFailed".equals(exception))
+//			{
+//				System.out.println("kaptchaValidateFailed -- > 验证码错误");
+//				msg="kaptchaValidateFailed -- > 验证码错误";
+//			}
 			else
 			{
-				msg="else >> "+exception;
-				System.out.println("else -- >"+exception);
+				msg="Inner Error.";
+				errorMessage="Unexpected Error: "+exception;
+				System.out.println("From LoginVerify: "+errorMessage);
 			}
 		}
 		map.put("msg",msg);
+		System.out.println("From LoginVerify: Login Verify Ended.");
 		return "/login";
 	}
 
@@ -95,6 +97,5 @@ public class TestApplicationController
 	{
 		return "../public/error/403";
 	}
-
 
 }
