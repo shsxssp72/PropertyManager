@@ -1,7 +1,5 @@
 package com.Property.Controller;
 
-import com.Property.Entity.Ticket;
-import com.Property.Mapper.TicketMapper;
 import com.Property.Service.Impl.UserInfoServiceImpl;
 import com.Property.Service.UserInfoService;
 import com.Property.Utility.CryptoUtil;
@@ -41,7 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 public class TestApplicationController
 {
 	@RequestMapping(value="/login", method=RequestMethod.GET)

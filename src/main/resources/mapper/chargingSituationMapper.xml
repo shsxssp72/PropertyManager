@@ -93,11 +93,11 @@
 		WHERE chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and chargingSituation.collector_id = staff.staff_id
 	</select>
 
-	<update id="updateChargingSituation">
-		UPDATE chargingSituation
-		SET collector_id = #{collector_id}, charge_date = #{charge_date}
-		WHERE fee_id = #{fee_id}
-	</update>
+	<!--<update id="updateChargingSituation">-->
+		<!--UPDATE chargingSituation-->
+		<!--SET collector_id = #{collector_id}, charge_date = #{charge_date}-->
+		<!--WHERE fee_id = #{fee_id}-->
+	<!--</update>-->
 
 	<select id="getPaymentbyParams" resultMap="totalView" parameterType="java.util.HashMap">
 		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*

@@ -1,29 +1,22 @@
 package com.Property.Controller;
 
+import com.Property.Dao.TicketDao;
+import com.Property.Domain.Ticket;
 import com.Property.Entity.RolePermission;
-import com.Property.Entity.SysPermission;
-import com.Property.Entity.Ticket;
-import com.Property.Entity.UserInfo;
 import com.Property.Mapper.RolePermissionMapper;
 import com.Property.Mapper.SysRoleMapper;
-import com.Property.Mapper.TicketMapper;
 import com.Property.Mapper.UserInfoMapper;
-import com.Property.Service.UserInfoService;
 import com.Property.Utility.TableAttrGetter;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler;
 
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,13 +41,13 @@ public class TestApplicationRestController
 	}
 
 	@Autowired
-	private TicketMapper ticketMapper;
+	private TicketDao ticketDao;
 
 	//	@ApiOperation(value="测试",notes="仅作为测试用")
 	@RequestMapping(value="/ticket/list", method=RequestMethod.GET)
 	public ModelAndView index()
 	{
-		List<Ticket> testLists=ticketMapper.getAll();
+		List<Ticket> testLists=ticketDao.getAll();
 		List<List<Object>> tmpList=new LinkedList<>();
 
 		for(Ticket a : testLists)
