@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.StaffDao">
+	<resultMap id="staff" type="com.Property.Domain.Staff">
+		<id column="staff_id" property="staff_id" jdbcType="CHAR"/>
+		<result column="staff_name" property="staff_name" jdbcType="VARCHAR"/>
+		<result column="gender" property="gender" jdbcType="VARCHAR"/>
+		<result column="tel" property="tel" jdbcType="VARCHAR"/>
+		<result column="address" property="address" jdbcType="VARCHAR"/>
+		<result column="position" property="position" jdbcType="VARCHAR"/>
+		<result column="salary" property="salary" jdbcType="DECIMAL"/>
+		<result column="dept" property="dept" jdbcType="CHAR"/>
+		<result column="elec_qlfy" property="elec_qlfy" jdbcType="BOOLEAN"/>
+		<result column="plbr_qlfy" property="plbr_qlfy" jdbcType="BOOLEAN"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		staff_id,staff_name,gender,tel,address,position,salary,dept,elec_qlfy,plbr_qlfy
+	</sql>
+
+	<select id="getAll" resultMap="staff">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM staff
+	</select>
+
+	<select id="getSelfInfo" parameterType="java.lang.String" resultMap="staff">
+		SELECT *
+		FROM staff
+		WHERE staff_id = #{id}
+	</select>
+
+	<select id="getDeptStaff" parameterType="java.lang.String" resultMap="staff">
+		SELECT *
+		FROM staff
+		WHERE dept = #{dept}
+	</select>
+
+	<select id="getStaffbyParams" resultMap="staff" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM  staff
+		<where>
+			1 = 1
+			<if test="staff_id!=null and staff_id!=''">
+				AND staff_id = #{staff_id,jdbcType=CHAR}
+			</if>
+			<if test="staff_name!=null and staff_name!=''">
+				AND staff_name like CONCAT(CONCAT('%',#{staff_name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="gender!=null and gender!=''">
+				AND gender = #{gender,jdbcType=VARCHAR}
+			</if>
+			<if test="tel!=null and tel !=''">
+				AND tel = #{tel,jdbcType=VARCHAR}
+			</if>
+			<if test="address!=null and address!=''">
+				AND address like CONCAT(CONCAT('%',#{address,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="position!=null and position!=''">
+				AND position = #{position,jdbcType=VARCHAR}
+			</if>
+			<if test="salary!=null">
+				AND salary = #{salary,jdbcType=DECIMAL}
+			</if>
+			<if test="dept!=null and dept!=''">
+				AND dept = #{dept,jdbcType=CHAR}
+			</if>
+			<if test="elec_qlfy!=null">
+				AND elec_qlfy = #{elec_qlfy,jdbcType=BOOLEAN}
+			</if>
+			<if test="plbr_qlfy!=null">
+				AND plbr_qlfy = #{plbr_qlfy,jdbcType=BOOLEAN}
+			</if>
+		</where>
+	</select>
+
+	<insert id="addStaff" parameterType="com.Property.Domain.Staff">
+		INSERT INTO staff (staff_name, gender, tel, address, position, salary, dept, elec_qlfy, plbr_qlfy)
+			  	VALUES (#{staff_name}, #{gender}, #{tel}, #{address}, #{position}, #{salary}, #{dept}, #{elec_qlfy}, #{plbr_qlfy})
+	</insert>
+
+	<delete id="deleteStaff" parameterType="java.lang.String">
+		DELETE FROM staff
+			WHERE staff_id = #{id}
+	</delete>
+
+	<update id="updateStaff" parameterType="com.Property.Domain.Staff">
+		UPDATE staff SET staff_name = #{staff_name}, gender = #{gender}, tel = #{tel}, address = #{address}, position = #{position}, salary = #{salary}, dept=#{dept}, elec_qlfy = #{elec_qlfy}, plbr_qlfy = #{plbr_qlfy}
+			  WHERE staff_id = #{staff_id}
+	</update>
+</mapper>
