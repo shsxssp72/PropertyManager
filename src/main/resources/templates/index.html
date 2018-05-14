@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Home</title>
+    <title>PM | Home</title>
 
     <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
     <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
@@ -19,7 +19,6 @@
 
 <body>
 
-
 <div id="wrapper">
 
     <nav class="navbar-default navbar-static-side" role="navigation">
@@ -27,10 +26,7 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <!--<span>-->
-                        <!--&lt;!&ndash;<img alt="image" class="img-circle" src="img/profile_small.jpg"/>&ndash;&gt;-->
-                        <!---->
-                        <!--</span>-->
+
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong
                                     class="font-bold" th:text="${username}">David Williams</strong>
@@ -48,270 +44,304 @@
                     </div>
                 </li>
 
-                <shiro:user>
+                <li>
+                    <a href="/index"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/payment/pay"><i class="fa fa-rmb"></i> <span class="nav-label">Invoice</span>
+                        <span class="label-warning pull-right"></span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/payment/pay">Invoice To Pay</a></li>
+                        <li><a href="/payment/history">Invoice History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/CarIO/permit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">CarIO</span></a>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='accountant'}">
+                    <a href="/account/status"><i class="fa fa-calculator"></i> <span class="nav-label">Report</span>
+                        <span class="fa arrow"></span>Account</a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/account/status">Account Status</a></li>
+                        <li><a href="/account/modify">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='receptionist'}">
+                    <a href="/reception/payment"><i class="fa fa-user-circle"></i> <span
+                            class="nav-label">Reception</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/reception/payment">Account Status</a></li>
+                        <li><a href="/reception/suggestion">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='supervisor'}">
+                    <a href="/supervise"><i class="fa fa-address-book"></i> <span
+                            class="nav-label">Teamwork</span></a>
+                </li>
+
+                <!--<shiro:user>-->
                     <li>
-                        <a href="/index"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
-                    </li>
-                </shiro:user>
+                        <a href="/dataView"><i class="fa fa-line-chart"></i> <span class="nav-label">Data View</span>
+                            <!--<span class="fa arrow"></span> -->
+                        </a>
+                        <!--<ul class="nav nav-second-level collapse">-->
+                            <!--<shiro:hasPermission name="RolePermission:view">-->
+                                <!--<li><a href="/dataView/RolePermission">RolePermission</a></li>-->
+                            <!--</shiro:hasPermission>-->
 
-                <shiro:hasRole name="proprietor">
+                            <!--<shiro:hasPermission name="SysPermission:view">-->
+                                <!--<li><a href="/dataView/SysPermission">SysPermission</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="SysRole:view">-->
+                                <!--<li><a href="/dataView/SysRole">SysRole</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="UserInfo:view">-->
+                                <!--<li><a href="/dataView/UserInfo">UserInfo</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="UserRole:view">-->
+                                <!--<li><a href="/dataView/UserRole">UserRole</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="building:view">-->
+                                <!--<li><a href="/dataView/building">building</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="buildingEntranceRecord:view">-->
+                                <!--<li><a href="/dataView/buildingEntranceRecord">buildingEntranceRecord</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="carIORecord:view">-->
+                                <!--<li><a href="/dataView/carIORecord">carIORecord</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="carpark:view">-->
+                                <!--<li><a href="/dataView/carpark">carpark</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="chargingItem:view">-->
+                                <!--<li><a href="/dataView/chargingItem">chargingItem</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="chargingSituation:view">-->
+                                <!--<li><a href="/dataView/chargingSituation">chargingSituation</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="dailyTask:view">-->
+                                <!--<li><a href="/dataView/dailyTask">dailyTask</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="department:view">-->
+                                <!--<li><a href="/dataView/department">department</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="facilities:view">-->
+                                <!--<li><a href="/dataView/facilities">facilities</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="fee:view">-->
+                                <!--<li><a href="/dataView/fee">fee</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="overhaulRecord:view">-->
+                                <!--<li><a href="/dataView/overhaulRecord">overhaulRecord</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="proprietor:view">-->
+                                <!--<li><a href="/dataView/proprietor">proprietor</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="staff:view">-->
+                                <!--<li><a href="/dataView/staff">staff</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="subarea:view">-->
+                                <!--<li><a href="/dataView/subarea">subarea</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="suggestion:view">-->
+                                <!--<li><a href="/dataView/suggestion">suggestion</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="ticket:view">-->
+                                <!--<li><a href="/dataView/ticket">ticket</a></li>-->
+                            <!--</shiro:hasPermission>-->
+                        <!--</ul>-->
+                    </li>
+                <!--</shiro:user>-->
+
+                <!--<shiro:user>-->
                     <li>
-                        <a href="/payment/pay"><i class="fa fa-rmb"></i> <span class="nav-label">Invoice</span>
-                            <span class="label-warning pull-right"></span>
-                            <span class="fa arrow"></span> </a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="/payment/pay">Invoice To Pay</a></li>
-                            <li><a href="/payment/history">Invoice History</a></li>
-                        </ul>
+                        <a href="/dataModify"><i class="fa fa-area-chart"></i> <span class="nav-label">Data Modify</span>
+                            <!--<span class="fa arrow"></span>-->
+                        </a>
+                        <!--<ul class="nav nav-second-level collapse">-->
+                            <!--<shiro:hasPermission name="RolePermission:all">-->
+                                <!--<li><a href="/dataModify/RolePermission">RolePermission</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="SysPermission:all">-->
+                                <!--<li><a href="/dataModify/SysPermission">SysPermission</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="SysRole:all">-->
+                                <!--<li><a href="/dataModify/SysRole">SysRole</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="UserInfo:all">-->
+                                <!--<li><a href="/dataModify/UserInfo">UserInfo</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="UserRole:all">-->
+                                <!--<li><a href="/dataModify/UserRole">UserRole</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="building:all">-->
+                                <!--<li><a href="/dataModify/building">building</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="buildingEntranceRecord:all">-->
+                                <!--<li><a href="/dataModify/buildingEntranceRecord">buildingEntranceRecord</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="carIORecord:all">-->
+                                <!--<li><a href="/dataModify/carIORecord">carIORecord</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="carpark:all">-->
+                                <!--<li><a href="/dataModify/carpark">carpark</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="chargingItem:all">-->
+                                <!--<li><a href="/dataModify/chargingItem">chargingItem</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="chargingSituation:all">-->
+                                <!--<li><a href="/dataModify/chargingSituation">chargingSituation</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="dailyTask:all">-->
+                                <!--<li><a href="/dataModify/dailyTask">dailyTask</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="department:all">-->
+                                <!--<li><a href="/dataModify/department">department</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="facilities:all">-->
+                                <!--<li><a href="/dataModify/facilities">facilities</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="fee:all">-->
+                                <!--<li><a href="/dataModify/fee">fee</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="overhaulRecord:all">-->
+                                <!--<li><a href="/dataModify/overhaulRecord">overhaulRecord</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="proprietor:all">-->
+                                <!--<li><a href="/dataModify/proprietor">proprietor</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="staff:all">-->
+                                <!--<li><a href="/dataModify/staff">staff</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="subarea:all">-->
+                                <!--<li><a href="/dataModify/subarea">subarea</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="suggestion:all">-->
+                                <!--<li><a href="/dataModify/suggestion">suggestion</a></li>-->
+                            <!--</shiro:hasPermission>-->
+
+                            <!--<shiro:hasPermission name="ticket:all">-->
+                                <!--<li><a href="/dataModify/ticket">ticket</a></li>-->
+                            <!--</shiro:hasPermission>-->
+                        <!--</ul>-->
                     </li>
-                </shiro:hasRole>
+                <!--</shiro:user>-->
 
-                <shiro:hasAnyRoles name="guard">
-                    <li>
-                        <a href="/CarIO/permit"><i class="fa fa-file-archive-o"></i> <span
-                                class="nav-label">CarIO</span></a>
-                    </li>
-                </shiro:hasAnyRoles>
 
-                <shiro:hasAnyRoles name="proprietor,guard,cleaner,repairman">
-                    <li>
-                        <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
-                            <span class="fa arrow"></span> </a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="/ticket/new">New Ticket</a></li>
-                            <li><a href="ticket/history">Ticket History</a></li>
-                        </ul>
-                    </li>
-                </shiro:hasAnyRoles>
-
-                <shiro:hasRole name="proprietor,guard,cleaner,repairman">
-                    <li>
-                        <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
-                                class="nav-label">Report</span>
-                            <span class="fa arrow"></span> </a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="/report/submit">Report To Submit</a></li>
-                            <li><a href="/report/history">Report History</a></li>
-                        </ul>
-                    </li>
-                </shiro:hasRole>
-
-                <shiro:hasRole name="accountant">
-                    <li>
-                        <a href="/account/status"><i class="fa fa-calculator"></i> <span class="nav-label">Report</span>
-                            <span class="fa arrow"></span>Account</a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="/account/status">Account Status</a></li>
-                            <li><a href="/account/modify">Modify Account</a></li>
-                        </ul>
-                    </li>
-                </shiro:hasRole>
-
-                <shiro:hasRole name="receptionist">
-                    <li>
-                        <a href="/reception/payment"><i class="fa fa-user-circle"></i> <span
-                                class="nav-label">Reception</span>
-                            <span class="fa arrow"></span> </a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="/reception/payment">Account Status</a></li>
-                            <li><a href="/reception/suggestion">Modify Account</a></li>
-                        </ul>
-                    </li>
-                </shiro:hasRole>
-
-                <shiro:hasRole name="supervisor">
-                    <li>
-                        <a href="/supervise"><i class="fa fa-address-book"></i> <span
-                                class="nav-label">Teamwork</span></a>
-                    </li>
-                </shiro:hasRole>
-
-                <shiro:user>
-                    <li>
-                        <a><i class="fa fa-line-chart"></i> <span class="nav-label">Data View</span>
-                            <span class="fa arrow"></span> </a>
-                        <ul class="nav nav-second-level collapse">
-                            <shiro:hasPermission name="RolePermission:view">
-                                <li><a href="/dataView/RolePermission">RolePermission</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="SysPermission:view">
-                                <li><a href="/dataView/SysPermission">SysPermission</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="SysRole:view">
-                                <li><a href="/dataView/SysRole">SysRole</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="UserInfo:view">
-                                <li><a href="/dataView/UserInfo">UserInfo</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="UserRole:view">
-                                <li><a href="/dataView/UserRole">UserRole</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="building:view">
-                                <li><a href="/dataView/building">building</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="buildingEntranceRecord:view">
-                                <li><a href="/dataView/buildingEntranceRecord">buildingEntranceRecord</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="carIORecord:view">
-                                <li><a href="/dataView/carIORecord">carIORecord</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="carpark:view">
-                                <li><a href="/dataView/carpark">carpark</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="chargingItem:view">
-                                <li><a href="/dataView/chargingItem">chargingItem</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="chargingSituation:view">
-                                <li><a href="/dataView/chargingSituation">chargingSituation</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="dailyTask:view">
-                                <li><a href="/dataView/dailyTask">dailyTask</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="department:view">
-                                <li><a href="/dataView/department">department</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="facilities:view">
-                                <li><a href="/dataView/facilities">facilities</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="fee:view">
-                                <li><a href="/dataView/fee">fee</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="overhaulRecord:view">
-                                <li><a href="/dataView/overhaulRecord">overhaulRecord</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="proprietor:view">
-                                <li><a href="/dataView/proprietor">proprietor</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="staff:view">
-                                <li><a href="/dataView/staff">staff</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="subarea:view">
-                                <li><a href="/dataView/subarea">subarea</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="suggestion:view">
-                                <li><a href="/dataView/suggestion">suggestion</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="ticket:view">
-                                <li><a href="/dataView/ticket">ticket</a></li>
-                            </shiro:hasPermission>
-                        </ul>
-                    </li>
-                </shiro:user>
-
-                <shiro:user>
-                    <li>
-                        <a><i class="fa fa-area-chart"></i> <span class="nav-label">Data Modify</span>
-                            <span class="fa arrow"></span> </a>
-                        <ul class="nav nav-second-level collapse">
-                            <shiro:hasPermission name="RolePermission:all">
-                                <li><a href="/dataModify/RolePermission">RolePermission</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="SysPermission:all">
-                                <li><a href="/dataModify/SysPermission">SysPermission</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="SysRole:all">
-                                <li><a href="/dataModify/SysRole">SysRole</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="UserInfo:all">
-                                <li><a href="/dataModify/UserInfo">UserInfo</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="UserRole:all">
-                                <li><a href="/dataModify/UserRole">UserRole</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="building:all">
-                                <li><a href="/dataModify/building">building</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="buildingEntranceRecord:all">
-                                <li><a href="/dataModify/buildingEntranceRecord">buildingEntranceRecord</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="carIORecord:all">
-                                <li><a href="/dataModify/carIORecord">carIORecord</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="carpark:all">
-                                <li><a href="/dataModify/carpark">carpark</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="chargingItem:all">
-                                <li><a href="/dataModify/chargingItem">chargingItem</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="chargingSituation:all">
-                                <li><a href="/dataModify/chargingSituation">chargingSituation</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="dailyTask:all">
-                                <li><a href="/dataModify/dailyTask">dailyTask</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="department:all">
-                                <li><a href="/dataModify/department">department</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="facilities:all">
-                                <li><a href="/dataModify/facilities">facilities</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="fee:all">
-                                <li><a href="/dataModify/fee">fee</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="overhaulRecord:all">
-                                <li><a href="/dataModify/overhaulRecord">overhaulRecord</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="proprietor:all">
-                                <li><a href="/dataModify/proprietor">proprietor</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="staff:all">
-                                <li><a href="/dataModify/staff">staff</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="subarea:all">
-                                <li><a href="/dataModify/subarea">subarea</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="suggestion:all">
-                                <li><a href="/dataModify/suggestion">suggestion</a></li>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="ticket:all">
-                                <li><a href="/dataModify/ticket">ticket</a></li>
-                            </shiro:hasPermission>
-                        </ul>
-                    </li>
-                </shiro:user>
-
-                <!--Help us become better-->
-                <shiro:hasAnyRoles name="proprietor,guard,cleaner,repairman">
+                <li th:if="${roleName=='proprietor'}">
                     <li>
                         <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
                             <span class="fa arrow"></span> </a>
@@ -320,8 +350,40 @@
                             <li><a href="/suggestion/history">Suggestion History</a></li>
                         </ul>
                     </li>
-                </shiro:hasAnyRoles>
+                </li>
 
+                <li th:if="${roleName=='guard'}">
+                    <li>
+                        <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                            <span class="fa arrow"></span> </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="/suggestion/new">New Suggestion</a></li>
+                            <li><a href="/suggestion/history">Suggestion History</a></li>
+                        </ul>
+                    </li>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <li>
+                        <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                            <span class="fa arrow"></span> </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="/suggestion/new">New Suggestion</a></li>
+                            <li><a href="/suggestion/history">Suggestion History</a></li>
+                        </ul>
+                    </li>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <li>
+                        <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                            <span class="fa arrow"></span> </a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="/suggestion/new">New Suggestion</a></li>
+                            <li><a href="/suggestion/history">Suggestion History</a></li>
+                        </ul>
+                    </li>
+                </li>
             </ul>
 
         </div>
@@ -333,16 +395,11 @@
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
                     </a>
-                    <!--<form role="search" class="navbar-form-custom" action="search_results.html">-->
-                    <!--<div class="form-group">-->
-                    <!--<input type="text" placeholder="Search for something..." class="form-control"-->
-                    <!--name="top-search" id="top-search">-->
-                    <!--</div>-->
-                    <!--</form>-->
+
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <!--<span class="m-r-sm text-muted welcome-message" th:text="${'Welcome, '+username}">Welcome to INSPINIA+ Admin Theme.</span>-->
+
                         <span class="m-r-sm text-muted welcome-message" th:text="|Welocme, ${username}|">Welcome to INSPINIA+ Admin Theme.</span>
                     </li>
 
@@ -382,7 +439,7 @@
                             You can find more option in the navigation bar on the left. </p>
 
                         </div>
-                        <!--增加待办事项-->
+
                     </div>
 
                 </div>
@@ -395,8 +452,6 @@
             </div>
         </div>
 
-
-        <!-- Mainly scripts -->
         <script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
         <script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
         <script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
@@ -404,7 +459,6 @@
         <script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
                 th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
 
-        <!-- Custom and plugin javascript -->
         <script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
         <script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
                 th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
@@ -422,7 +476,8 @@
             });
 
         </script>
-
+    </div>
+</div>
 </body>
 
 </html>

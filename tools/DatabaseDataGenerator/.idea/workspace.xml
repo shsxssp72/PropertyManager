@@ -52,8 +52,8 @@
       <file leaf-file-name="SpecializedForPropertyManagement.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SpecializedForPropertyManagement.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="506" column="54" lean-forward="true" selection-start-line="506" selection-start-column="54" selection-end-line="506" selection-end-column="54" />
+            <state relative-caret-position="168">
+              <caret line="499" column="12" lean-forward="true" selection-start-line="499" selection-start-column="12" selection-end-line="499" selection-end-column="12" />
               <folding>
                 <element signature="e#41#61#0" expanded="true" />
               </folding>
@@ -187,16 +187,15 @@
       <workItem from="1525597279435" duration="798000" />
       <workItem from="1525843835548" duration="10000" />
       <workItem from="1526130635224" duration="61000" />
-      <workItem from="1526136183046" duration="686000" />
+      <workItem from="1526136183046" duration="687000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54113000" />
+    <option name="totallyTimeSpent" value="54114000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1934" height="1047" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info id="DB Browser" order="2" />
@@ -205,7 +204,7 @@
       <window_info anchor="bottom" id="DB Execution Console" order="12" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.33154505" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.33154505" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.13972889" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
@@ -690,8 +689,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SpecializedForPropertyManagement.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="506" column="54" lean-forward="true" selection-start-line="506" selection-start-column="54" selection-end-line="506" selection-end-column="54" />
+        <state relative-caret-position="168">
+          <caret line="499" column="12" lean-forward="true" selection-start-line="499" selection-start-column="12" selection-end-line="499" selection-end-column="12" />
           <folding>
             <element signature="e#41#61#0" expanded="true" />
           </folding>

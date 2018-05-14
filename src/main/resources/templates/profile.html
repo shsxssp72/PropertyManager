@@ -1,0 +1,433 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PM | Profile</title>
+
+    <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../static/INSPINIA/css/animate.css" rel="stylesheet">
+    <link href="../static/INSPINIA/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong
+                                    class="font-bold" th:text="${username}">David Williams</strong>
+                             </span> <span class="text-muted text-xs block" th:text="${roleName}">Art Director <b
+                                    class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a href="/mailbox">Mailbox</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        PM
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/index"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/payment/pay"><i class="fa fa-rmb"></i> <span class="nav-label">Invoice</span>
+                        <span class="label-warning pull-right"></span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/payment/pay">Invoice To Pay</a></li>
+                        <li><a href="/payment/history">Invoice History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/CarIO/permit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">CarIO</span></a>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='accountant'}">
+                    <a href="/account/status"><i class="fa fa-calculator"></i> <span class="nav-label">Report</span>
+                        <span class="fa arrow"></span>Account</a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/account/status">Account Status</a></li>
+                        <li><a href="/account/modify">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='receptionist'}">
+                    <a href="/reception/payment"><i class="fa fa-user-circle"></i> <span
+                            class="nav-label">Reception</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/reception/payment">Account Status</a></li>
+                        <li><a href="/reception/suggestion">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='supervisor'}">
+                    <a href="/supervise"><i class="fa fa-address-book"></i> <span
+                            class="nav-label">Teamwork</span></a>
+                </li>
+
+
+                <li>
+                    <a href="/dataView"><i class="fa fa-line-chart"></i> <span class="nav-label">Data View</span>
+
+                    </a>
+
+
+                </li>
+
+
+                <li>
+                    <a href="/dataModify"><i class="fa fa-area-chart"></i> <span class="nav-label">Data Modify</span>
+
+                    </a>
+
+
+                </li>
+
+
+                <li th:if="${roleName=='proprietor'}">
+                <li>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                <li>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                <li>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                <li>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+
+                        <span class="m-r-sm text-muted welcome-message" th:text="|Welocme, ${username}|">Welcome to INSPINIA+ Admin Theme.</span>
+                    </li>
+
+                    <li>
+                        <a href="/logout">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>Profile</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/index">Home</a>
+                    </li>
+                    <li class="active">
+                        <strong>Profile</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+        <div class="wrapper wrapper-content">
+            <div class="row animated fadeInRight">
+
+                <div class="col-lg-4">
+                    <div class="row-md-4">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Current User</h5>
+                            </div>
+                            <div>
+                                <div class="ibox-content no-padding border-left-right">
+                                    <img alt="image" class="img-responsive" src="img/profile_big.jpg">
+                                </div>
+                                <div class="ibox-content profile-content">
+                                    <h4><strong th:text="${username}">Monica Smith</strong></h4>
+                                    <p th:text="${roleName}">Manager</p>
+                                    <!--<div class="row m-t-lg">-->
+                                    <!--<div class="col-md-4">-->
+                                    <!--<span class="bar">5,3,9,6,5,9,7,3,5,2</span>-->
+                                    <!--<h5><strong>169</strong> Posts</h5>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-4">-->
+                                    <!--<span class="line">5,3,9,6,5,9,7,3,5,2</span>-->
+                                    <!--<h5><strong>28</strong> Following</h5>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-4">-->
+                                    <!--<span class="bar">5,3,2,-1,-3,-2,2,3,5,2</span>-->
+                                    <!--<h5><strong>240</strong> Followers</h5>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="user-button">-->
+                                    <!--<div class="row">-->
+                                    <!--<div class="col-md-6">-->
+                                    <!--<button type="button" class="btn btn-primary btn-sm btn-block"><i-->
+                                    <!--class="fa fa-envelope"></i> Send Message-->
+                                    <!--</button>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-6">-->
+                                    <!--<button type="button" class="btn btn-default btn-sm btn-block"><i-->
+                                    <!--class="fa fa-coffee"></i> Buy a coffee-->
+                                    <!--</button>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="row-md-4">
+                            <div class="ibox ">
+                                <div class="ibox-title">
+                                    <h5>Change Password</h5>
+                                </div>
+                                <div class="ibox-content">
+                                    <form role="form">
+                                        <div class="row" id="pwd-container3">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="oldPassword">Username</label>
+                                                    <input type="text" class="form-control" id="oldPassword"
+                                                           placeholder="Old Password">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="newPassword">Password</label>
+                                                    <input type="password" class="form-control pwdStrength"
+                                                           id="newPassword"
+                                                           placeholder="New Password">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="newPasswordConfirm">Password</label>
+                                                    <input type="password" class="form-control"
+                                                           id="newPasswordConfirm"
+                                                           placeholder="New Password Confirm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="pwstrength_viewport_progress"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label th:text="${passwordMismatchMsg}"></label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-7 right">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Profile Detail</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <form method="get" class="form-horizontal">
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Disabled</label>
+                                        <div class="col-lg-10"><input type="text" disabled=""
+                                                                      placeholder="Disabled input here..."
+                                                                      class="form-control"></div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Static
+                                        control</label>
+                                        <div class="col-lg-10"><p class="form-control-static">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> Example Company &copy; 2014-2017
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="../static/INSPINIA/js/jquery-3.1.1.min.js"></script>
+<script src="../static/INSPINIA/js/bootstrap.js"></script>
+<script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../static/INSPINIA/js/inspinia.js"></script>
+<script src="../static/INSPINIA/js/plugins/pace/pace.min.js"></script>
+<script src="../static/INSPINIA/js/plugins/peity/jquery.peity.min.js"></script>
+<script src="../static/INSPINIA/js/demo/peity-demo.js"></script>
+<script src="../static/INSPINIA/js/plugins/pwstrength/pwstrength-bootstrap.min.js"></script>
+
+
+<script>
+    var TestStrength = {};
+    TestStrength.ui = {
+        container: "#pwd-container3",
+        showVerdictsInsideProgressBar: true,
+        viewports: {
+            progress: ".pwstrength_viewport_progress"
+        }
+    };
+    TestStrength.common = {
+        debug: true,
+        usernameField: "#username"
+    };
+    $('.pwdStrength').pwstrength(TestStrength);
+</script>
+
+
+</body>
+
+</html>
