@@ -23,7 +23,7 @@
 				VALUES (#{prprt_id}, #{suggestion_type}, #{suggestion_detail})
 	</insert>
 
-	<select id="getAdviceHistory" parameterType="java.lang.String">
+	<select id="getAdviceHistory" parameterType="java.lang.String" resultMap="suggestion">
 		SELECT *
 		FROM suggestion
 		WHERE suggestion.prprt_id = #{id}

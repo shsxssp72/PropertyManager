@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PM | Suggestion</title>
+
+    <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
+    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
+          th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
+    <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
+    <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
+
+    <!-- FooTable -->
+    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
+
+</head>
+
+<body>
+
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong
+                                    class="font-bold" th:text="${username}">David Williams</strong>
+                             </span> <span class="text-muted text-xs block" th:text="${roleName}">Art Director <b
+                                    class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a href="/mailbox">Mailbox</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        PM
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/index"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/proprietor/payment/pay"><i class="fa fa-rmb"></i> <span class="nav-label">Invoice</span>
+                        <span class="label-warning pull-right"></span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/payment/pay">Invoice To Pay</a></li>
+                        <li><a href="/proprietor/payment/history">Invoice History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/CarIO/permit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">CarIO</span></a>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/ticket/new">New Ticket</a></li>
+                        <li><a href="/proprietor/ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='accountant'}">
+                    <a href="/account/status"><i class="fa fa-calculator"></i> <span class="nav-label">Report</span>
+                        <span class="fa arrow"></span>Account</a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/account/status">Account Status</a></li>
+                        <li><a href="/account/modify">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='receptionist'}">
+                    <a href="/reception/payment"><i class="fa fa-user-circle"></i> <span
+                            class="nav-label">Reception</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/reception/payment">Account Status</a></li>
+                        <li><a href="/reception/suggestion">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='supervisor'}">
+                    <a href="/supervise"><i class="fa fa-address-book"></i> <span
+                            class="nav-label">Teamwork</span></a>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/proprietor/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/proprietor/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <!--<span class="m-r-sm text-muted welcome-message" th:text="${'Welcome, '+username}">Welcome to INSPINIA+ Admin Theme.</span>-->
+                        <span class="m-r-sm text-muted welcome-message" th:text="|Welocme, ${username}|">Welcome to INSPINIA+ Admin Theme.</span>
+                    </li>
+
+                    <li>
+                        <a href="/logout">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>Suggestion History</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/index">Home</a>
+                    </li>
+                    <li>
+                        Suggestion
+                    </li>
+                    <li class="active">
+                        History
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>History</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <input type="text" class="form-control input-sm m-b-xs" id="filter"
+                                   placeholder="Search in table">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
+                                <thead>
+                                <!--<tr class="footable-filtering">
+                                    <th colspan="5">
+                                        <form role="form" class="form-inline pull-right">
+                                            <div class="form-group">
+                                                <input type="email" placeholder="Enter email" id="exampleInputEmail2"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="user_password" placeholder="Password" id="exampleInputPassword2"
+                                                       class="form-control">
+                                            </div>
+                                            <button class="btn btn-white" type="submit">Sign in</button>
+                                        </form>
+                                    </th>
+                                </tr>-->
+                                <tr>
+                                    <th>SuggestionType</th>
+                                    <th>Proprietor</th>
+                                    <th data-hide="all">SuggestionDetail</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="suggestion: ${suggestions}">
+                                    <td th:text="${suggestion.suggestion_type}">Project - This is example of project</td>
+                                    <td th:text="${username}">Patrick Smith</td>
+                                    <td th:text="${suggestion.suggestion_detail}">0800 051213</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
+<script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
+        th:src="@{/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
+        th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- FooTable -->
+<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
+<script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
+        th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
+
+<script>
+
+    $(document).ready(function ()
+    {
+
+        // Add slimscroll to element
+        $('.scroll_content').slimscroll({
+            height: '200px'
+        })
+
+    });
+
+</script>
+
+<!-- Page-Level Scripts -->
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('.footable').footable();
+        $('.footable2').footable();
+
+    });
+
+</script>
+</body>
+</html>

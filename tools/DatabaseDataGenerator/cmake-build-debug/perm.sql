@@ -1,3 +1,50 @@
+CREATE TABLE SysRole
+(
+  role_id      INT PRIMARY KEY,
+  role_name    VARCHAR(50),
+  descryption  VARCHAR(100),
+  is_available BOOL
+);
+
+CREATE TABLE SysPermission
+(
+  perm_id       INT PRIMARY KEY,
+  perm_name     VARCHAR(100),
+  resource_type VARCHAR(20),
+  permit_url    VARCHAR(50),
+  permission VARCHAR(100),
+  parent_id     INT,
+  parent_ids    VARCHAR(50),
+  is_available  BOOL
+);
+
+CREATE TABLE UserInfo
+(
+  uid           INT PRIMARY KEY,
+  user_name     VARCHAR(20),
+  display_name  VARCHAR(20),
+  user_password CHAR(255),
+  salt          CHAR(255),
+  state         INT
+);
+
+CREATE TABLE RolePermission
+(
+  role_id INT,
+  perm_id INT,
+  PRIMARY KEY (role_id, perm_id),
+  FOREIGN KEY (role_id) REFERENCES SysRole (role_id),
+  FOREIGN KEY (perm_id) REFERENCES SysPermission (perm_id)
+);
+
+CREATE TABLE UserRole
+(
+  uid     INT,
+  role_id INT,
+  PRIMARY KEY (uid, role_id),
+  FOREIGN KEY (uid) REFERENCES UserInfo (uid),
+  FOREIGN KEY (role_id) REFERENCES SysRole (role_id)
+);
 INSERT INTO SysPermission
 VALUES (0,'all:all','NULL','NULL','all:all',-1,'-1',TRUE);
 INSERT INTO SysPermission
