@@ -7,13 +7,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PM | Payment</title>
+    <title>PM | DailyTask</title>
 
     <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
     <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
           th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
     <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
     <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
+    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
 
     <!-- FooTable -->
     <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
@@ -23,11 +24,13 @@
 <body>
 
 <div id="wrapper">
+
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
+
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong
                                     class="font-bold" th:text="${username}">David Williams</strong>
@@ -69,7 +72,7 @@
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/ticket/new">New Ticket</a></li>
-                        <li><a href="ticket/history">Ticket History</a></li>
+                        <li><a href="/ticket/history">Ticket History</a></li>
                     </ul>
                 </li>
 
@@ -155,6 +158,7 @@
                             class="nav-label">Teamwork</span></a>
                 </li>
 
+
                 <li th:if="${roleName=='proprietor'}">
                     <a href="/proprietor/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
@@ -190,7 +194,6 @@
                         <li><a href="/suggestion/history">Suggestion History</a></li>
                     </ul>
                 </li>
-
             </ul>
 
         </div>
@@ -202,10 +205,11 @@
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
                     </a>
+
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <!--<span class="m-r-sm text-muted welcome-message" th:text="${'Welcome, '+username}">Welcome to INSPINIA+ Admin Theme.</span>-->
+
                         <span class="m-r-sm text-muted welcome-message" th:text="|Welocme, ${username}|">Welcome to INSPINIA+ Admin Theme.</span>
                     </li>
 
@@ -220,16 +224,16 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Payment</h2>
+                <h2>DailyTask</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="/index">Home</a>
                     </li>
                     <li>
-                        Payment
+                        DailyTask
                     </li>
-                    <li class="active">
-                        To Be Paid
+                    <li>
+                        Finished
                     </li>
                 </ol>
             </div>
@@ -239,17 +243,21 @@
         </div>
 
         <div class="wrapper wrapper-content animated fadeInRight">
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>To Be Paid</h5>
+                            <h5>Finished</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
                         </div>
                         <div class="ibox-content">
-                            <input type="text" class="form-control input-sm m-b-xs" id="filter"
+                            <input type="text" class="form-control input-sm m-b-xs" id="filter2"
                                    placeholder="Search in table">
-                            <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter2>
                                 <thead>
                                 <!--<tr class="footable-filtering">
                                     <th colspan="5">
@@ -267,26 +275,27 @@
                                     </th>
                                 </tr>-->
                                 <tr>
-
-                                    <th>ItemTitle</th>
-                                    <th>Proprietor</th>
-                                    <th>StartDate</th>
-                                    <th>EndDate</th>
-                                    <th>Pay</th>
+                                    <th>TaskType</th>
+                                    <th>TaskTime</th>
+                                    <th>TaskArea</th>
+                                    <th>Handler</th>
+                                    <th data-hide="all">isException</th>
+                                    <th data-hide="all">TaskResult</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="charging: ${chargingSituationList}">
-                                    <td th:text="${charging.fee.chargingItem.item_title}">Project - This is example of project</td>
-                                    <td th:text="${charging.proprietor.prprt_name}">Patrick Smith</td>
-                                    <td th:text="${charging.fee.start_date}">0800 051213</td>
-                                    <td th:text="${charging.fee.end_date}">Inceptos Hymenaeos Ltd</td>
-                                    <td><a th:href="@{'/proprietor/invoice/'+${charging.situation_id}}"><button type="button" class="btn btn-primary btn-sm">Go to Payment</button></a></td>
+                                <tr th:each="task: ${dailyTaskList}">
+                                    <td th:text="${task.task_type}">Project - This is example of project</td>
+                                    <td th:text="${task.task_time}">Patrick Smith</td>
+                                    <td th:text="${task.task_area}">0800 051213</td>
+                                    <td th:text="${username}"></td>
+                                    <td th:text="${task.exception}">tyy</td>
+                                    <td th:text="${task.task_result}"></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td colspan="5">
+                                    <td colspan="7">
                                         <ul class="pagination pull-right"></ul>
                                     </td>
                                 </tr>
@@ -297,11 +306,16 @@
                     </div>
                 </div>
             </div>
+
+            <div class="footer">
+                <div>
+                    <strong>Copyright</strong> Example Company &copy; 2014-2017
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Mainly scripts -->
 <script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
 <script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
 <script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
@@ -309,27 +323,15 @@
 <script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
         th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
 
-<!-- FooTable -->
-<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
-
-<!-- Custom and plugin javascript -->
 <script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
 <script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
         th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
 
-<script>
+<!-- FooTable -->
+<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
 
-    $(document).ready(function ()
-    {
-
-        // Add slimscroll to element
-        $('.scroll_content').slimscroll({
-            height: '200px'
-        })
-
-    });
-
-</script>
+<!-- JSKnob -->
+<script src="../static/INSPINIA/js/plugins/jsKnob/jquery.knob.js" th:src="@{/INSPINIA/js/plugins/jsKnob/jquery.knob.js}"></script>
 
 <!-- Page-Level Scripts -->
 <script type="text/javascript">
@@ -340,6 +342,12 @@
 
     });
 
+    $(function() {
+        $(".dial").knob();
+    });
+
 </script>
+
 </body>
+
 </html>

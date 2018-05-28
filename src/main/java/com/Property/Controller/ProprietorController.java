@@ -1,15 +1,10 @@
 package com.Property.Controller;
 
-import com.Property.Dao.BuildingDao;
-import com.Property.Dao.ChargingSituationDao;
-import com.Property.Dao.ProprietorDao;
-import com.Property.Dao.SubareaDao;
+import com.Property.Dao.*;
 import com.Property.Domain.*;
 import com.Property.Mapper.SysRoleMapper;
 import com.Property.Mapper.UserInfoMapper;
 import com.Property.Service.ProprietorService;
-import io.swagger.models.Model;
-import org.eclipse.jetty.util.DateCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +36,8 @@ public class ProprietorController {
     private SubareaDao subareaDao;
     @Autowired
     private BuildingDao buildingDao;
+    @Autowired
+    private TicketDao ticketDao;
 
     @RequestMapping("/payment/pay")
     public ModelAndView payment(HttpSession session){
@@ -118,7 +115,7 @@ public class ProprietorController {
     @RequestMapping(value = "/ticket/new", method = RequestMethod.GET)
     public ModelAndView callRepair(HttpSession session){
 
-        ModelAndView modelAndView = new ModelAndView("proprietor_ticket_new");
+        ModelAndView modelAndView = new ModelAndView("ticket_new");
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
@@ -139,7 +136,7 @@ public class ProprietorController {
     public ModelAndView callRepairResult(HttpSession session, HttpServletRequest request){
 
         session.setAttribute("state", "post");
-        ModelAndView modelAndView = new ModelAndView("proprietor_ticket_new");
+        ModelAndView modelAndView = new ModelAndView("ticket_new");
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
@@ -212,7 +209,7 @@ public class ProprietorController {
     @RequestMapping(value = "/ticket/history", method = RequestMethod.GET)
     public ModelAndView repairHistory(HttpSession session){
 
-        ModelAndView modelAndView = new ModelAndView("proprietor_ticket_history");
+        ModelAndView modelAndView = new ModelAndView("ticket_history");
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
@@ -227,10 +224,12 @@ public class ProprietorController {
         List<Ticket> unfinishedList = new ArrayList<Ticket>();
         List<Ticket> finishedList = new ArrayList<Ticket>();
         for (Ticket ticket : ticketList) {
-            if (ticket.getTicket_result()==null){
-                unfinishedList.add(ticket);
-            }else{
-                finishedList.add(ticket);
+            if (ticket.getInitiator_prprt_id()!=null){
+                if (ticket.getTicket_result()==null){
+                    unfinishedList.add(ticket);
+                }else{
+                    finishedList.add(ticket);
+                }
             }
         }
 
@@ -245,7 +244,7 @@ public class ProprietorController {
     @RequestMapping(value = "/ticket/history", method = RequestMethod.POST)
     public ModelAndView repairFeedback(HttpSession session, HttpServletRequest request){
 
-        ModelAndView modelAndView = new ModelAndView("proprietor_ticket_history");
+        ModelAndView modelAndView = new ModelAndView("ticket_history");
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
@@ -285,7 +284,7 @@ public class ProprietorController {
     @RequestMapping(value = "/suggestion/new", method = RequestMethod.GET)
     public ModelAndView giveAdvice(HttpSession session){
 
-        ModelAndView modelAndView = new ModelAndView("proprietor_suggestion_new");
+        ModelAndView modelAndView = new ModelAndView("suggestion_new");
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
@@ -304,7 +303,7 @@ public class ProprietorController {
 
     @RequestMapping(value = "/suggestion/new", method = RequestMethod.POST)
     public ModelAndView sendAdvice(HttpSession session, HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView("proprietor_suggestion_new");
+        ModelAndView modelAndView = new ModelAndView("suggestion_new");
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
@@ -338,7 +337,7 @@ public class ProprietorController {
     @RequestMapping("/suggestion/history")
     public ModelAndView adviceHistory(HttpSession session){
 
-        ModelAndView modelAndView = new ModelAndView("proprietor_suggestion_history");
+        ModelAndView modelAndView = new ModelAndView("suggestion_history");
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 

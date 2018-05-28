@@ -2,7 +2,7 @@ package com.Property.Domain;
 
 public class OverhaulRecord
 {
-	private String ovrhaul_id;
+	private String overhaul_id;
 	private String fclt_id;
 	private String overhaul_type;
 	private String overhaul_time;
@@ -11,14 +11,14 @@ public class OverhaulRecord
 
 	private Facilities facilities;			//新增属性用于resultMap中联合查询
 
-	public String getOvrhaul_id()
+	public String getOverhaul_id()
 	{
-		return ovrhaul_id;
+		return overhaul_id;
 	}
 
-	public void setOvrhaul_id(String ovrhaul_id)
+	public void setOverhaul_id(String overhaul_id)
 	{
-		this.ovrhaul_id = ovrhaul_id;
+		this.overhaul_id = overhaul_id;
 	}
 
 	public String getFclt_id()

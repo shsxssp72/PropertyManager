@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PM | Payment</title>
+    <title>PM | Suggestion</title>
 
     <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
     <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
@@ -220,16 +220,16 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Payment</h2>
+                <h2>Suggestion History</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="/index">Home</a>
                     </li>
                     <li>
-                        Payment
+                        Suggestion
                     </li>
                     <li class="active">
-                        To Be Paid
+                        History
                     </li>
                 </ol>
             </div>
@@ -244,7 +244,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>To Be Paid</h5>
+                            <h5>History</h5>
                         </div>
                         <div class="ibox-content">
                             <input type="text" class="form-control input-sm m-b-xs" id="filter"
@@ -267,21 +267,16 @@
                                     </th>
                                 </tr>-->
                                 <tr>
-
-                                    <th>ItemTitle</th>
-                                    <th>Proprietor</th>
-                                    <th>StartDate</th>
-                                    <th>EndDate</th>
-                                    <th>Pay</th>
+                                    <th>SuggestionType</th>
+                                    <th>Name</th>
+                                    <th data-hide="all">SuggestionDetail</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="charging: ${chargingSituationList}">
-                                    <td th:text="${charging.fee.chargingItem.item_title}">Project - This is example of project</td>
-                                    <td th:text="${charging.proprietor.prprt_name}">Patrick Smith</td>
-                                    <td th:text="${charging.fee.start_date}">0800 051213</td>
-                                    <td th:text="${charging.fee.end_date}">Inceptos Hymenaeos Ltd</td>
-                                    <td><a th:href="@{'/proprietor/invoice/'+${charging.situation_id}}"><button type="button" class="btn btn-primary btn-sm">Go to Payment</button></a></td>
+                                <tr th:each="suggestion: ${suggestions}">
+                                    <td th:text="${suggestion.suggestion_type}">Project - This is example of project</td>
+                                    <td th:text="${username}">Patrick Smith</td>
+                                    <td th:text="${suggestion.suggestion_detail}">0800 051213</td>
                                 </tr>
                                 </tbody>
                                 <tfoot>

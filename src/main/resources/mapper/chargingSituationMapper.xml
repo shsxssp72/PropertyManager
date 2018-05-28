@@ -52,7 +52,7 @@
 	<select id="getPayment" resultMap="totalView" parameterType="java.lang.String">
 		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*
 		FROM chargingSituation,fee,chargingItem,staff,proprietor
-		WHERE chargingSituation.prprt_id = #{id} and chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id
+		WHERE chargingSituation.prprt_id = #{id} and chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and charge_date = null
 	</select>
 
 	<select id="getLatestPayment" resultType="java.util.Date">
