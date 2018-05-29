@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.SuggestionDao">
+	<resultMap id="suggestion" type="com.Property.Domain.Suggestion">
+		<id column="suggestion_id" property="suggestion_id" jdbcType="CHAR"/>
+		<result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+		<result column="suggestion_type" property="suggestion_type" jdbcType="VARCHAR"/>
+		<result column="suggestion_detail" property="suggestion_detail" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		suggestion_id,prprt_id,suggestion_type,suggestion_detail
+	</sql>
+
+	<select id="getAll" resultMap="suggestion">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM suggestion
+	</select>
+	
+	<insert id="giveAdvice" parameterType="com.Property.Domain.Suggestion">
+		INSERT INTO suggestion (prprt_id, suggestion_type, suggestion_detail)
+				VALUES (#{prprt_id}, #{suggestion_type}, #{suggestion_detail})
+	</insert>
+
+	<select id="getAdviceHistory" parameterType="java.lang.String" resultMap="suggestion">
+		SELECT *
+		FROM suggestion
+		WHERE suggestion.prprt_id = #{id}
+	</select>
+
+	<insert id="createAdvice" parameterType="com.Property.Domain.Suggestion">
+		INSERT INTO suggestion
+				VALUES (#{suggestion_id}, #{prprt_id}, #{suggestion_type}, #{suggestion_detail})
+	</insert>
+
+	<select id="getSuggestionbyParams" resultMap="suggestion" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM suggestion
+		<where>
+			1 = 1
+			<if test="suggestion_id!=null and suggestion_id!=''">
+				AND suggestion_id = #{suggestion_id,jdbcType=CHAR}
+			</if>
+			<if test="prprt_id!=null and prprt_id!=''">
+				AND prprt_id = #{prprt_id,jdbcType=CHAR}
+			</if>
+			<if test="suggestion_type!=null and suggestion_type!=''">
+				AND suggestion_type = #{suggestion_type,jdbcType=VARCHAR}
+			</if>
+			<if test="suggestion_detail!=null and suggestion_detail!=''">
+				AND suggestion_detail like CONCAT(CONCAT('%',#{suggestion_detail,jdbcType=VARCHAR}),'%')
+			</if>
+		</where>
+	</select>
+
+	<insert id="addSuggestion" parameterType="com.Property.Domain.Suggestion">
+		INSERT INTO suggestion (prprt_id, suggestion_type, suggestion_detail)
+				VALUES (#{prprt_id}, #{suggestion_type}, #{suggestion_detail})
+	</insert>
+
+	<delete id="deleteSuggestion" parameterType="java.lang.String">
+		DELETE FROM suggestion
+			WHERE suggestion_id = #{id}
+	</delete>
+
+	<update id="updateSuggestion" parameterType="com.Property.Domain.Suggestion">
+		UPDATE suggestion SET prpt_id = #{prprt_id}, suggestion_type = #{suggestion_type}, suggestion_detail = #{suggestion_detail}
+			WHERE suggestion_id = #{suggestion_id}
+	</update>
+</mapper>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PM | Invoice</title>
+
+    <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
+    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
+          th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
+    <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
+    <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
+
+</head>
+
+<body>
+
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <!--<span>-->
+                        <!--&lt;!&ndash;<img alt="image" class="img-circle" src="img/profile_small.jpg"/>&ndash;&gt;-->
+                        <!---->
+                        <!--</span>-->
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong
+                                    class="font-bold" th:text="${username}">David Williams</strong>
+                             </span> <span class="text-muted text-xs block" th:text="${roleName}">Art Director <b
+                                    class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a href="/mailbox">Mailbox</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        PM
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/index"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/proprietor/payment/pay"><i class="fa fa-rmb"></i> <span class="nav-label">Invoice</span>
+                        <span class="label-warning pull-right"></span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/payment/pay">Invoice To Pay</a></li>
+                        <li><a href="/proprietor/payment/history">Invoice History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/CarIO/permit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">CarIO</span></a>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="proprietor/ticket/new">New Ticket</a></li>
+                        <li><a href="proprietor/ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='accountant'}">
+                    <a href="/account/status"><i class="fa fa-calculator"></i> <span class="nav-label">Report</span>
+                        <span class="fa arrow"></span>Account</a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/account/status">Account Status</a></li>
+                        <li><a href="/account/modify">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='receptionist'}">
+                    <a href="/reception/payment"><i class="fa fa-user-circle"></i> <span
+                            class="nav-label">Reception</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/reception/payment">Account Status</a></li>
+                        <li><a href="/reception/suggestion">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='supervisor'}">
+                    <a href="/supervise"><i class="fa fa-address-book"></i> <span
+                            class="nav-label">Teamwork</span></a>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/proprietor/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/proprietor/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <!--<span class="m-r-sm text-muted welcome-message" th:text="${'Welcome, '+username}">Welcome to INSPINIA+ Admin Theme.</span>-->
+                        <span class="m-r-sm text-muted welcome-message" th:text="|Welocme, ${username}|">Welcome to INSPINIA+ Admin Theme.</span>
+                    </li>
+
+                    <li>
+                        <a href="/logout">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-8">
+                <h2>Invoice</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/index">Home</a>
+                    </li>
+                    <li class="active">
+                        Invoice
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-4">
+                <div class="title-action">
+                    <button class="btn btn-primary" onclick="doPrint()"><i class="fa fa-print"></i> Print Invoice </button>
+                </div>
+            </div>
+        </div>
+
+        <!--startprint-->
+        <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox-content p-xl">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h5>From:</h5>
+                                <address>
+                                    <strong>PM, Inc.</strong><br>
+                                    <abbr title="Phone">6021548</abbr>
+                                </address>
+                            </div>
+
+                            <div class="col-sm-6 text-right">
+                                <h4>Invoice No.</h4>
+                                <h4 class="text-navy" th:text="${chargingSituation.situation_id}">INV-000567F7-00</h4>
+                                <span>To:</span>
+                                <address>
+                                    <strong th:text="${username}">Corporate, Inc.</strong><br>
+                                    <abbr title="Phone" th:text="${tel}">(120) 9000-4321</abbr>
+                                </address>
+                                <p>
+                                    <span><strong>Invoice Date:</strong> <abbr th:text="${date}">Marh 18, 2014</abbr></span><br/>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive m-t">
+                            <table class="table invoice-table">
+                                <thead>
+                                <tr>
+                                    <th>Item List</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Price</th>
+                                    <th>Tax</th>
+                                    <th>Total Price</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><div><strong th:text="${chargingSituation.fee.chargingItem.item_title}">Admin Theme with psd project layouts</strong></div></td>
+                                    <td>1</td>
+                                    <td>￥<abbr th:text="${chargingSituation.fee.price}">26.00</abbr></td>
+                                    <td>￥0</td>
+                                    <td>￥<abbr th:text="${chargingSituation.fee.price}">26.00</abbr></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- /table-responsive -->
+
+                        <table class="table invoice-total">
+                            <tbody>
+                            <tr>
+                                <td><strong>Sub Total :</strong></td>
+                                <td>￥<abbr th:text="${chargingSituation.fee.price}">26.00</abbr></td>
+                            </tr>
+                            <tr>
+                                <td><strong>TAX :</strong></td>
+                                <td>￥0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>TOTAL :</strong></td>
+                                <td>￥<abbr th:text="${chargingSituation.fee.price}">26.00</abbr></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--endprint-->
+                        <div class="text-right">
+                            <button class="btn btn-primary"><i class="fa fa-rmb"></i> Make A Payment</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
+<script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
+        th:src="@{/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
+        th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
+<script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
+        th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
+
+<script>
+
+    $(document).ready(function ()
+    {
+
+        // Add slimscroll to element
+        $('.scroll_content').slimscroll({
+            height: '200px'
+        })
+
+    });
+
+</script>
+
+<script type="text/javascript">
+    function doPrint() {
+        var bdhtml = window.document.body.innerHTML;
+        var sprnstr = "<!--startprint-->"; //开始打印标识字符串有17个字符
+        var eprnstr = "<!--endprint-->"; //结束打印标识字符串
+        var prnhtml = bdhtml.substr(bdhtml.indexOf(sprnstr) + 17); //从开始打印标识之后的内容
+        prnhtml = prnhtml.substring(0, prnhtml.indexOf(eprnstr)); //截取开始标识和结束标识之间的内容
+        window.document.body.innerHTML = prnhtml; //把需要打印的指定内容赋给body.innerHTML
+        window.print(); //调用浏览器的打印功能打印指定区域
+        window.document.body.innerHTML = bdhtml;//重新给页面内容赋值；
+    }
+</script>
+</body>
+</html>

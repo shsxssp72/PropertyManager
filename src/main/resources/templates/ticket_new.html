@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PM | Ticket</title>
+
+    <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
+    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
+          th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
+    <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
+    <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
+    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong
+                                    class="font-bold" th:text="${username}">David Williams</strong>
+                             </span> <span class="text-muted text-xs block" th:text="${roleName}">Art Director <b
+                                    class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a href="/mailbox">Mailbox</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        PM
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/index"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/proprietor/payment/pay"><i class="fa fa-rmb"></i> <span class="nav-label">Invoice</span>
+                        <span class="label-warning pull-right"></span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/payment/pay">Invoice To Pay</a></li>
+                        <li><a href="/proprietor/payment/history">Invoice History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/CarIO/permit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">CarIO</span></a>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="/ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/ticket/new">New Ticket</a></li>
+                        <li><a href="/proprietor/ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="proprietor/ticket/new">New Ticket</a></li>
+                        <li><a href="proprietor/ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='accountant'}">
+                    <a href="/account/status"><i class="fa fa-calculator"></i> <span class="nav-label">Report</span>
+                        <span class="fa arrow"></span>Account</a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/account/status">Account Status</a></li>
+                        <li><a href="/account/modify">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='receptionist'}">
+                    <a href="/reception/payment"><i class="fa fa-user-circle"></i> <span
+                            class="nav-label">Reception</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/reception/payment">Account Status</a></li>
+                        <li><a href="/reception/suggestion">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='supervisor'}">
+                    <a href="/supervise"><i class="fa fa-address-book"></i> <span
+                            class="nav-label">Teamwork</span></a>
+                </li>
+
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/proprietor/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/proprietor/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+
+                        <span class="m-r-sm text-muted welcome-message" th:text="|Welocme, ${username}|">Welcome to INSPINIA+ Admin Theme.</span>
+                    </li>
+
+                    <li>
+                        <a href="/logout">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>Ticket</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/index">Home</a>
+                    </li>
+                    <li>
+                        Ticket
+                    </li>
+                    <li>
+                        New
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-title">
+                            <h5>New Ticket</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <h2>
+                                Complete the New Ticket
+                            </h2>
+
+                            <form id="form" th:action="@{/proprietor/ticket/new}" method="post" class="wizard-big">
+                                <h1>Base</h1>
+                                <fieldset>
+                                    <h2>Base Information</h2>
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="form-group m-md">
+                                                <label>Ticket Type *</label>
+                                                <!--<input id="userName" display_name="userName" type="text" class="form-control required">-->
+                                                <select id="ticketType"  class="form-control m-b" name="ticketType">
+                                                    <option selected>electricity</option>
+                                                    <option>pipe</option>
+                                                    <option>guard</option>
+                                                    <option>clean</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group m-md">
+                                                <label>Initiator *</label>
+                                                <input id="initiator" name="initiator" type="text" disabled="" class="form-control required" th:value="${username}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="text-center">
+                                                <div style="margin-top: 20px">
+                                                    <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <h1>Location</h1>
+                                <fieldset>
+                                    <h2>Location Information</h2>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group m-md">
+                                                <label>Subarea *</label>
+                                                <input id="subarea" name="subarea" type="text" class="form-control required">
+                                            </div>
+                                            <div class="form-group m-md">
+                                                <label>Building *</label>
+                                                <input id="building" name="building" type="text" class="form-control required">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group m-md">
+                                                <label>Floor *</label>
+                                                <input id="floor" name="floor" type="text" class="form-control required">
+                                            </div>
+                                            <div class="form-group m-md">
+                                                <label>Room *</label>
+                                                <input id="room" name="room" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <h1>Description</h1>
+                                <fieldset>
+                                    <h2>Detail Information</h2>
+                                    <div class="form-group m-md">
+                                        <textarea id="description" name="description" type="text" class="form-control" rows="6" style="resize: none;"></textarea>
+                                    </div>
+                                </fieldset>
+
+                                <h1>Finish</h1>
+                                <fieldset style="overflow: auto;">
+                                    <h2>Check the Ticket</h2>
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="ibox-content m-md">
+                                            <div class="form-group">
+                                                <label>Ticket Type *</label>
+                                                <select id="cTicketType"  disabled="" class="form-control m-b" display_name="cTicketType">
+                                                    <option selected>electricity</option>
+                                                    <option>pipe</option>
+                                                    <option>guard</option>
+                                                    <option>clean</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Initiator *</label>
+                                                <input id="cInitiator" disabled="" display_name="initiator" type="text"  class="form-control required" th:value="${username}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Subarea *</label>
+                                                <input id="cSubarea" disabled="" display_name="subarea" type="text"  class="form-control required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Building *</label>
+                                                <input id="cBuilding" disabled="" display_name="building" type="text"  class="form-control required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Floor *</label>
+                                                <input id="cFloor" disabled="" display_name="floor" type="text"  class="form-control required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Room *</label>
+                                                <input id="cRoom" disabled="" display_name="room" type="text"  class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea id="cDescription" disabled="" display_name="room" type="text"  class="form-control" style="resize: none;"></textarea>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <input class="" id="state" th:value="${state}" hidden="hidden" />
+                <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content animated fadeIn">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <i th:class="${modalIcon}"></i>
+                                <h4 class="modal-title" th:text="${modalTitle}">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p th:text="${modalContent}"><strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                                    printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                                    remaining essentially unchanged.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div>
+                        <strong>Copyright</strong> Example Company &copy; 2014-2017
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
+<script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
+        th:src="@{/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
+        th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+<script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
+<script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
+        th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
+
+<!-- Jquery Validate -->
+<script src="../static/INSPINIA/js/plugins/validate/jquery.validate.min.js" th:src="@{/INSPINIA/js/plugins/validate/jquery.validate.min.js}"></script>
+
+<!-- Steps -->
+<script src="../static/INSPINIA/js/plugins/steps/jquery.steps.min.js" th:src="@{/INSPINIA/js/plugins/steps/jquery.steps.min.js}"></script>
+
+<script>
+
+    $(document).ready(function ()
+    {
+        var state = document.getElementById("state").value;
+        if (state == "post"){
+            $("#myModal").modal("show");
+        }
+
+        $("#wizard").steps();
+        $("#form").steps({
+            bodyTag: "fieldset",
+            onStepChanging: function (event, currentIndex, newIndex)
+            {
+                // Always allow going backward even if the current step contains invalid fields!
+                if (currentIndex > newIndex)
+                {
+                    return true;
+                }
+
+                var form = $(this);
+
+                // Clean up if user went backward before
+                if (currentIndex < newIndex)
+                {
+                    // To remove error styles
+                    $(".body:eq(" + newIndex + ") label.error", form).remove();
+                    $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                }
+
+                // Disable validation on fields that are disabled or hidden.
+                form.validate().settings.ignore = ":disabled,:hidden";
+
+                // Start validation; Prevent going forward if false
+                return form.valid();
+            },
+            onStepChanged: function (event, currentIndex, priorIndex)
+            {
+
+                if (currentIndex === 3)
+                {
+                    $("#cTicketType").get(0).value = document.getElementById("ticketType").value;
+                    $("#cInitiator").attr("value", document.getElementById("initiator").value);
+                    $("#cSubarea").attr("value", document.getElementById("subarea").value);
+                    $("#cBuilding").attr("value", document.getElementById("building").value);
+                    $("#cFloor").attr("value", document.getElementById("floor").value);
+                    $("#cRoom").attr("value", document.getElementById("room").value);
+                    $("#cDescription").val($("#description").val());
+                }
+            },
+            onFinishing: function (event, currentIndex)
+            {
+                var form = $(this);
+
+                // Disable validation on fields that are disabled.
+                // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                form.validate().settings.ignore = ":disabled";
+
+                // Start validation; Prevent form submission if false
+                return form.valid();
+            },
+            onFinished: function (event, currentIndex)
+            {
+                var form = $(this);
+                // Submit form input
+                form.submit();
+
+            }
+        }).validate({
+            errorPlacement: function (error, element)
+            {
+                element.before(error);
+            },
+            rules: {
+            }
+        });
+    });
+
+</script>
+</body>
+
+</html>

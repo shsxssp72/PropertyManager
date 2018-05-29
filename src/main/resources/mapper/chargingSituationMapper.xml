@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.ChargingSituationDao">
+	<resultMap id="chargingSituation" type="com.Property.Domain.ChargingSituation">
+		<id column="chargingSituation_id" property="situation_id" jdbcType="CHAR"/>
+		<result column="fee_id" property="fee_id" jdbcType="CHAR"/>
+		<result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+		<result column="collector_id" property="collector_id" jdbcType="CHAR"/>
+		<result column="charge_date" property="charge_date" jdbcType="DATE"/>
+	</resultMap>
+
+	<resultMap id="totalView" type="com.Property.Domain.ChargingSituation">
+		<id column="chargingSituation_id" property="situation_id" jdbcType="CHAR"/>
+		<result column="fee_id" property="fee_id" jdbcType="CHAR"/>
+		<result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+		<result column="collector_id" property="collector_id" jdbcType="CHAR"/>
+		<result column="charge_date" property="charge_date" jdbcType="DATE"/>
+		
+		<association property="fee" javaType="com.Property.Domain.Fee">
+			<id column="fee_id" property="fee_id" jdbcType="CHAR"/>
+			<result column="item_id" property="item_id" jdbcType="CHAR"/>
+			<result column="start_date" property="start_date" jdbcType="DATE"/>
+			<result column="end_date" property="end_date" jdbcType="DATE"/>
+			<result column="price" property="price" jdbcType="DECIMAL"/>
+			<association property="chargingItem" javaType="com.Property.Domain.ChargingItem">
+				<id column="item_id" property="item_id"></id>
+				<result column="item_title" property="item_title"></result>
+			</association>
+		</association>
+		
+		<association property="proprietor" javaType="com.Property.Domain.Proprietor">
+			<id column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+			<result column="prprt_name" property="prprt_name" jdbcType="VARCHAR"/>
+		</association>
+		
+		<association property="staff" javaType="com.Property.Domain.Staff">
+			<id column="staff_id" property="staff_id" jdbcType="CHAR"/>
+			<result column="staff_name" property="staff_name" jdbcType="VARCHAR"/>
+		</association>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		chargingSituation_id,fee_id,prprt_id,collector_id,charge_date
+	</sql>
+
+	<select id="getAll" resultMap="chargingSituation">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM chargingSituation
+	</select>
+
+	<select id="getPayment" resultMap="totalView" parameterType="java.lang.String">
+		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*
+		FROM chargingSituation,fee,chargingItem,staff,proprietor
+		WHERE chargingSituation.prprt_id = #{id} and chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and charge_date is null
+	</select>
+
+	<select id="getLatestPayment" resultType="java.util.Date">
+		SELECT max(fee.end_date)
+		FROM chargingSituation,fee
+		WHERE chargingSituation.prprt_id = #{id} and chargingSituation.fee_id = fee.fee_id and fee.item_id = #{item_id}
+	</select>
+
+	<select id="getPaymentHistory" resultMap="totalView" parameterType="java.lang.String">
+		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*
+		FROM chargingSituation,fee,chargingItem,staff,proprietor
+		WHERE chargingSituation.prprt_id = #{id} and chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and chargingSituation.collector_id = staff.staff_id
+	</select>
+
+	<select id="getAllCharging" resultMap="totalView">
+		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*
+		FROM chargingSituation,fee,chargingItem,staff,proprietor
+		WHERE chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and chargingSituation.collector_id = staff.staff_id
+	</select>
+
+	<!--<update id="updateChargingSituation">-->
+		<!--UPDATE chargingSituation-->
+		<!--SET collector_id = #{collector_id}, charge_date = #{charge_date}-->
+		<!--WHERE fee_id = #{fee_id}-->
+	<!--</update>-->
+
+	<select id="getPaymentbyParams" resultMap="totalView" parameterType="java.util.HashMap">
+		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*
+		FROM chargingSituation,fee,chargingItem,staff,proprietor
+		<where>
+			chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and chargingSituation.collector_id = staff.staff_id
+			<if test="situation_id!=null and situation_id!=''">
+				AND chargingSituation.chargingSituation_id = #{situation_id,jdbcType=CHAR}
+			</if>
+			<if test="prprt_name!=null and prprt_name!=''">
+				AND proprietor.prprt_name like CONCAT(CONCAT('%',#{prprt_name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="staff_name!=null and staff_name!=''">
+				AND staff.staff_name like CONCAT(CONCAT('%',#{staff_name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="item_title!=null and item_title!=''">
+				AND chargingItem.item_title like CONCAT(CONCAT('%',#{item_title,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="start_date!=null">
+				AND fee.start_date &gt; #{start_date,jdbcType=DATE}
+			</if>
+			<if test="end_date!=null">
+				AND fee.end_date &lt; #{end_date,jdbcType=DATE}
+			</if>
+			<if test="charge_date!=null">
+				AND chargingSituation.charge_date = #{charge_date,jdbcType=DATE}
+			</if>
+			<if test="price!=null">
+				AND fee.price = #{price,jdbcType=DECIMAL}
+			</if>
+		</where>
+	</select>
+
+	<insert id="addChargingSituation" parameterType="com.Property.Domain.ChargingSituation">
+		INSERT INTO chargingSituation (fee_id, prprt_id, collector_id, charge_date)
+				VALUES (#{fee_id}, #{prprt_id}, #{collector_id}, #{charge_date})
+	</insert>
+
+	<delete id="deleteChargingSituation" parameterType="java.lang.String">
+		DELETE FROM chargingSituation
+			WHERE situation_id = #{id}
+	</delete>
+
+	<update id="updateChargingSituation" parameterType="com.Property.Domain.ChargingSituation">
+		UPDATE chargingSituation SET fee_id = #{fee_id}, prprt_id = #{prprt_id}, collector_id = #{collector_id}, charge_date = #{charge_date}
+			WHERE situation_id = #{situation_id}
+	</update>
+</mapper>

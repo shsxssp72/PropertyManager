@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.SubareaDao">
+	<resultMap id="subarea" type="com.Property.Domain.Subarea">
+		<id column="subarea_id" property="subarea_id" jdbcType="CHAR"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		subarea_id
+	</sql>
+
+	<select id="getAll" resultMap="subarea">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM subarea
+	</select>
+
+	<select id="getSubareabyParams" resultMap="subarea" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM subarea
+		<where>
+			1 = 1
+			<if test="subarea_id!=null and subarea_id!=''">
+				AND subarea_id = #{subarea_id,jdbcType=CHAR}
+			</if>
+		</where>
+	</select>
+</mapper>
