@@ -14,7 +14,7 @@ public interface FacilitiesDao
 	List<Facilities> getAll();
 
 	/*根据参数值查询*/
-	List<Facilities> getFacilitiesbyParams(Map<String, Object> params);
+	List<Facilities> getFacilitiesbyParams(Map<String,Object> params);
 
 	int addFacility(Facilities facilities);
 

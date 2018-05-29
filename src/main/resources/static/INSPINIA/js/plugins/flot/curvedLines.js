@@ -84,41 +84,48 @@
  *  v0.6   flot 0.8 compatibility and some bug fixes
  */
 
-(function($) {
+(function ($)
+{
 
     var options = {
-        series : {
-            curvedLines : {
-                active : false,
+        series: {
+            curvedLines: {
+                active: false,
                 apply: false,
-                fit : false,
-                curvePointFactor : 20,
-                fitPointDist : undefined
+                fit: false,
+                curvePointFactor: 20,
+                fitPointDist: undefined
             }
         }
     };
 
-    function init(plot) {
+    function init(plot)
+    {
 
         plot.hooks.processOptions.push(processOptions);
 
         //if the plugin is active register processDatapoints method
-        function processOptions(plot, options) {
-            if (options.series.curvedLines.active) {
+        function processOptions(plot, options)
+        {
+            if (options.series.curvedLines.active)
+            {
                 plot.hooks.processDatapoints.unshift(processDatapoints);
             }
         }
 
         //only if the plugin is active
-        function processDatapoints(plot, series, datapoints) {
+        function processDatapoints(plot, series, datapoints)
+        {
             var nrPoints = datapoints.points.length / datapoints.pointsize;
             var EPSILON = 0.5; //pretty large epsilon but save
 
-            if (series.curvedLines.apply == true && series.originSeries === undefined && nrPoints > (1 + EPSILON)) {
-                if (series.lines.fill) {
+            if (series.curvedLines.apply == true && series.originSeries === undefined && nrPoints > (1 + EPSILON))
+            {
+                if (series.lines.fill)
+                {
 
                     var pointsTop = calculateCurvePoints(datapoints, series.curvedLines, 1)
-                        ,pointsBottom = calculateCurvePoints(datapoints, series.curvedLines, 2); //flot makes sure for us that we've got a second y point if fill is true !
+                        , pointsBottom = calculateCurvePoints(datapoints, series.curvedLines, 2); //flot makes sure for us that we've got a second y point if fill is true !
 
                     //Merge top and bottom curve
                     datapoints.pointsize = 3;
@@ -127,28 +134,33 @@
                     var k = 0;
                     var i = 0;
                     var ps = 2;
-                    while (i < pointsTop.length || j < pointsBottom.length) {
-                        if (pointsTop[i] == pointsBottom[j]) {
+                    while (i < pointsTop.length || j < pointsBottom.length)
+                    {
+                        if (pointsTop[i] == pointsBottom[j])
+                        {
                             datapoints.points[k] = pointsTop[i];
                             datapoints.points[k + 1] = pointsTop[i + 1];
                             datapoints.points[k + 2] = pointsBottom[j + 1];
                             j += ps;
                             i += ps;
 
-                        } else if (pointsTop[i] < pointsBottom[j]) {
+                        } else if (pointsTop[i] < pointsBottom[j])
+                        {
                             datapoints.points[k] = pointsTop[i];
                             datapoints.points[k + 1] = pointsTop[i + 1];
-                            datapoints.points[k + 2] = k > 0 ? datapoints.points[k-1] : null;
+                            datapoints.points[k + 2] = k > 0 ? datapoints.points[k - 1] : null;
                             i += ps;
-                        } else {
+                        } else
+                        {
                             datapoints.points[k] = pointsBottom[j];
-                            datapoints.points[k + 1] = k > 1 ? datapoints.points[k-2] : null;
+                            datapoints.points[k + 1] = k > 1 ? datapoints.points[k - 2] : null;
                             datapoints.points[k + 2] = pointsBottom[j + 1];
                             j += ps;
                         }
                         k += 3;
                     }
-                } else if (series.lines.lineWidth > 0) {
+                } else if (series.lines.lineWidth > 0)
+                {
                     datapoints.points = calculateCurvePoints(datapoints, series.curvedLines, 1);
                     datapoints.pointsize = 2;
                 }
@@ -157,7 +169,8 @@
 
         //no real idea whats going on here code mainly from https://code.google.com/p/flot/issues/detail?id=226
         //if fit option is selected additional datapoints get inserted before the curve calculations in nergal.dev s code.
-        function calculateCurvePoints(datapoints, curvedLinesOptions, yPos) {
+        function calculateCurvePoints(datapoints, curvedLinesOptions, yPos)
+        {
 
             var points = datapoints.points, ps = datapoints.pointsize;
             var num = curvedLinesOptions.curvePointFactor * (points.length / ps);
@@ -169,22 +182,26 @@
             var curY = -1;
             var j = 0;
 
-            if (curvedLinesOptions.fit) {
+            if (curvedLinesOptions.fit)
+            {
                 //insert a point before and after the "real" data point to force the line
                 //to have a max,min at the data point.
 
                 var fpDist;
-                if(typeof curvedLinesOptions.fitPointDist == 'undefined') {
+                if (typeof curvedLinesOptions.fitPointDist == 'undefined')
+                {
                     //estimate it
                     var minX = points[0];
-                    var maxX = points[points.length-ps];
+                    var maxX = points[points.length - ps];
                     fpDist = (maxX - minX) / (500 * 100); //x range / (estimated pixel length of placeholder * factor)
-                } else {
+                } else
+                {
                     //use user defined value
                     fpDist = curvedLinesOptions.fitPointDist;
                 }
 
-                for (var i = 0; i < points.length; i += ps) {
+                for (var i = 0; i < points.length; i += ps)
+                {
 
                     var frontX;
                     var backX;
@@ -196,7 +213,8 @@
                     backX = points[curX] + fpDist;
 
                     var factor = 2;
-                    while (frontX == points[curX] || backX == points[curX]) {
+                    while (frontX == points[curX] || backX == points[curX])
+                    {
                         //inside the ulp
                         frontX = points[curX] - (fpDist * factor);
                         backX = points[curX] + (fpDist * factor);
@@ -216,9 +234,11 @@
                     ydata[j] = points[curY];
                     j++;
                 }
-            } else {
+            } else
+            {
                 //just use the datapoints
-                for (var i = 0; i < points.length; i += ps) {
+                for (var i = 0; i < points.length; i += ps)
+                {
                     curX = i;
                     curY = i + yPos;
 
@@ -236,9 +256,11 @@
             y2[n - 1] = 0;
             delta[0] = 0;
 
-            for (var i = 1; i < n - 1; ++i) {
+            for (var i = 1; i < n - 1; ++i)
+            {
                 var d = (xdata[i + 1] - xdata[i - 1]);
-                if (d == 0) {
+                if (d == 0)
+                {
                     //point before current point and after current point need some space in between
                     return [];
                 }
@@ -250,7 +272,8 @@
                 delta[i] = (6 * delta[i] / (xdata[i + 1] - xdata[i - 1]) - s * delta[i - 1]) / p;
             }
 
-            for (var j = n - 2; j >= 0; --j) {
+            for (var j = n - 2; j >= 0; --j)
+            {
                 y2[j] = y2[j] * y2[j + 1] + delta[j];
             }
 
@@ -267,18 +290,22 @@
             result.push(xnew[0]);
             result.push(ynew[0]);
 
-            for ( j = 1; j < num; ++j) {
+            for (j = 1; j < num; ++j)
+            {
                 //new x point (sampling point for the created curve)
                 xnew[j] = xnew[0] + j * step;
 
                 var max = n - 1;
                 var min = 0;
 
-                while (max - min > 1) {
+                while (max - min > 1)
+                {
                     var k = Math.round((max + min) / 2);
-                    if (xdata[k] > xnew[j]) {
+                    if (xdata[k] > xnew[j])
+                    {
                         max = k;
-                    } else {
+                    } else
+                    {
                         min = k;
                     }
                 }
@@ -286,7 +313,8 @@
                 //found point one to the left and one to the right of generated new point
                 var h = (xdata[max] - xdata[min]);
 
-                if (h == 0) {
+                if (h == 0)
+                {
                     //similar to above two points from original x data need some space between them
                     return [];
                 }
@@ -306,10 +334,10 @@
     }//end init
 
     $.plot.plugins.push({
-        init : init,
-        options : options,
-        name : 'curvedLines',
-        version : '0.5'
+        init: init,
+        options: options,
+        name: 'curvedLines',
+        version: '0.5'
     });
 
 })(jQuery);

@@ -15,6 +15,9 @@ public interface UserInfoMapper
 
 	UserInfo getByUserName(String userName);
 
-	void updatePassword(@Param("uid")int uid,@Param("newPassword")String newPassword,@Param("newSalt")String newSalt);
+	void updatePassword(@Param("uid") int uid,@Param("newPassword") String newPassword,
+						@Param("newSalt") String newSalt);
 
+	String getStaffIDByUid(int inputUid);
+	String getPrprtIDByUid(int inputUid);
 }

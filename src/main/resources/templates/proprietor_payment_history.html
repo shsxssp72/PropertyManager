@@ -16,7 +16,8 @@
     <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
 
     <!-- FooTable -->
-    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
+    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
 
 </head>
 
@@ -83,7 +84,8 @@
                 </li>
 
                 <li th:if="${roleName=='proprietor'}">
-                    <a href="proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                    <a href="proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span
+                            class="nav-label">Ticket</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="proprietor/ticket/new">New Ticket</a></li>
@@ -165,7 +167,8 @@
                 </li>
 
                 <li th:if="${roleName=='guard'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -174,7 +177,8 @@
                 </li>
 
                 <li th:if="${roleName=='cleaner'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -183,7 +187,8 @@
                 </li>
 
                 <li th:if="${roleName=='repairman'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -278,11 +283,13 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="charging: ${chargingSituationList}">
-                                    <td th:text="${charging.fee.chargingItem.item_title}">Project - This is example of project</td>
+                                    <td th:text="${charging.fee.chargingItem.item_title}">Project - This is example of
+                                        project
+                                    </td>
                                     <td th:text="${charging.proprietor.prprt_name}">Patrick Smith</td>
                                     <td th:text="${charging.fee.start_date}">0800 051213</td>
                                     <td th:text="${charging.fee.end_date}">Inceptos Hymenaeos Ltd</td>
-                                    <td><i class="fa fa-rmb"></i><abbr th:text="${charging.fee.price}"></abbr> </td>
+                                    <td><i class="fa fa-rmb"></i><abbr th:text="${charging.fee.price}"></abbr></td>
                                     <td th:text="${charging.staff.staff_name}"></td>
                                     <td th:text="${charging.charge_date}"></td>
                                 </tr>
@@ -313,7 +320,8 @@
         th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
 
 <!-- FooTable -->
-<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js"
+        th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
@@ -328,7 +336,16 @@
         // Add slimscroll to element
         $('.scroll_content').slimscroll({
             height: '200px'
-        });
+        })
+
+    });
+
+</script>
+
+<!-- Page-Level Scripts -->
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
 
         $('.footable').footable();
         $('.footable2').footable();

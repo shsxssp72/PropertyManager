@@ -16,7 +16,7 @@ public interface CarIORecordDao
 	List<CarIORecord> getExternal();
 
 	/*根据参数值查询*/
-	List<CarIORecord> getCarIORecordbyParams(Map<String, Object> params);
+	List<CarIORecord> getCarIORecordbyParams(Map<String,Object> params);
 
 	int addCarIORecord(CarIORecord carIORecord);
 

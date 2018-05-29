@@ -14,5 +14,5 @@ public interface DepartmentDao
 	List<Department> getAll();
 
 	/*根据参数值查询*/
-	List<Department> getDeptbyParams(Map<String, Object> params);
+	List<Department> getDeptbyParams(Map<String,Object> params);
 }

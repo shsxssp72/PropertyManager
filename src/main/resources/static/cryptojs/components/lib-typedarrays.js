@@ -4,9 +4,11 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function () {
+(function ()
+{
     // Check if typed arrays are supported
-    if (typeof ArrayBuffer != 'function') {
+    if (typeof ArrayBuffer != 'function')
+    {
         return;
     }
 
@@ -19,9 +21,11 @@ code.google.com/p/crypto-js/wiki/License
     var superInit = WordArray.init;
 
     // Augment WordArray.init to handle typed arrays
-    var subInit = WordArray.init = function (typedArray) {
+    var subInit = WordArray.init = function (typedArray)
+    {
         // Convert buffers to uint8
-        if (typedArray instanceof ArrayBuffer) {
+        if (typedArray instanceof ArrayBuffer)
+        {
             typedArray = new Uint8Array(typedArray);
         }
 
@@ -35,24 +39,28 @@ code.google.com/p/crypto-js/wiki/License
             typedArray instanceof Uint32Array ||
             typedArray instanceof Float32Array ||
             typedArray instanceof Float64Array
-        ) {
+        )
+        {
             typedArray = new Uint8Array(typedArray.buffer, typedArray.byteOffset, typedArray.byteLength);
         }
 
         // Handle Uint8Array
-        if (typedArray instanceof Uint8Array) {
+        if (typedArray instanceof Uint8Array)
+        {
             // Shortcut
             var typedArrayByteLength = typedArray.byteLength;
 
             // Extract bytes
             var words = [];
-            for (var i = 0; i < typedArrayByteLength; i++) {
+            for (var i = 0; i < typedArrayByteLength; i++)
+            {
                 words[i >>> 2] |= typedArray[i] << (24 - (i % 4) * 8);
             }
 
             // Initialize this word array
             superInit.call(this, words, typedArrayByteLength);
-        } else {
+        } else
+        {
             // Else call normal init
             superInit.apply(this, arguments);
         }

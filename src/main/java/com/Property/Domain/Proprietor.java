@@ -20,7 +20,7 @@ public class Proprietor
 
 	public void setPrprt_id(String prprt_id)
 	{
-		this.prprt_id = prprt_id;
+		this.prprt_id=prprt_id;
 	}
 
 	public String getPrprt_name()
@@ -30,7 +30,7 @@ public class Proprietor
 
 	public void setPrprt_name(String prprt_name)
 	{
-		this.prprt_name = prprt_name;
+		this.prprt_name=prprt_name;
 	}
 
 	public String getGender()
@@ -40,7 +40,7 @@ public class Proprietor
 
 	public void setGender(String gender)
 	{
-		this.gender = gender;
+		this.gender=gender;
 	}
 
 	public String getTel()
@@ -50,7 +50,7 @@ public class Proprietor
 
 	public void setTel(String tel)
 	{
-		this.tel = tel;
+		this.tel=tel;
 	}
 
 	public Timestamp getBirthday()
@@ -60,7 +60,7 @@ public class Proprietor
 
 	public void setBirthday(Timestamp birthday)
 	{
-		this.birthday = birthday;
+		this.birthday=birthday;
 	}
 
 	public String getAprt_building()
@@ -70,7 +70,7 @@ public class Proprietor
 
 	public void setAprt_building(String aprt_building)
 	{
-		this.aprt_building = aprt_building;
+		this.aprt_building=aprt_building;
 	}
 
 	public int getAprt_floor()
@@ -80,7 +80,7 @@ public class Proprietor
 
 	public void setAprt_floor(int aprt_floor)
 	{
-		this.aprt_floor = aprt_floor;
+		this.aprt_floor=aprt_floor;
 	}
 
 	public int getAprt_room_num()
@@ -90,6 +90,6 @@ public class Proprietor
 
 	public void setAprt_room_num(int aprt_room_num)
 	{
-		this.aprt_room_num = aprt_room_num;
+		this.aprt_room_num=aprt_room_num;
 	}
 }

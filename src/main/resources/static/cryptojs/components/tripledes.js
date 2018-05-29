@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function () {
+(function ()
+{
     // Shortcuts
     var C = CryptoJS;
     var C_lib = C.lib;
@@ -14,21 +15,21 @@ code.google.com/p/crypto-js/wiki/License
 
     // Permuted Choice 1 constants
     var PC1 = [
-        57, 49, 41, 33, 25, 17, 9,  1,
+        57, 49, 41, 33, 25, 17, 9, 1,
         58, 50, 42, 34, 26, 18, 10, 2,
         59, 51, 43, 35, 27, 19, 11, 3,
         60, 52, 44, 36, 63, 55, 47, 39,
-        31, 23, 15, 7,  62, 54, 46, 38,
-        30, 22, 14, 6,  61, 53, 45, 37,
-        29, 21, 13, 5,  28, 20, 12, 4
+        31, 23, 15, 7, 62, 54, 46, 38,
+        30, 22, 14, 6, 61, 53, 45, 37,
+        29, 21, 13, 5, 28, 20, 12, 4
     ];
 
     // Permuted Choice 2 constants
     var PC2 = [
-        14, 17, 11, 24, 1,  5,
-        3,  28, 15, 6,  21, 10,
-        23, 19, 12, 4,  26, 8,
-        16, 7,  27, 20, 13, 2,
+        14, 17, 11, 24, 1, 5,
+        3, 28, 15, 6, 21, 10,
+        23, 19, 12, 4, 26, 8,
+        16, 7, 27, 20, 13, 2,
         41, 52, 31, 37, 47, 55,
         30, 40, 51, 45, 33, 48,
         44, 49, 39, 56, 34, 53,
@@ -36,7 +37,7 @@ code.google.com/p/crypto-js/wiki/License
     ];
 
     // Cumulative bit shift constants
-    var BIT_SHIFTS = [1,  2,  4,  6,  8,  10, 12, 14, 15, 17, 19, 21, 23, 25, 27, 28];
+    var BIT_SHIFTS = [1, 2, 4, 6, 8, 10, 12, 14, 15, 17, 19, 21, 23, 25, 27, 28];
 
     // SBOXes and round permutation constants
     var SBOX_P = [
@@ -580,21 +581,24 @@ code.google.com/p/crypto-js/wiki/License
      * DES block cipher algorithm.
      */
     var DES = C_algo.DES = BlockCipher.extend({
-        _doReset: function () {
+        _doReset: function ()
+        {
             // Shortcuts
             var key = this._key;
             var keyWords = key.words;
 
             // Select 56 bits according to PC1
             var keyBits = [];
-            for (var i = 0; i < 56; i++) {
+            for (var i = 0; i < 56; i++)
+            {
                 var keyBitPos = PC1[i] - 1;
                 keyBits[i] = (keyWords[keyBitPos >>> 5] >>> (31 - keyBitPos % 32)) & 1;
             }
 
             // Assemble 16 subkeys
             var subKeys = this._subKeys = [];
-            for (var nSubKey = 0; nSubKey < 16; nSubKey++) {
+            for (var nSubKey = 0; nSubKey < 16; nSubKey++)
+            {
                 // Create subkey
                 var subKey = subKeys[nSubKey] = [];
 
@@ -602,7 +606,8 @@ code.google.com/p/crypto-js/wiki/License
                 var bitShift = BIT_SHIFTS[nSubKey];
 
                 // Select 48 bits according to PC2
-                for (var i = 0; i < 24; i++) {
+                for (var i = 0; i < 24; i++)
+                {
                     // Select from the left 28 key bits
                     subKey[(i / 6) | 0] |= keyBits[((PC2[i] - 1) + bitShift) % 28] << (31 - i % 6);
 
@@ -614,7 +619,8 @@ code.google.com/p/crypto-js/wiki/License
                 // the subkey can be broken into 8 values scaled to 32-bits,
                 // which allows the key to be used without expansion
                 subKey[0] = (subKey[0] << 1) | (subKey[0] >>> 31);
-                for (var i = 1; i < 7; i++) {
+                for (var i = 1; i < 7; i++)
+                {
                     subKey[i] = subKey[i] >>> ((i - 1) * 4 + 3);
                 }
                 subKey[7] = (subKey[7] << 5) | (subKey[7] >>> 27);
@@ -622,33 +628,38 @@ code.google.com/p/crypto-js/wiki/License
 
             // Compute inverse subkeys
             var invSubKeys = this._invSubKeys = [];
-            for (var i = 0; i < 16; i++) {
+            for (var i = 0; i < 16; i++)
+            {
                 invSubKeys[i] = subKeys[15 - i];
             }
         },
 
-        encryptBlock: function (M, offset) {
+        encryptBlock: function (M, offset)
+        {
             this._doCryptBlock(M, offset, this._subKeys);
         },
 
-        decryptBlock: function (M, offset) {
+        decryptBlock: function (M, offset)
+        {
             this._doCryptBlock(M, offset, this._invSubKeys);
         },
 
-        _doCryptBlock: function (M, offset, subKeys) {
+        _doCryptBlock: function (M, offset, subKeys)
+        {
             // Get input
             this._lBlock = M[offset];
             this._rBlock = M[offset + 1];
 
             // Initial permutation
-            exchangeLR.call(this, 4,  0x0f0f0f0f);
+            exchangeLR.call(this, 4, 0x0f0f0f0f);
             exchangeLR.call(this, 16, 0x0000ffff);
-            exchangeRL.call(this, 2,  0x33333333);
-            exchangeRL.call(this, 8,  0x00ff00ff);
-            exchangeLR.call(this, 1,  0x55555555);
+            exchangeRL.call(this, 2, 0x33333333);
+            exchangeRL.call(this, 8, 0x00ff00ff);
+            exchangeLR.call(this, 1, 0x55555555);
 
             // Rounds
-            for (var round = 0; round < 16; round++) {
+            for (var round = 0; round < 16; round++)
+            {
                 // Shortcuts
                 var subKey = subKeys[round];
                 var lBlock = this._lBlock;
@@ -656,7 +667,8 @@ code.google.com/p/crypto-js/wiki/License
 
                 // Feistel function
                 var f = 0;
-                for (var i = 0; i < 8; i++) {
+                for (var i = 0; i < 8; i++)
+                {
                     f |= SBOX_P[i][((rBlock ^ subKey[i]) & SBOX_MASK[i]) >>> 0];
                 }
                 this._lBlock = rBlock;
@@ -669,32 +681,34 @@ code.google.com/p/crypto-js/wiki/License
             this._rBlock = t;
 
             // Final permutation
-            exchangeLR.call(this, 1,  0x55555555);
-            exchangeRL.call(this, 8,  0x00ff00ff);
-            exchangeRL.call(this, 2,  0x33333333);
+            exchangeLR.call(this, 1, 0x55555555);
+            exchangeRL.call(this, 8, 0x00ff00ff);
+            exchangeRL.call(this, 2, 0x33333333);
             exchangeLR.call(this, 16, 0x0000ffff);
-            exchangeLR.call(this, 4,  0x0f0f0f0f);
+            exchangeLR.call(this, 4, 0x0f0f0f0f);
 
             // Set output
             M[offset] = this._lBlock;
             M[offset + 1] = this._rBlock;
         },
 
-        keySize: 64/32,
+        keySize: 64 / 32,
 
-        ivSize: 64/32,
+        ivSize: 64 / 32,
 
-        blockSize: 64/32
+        blockSize: 64 / 32
     });
 
     // Swap bits across the left and right words
-    function exchangeLR(offset, mask) {
+    function exchangeLR(offset, mask)
+    {
         var t = ((this._lBlock >>> offset) ^ this._rBlock) & mask;
         this._rBlock ^= t;
         this._lBlock ^= t << offset;
     }
 
-    function exchangeRL(offset, mask) {
+    function exchangeRL(offset, mask)
+    {
         var t = ((this._rBlock >>> offset) ^ this._lBlock) & mask;
         this._lBlock ^= t;
         this._rBlock ^= t << offset;
@@ -714,7 +728,8 @@ code.google.com/p/crypto-js/wiki/License
      * Triple-DES block cipher algorithm.
      */
     var TripleDES = C_algo.TripleDES = BlockCipher.extend({
-        _doReset: function () {
+        _doReset: function ()
+        {
             // Shortcuts
             var key = this._key;
             var keyWords = key.words;
@@ -725,23 +740,25 @@ code.google.com/p/crypto-js/wiki/License
             this._des3 = DES.createEncryptor(WordArray.create(keyWords.slice(4, 6)));
         },
 
-        encryptBlock: function (M, offset) {
+        encryptBlock: function (M, offset)
+        {
             this._des1.encryptBlock(M, offset);
             this._des2.decryptBlock(M, offset);
             this._des3.encryptBlock(M, offset);
         },
 
-        decryptBlock: function (M, offset) {
+        decryptBlock: function (M, offset)
+        {
             this._des3.decryptBlock(M, offset);
             this._des2.encryptBlock(M, offset);
             this._des1.decryptBlock(M, offset);
         },
 
-        keySize: 192/32,
+        keySize: 192 / 32,
 
-        ivSize: 64/32,
+        ivSize: 64 / 32,
 
-        blockSize: 64/32
+        blockSize: 64 / 32
     });
 
     /**

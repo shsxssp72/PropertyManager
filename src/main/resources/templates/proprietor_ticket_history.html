@@ -14,10 +14,12 @@
           th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
     <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
     <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
-    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
+    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
 
     <!-- FooTable -->
-    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
+    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
 
 </head>
 
@@ -86,7 +88,8 @@
                 </li>
 
                 <li th:if="${roleName=='proprietor'}">
-                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span
+                            class="nav-label">Ticket</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/proprietor/ticket/new">New Ticket</a></li>
@@ -169,7 +172,8 @@
                 </li>
 
                 <li th:if="${roleName=='guard'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -178,7 +182,8 @@
                 </li>
 
                 <li th:if="${roleName=='cleaner'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -187,7 +192,8 @@
                 </li>
 
                 <li th:if="${roleName=='repairman'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -233,7 +239,7 @@
                         Ticket
                     </li>
                     <li>
-                        To be Done
+                        History
                     </li>
                 </ol>
             </div>
@@ -247,7 +253,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>To be Done</h5>
+                            <h5>Unfinished</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -277,24 +283,24 @@
                                 <tr>
 
                                     <th>TicketType</th>
-                                    <th>Initiator</th>
+                                    <th>Proprietor</th>
                                     <th>TicketTime</th>
                                     <th>Location</th>
-                                    <th>Action</th>
-                                    <th data-hide="all">TicketID</th>
                                     <th data-hide="all">HandlerName</th>
+                                    <th data-hide="all">HandlerTel</th>
                                     <th data-hide="all">Description</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="ticket:${ticketList}">
+                                <tr th:each="ticket:${unfinishedList}">
                                     <td th:text="${ticket.ticket_type}">Project - This is example of project</td>
                                     <td th:text="${username}">Patrick Smith</td>
                                     <td th:text="${ticket.ticket_time}">0800 051213</td>
-                                    <td th:text="${ticket.subarea_id}+'-'+${ticket.aprt_building}+'-'+${ticket.aprt_floor}+'-'+${ticket.aprt_room_num}">Inceptos Hymenaeos Ltd</td>
-                                    <td><a class="btn btn-primary" th:href="@{'/'+${roleName}+'/ticket/finish/'+${ticket.ticket_id}}">finish</a></td>
-                                    <td th:text="${ticket.ticket_id}"></td>
+                                    <td th:text="${ticket.subarea_id}+'-'+${ticket.aprt_building}+'-'+${ticket.aprt_floor}+'-'+${ticket.aprt_room_num}">
+                                        Inceptos Hymenaeos Ltd
+                                    </td>
                                     <td th:text="${ticket.staff.staff_name}"></td>
+                                    <td th:text="${ticket.staff.tel}"></td>
                                     <td th:text="${ticket.description}"></td>
                                 </tr>
                                 </tbody>
@@ -307,53 +313,109 @@
                                 </tfoot>
                             </table>
 
-                            <div id="modal-form" class="modal inmodal" role="dialog" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content animated fadeIn">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                                <i class="fa fa-tasks modal-icon"></i>
-                                                <h4 class="modal-title" >Finish Ticket</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="form-group m-md"><label th:text="'Ticket ID: '+${ticket_id}"></label></div>
-                                                    <div class="form-group m-md"><label th:text="'Handler: '+${username}"></label></div>
-                                                    <div class="form-group m-md"><label th:text="'Description: '+${description}"></label></div>
-                                                    <form role="form" id="form" th:action="@{'/'+${roleName}+'/ticket/tbd'}" method="post" class="wizard-big">
-                                                        <input name="ticketId" th:value="${ticket_id}" hidden="hidden">
-                                                        <div class="form-group m-md">
-                                                            <label>Ticket Result *</label>
-                                                            <textarea id="ticketResult" name="ticketResult" type="text" class="form-control" rows="6" style="resize: none;"></textarea>
-                                                        </div>
-                                                        <div class="m-md">
-                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Submit</strong></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Finished</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
                             </div>
+                        </div>
+                        <div class="ibox-content">
+                            <input type="text" class="form-control input-sm m-b-xs" id="filter2"
+                                   placeholder="Search in table">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter2>
+                                <thead>
+                                <!--<tr class="footable-filtering">
+                                    <th colspan="5">
+                                        <form role="form" class="form-inline pull-right">
+                                            <div class="form-group">
+                                                <input type="email" placeholder="Enter email" id="exampleInputEmail2"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="user_password" placeholder="Password" id="exampleInputPassword2"
+                                                       class="form-control">
+                                            </div>
+                                            <button class="btn btn-white" type="submit">Sign in</button>
+                                        </form>
+                                    </th>
+                                </tr>-->
+                                <tr>
+                                    <th>TicketType</th>
+                                    <th>Proprietor</th>
+                                    <th>TicketTime</th>
+                                    <th>Location</th>
+                                    <th>HandlerName</th>
+                                    <th>HandlerTime</th>
+                                    <th>FeedBack</th>
+                                    <th data-hide="all">Description</th>
+                                    <th data-hide="all">HandlerResult</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="ticket: ${finishedList}">
+                                    <td th:text="${ticket.ticket_type}">Project - This is example of project</td>
+                                    <td th:text="${username}">Patrick Smith</td>
+                                    <td th:text="${ticket.ticket_time}">0800 051213</td>
+                                    <td th:text="${ticket.subarea_id}+'-'+${ticket.aprt_building}+'-'+${ticket.aprt_floor}+'-'+${ticket.aprt_room_num}">
+                                        Inceptos Hymenaeos Ltd
+                                    </td>
+                                    <td th:text="${ticket.staff.staff_name}"></td>
+                                    <td th:text="${ticket.handle_time}"></td>
+                                    <td>
+                                        <form id="fdbkForm" class="form-inline" action="/proprietor/ticket/history"
+                                              method="post">
+                                            <input name="ticketId" th:value="${ticket.ticket_id}" hidden="hidden">
+                                            <div class="form-group m-r-md">
+                                                <input name="ticketFdbk" type="text" th:value="${ticket.ticket_fdbk}"
+                                                       class="dial m-r" data-fgColor="#1AB394" data-width="30"
+                                                       data-height="30"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <a href="#" id="fdbk"><i class="fa fa-check text-navy"></i></a>
+                                            </div>
+                                        </form>
+                                    </td>
+                                    <td th:text="${ticket.description}">tyy</td>
+                                    <td th:text="${ticket.ticket_result}"></td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
 
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-            <input class="" id="state" th:value="${state}" hidden="hidden" />
-            <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+            <input class="" id="state" th:value="${state}" hidden="hidden"/>
+            <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeIn">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <i class="fa fa-check-circle modal-icon"></i>
-                            <h4 class="modal-title" >Successfully Finished</h4>
+                            <h4 class="modal-title">Evaluate Successful</h4>
                         </div>
                         <div class="modal-body">
-                            <p>You have finished this ticket.</p>
+                            <p>We have got your feedback, thank you for help us become better.</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -383,28 +445,42 @@
         th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
 
 <!-- FooTable -->
-<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js"
+        th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
 
 <!-- JSKnob -->
-<script src="../static/INSPINIA/js/plugins/jsKnob/jquery.knob.js" th:src="@{/INSPINIA/js/plugins/jsKnob/jquery.knob.js}"></script>
+<script src="../static/INSPINIA/js/plugins/jsKnob/jquery.knob.js"
+        th:src="@{/INSPINIA/js/plugins/jsKnob/jquery.knob.js}"></script>
 
 <!-- Page-Level Scripts -->
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function ()
+    {
 
         var state = document.getElementById("state").value;
-        if (state == "post"){
+        if (state == "post")
+        {
             $("#myModal").modal("show");
-        };
-
-        if (state == "finish") {
-            $("#modal-form").modal("show");
-        };
+        }
 
         $('.footable').footable();
         $('.footable2').footable();
 
     });
+
+    $(function ()
+    {
+        $("#fdbk").click(function ()
+        {
+            $("#fdbkForm").submit();
+        });
+    });
+
+    $(function ()
+    {
+        $(".dial").knob();
+    });
+
 </script>
 
 </body>

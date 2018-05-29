@@ -7,30 +7,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PM | Overhaul</title>
+    <title>PM | Suggestion</title>
 
     <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
     <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
           th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
     <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
     <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
-    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
 
     <!-- FooTable -->
-    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
+    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
 
 </head>
 
 <body>
 
 <div id="wrapper">
-
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong
                                     class="font-bold" th:text="${username}">David Williams</strong>
@@ -72,7 +70,7 @@
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/ticket/new">New Ticket</a></li>
-                        <li><a href="/ticket/history">Ticket History</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
                     </ul>
                 </li>
 
@@ -86,7 +84,8 @@
                 </li>
 
                 <li th:if="${roleName=='proprietor'}">
-                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span
+                            class="nav-label">Ticket</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/proprietor/ticket/new">New Ticket</a></li>
@@ -158,7 +157,6 @@
                             class="nav-label">Teamwork</span></a>
                 </li>
 
-
                 <li th:if="${roleName=='proprietor'}">
                     <a href="/proprietor/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
@@ -169,7 +167,8 @@
                 </li>
 
                 <li th:if="${roleName=='guard'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -178,7 +177,8 @@
                 </li>
 
                 <li th:if="${roleName=='cleaner'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -187,13 +187,15 @@
                 </li>
 
                 <li th:if="${roleName=='repairman'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
+                            class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
                         <li><a href="/suggestion/history">Suggestion History</a></li>
                     </ul>
                 </li>
+
             </ul>
 
         </div>
@@ -205,11 +207,10 @@
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
                     </a>
-
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-
+                        <!--<span class="m-r-sm text-muted welcome-message" th:text="${'Welcome, '+username}">Welcome to INSPINIA+ Admin Theme.</span>-->
                         <span class="m-r-sm text-muted welcome-message" th:text="|Welocme, ${username}|">Welcome to INSPINIA+ Admin Theme.</span>
                     </li>
 
@@ -224,16 +225,16 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Overhaul</h2>
+                <h2>Suggestion History</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="/index">Home</a>
                     </li>
                     <li>
-                        Overhaul
+                        Suggestion
                     </li>
-                    <li>
-                        Finished
+                    <li class="active">
+                        History
                     </li>
                 </ol>
             </div>
@@ -243,21 +244,17 @@
         </div>
 
         <div class="wrapper wrapper-content animated fadeInRight">
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Finished</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                            </div>
+                            <h5>History</h5>
                         </div>
                         <div class="ibox-content">
-                            <input type="text" class="form-control input-sm m-b-xs" id="filter2"
+                            <input type="text" class="form-control input-sm m-b-xs" id="filter"
                                    placeholder="Search in table">
-                            <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter2>
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
                                 <thead>
                                 <!--<tr class="footable-filtering">
                                     <th colspan="5">
@@ -275,31 +272,22 @@
                                     </th>
                                 </tr>-->
                                 <tr>
-                                    <th>OverhaulID</th>
-                                    <th>OverhaulType</th>
-                                    <th>FacilityID</th>
-                                    <th>FacilityType</th>
-                                    <th>Location</th>
-                                    <th>Handler</th>
-                                    <th data-hide="all">OverhaulTime</th>
-                                    <th data-hide="all">OverhaulResult</th>
+                                    <th>SuggestionType</th>
+                                    <th>Proprietor</th>
+                                    <th data-hide="all">SuggestionDetail</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="record: ${overhaulRecordList}">
-                                    <td th:text="${record.overhaul_id}">Project - This is example of project</td>
-                                    <td th:text="${record.overhaul_type}">Patrick Smith</td>
-                                    <td th:text="${record.fclt_id}">0800 051213</td>
-                                    <td th:text="${record.facilities.fclt_type}"></td>
-                                    <td th:text="${record.facilities.location}">tyy</td>
-                                    <td th:text="${username}"></td>
-                                    <td th:text="${record.overhaul_time}"></td>
-                                    <td th:text="${record.overhaul_result}"></td>
+                                <tr th:each="suggestion: ${suggestions}">
+                                    <td th:text="${suggestion.suggestion_type}">Project - This is example of project
+                                    </td>
+                                    <td th:text="${username}">Patrick Smith</td>
+                                    <td th:text="${suggestion.suggestion_detail}">0800 051213</td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td colspan="7">
+                                    <td colspan="5">
                                         <ul class="pagination pull-right"></ul>
                                     </td>
                                 </tr>
@@ -310,16 +298,11 @@
                     </div>
                 </div>
             </div>
-
-            <div class="footer">
-                <div>
-                    <strong>Copyright</strong> Example Company &copy; 2014-2017
-                </div>
-            </div>
         </div>
     </div>
 </div>
 
+<!-- Mainly scripts -->
 <script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
 <script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
 <script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
@@ -327,31 +310,39 @@
 <script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
         th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
 
+<!-- FooTable -->
+<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js"
+        th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
+
+<!-- Custom and plugin javascript -->
 <script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
 <script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
         th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
 
-<!-- FooTable -->
-<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
+<script>
 
-<!-- JSKnob -->
-<script src="../static/INSPINIA/js/plugins/jsKnob/jquery.knob.js" th:src="@{/INSPINIA/js/plugins/jsKnob/jquery.knob.js}"></script>
+    $(document).ready(function ()
+    {
+
+        // Add slimscroll to element
+        $('.scroll_content').slimscroll({
+            height: '200px'
+        })
+
+    });
+
+</script>
 
 <!-- Page-Level Scripts -->
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function ()
+    {
 
         $('.footable').footable();
         $('.footable2').footable();
 
     });
 
-    $(function() {
-        $(".dial").knob();
-    });
-
 </script>
-
 </body>
-
 </html>

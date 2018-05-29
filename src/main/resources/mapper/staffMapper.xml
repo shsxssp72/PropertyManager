@@ -15,7 +15,7 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		staff_id,staff_name,gender,tel,address,position,salary,dept,elec_qlfy,plbr_qlfy
+		staff_id, staff_name, gender, tel, address, position, salary, dept, elec_qlfy, plbr_qlfy
 	</sql>
 
 	<select id="getAll" resultMap="staff">
@@ -25,7 +25,8 @@
 	</select>
 
 	<select id="getSelfInfo" parameterType="java.lang.String" resultMap="staff">
-		SELECT *
+		SELECT
+		<include refid="BaseColumnList"/>
 		FROM staff
 		WHERE staff_id = #{id}
 	</select>
@@ -39,7 +40,7 @@
 	<select id="getStaffbyParams" resultMap="staff" parameterType="java.util.HashMap">
 		SELECT
 		<include refid="BaseColumnList"/>
-		FROM  staff
+		FROM staff
 		<where>
 			1 = 1
 			<if test="staff_id!=null and staff_id!=''">
@@ -77,16 +78,19 @@
 
 	<insert id="addStaff" parameterType="com.Property.Domain.Staff">
 		INSERT INTO staff (staff_name, gender, tel, address, position, salary, dept, elec_qlfy, plbr_qlfy)
-			  	VALUES (#{staff_name}, #{gender}, #{tel}, #{address}, #{position}, #{salary}, #{dept}, #{elec_qlfy}, #{plbr_qlfy})
+		VALUES
+			(#{staff_name}, #{gender}, #{tel}, #{address}, #{position}, #{salary}, #{dept}, #{elec_qlfy}, #{plbr_qlfy})
 	</insert>
 
 	<delete id="deleteStaff" parameterType="java.lang.String">
 		DELETE FROM staff
-			WHERE staff_id = #{id}
+		WHERE staff_id = #{id}
 	</delete>
 
 	<update id="updateStaff" parameterType="com.Property.Domain.Staff">
-		UPDATE staff SET staff_name = #{staff_name}, gender = #{gender}, tel = #{tel}, address = #{address}, position = #{position}, salary = #{salary}, dept=#{dept}, elec_qlfy = #{elec_qlfy}, plbr_qlfy = #{plbr_qlfy}
-			  WHERE staff_id = #{staff_id}
+		UPDATE staff
+		SET staff_name = #{staff_name}, gender = #{gender}, tel = #{tel}, address = #{address}, position = #{position},
+			salary     = #{salary}, dept = #{dept}, elec_qlfy = #{elec_qlfy}, plbr_qlfy = #{plbr_qlfy}
+		WHERE staff_id = #{staff_id}
 	</update>
 </mapper>

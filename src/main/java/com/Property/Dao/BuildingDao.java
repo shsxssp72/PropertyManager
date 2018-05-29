@@ -14,7 +14,7 @@ public interface BuildingDao
 	List<Building> getAll();
 
 	/*根据参数值查询*/
-	List<Building> getBuildingbyParams(Map<String, Object> params);
+	List<Building> getBuildingbyParams(Map<String,Object> params);
 
 	int addBuilding(Building building);
 

@@ -25,17 +25,17 @@ public class Customer
 
 	public void setCustomerID(Integer customerID)
 	{
-		this.customerID = customerID;
+		this.customerID=customerID;
 	}
 
 	public void setCustomerName(String customerName)
 	{
-		this.customerName = customerName;
+		this.customerName=customerName;
 	}
 
 	public void setTotalAmount(Integer totalAmount)
 	{
-		this.totalAmount = totalAmount;
+		this.totalAmount=totalAmount;
 	}
 
 	public String getCustomerTelephone()
@@ -45,7 +45,7 @@ public class Customer
 
 	public void setCustomerTelephone(String customerTelephone)
 	{
-		this.customerTelephone = customerTelephone;
+		this.customerTelephone=customerTelephone;
 	}
 
 	public String getGradeType()
@@ -55,6 +55,6 @@ public class Customer
 
 	public void setGradeType(String gradeType)
 	{
-		this.gradeType = gradeType;
+		this.gradeType=gradeType;
 	}
 }

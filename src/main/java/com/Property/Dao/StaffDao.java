@@ -18,7 +18,7 @@ public interface StaffDao
 	List<Staff> getDeptStaff(String dept);
 
 	/*根据参数值查询*/
-	List<Staff> getStaffbyParams(Map<String, Object> params);
+	List<Staff> getStaffbyParams(Map<String,Object> params);
 
 	int addStaff(Staff staff);
 

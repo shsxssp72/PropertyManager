@@ -7,11 +7,13 @@ code.google.com/p/crypto-js/wiki/License
 /**
  * Cipher Feedback block mode.
  */
-CryptoJS.mode.CFB = (function () {
+CryptoJS.mode.CFB = (function ()
+{
     var CFB = CryptoJS.lib.BlockCipherMode.extend();
 
     CFB.Encryptor = CFB.extend({
-        processBlock: function (words, offset) {
+        processBlock: function (words, offset)
+        {
             // Shortcuts
             var cipher = this._cipher;
             var blockSize = cipher.blockSize;
@@ -24,7 +26,8 @@ CryptoJS.mode.CFB = (function () {
     });
 
     CFB.Decryptor = CFB.extend({
-        processBlock: function (words, offset) {
+        processBlock: function (words, offset)
+        {
             // Shortcuts
             var cipher = this._cipher;
             var blockSize = cipher.blockSize;
@@ -39,23 +42,27 @@ CryptoJS.mode.CFB = (function () {
         }
     });
 
-    function generateKeystreamAndEncrypt(words, offset, blockSize, cipher) {
+    function generateKeystreamAndEncrypt(words, offset, blockSize, cipher)
+    {
         // Shortcut
         var iv = this._iv;
 
         // Generate keystream
-        if (iv) {
+        if (iv)
+        {
             var keystream = iv.slice(0);
 
             // Remove IV for subsequent blocks
             this._iv = undefined;
-        } else {
+        } else
+        {
             var keystream = this._prevBlock;
         }
         cipher.encryptBlock(keystream, 0);
 
         // Encrypt
-        for (var i = 0; i < blockSize; i++) {
+        for (var i = 0; i < blockSize; i++)
+        {
             words[offset + i] ^= keystream[i];
         }
     }

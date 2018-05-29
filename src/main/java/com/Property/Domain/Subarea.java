@@ -11,6 +11,6 @@ public class Subarea
 
 	public void setSubarea_id(String subarea_id)
 	{
-		this.subarea_id = subarea_id;
+		this.subarea_id=subarea_id;
 	}
 }

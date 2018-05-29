@@ -25,10 +25,8 @@
   },
   "body": {
     "welcome": "Bienvenido Amelia"
-
   },
-  "topnav":
-  {
+  "topnav": {
     "messageinfo": "Usted tiene 42 mensajes y 6 notificaciones.",
     "search": "Buscar algo...",
     "logout": "Cerrar sesión",
@@ -38,6 +36,4 @@
   "demo": {
     "text1": "Internacionalización (a veces abreviado como \"I18N, que significa\" I - dieciocho letras N \") es el proceso de planificación e implementación de productos y servicios de manera que se pueden adaptar fácilmente a las lenguas y culturas locales específicas, un proceso llamado localización El proceso de internacionalización. a veces se llama la traducción o la habilitación de localización."
   }
-
-
 }

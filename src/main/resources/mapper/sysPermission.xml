@@ -32,13 +32,13 @@
 		<!--<include refid="BaseColumnList"/>-->
 		<!--FROM SysPermission-->
 		<!--WHERE parent_id=(SELECT perm_id-->
-						 <!--FROM SysPermission JOIN RolePermission R ON SysPermission.perm_id = R.perm_id-->
-						 <!--WHERE role_id=#{role_id})-->
+		<!--FROM SysPermission JOIN RolePermission R ON SysPermission.perm_id = R.perm_id-->
+		<!--WHERE role_id=#{role_id})-->
 		<!--or-->
-			  <!--perm_id=(SELECT perm_id-->
-					   <!--FROM SysPermission JOIN RolePermission R ON SysPermission.perm_id = R.perm_id-->
-					   <!--WHERE role_id=#{role_id})-->
-# 		改为在java中实现
+		<!--perm_id=(SELECT perm_id-->
+		<!--FROM SysPermission JOIN RolePermission R ON SysPermission.perm_id = R.perm_id-->
+		<!--WHERE role_id=#{role_id})-->
+		# 改为在java中实现
 	</select>
 
 	<select id="getChildPermission" resultMap="sysPermission">

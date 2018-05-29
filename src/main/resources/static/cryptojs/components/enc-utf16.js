@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function () {
+(function ()
+{
     // Shortcuts
     var C = CryptoJS;
     var C_lib = C.lib;
@@ -28,14 +29,16 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var utf16String = CryptoJS.enc.Utf16.stringify(wordArray);
          */
-        stringify: function (wordArray) {
+        stringify: function (wordArray)
+        {
             // Shortcuts
             var words = wordArray.words;
             var sigBytes = wordArray.sigBytes;
 
             // Convert
             var utf16Chars = [];
-            for (var i = 0; i < sigBytes; i += 2) {
+            for (var i = 0; i < sigBytes; i += 2)
+            {
                 var codePoint = (words[i >>> 2] >>> (16 - (i % 4) * 8)) & 0xffff;
                 utf16Chars.push(String.fromCharCode(codePoint));
             }
@@ -56,13 +59,15 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var wordArray = CryptoJS.enc.Utf16.parse(utf16String);
          */
-        parse: function (utf16Str) {
+        parse: function (utf16Str)
+        {
             // Shortcut
             var utf16StrLength = utf16Str.length;
 
             // Convert
             var words = [];
-            for (var i = 0; i < utf16StrLength; i++) {
+            for (var i = 0; i < utf16StrLength; i++)
+            {
                 words[i >>> 1] |= utf16Str.charCodeAt(i) << (16 - (i % 2) * 16);
             }
 
@@ -87,14 +92,16 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var utf16Str = CryptoJS.enc.Utf16LE.stringify(wordArray);
          */
-        stringify: function (wordArray) {
+        stringify: function (wordArray)
+        {
             // Shortcuts
             var words = wordArray.words;
             var sigBytes = wordArray.sigBytes;
 
             // Convert
             var utf16Chars = [];
-            for (var i = 0; i < sigBytes; i += 2) {
+            for (var i = 0; i < sigBytes; i += 2)
+            {
                 var codePoint = swapEndian((words[i >>> 2] >>> (16 - (i % 4) * 8)) & 0xffff);
                 utf16Chars.push(String.fromCharCode(codePoint));
             }
@@ -115,13 +122,15 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var wordArray = CryptoJS.enc.Utf16LE.parse(utf16Str);
          */
-        parse: function (utf16Str) {
+        parse: function (utf16Str)
+        {
             // Shortcut
             var utf16StrLength = utf16Str.length;
 
             // Convert
             var words = [];
-            for (var i = 0; i < utf16StrLength; i++) {
+            for (var i = 0; i < utf16StrLength; i++)
+            {
                 words[i >>> 1] |= swapEndian(utf16Str.charCodeAt(i) << (16 - (i % 2) * 16));
             }
 
@@ -129,7 +138,8 @@ code.google.com/p/crypto-js/wiki/License
         }
     };
 
-    function swapEndian(word) {
+    function swapEndian(word)
+    {
         return ((word << 8) & 0xff00ff00) | ((word >>> 8) & 0x00ff00ff);
     }
 }());

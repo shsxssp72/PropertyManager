@@ -16,14 +16,14 @@
 		<result column="end_date" property="end_date" jdbcType="DATE"/>
 		<result column="price" property="price" jdbcType="DECIMAL"/>
 		<association property="chargingItem" javaType="com.Property.Domain.ChargingItem">
-		<id column="item_id" property="item_id"></id>
-		<result column="item_title" property="item_title"></result>
+			<id column="item_id" property="item_id"></id>
+			<result column="item_title" property="item_title"></result>
 		</association>
 		<!--<association property="chargingItem" column="item_id" resultMap="chargingItem"/>-->
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		fee_id,item_id,start_date,end_date,price
+		fee_id, item_id, start_date, end_date, price
 	</sql>
 
 	<select id="getAll" resultMap="Fee">
@@ -33,8 +33,10 @@
 	</select>
 
 	<select id="getFee" resultMap="FeeMap">
-		SELECT fee.*,chargingitem.*
-		FROM fee,chargingitem
+		SELECT
+			fee.*,
+			chargingitem.*
+		FROM fee, chargingitem
 		WHERE fee.item_id = chargingitem.item_id
 	</select>
 
@@ -66,17 +68,18 @@
 
 	<insert id="addFee" parameterType="com.Property.Domain.Fee">
 		INSERT INTO fee (item_id, start_date, end_date, price)
-				VALUES (#{item_id}, #{start_date}, #{end_date}, #{price})
+		VALUES (#{item_id}, #{start_date}, #{end_date}, #{price})
 	</insert>
 
 	<delete id="deleteFee" parameterType="java.lang.String">
 		DELETE FROM fee
-			WHERE fee_id = #{id}
+		WHERE fee_id = #{id}
 	</delete>
 
 	<update id="updateFee" parameterType="com.Property.Domain.Fee">
-		UPDATE fee SET item_id = #{item_id}, start_date = #{start_date}, end_date = #{end_date}, price = #{price}
-			WHERE fee_id = #{fee_id}
+		UPDATE fee
+		SET item_id = #{item_id}, start_date = #{start_date}, end_date = #{end_date}, price = #{price}
+		WHERE fee_id = #{fee_id}
 	</update>
 
 </mapper>

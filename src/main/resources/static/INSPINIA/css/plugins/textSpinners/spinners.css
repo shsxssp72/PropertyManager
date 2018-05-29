@@ -174,12 +174,12 @@
 }
 
 .loading.box-bounce::after {
-    content:"▖\A▘\A▝\A▗";
+    content: "▖\A▘\A▝\A▗";
     animation: spin4 1s steps(4) infinite;
 }
 
 .loading.star::after {
-    content:"✶\A✸\A✹\A✺\A✹\A✷";
+    content: "✶\A✸\A✹\A✺\A✹\A✷";
     animation: spin6 1s steps(6) infinite;
 }
 
@@ -190,15 +190,74 @@
 
 /* --- Animations --- */
 
-@keyframes spin1  { to { transform: translateY( -1.5em); } }
-@keyframes spin2  { to { transform: translateY( -3.0em); } }
-@keyframes spin3  { to { transform: translateY( -4.5em); } }
-@keyframes spin4  { to { transform: translateY( -6.0em); } }
-@keyframes spin5  { to { transform: translateY( -7.5em); } }
-@keyframes spin6  { to { transform: translateY( -9.0em); } }
-@keyframes spin7  { to { transform: translateY(-10.5em); } }
-@keyframes spin8  { to { transform: translateY(-12.0em); } }
-@keyframes spin9  { to { transform: translateY(-13.5em); } }
-@keyframes spin10 { to { transform: translateY(-15.0em); } }
-@keyframes spin11 { to { transform: translateY(-16.5em); } }
-@keyframes spin12 { to { transform: translateY(-18.0em); } }
+@keyframes spin1 {
+    to {
+        transform: translateY(-1.5em);
+    }
+}
+
+@keyframes spin2 {
+    to {
+        transform: translateY(-3.0em);
+    }
+}
+
+@keyframes spin3 {
+    to {
+        transform: translateY(-4.5em);
+    }
+}
+
+@keyframes spin4 {
+    to {
+        transform: translateY(-6.0em);
+    }
+}
+
+@keyframes spin5 {
+    to {
+        transform: translateY(-7.5em);
+    }
+}
+
+@keyframes spin6 {
+    to {
+        transform: translateY(-9.0em);
+    }
+}
+
+@keyframes spin7 {
+    to {
+        transform: translateY(-10.5em);
+    }
+}
+
+@keyframes spin8 {
+    to {
+        transform: translateY(-12.0em);
+    }
+}
+
+@keyframes spin9 {
+    to {
+        transform: translateY(-13.5em);
+    }
+}
+
+@keyframes spin10 {
+    to {
+        transform: translateY(-15.0em);
+    }
+}
+
+@keyframes spin11 {
+    to {
+        transform: translateY(-16.5em);
+    }
+}
+
+@keyframes spin12 {
+    to {
+        transform: translateY(-18.0em);
+    }
+}

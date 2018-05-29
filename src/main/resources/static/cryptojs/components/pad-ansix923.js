@@ -8,7 +8,8 @@ code.google.com/p/crypto-js/wiki/License
  * ANSI X.923 padding strategy.
  */
 CryptoJS.pad.AnsiX923 = {
-    pad: function (data, blockSize) {
+    pad: function (data, blockSize)
+    {
         // Shortcuts
         var dataSigBytes = data.sigBytes;
         var blockSizeBytes = blockSize * 4;
@@ -25,7 +26,8 @@ CryptoJS.pad.AnsiX923 = {
         data.sigBytes += nPaddingBytes;
     },
 
-    unpad: function (data) {
+    unpad: function (data)
+    {
         // Get number of padding bytes from last byte
         var nPaddingBytes = data.words[(data.sigBytes - 1) >>> 2] & 0xff;
 

@@ -19,7 +19,7 @@ public class DailyTask
 
 	public void setTask_id(String task_id)
 	{
-		this.task_id = task_id;
+		this.task_id=task_id;
 	}
 
 	public String getTask_type()
@@ -29,7 +29,7 @@ public class DailyTask
 
 	public void setTask_type(String task_type)
 	{
-		this.task_type = task_type;
+		this.task_type=task_type;
 	}
 
 	public Timestamp getTask_time()
@@ -39,7 +39,7 @@ public class DailyTask
 
 	public void setTask_time(Timestamp task_time)
 	{
-		this.task_time = task_time;
+		this.task_time=task_time;
 	}
 
 	public String getTask_area()
@@ -49,7 +49,7 @@ public class DailyTask
 
 	public void setTask_area(String task_area)
 	{
-		this.task_area = task_area;
+		this.task_area=task_area;
 	}
 
 	public String getTask_handler()
@@ -59,7 +59,7 @@ public class DailyTask
 
 	public void setTask_handler(String task_handler)
 	{
-		this.task_handler = task_handler;
+		this.task_handler=task_handler;
 	}
 
 	public String getTask_result()
@@ -69,7 +69,7 @@ public class DailyTask
 
 	public void setTask_result(String task_result)
 	{
-		this.task_result = task_result;
+		this.task_result=task_result;
 	}
 
 	public boolean isException()

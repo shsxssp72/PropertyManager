@@ -19,7 +19,7 @@ public class Order
 
 	public void setOrderTime(Timestamp orderTime)
 	{
-		this.orderTime = orderTime;
+		this.orderTime=orderTime;
 	}
 
 	public boolean isFinished()
@@ -29,7 +29,7 @@ public class Order
 
 	public void setFinished(boolean finished)
 	{
-		isFinished = finished;
+		isFinished=finished;
 	}
 
 	public int getOrderID()
@@ -39,7 +39,7 @@ public class Order
 
 	public void setOrderID(int orderID)
 	{
-		this.orderID = orderID;
+		this.orderID=orderID;
 	}
 
 	public String getCustomerName()
@@ -49,7 +49,7 @@ public class Order
 
 	public void setCustomerName(String customerName)
 	{
-		this.customerName = customerName;
+		this.customerName=customerName;
 	}
 
 	public String getTelephoneID()
@@ -59,7 +59,7 @@ public class Order
 
 	public void setTelephoneID(String telephoneID)
 	{
-		this.telephoneID = telephoneID;
+		this.telephoneID=telephoneID;
 	}
 
 	public double getOrderAmount()
@@ -69,6 +69,6 @@ public class Order
 
 	public void setOrderAmount(double orderAmount)
 	{
-		this.orderAmount = orderAmount;
+		this.orderAmount=orderAmount;
 	}
 }

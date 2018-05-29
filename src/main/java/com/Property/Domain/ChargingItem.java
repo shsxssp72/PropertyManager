@@ -12,7 +12,7 @@ public class ChargingItem
 
 	public void setItem_id(String item_id)
 	{
-		this.item_id = item_id;
+		this.item_id=item_id;
 	}
 
 	public String getItem_title()
@@ -22,6 +22,6 @@ public class ChargingItem
 
 	public void setItem_title(String item_title)
 	{
-		this.item_title = item_title;
+		this.item_title=item_title;
 	}
 }

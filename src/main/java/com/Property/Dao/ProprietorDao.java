@@ -16,10 +16,10 @@ public interface ProprietorDao
 
 	Proprietor getSelfInfo(String id);
 
-	int alterTel(@Param("tel")String tel, @Param("id")String id);
+	int alterTel(@Param("tel") String tel,@Param("id") String id);
 
 	/*根据参数值查询*/
-	List<Proprietor> getProprietorbyParams(Map<String, Object> params);
+	List<Proprietor> getProprietorbyParams(Map<String,Object> params);
 
 	int addProprietor(Proprietor proprietor);
 

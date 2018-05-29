@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function (undefined) {
+(function (undefined)
+{
     // Shortcuts
     var C = CryptoJS;
     var C_lib = C.lib;
@@ -27,7 +28,8 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var hexString = CryptoJS.format.Hex.stringify(cipherParams);
          */
-        stringify: function (cipherParams) {
+        stringify: function (cipherParams)
+        {
             return cipherParams.ciphertext.toString(Hex);
         },
 
@@ -44,9 +46,10 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var cipherParams = CryptoJS.format.Hex.parse(hexString);
          */
-        parse: function (input) {
+        parse: function (input)
+        {
             var ciphertext = Hex.parse(input);
-            return CipherParams.create({ ciphertext: ciphertext });
+            return CipherParams.create({ciphertext: ciphertext});
         }
     };
 }());

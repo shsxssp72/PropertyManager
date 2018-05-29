@@ -185,12 +185,12 @@ public class CryptoUtil
 			ASN1Primitive primitive=pkInfo.parsePublicKey();
 			byte[] publ=primitive.getEncoded();
 //			return Base64.encodeBase64String(publ);
-			PemObject pemObject = new PemObject("RSA PUBLIC KEY", publ);
-			StringWriter stringWriter = new StringWriter();
-			PemWriter pemWriter = new PemWriter(stringWriter);
+			PemObject pemObject=new PemObject("RSA PUBLIC KEY",publ);
+			StringWriter stringWriter=new StringWriter();
+			PemWriter pemWriter=new PemWriter(stringWriter);
 			pemWriter.writeObject(pemObject);
 			pemWriter.close();
-			String pemString = stringWriter.toString();
+			String pemString=stringWriter.toString();
 			return pemString;
 		}
 		catch(IOException e)

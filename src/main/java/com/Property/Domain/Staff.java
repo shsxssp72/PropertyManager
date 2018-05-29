@@ -20,7 +20,7 @@ public class Staff
 
 	public void setStaff_id(String staff_id)
 	{
-		this.staff_id = staff_id;
+		this.staff_id=staff_id;
 	}
 
 	public String getStaff_name()
@@ -30,7 +30,7 @@ public class Staff
 
 	public void setStaff_name(String staff_name)
 	{
-		this.staff_name = staff_name;
+		this.staff_name=staff_name;
 	}
 
 	public String getGender()
@@ -40,7 +40,7 @@ public class Staff
 
 	public void setGender(String gender)
 	{
-		this.gender = gender;
+		this.gender=gender;
 	}
 
 	public String getTel()
@@ -50,7 +50,7 @@ public class Staff
 
 	public void setTel(String tel)
 	{
-		this.tel = tel;
+		this.tel=tel;
 	}
 
 	public String getAddress()
@@ -60,7 +60,7 @@ public class Staff
 
 	public void setAddress(String address)
 	{
-		this.address = address;
+		this.address=address;
 	}
 
 	public String getPosition()
@@ -70,7 +70,7 @@ public class Staff
 
 	public void setPosition(String position)
 	{
-		this.position = position;
+		this.position=position;
 	}
 
 	public double getSalary()
@@ -80,15 +80,17 @@ public class Staff
 
 	public void setSalary(double salary)
 	{
-		this.salary = salary;
+		this.salary=salary;
 	}
 
-	public String getDept() {
+	public String getDept()
+	{
 		return dept;
 	}
 
-	public void setDept(String dept) {
-		this.dept = dept;
+	public void setDept(String dept)
+	{
+		this.dept=dept;
 	}
 
 	public boolean isElec_qlfy()
@@ -98,7 +100,7 @@ public class Staff
 
 	public void setElec_qlfy(boolean elec_qlfy)
 	{
-		this.elec_qlfy = elec_qlfy;
+		this.elec_qlfy=elec_qlfy;
 	}
 
 	public boolean isPlbr_qlfy()
@@ -108,6 +110,6 @@ public class Staff
 
 	public void setPlbr_qlfy(boolean plbr_qlfy)
 	{
-		this.plbr_qlfy = plbr_qlfy;
+		this.plbr_qlfy=plbr_qlfy;
 	}
 }

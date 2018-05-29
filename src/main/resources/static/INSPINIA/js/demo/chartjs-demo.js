@@ -1,4 +1,5 @@
-$(function () {
+$(function ()
+{
 
     var lineData = {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -11,7 +12,7 @@ $(function () {
                 pointBackgroundColor: "rgba(26,179,148,1)",
                 pointBorderColor: "#fff",
                 data: [28, 48, 40, 19, 86, 27, 90]
-            },{
+            }, {
                 label: "Data 2",
                 backgroundColor: 'rgba(220, 220, 220, 0.5)',
                 pointBorderColor: "#fff",
@@ -26,7 +27,7 @@ $(function () {
 
 
     var ctx = document.getElementById("lineChart").getContext("2d");
-    new Chart(ctx, {type: 'line', data: lineData, options:lineOptions});
+    new Chart(ctx, {type: 'line', data: lineData, options: lineOptions});
 
     var barData = {
         labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -54,12 +55,12 @@ $(function () {
 
 
     var ctx2 = document.getElementById("barChart").getContext("2d");
-    new Chart(ctx2, {type: 'bar', data: barData, options:barOptions});
+    new Chart(ctx2, {type: 'bar', data: barData, options: barOptions});
 
     var polarData = {
         datasets: [{
             data: [
-                300,140,200
+                300, 140, 200
             ],
             backgroundColor: [
                 "#a3e1d4", "#dedede", "#b5b8cf"
@@ -69,7 +70,7 @@ $(function () {
             ]
         }],
         labels: [
-            "App","Software","Laptop"
+            "App", "Software", "Laptop"
         ]
     };
 
@@ -80,15 +81,15 @@ $(function () {
     };
 
     var ctx3 = document.getElementById("polarChart").getContext("2d");
-    new Chart(ctx3, {type: 'polarArea', data: polarData, options:polarOptions});
+    new Chart(ctx3, {type: 'polarArea', data: polarData, options: polarOptions});
 
     var doughnutData = {
-        labels: ["App","Software","Laptop" ],
+        labels: ["App", "Software", "Laptop"],
         datasets: [{
-            data: [300,50,100],
-            backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
+            data: [300, 50, 100],
+            backgroundColor: ["#a3e1d4", "#dedede", "#b5b8cf"]
         }]
-    } ;
+    };
 
 
     var doughnutOptions = {
@@ -97,7 +98,7 @@ $(function () {
 
 
     var ctx4 = document.getElementById("doughnutChart").getContext("2d");
-    new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
+    new Chart(ctx4, {type: 'doughnut', data: doughnutData, options: doughnutOptions});
 
 
     var radarData = {
@@ -123,6 +124,6 @@ $(function () {
     };
 
     var ctx5 = document.getElementById("radarChart").getContext("2d");
-    new Chart(ctx5, {type: 'radar', data: radarData, options:radarOptions});
+    new Chart(ctx5, {type: 'radar', data: radarData, options: radarOptions});
 
 });

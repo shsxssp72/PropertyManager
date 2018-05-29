@@ -10,6 +10,8 @@ public class UserInfo implements Serializable
 	private String user_password;
 	private String salt;
 	private int state;
+	private String prprt_id;
+	private String staff_id;
 
 	public int getUid()
 	{
@@ -74,5 +76,25 @@ public class UserInfo implements Serializable
 	public String getCredentialsSalt()
 	{
 		return this.user_name+this.salt;
+	}
+
+	public String getPrprt_id()
+	{
+		return prprt_id;
+	}
+
+	public void setPrprt_id(String prprt_id)
+	{
+		this.prprt_id=prprt_id;
+	}
+
+	public String getStaff_id()
+	{
+		return staff_id;
+	}
+
+	public void setStaff_id(String staff_id)
+	{
+		this.staff_id=staff_id;
 	}
 }

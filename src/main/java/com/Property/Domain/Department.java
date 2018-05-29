@@ -12,7 +12,7 @@ public class Department
 
 	public void setDept_id(String dept_id)
 	{
-		this.dept_id = dept_id;
+		this.dept_id=dept_id;
 	}
 
 	public String getDept_name()
@@ -22,6 +22,6 @@ public class Department
 
 	public void setDept_name(String dept_name)
 	{
-		this.dept_name = dept_name;
+		this.dept_name=dept_name;
 	}
 }

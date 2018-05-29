@@ -10,7 +10,7 @@ public class Fee
 	private Timestamp end_date;
 	private double price;
 
-	private ChargingItem chargingItem;		//新增chargingItem用于resultMap数据绑定
+	private ChargingItem chargingItem;        //新增chargingItem用于resultMap数据绑定
 
 	public String getFee_id()
 	{
@@ -19,7 +19,7 @@ public class Fee
 
 	public void setFee_id(String fee_id)
 	{
-		this.fee_id = fee_id;
+		this.fee_id=fee_id;
 	}
 
 	public String getItem_id()
@@ -29,7 +29,7 @@ public class Fee
 
 	public void setItem_id(String item_id)
 	{
-		this.item_id = item_id;
+		this.item_id=item_id;
 	}
 
 	public Timestamp getStart_date()
@@ -39,7 +39,7 @@ public class Fee
 
 	public void setStart_date(Timestamp start_date)
 	{
-		this.start_date = start_date;
+		this.start_date=start_date;
 	}
 
 	public Timestamp getEnd_date()
@@ -49,7 +49,7 @@ public class Fee
 
 	public void setEnd_date(Timestamp end_date)
 	{
-		this.end_date = end_date;
+		this.end_date=end_date;
 	}
 
 	public double getPrice()
@@ -59,14 +59,16 @@ public class Fee
 
 	public void setPrice(double price)
 	{
-		this.price = price;
+		this.price=price;
 	}
 
-	public ChargingItem getChargingItem() {
+	public ChargingItem getChargingItem()
+	{
 		return chargingItem;
 	}
 
-	public void setChargingItem(ChargingItem chargingItem) {
-		this.chargingItem = chargingItem;
+	public void setChargingItem(ChargingItem chargingItem)
+	{
+		this.chargingItem=chargingItem;
 	}
 }

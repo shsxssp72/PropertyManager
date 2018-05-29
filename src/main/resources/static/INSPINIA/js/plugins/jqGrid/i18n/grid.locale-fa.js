@@ -1,12 +1,13 @@
-;(function ($) {
-/**
- * jqGrid Persian Translation
- * Dual licensed under the MIT and GPL licenses:
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
-**/
-	$.jgrid = $.jgrid || {};
-	$.extend($.jgrid,{
+;(function ($)
+{
+    /**
+     * jqGrid Persian Translation
+     * Dual licensed under the MIT and GPL licenses:
+     * http://www.opensource.org/licenses/mit-license.php
+     * http://www.gnu.org/licenses/gpl.html
+     **/
+    $.jgrid = $.jgrid || {};
+    $.extend($.jgrid, {
         defaults: {
             recordtext: "نمابش {0} - {1} از {2}",
             emptyrecords: "رکوردی یافت نشد",
@@ -17,17 +18,29 @@
             caption: "جستجو...",
             Find: "يافته ها",
             Reset: "از نو",
-            odata: [{ oper:'eq', text:"برابر"},{ oper:'ne', text:"نا برابر"},{ oper:'lt', text:"به"},{ oper:'le', text:"کوچکتر"},{ oper:'gt', text:"از"},{ oper:'ge', text:"بزرگتر"},{ oper:'bw', text:"شروع با"},{ oper:'bn', text:"شروع نشود با"},{ oper:'in', text:"نباشد"},{ oper:'ni', text:"عضو این نباشد"},{ oper:'ew', text:"اتمام با"},{ oper:'en', text:"تمام نشود با"},{ oper:'cn', text:"حاوی"},{ oper:'nc', text:"نباشد حاوی"},{ oper:'nu', text:'is null'},{ oper:'nn', text:'is not null'}],
+            odata: [{oper: 'eq', text: "برابر"}, {oper: 'ne', text: "نا برابر"}, {oper: 'lt', text: "به"}, {
+                oper: 'le',
+                text: "کوچکتر"
+            }, {oper: 'gt', text: "از"}, {oper: 'ge', text: "بزرگتر"}, {oper: 'bw', text: "شروع با"}, {
+                oper: 'bn',
+                text: "شروع نشود با"
+            }, {oper: 'in', text: "نباشد"}, {oper: 'ni', text: "عضو این نباشد"}, {
+                oper: 'ew',
+                text: "اتمام با"
+            }, {oper: 'en', text: "تمام نشود با"}, {oper: 'cn', text: "حاوی"}, {
+                oper: 'nc',
+                text: "نباشد حاوی"
+            }, {oper: 'nu', text: 'is null'}, {oper: 'nn', text: 'is not null'}],
             groupOps: [{
                 op: "AND",
                 text: "کل"
             },
-            {
-                op: "OR",
-                text: "مجموع"
-            }],
-			operandTitle : "Click to select search operation.",
-			resetTitle : "Reset Search Value"
+                {
+                    op: "OR",
+                    text: "مجموع"
+                }],
+            operandTitle: "Click to select search operation.",
+            resetTitle: "Reset Search Value"
         },
         edit: {
             addCaption: "اضافه کردن رکورد",
@@ -114,12 +127,13 @@
                 dayNames: ["يک", "دو", "سه", "چهار", "پنج", "جمع", "شنب", "يکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "جمعه", "شنبه"],
                 monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "ژانويه", "فوريه", "مارس", "آوريل", "مه", "ژوئن", "ژوئيه", "اوت", "سپتامبر", "اکتبر", "نوامبر", "December"],
                 AmPm: ["ب.ظ", "ب.ظ", "ق.ظ", "ق.ظ"],
-                S: function (b) {
+                S: function (b)
+                {
                     return b < 11 || b > 13 ? ["st", "nd", "rd", "th"][Math.min((b - 1) % 10, 3)] : "th"
                 },
                 srcformat: "Y-m-d",
                 newformat: "d/m/Y",
-				parseRe : /[#%\\\/:_;.,\t\s-]/,
+                parseRe: /[#%\\\/:_;.,\t\s-]/,
                 masks: {
                     ISO8601Long: "Y-m-d H:i:s",
                     ISO8601Short: "Y-m-d",

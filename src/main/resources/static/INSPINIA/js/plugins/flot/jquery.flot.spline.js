@@ -3,11 +3,11 @@
  * author: Alex Bardas < alex.bardas@gmail.com >
  * modified by: Avi Kohn https://github.com/AMKohn
  * based on the spline interpolation described at:
- *		 http://scaledinnovation.com/analytics/splines/aboutSplines.html
+ *         http://scaledinnovation.com/analytics/splines/aboutSplines.html
  *
  * Example usage: (add in plot options series object)
- *		for linespline:
- *			series: {
+ *        for linespline:
+ *            series: {
  *				...
  *				lines: {
  *					show: false
@@ -20,8 +20,8 @@
  *				},
  *				...
  *			}
- *		areaspline:
- *			series: {
+ *        areaspline:
+ *            series: {
  *				...
  *				lines: {
  *					show: true,
@@ -38,7 +38,8 @@
  *
  */
 
-(function($) {
+(function ($)
+{
     'use strict'
 
     /**
@@ -46,11 +47,12 @@
      * @param {Number} x2, y2: the next knot (not connected, but needed to calculate p2)
      * @param {Number} tension: control how far the control points spread
      * @return {Array}: p1 -> control point, from x1 back toward x0
-     * 					p2 -> the next control point, returned to become the next segment's p1
+     *                    p2 -> the next control point, returned to become the next segment's p1
      *
      * @api private
      */
-    function getControlPoints(x0, y0, x1, y1, x2, y2, tension) {
+    function getControlPoints(x0, y0, x1, y1, x2, y2, tension)
+    {
 
         var pow = Math.pow,
             sqrt = Math.sqrt,
@@ -74,7 +76,8 @@
 
     var line = [];
 
-    function drawLine(points, ctx, height, fill, seriesColor) {
+    function drawLine(points, ctx, height, fill, seriesColor)
+    {
         var c = $.color.parse(seriesColor);
 
         c.a = typeof fill == "number" ? fill : .3;
@@ -86,7 +89,8 @@
 
         var plength = points.length;
 
-        for (var i = 0; i < plength; i++) {
+        for (var i = 0; i < plength; i++)
+        {
             ctx[points[i][3]].apply(ctx, points[i][2]);
         }
 
@@ -98,7 +102,8 @@
 
         ctx.closePath();
 
-        if (fill !== false) {
+        if (fill !== false)
+        {
             ctx.fillStyle = c;
             ctx.fill();
         }
@@ -112,14 +117,17 @@
      *
      * @api private
      */
-    function queue(ctx, type, points, cpoints) {
-        if (type === void 0 || (type !== 'bezier' && type !== 'quadratic')) {
+    function queue(ctx, type, points, cpoints)
+    {
+        if (type === void 0 || (type !== 'bezier' && type !== 'quadratic'))
+        {
             type = 'quadratic';
         }
         type = type + 'CurveTo';
 
         if (line.length == 0) line.push([points[0], points[1], cpoints.concat(points.slice(2)), type]);
-        else if (type == "quadraticCurveTo" && points.length == 2) {
+        else if (type == "quadraticCurveTo" && points.length == 2)
+        {
             cpoints = cpoints.slice(0, 2).concat(points);
 
             line.push([points[0], points[1], cpoints, type]);
@@ -135,14 +143,16 @@
      * @api private
      */
 
-    function drawSpline(plot, ctx, series) {
+    function drawSpline(plot, ctx, series)
+    {
         // Not interested if spline is not requested
-        if (series.splines.show !== true) {
+        if (series.splines.show !== true)
+        {
             return;
         }
 
         var cp = [],
-        // array of control points
+            // array of control points
             tension = series.splines.tension || 0.5,
             idx, x, y, points = series.datapoints.points,
             ps = series.datapoints.pointsize,
@@ -153,15 +163,18 @@
         line = [];
 
         // Cannot display a linespline/areaspline if there are less than 3 points
-        if (len / ps < 4) {
+        if (len / ps < 4)
+        {
             $.extend(series.lines, series.splines);
             return;
         }
 
-        for (idx = 0; idx < len; idx += ps) {
+        for (idx = 0; idx < len; idx += ps)
+        {
             x = points[idx];
             y = points[idx + 1];
-            if (x == null || x < series.xaxis.min || x > series.xaxis.max || y < series.yaxis.min || y > series.yaxis.max) {
+            if (x == null || x < series.xaxis.min || x > series.xaxis.max || y < series.yaxis.min || y > series.yaxis.max)
+            {
                 continue;
             }
 
@@ -171,7 +184,8 @@
         len = pts.length;
 
         // Draw an open curve, not connected at the ends
-        for (idx = 0; idx < len - 2; idx += 2) {
+        for (idx = 0; idx < len - 2; idx += 2)
+        {
             cp = cp.concat(getControlPoints.apply(this, pts.slice(idx, idx + 6).concat([tension])));
         }
 
@@ -181,7 +195,8 @@
 
         queue(ctx, 'quadratic', pts.slice(0, 4), cp.slice(0, 2));
 
-        for (idx = 2; idx < len - 3; idx += 2) {
+        for (idx = 2; idx < len - 3; idx += 2)
+        {
             queue(ctx, 'bezier', pts.slice(idx, idx + 4), cp.slice(2 * idx - 2, 2 * idx + 2));
         }
 
@@ -193,7 +208,8 @@
     }
 
     $.plot.plugins.push({
-        init: function(plot) {
+        init: function (plot)
+        {
             plot.hooks.drawSeries.push(drawSpline);
         },
         options: {

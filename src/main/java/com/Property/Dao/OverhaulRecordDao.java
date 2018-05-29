@@ -15,7 +15,8 @@ public interface OverhaulRecordDao
 {
 	List<OverhaulRecord> getAll();
 
-	int finishOverhaul(@Param("overhaul_time") Timestamp overhaul_time, @Param("result") String result, @Param("overhaul_id") String overhaul_id);
+	int finishOverhaul(@Param("overhaul_time") Timestamp overhaul_time,@Param("result") String result,
+					   @Param("overhaul_id") String overhaul_id);
 
 	List<OverhaulRecord> tbdOverhaul(String id);
 
@@ -23,10 +24,10 @@ public interface OverhaulRecordDao
 
 	List<OverhaulRecord> overhaulHistory(String id);
 
-	int changeOverhaulHandler(@Param("new_handler") String new_handler, @Param("overhaul_id") String overhaul_id);
+	int changeOverhaulHandler(@Param("new_handler") String new_handler,@Param("overhaul_id") String overhaul_id);
 
 	/*根据参数值查询*/
-	List<OverhaulRecord> getOverhaulbyParams(Map<String, Object> params);
+	List<OverhaulRecord> getOverhaulbyParams(Map<String,Object> params);
 
 	int addOverhaulRecord(OverhaulRecord overhaulRecord);
 

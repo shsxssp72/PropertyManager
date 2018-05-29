@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function () {
+(function ()
+{
     // Shortcuts
     var C = CryptoJS;
     var C_lib = C.lib;
@@ -26,7 +27,7 @@ code.google.com/p/crypto-js/wiki/License
          * @property {number} iterations The number of iterations to perform. Default: 1
          */
         cfg: Base.extend({
-            keySize: 128/32,
+            keySize: 128 / 32,
             hasher: SHA1,
             iterations: 1
         }),
@@ -42,7 +43,8 @@ code.google.com/p/crypto-js/wiki/License
          *     var kdf = CryptoJS.algo.PBKDF2.create({ keySize: 8 });
          *     var kdf = CryptoJS.algo.PBKDF2.create({ keySize: 8, iterations: 1000 });
          */
-        init: function (cfg) {
+        init: function (cfg)
+        {
             this.cfg = this.cfg.extend(cfg);
         },
 
@@ -58,7 +60,8 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var key = kdf.compute(password, salt);
          */
-        compute: function (password, salt) {
+        compute: function (password, salt)
+        {
             // Shortcut
             var cfg = this.cfg;
 
@@ -76,7 +79,8 @@ code.google.com/p/crypto-js/wiki/License
             var iterations = cfg.iterations;
 
             // Generate key
-            while (derivedKeyWords.length < keySize) {
+            while (derivedKeyWords.length < keySize)
+            {
                 var block = hmac.update(salt).finalize(blockIndex);
                 hmac.reset();
 
@@ -86,7 +90,8 @@ code.google.com/p/crypto-js/wiki/License
 
                 // Iterations
                 var intermediate = block;
-                for (var i = 1; i < iterations; i++) {
+                for (var i = 1; i < iterations; i++)
+                {
                     intermediate = hmac.finalize(intermediate);
                     hmac.reset();
 
@@ -94,7 +99,8 @@ code.google.com/p/crypto-js/wiki/License
                     var intermediateWords = intermediate.words;
 
                     // XOR intermediate with block
-                    for (var j = 0; j < blockWordsLength; j++) {
+                    for (var j = 0; j < blockWordsLength; j++)
+                    {
                         blockWords[j] ^= intermediateWords[j];
                     }
                 }
@@ -125,7 +131,8 @@ code.google.com/p/crypto-js/wiki/License
      *     var key = CryptoJS.PBKDF2(password, salt, { keySize: 8 });
      *     var key = CryptoJS.PBKDF2(password, salt, { keySize: 8, iterations: 1000 });
      */
-    C.PBKDF2 = function (password, salt, cfg) {
+    C.PBKDF2 = function (password, salt, cfg)
+    {
         return PBKDF2.create(cfg).compute(password, salt);
     };
 }());
