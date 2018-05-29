@@ -101,7 +101,7 @@
 	<select id="tbdTicket" parameterType="java.lang.String" resultMap="totalView">
 		SELECT ticket.*,staff.*,department.*
 		FROM ticket,staff,department
-		WHERE handler_id = #{id} and ticket_result = null and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
+		WHERE handler_id = #{id} and ticket_result is null and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
 	</select>
 
 	<update id="changeTicketHandler">

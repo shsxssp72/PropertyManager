@@ -53,7 +53,7 @@
 	<select id="tbdOverHaulCount" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT count(*)
 		FROM overhaulRecord
-		WHERE overhaul_handler = #{id} and overhaul_result = null
+		WHERE overhaul_handler = #{id} and overhaul_result is null
 	</select>
 
 	<select id="overhaulHistory" parameterType="java.lang.String" resultMap="totalView">

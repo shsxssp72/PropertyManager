@@ -23,7 +23,7 @@
 	<select id="getExternal" resultMap="carIORecord">
 		SELECT *
 		FROM carIORecord
-		WHERE prprt_id = null
+		WHERE prprt_id is null
 	</select>
 
 	<select id="getCarIORecordbyParams" resultMap="carIORecord" parameterType="java.util.HashMap">

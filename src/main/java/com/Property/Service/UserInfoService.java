@@ -13,5 +13,4 @@ public interface UserInfoService
 	SysRole getUserRole(int uid);
 	List<SysPermission> getUserPermission(int uid);
 	void updatePassword(int uid,String newPassword,String newSalt);
-
 }

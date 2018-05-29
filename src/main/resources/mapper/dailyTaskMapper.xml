@@ -36,13 +36,13 @@
 	<select id="tbdTask"  parameterType="java.lang.String" resultMap="dailyTask">
 		SELECT *
 		FROM dailyTask
-		WHERE task_handler = #{id} and task_result = null
+		WHERE task_handler = #{id} and task_result is null
 	</select>
 
 	<select id="tbdTaskCount" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT count(*)
 		FROM dailyTask
-		WHERE task_handler = #{id} and task_result = null
+		WHERE task_handler = #{id} and task_result is null
 	</select>
 
 	<update id="changeTaskHandler" >

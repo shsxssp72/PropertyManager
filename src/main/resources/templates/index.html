@@ -190,12 +190,11 @@
                 </li>
 
                 <li th:if="${roleName=='accountant'}">
-                    <a href="/account/status"><i class="fa fa-calculator"></i> <span class="nav-label">Report</span>
-                        <span class="fa arrow"></span>Account</a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="/account/status">Account Status</a></li>
-                        <li><a href="/account/modify">Modify Account</a></li>
-                    </ul>
+                    <a href="/accountant/chargingSituation"><i class="fa fa-calculator"></i> <span class="nav-label">chargingSituation</span></a>
+                </li>
+
+                <li th:if="${roleName=='accountant'}">
+                    <a href="/accountant/carCharging"><i class="fa fa-calculator"></i> <span class="nav-label">carCharging</span></a>
                 </li>
 
                 <li th:if="${roleName=='receptionist'}">

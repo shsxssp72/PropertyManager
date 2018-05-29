@@ -5,6 +5,7 @@ import com.Property.Domain.*;
 import com.Property.Mapper.SysRoleMapper;
 import com.Property.Mapper.UserInfoMapper;
 import com.Property.Service.ProprietorService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,7 @@ public class ProprietorController {
     @Autowired
     private TicketDao ticketDao;
 
+    @ApiOperation(value="业主待缴费项目条目", notes = "")
     @RequestMapping("/payment/pay")
     public ModelAndView payment(HttpSession session){
 
