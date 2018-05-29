@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.CarIORecordDao">
+	<resultMap id="carIORecord" type="com.Property.Domain.CarIORecord">
+		<id column="io_record_id" property="io_record_id" jdbcType="CHAR"/>
+		<result column="plate_number" property="plate_number" jdbcType="CHAR"/>
+		<result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
+		<result column="record_in_time" property="record_in_time" jdbcType="TIMESTAMP"/>
+		<result column="record_out_time" property="record_out_time" jdbcType="TIMESTAMP"/>
+		<result column="price" property="price" jdbcType="DECIMAL"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		io_record_id, plate_number, prprt_id, record_in_time, record_out_time, price
+	</sql>
+
+	<select id="getAll" resultMap="carIORecord">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM carIORecord
+	</select>
+
+	<select id="getExternal" resultMap="carIORecord">
+		SELECT *
+		FROM carIORecord
+		WHERE prprt_id = null
+	</select>
+
+	<select id="getCarIORecordbyParams" resultMap="carIORecord" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM carIORecord
+		<where>
+			1 = 1
+			<if test="io_record_id!=null and io_record_id!=''">
+				AND io_record_id = #{io_record_id,jdbcType=CHAR}
+			</if>
+			<if test="plate_number!=null and plate_number!=''">
+				AND plate_number = #{plate_number,jdbcType=CHAR}
+			</if>
+			<if test="prprt_id!=null and prprt_id!=''">
+				AND prrpt_id = #{prprt_id,jdbcType=CHAR}
+			</if>
+			<if test="record_in_time!=null">
+				AND record_in_time = #{record_in_time,jdbcType=TIMESTAMP}
+			</if>
+			<if test="record_out_time!=null">
+				AND record_out_time = #{record_out_time,jdbcType=TIMESTAMP}
+			</if>
+			<if test="price!=null">
+				AND price = #{price,jdbcType=DECIMAL}
+			</if>
+		</where>
+	</select>
+
+	<insert id="addCarIORecord" parameterType="com.Property.Domain.CarIORecord">
+		INSERT INTO carIORecord (plate_number, prprt_id, record_in_time, record_out_time, price)
+		VALUES (#{plate_number}, #{prprt_id}, #{record_in_time}, #{record_out_time}, #{price})
+	</insert>
+
+	<delete id="deleteCarIORecord" parameterType="java.lang.String">
+		DELETE FROM carIORecord
+		WHERE io_record_id = #{id}
+	</delete>
+
+	<update id="updateCarIORecord" parameterType="com.Property.Domain.CarIORecord">
+		UPDATE carIORecord
+		SET plate_number    = #{plate_number}, prprt_id = #{prprt_id}, record_in_time = #{record_in_time},
+			record_out_time = #{record_out_time}, price = #{price}
+	</update>
+</mapper>

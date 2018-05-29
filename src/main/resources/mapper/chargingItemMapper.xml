@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.ChargingItemDao">
+	<resultMap id="chargingItem" type="com.Property.Domain.ChargingItem">
+		<id column="item_id" property="item_id" jdbcType="CHAR"/>
+		<result column="item_title" property="item_title" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		item_id, item_title
+	</sql>
+
+	<select id="getAll" resultMap="chargingItem">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM chargingItem
+	</select>
+
+	<select id="getChargingItembyParams" resultMap="chargingItem" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM chargingItem
+		<where>
+			1 = 1
+			<if test="item_id!=null and item_id!=''">
+				AND item_id = #{item_id,jdbcType=CHAR}
+			</if>
+			<if test="item_title!=null and item_title!=''">
+				AND item_title like CONCAT(CONCAT('%',#{item_title,jdbcType=VARCHAR}),'%')
+			</if>
+		</where>
+	</select>
+
+	<insert id="addChargingItem" parameterType="com.Property.Domain.ChargingItem">
+		INSERT INTO chargingItem (item_title)
+		VALUES (#{item_title})
+	</insert>
+
+	<delete id="deleteChargingItem" parameterType="java.lang.String">
+		DELETE FROM chargingItem
+		WHERE item_id = #{id}
+	</delete>
+
+	<update id="updateChargingItem" parameterType="com.Property.Domain.ChargingItem">
+		UPDATE chargingItem
+		SET item_title = #{item_title}
+		WHERE item_id = #{item_id}
+	</update>
+</mapper>

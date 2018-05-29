@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TestPage</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<div style="text-align: center;margin:0 auto;width: 1000px; ">
+    <h1>Test</h1>
+    <table width="100%" border="1" cellspacing="1" cellpadding="0">
+        <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>d</td>
+            <td>e</td>
+            <td>f</td>
+        </tr>
+        <!--/*@thymesVar id="learnList" type=""*/-->
+        <tr th:each="Test: ${testLists}">
+            <td th:text="${Test.a}">a</td>
+            <td th:text="${Test.b}">b</td>
+            <td th:text="${Test.c}">c</td>
+            <td th:text="${Test.d}">d</td>
+            <td th:text="${Test.e}">e</td>
+            <td th:text="${Test.f}">f</td>
+            <!--<td><a th:href="${learn.url}" target="_blank">点我</a></td>-->
+        </tr>
+    </table>
+</div>
+</body>
+</html>

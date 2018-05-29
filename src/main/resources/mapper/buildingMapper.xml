@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Property.Dao.BuildingDao">
+	<resultMap id="building" type="com.Property.Domain.Building">
+		<id column="building_id" property="building_id" jdbcType="CHAR"/>
+		<result column="subarea_id" property="subarea_id" jdbcType="CHAR"/>
+		<result column="max_floor" property="max_floor" jdbcType="INTEGER"/>
+		<result column="max_room_num" property="max_room_num" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<sql id="BaseColumnList">
+		building_id, subarea_id, subarea_id, max_floor, max_room_num
+	</sql>
+
+	<select id="getAll" resultMap="building">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM building
+	</select>
+
+	<select id="getBuildingbyParams" resultMap="building" parameterType="java.util.HashMap">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM building
+		<where>
+			1 = 1
+			<if test="building_id!=null and building_id!=''">
+				AND building_id = #{building_id,jdbcType=CHAR}
+			</if>
+			<if test="subarea_id!=null and subarea_id!=''">
+				AND subarea_id = #{subarea_id,jdbcType=CHAR}
+			</if>
+			<if test="max_floor!=null">
+				AND max_floor = #{max_floor,jdbcType=INTEGER}
+			</if>
+			<if test="max_room_num!=null">
+				AND max_room_num = #{max_room_num,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+
+	<insert id="addBuilding" parameterType="com.Property.Domain.Building">
+		INSERT INTO building (subarea_id, max_floor, max_room_num)
+		VALUES (#{subarea_id}, #{max_floor}, #{max_room_num})
+	</insert>
+
+	<delete id="deleteBuilding" parameterType="java.lang.String">
+		DELETE FROM building
+		WHERE building_id = #{id}
+	</delete>
+
+	<update id="updateBuilding" parameterType="com.Property.Domain.Building">
+		UPDATE building
+		SET subarea_id = #{subarea_id}, max_floor = #{max_floor}, max_room_num = #{max_room_num}
+		WHERE building_id = #{building_id}
+	</update>
+
+</mapper>

@@ -1,0 +1,4 @@
+C:\Jetbrains\apps\CLion\ch-0\181.4445.84\bin\cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Release -DCMAKE_MAKE_PROGRAM=C:/msys64/mingw64/bin/mingw32-make.exe -DCMAKE_C_COMPILER=C:/msys64/mingw64/bin/clang.exe -DCMAKE_CXX_COMPILER=C:/msys64/mingw64/bin/clang++.exe -G "CodeBlocks - MinGW Makefiles" D:\Projects\IDEAProjects\PropertyManager\tools\DatabaseDataGenerator
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/Projects/IDEAProjects/PropertyManager/tools/DatabaseDataGenerator/cmake-build-release
