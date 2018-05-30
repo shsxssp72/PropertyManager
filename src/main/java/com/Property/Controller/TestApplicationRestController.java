@@ -196,7 +196,6 @@ public class TestApplicationRestController
 				.encodeBase64String(keyPair.getKey().getEncoded()));
 
 
-
 		ModelAndView modelAndView=new ModelAndView("changePassword");
 		String username=(String)request.getSession().getAttribute("username");
 		String Msg="";

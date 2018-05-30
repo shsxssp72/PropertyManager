@@ -7,7 +7,7 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		role_id, perm_id
+		role_id,perm_id
 	</sql>
 
 	<select id="getAll" resultMap="rolePermission">

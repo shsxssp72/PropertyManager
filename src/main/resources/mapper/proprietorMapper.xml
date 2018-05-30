@@ -22,8 +22,9 @@
 		FROM proprietor
 	</select>
 
-	<select id="getSelfInfo" parameterType="java.lang.String">
-		SELECT *
+	<select id="getSelfInfo" parameterType="java.lang.String" resultMap="proprietor">
+		SELECT
+		<include refid="BaseColumnList"/>
 		FROM proprietor
 		WHERE proprietor.prprt_id = #{id}
 	</select>

@@ -9,6 +9,7 @@ import com.Property.Domain.Staff;
 import com.Property.Mapper.SysRoleMapper;
 import com.Property.Mapper.UserInfoMapper;
 import com.Property.Service.AccountantService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,70 +24,76 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequiresRoles("accountant")
 @RequestMapping("/accountant")
-public class AccountantController {
+public class AccountantController
+{
 
-    @Autowired
-    SysRoleMapper sysRoleMapper;
-    @Autowired
-    UserInfoMapper userInfoMapper;
-    @Autowired
-    private StaffDao staffDao;
-    @Autowired
-    private AccountantService accountantService;
-    @Autowired
-    private CarIORecordDao carIORecordDao;
+	@Autowired
+	SysRoleMapper sysRoleMapper;
+	@Autowired
+	UserInfoMapper userInfoMapper;
+	@Autowired
+	private StaffDao staffDao;
+	@Autowired
+	private AccountantService accountantService;
+	@Autowired
+	private CarIORecordDao carIORecordDao;
 
-    @RequestMapping("/chargingSituation")
-    public ModelAndView chargingSituation(HttpSession session){
+	@RequestMapping("/chargingSituation")
+	public ModelAndView chargingSituation(HttpSession session)
+	{
 
-        ModelAndView modelAndView = new ModelAndView("proprietor_payment_history");
-        String username=(String)session.getAttribute("username");
-        String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
+		ModelAndView modelAndView=new ModelAndView("proprietor_payment_history");
+		String username=(String)session.getAttribute("username");
+		String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("staff_name", username);
-        List<Staff> staff = staffDao.getStaffbyParams(params);
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("staff_name",username);
+		List<Staff> staff=staffDao.getStaffbyParams(params);
 
-        /*String staff_id = staff.get(0).getStaff_id();*/
-        String staff_id = "SF1707111159";
+		/*String staff_id = staff.get(0).getStaff_id();*/
+		String staff_id="SF1707111159";
 
-        List<ChargingSituation> chargingSituationList = accountantService.getAllCharging();
+		List<ChargingSituation> chargingSituationList=accountantService.getAllCharging();
 
-        modelAndView.addObject("chargingSituationList", chargingSituationList);
-        modelAndView.addObject("username",username);
-        modelAndView.addObject("roleName",roleName);
-        return modelAndView;
-    }
+		modelAndView.addObject("chargingSituationList",chargingSituationList);
+		modelAndView.addObject("username",username);
+		modelAndView.addObject("roleName",roleName);
+		return modelAndView;
+	}
 
-    @RequestMapping("/carCharging")
-    public ModelAndView carCharging(HttpSession session){
+	@RequestMapping("/carCharging")
+	public ModelAndView carCharging(HttpSession session)
+	{
 
-        ModelAndView modelAndView = new ModelAndView("carIO_records");
-        String username=(String)session.getAttribute("username");
-        String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
+		ModelAndView modelAndView=new ModelAndView("carIO_records");
+		String username=(String)session.getAttribute("username");
+		String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("staff_name", username);
-        List<Staff> staff = staffDao.getStaffbyParams(params);
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("staff_name",username);
+		List<Staff> staff=staffDao.getStaffbyParams(params);
 
-        //String staff_id = staff.get(0).getStaff_id();
-        String staff_id = "SF1707111159";
+		//String staff_id = staff.get(0).getStaff_id();
+		String staff_id="SF1707111159";
 
-        List<CarIORecord> carIORecords = accountantService.getExternal();
-        for (int i =0; i<carIORecords.size();i++){
-            System.out.println(carIORecords.get(i).getPlate_number());
-        }
+		List<CarIORecord> carIORecords=accountantService.getExternal();
+		for(int i=0;i<carIORecords.size();i++)
+		{
+			System.out.println(carIORecords.get(i).getPlate_number());
+		}
 
-        modelAndView.addObject("carIORecords", carIORecords);
-        modelAndView.addObject("username",username);
-        modelAndView.addObject("roleName",roleName);
-        return modelAndView;
-    }
+		modelAndView.addObject("carIORecords",carIORecords);
+		modelAndView.addObject("username",username);
+		modelAndView.addObject("roleName",roleName);
+		return modelAndView;
+	}
 
-    @RequestMapping("/selfInfo")
-    public ModelAndView selfInfo(HttpServletRequest request, HttpServletResponse response){
-        //查看个人信息
-        return new ModelAndView();
-    }
+	@RequestMapping("/selfInfo")
+	public ModelAndView selfInfo(HttpServletRequest request,HttpServletResponse response)
+	{
+		//查看个人信息
+		return new ModelAndView();
+	}
 }
