@@ -8,6 +8,7 @@ import com.Property.Domain.*;
 import com.Property.Mapper.SysRoleMapper;
 import com.Property.Mapper.UserInfoMapper;
 import com.Property.Service.AccountantService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequiresRoles("accountant")
 @RequestMapping("/accountant")
 public class AccountantController {
 
