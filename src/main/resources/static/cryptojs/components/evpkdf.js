@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function () {
+(function ()
+{
     // Shortcuts
     var C = CryptoJS;
     var C_lib = C.lib;
@@ -26,7 +27,7 @@ code.google.com/p/crypto-js/wiki/License
          * @property {number} iterations The number of iterations to perform. Default: 1
          */
         cfg: Base.extend({
-            keySize: 128/32,
+            keySize: 128 / 32,
             hasher: MD5,
             iterations: 1
         }),
@@ -42,7 +43,8 @@ code.google.com/p/crypto-js/wiki/License
          *     var kdf = CryptoJS.algo.EvpKDF.create({ keySize: 8 });
          *     var kdf = CryptoJS.algo.EvpKDF.create({ keySize: 8, iterations: 1000 });
          */
-        init: function (cfg) {
+        init: function (cfg)
+        {
             this.cfg = this.cfg.extend(cfg);
         },
 
@@ -58,7 +60,8 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var key = kdf.compute(password, salt);
          */
-        compute: function (password, salt) {
+        compute: function (password, salt)
+        {
             // Shortcut
             var cfg = this.cfg;
 
@@ -74,15 +77,18 @@ code.google.com/p/crypto-js/wiki/License
             var iterations = cfg.iterations;
 
             // Generate key
-            while (derivedKeyWords.length < keySize) {
-                if (block) {
+            while (derivedKeyWords.length < keySize)
+            {
+                if (block)
+                {
                     hasher.update(block);
                 }
                 var block = hasher.update(password).finalize(salt);
                 hasher.reset();
 
                 // Iterations
-                for (var i = 1; i < iterations; i++) {
+                for (var i = 1; i < iterations; i++)
+                {
                     block = hasher.finalize(block);
                     hasher.reset();
                 }
@@ -112,7 +118,8 @@ code.google.com/p/crypto-js/wiki/License
      *     var key = CryptoJS.EvpKDF(password, salt, { keySize: 8 });
      *     var key = CryptoJS.EvpKDF(password, salt, { keySize: 8, iterations: 1000 });
      */
-    C.EvpKDF = function (password, salt, cfg) {
+    C.EvpKDF = function (password, salt, cfg)
+    {
         return EvpKDF.create(cfg).compute(password, salt);
     };
 }());

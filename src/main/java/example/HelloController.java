@@ -24,17 +24,17 @@ public class HelloController
 	@Autowired
 	private OrderMapper orderMapper;
 
-	@RequestMapping(value = "/user")
+	@RequestMapping(value="/user")
 	public String user()
 	{
-		Customer customer = customerMapper.findUserByName("abc");
-		return customer.getCustomerName() + "---" + customer.getTotalAmount();
+		Customer customer=customerMapper.findUserByName("abc");
+		return customer.getCustomerName()+"---"+customer.getTotalAmount();
 	}
 
-	@RequestMapping(value = "/order")
+	@RequestMapping(value="/order")
 	public String order()
 	{
-		Order order = orderMapper.getByID(3);
-		return order.getCustomerName() + "/" + order.getTelephoneID() + "/" + order.getOrderAmount()+"/"+order.getOrderTime();
+		Order order=orderMapper.getByID(3);
+		return order.getCustomerName()+"/"+order.getTelephoneID()+"/"+order.getOrderAmount()+"/"+order.getOrderTime();
 	}
 }

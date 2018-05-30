@@ -8,10 +8,11 @@
 
     <title>PM | Profile</title>
 
-    <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../static/INSPINIA/css/animate.css" rel="stylesheet">
-    <link href="../static/INSPINIA/css/style.css" rel="stylesheet">
+    <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
+    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
+          th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
+    <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
+    <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
 
 </head>
 
@@ -172,7 +173,6 @@
 
 
                 <li th:if="${roleName=='proprietor'}">
-                <li>
                     <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
                             class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
@@ -180,11 +180,9 @@
                         <li><a href="/suggestion/new">New Suggestion</a></li>
                         <li><a href="/suggestion/history">Suggestion History</a></li>
                     </ul>
-                </li>
                 </li>
 
                 <li th:if="${roleName=='guard'}">
-                <li>
                     <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
                             class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
@@ -192,11 +190,9 @@
                         <li><a href="/suggestion/new">New Suggestion</a></li>
                         <li><a href="/suggestion/history">Suggestion History</a></li>
                     </ul>
-                </li>
                 </li>
 
                 <li th:if="${roleName=='cleaner'}">
-                <li>
                     <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
                             class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
@@ -204,11 +200,9 @@
                         <li><a href="/suggestion/new">New Suggestion</a></li>
                         <li><a href="/suggestion/history">Suggestion History</a></li>
                     </ul>
-                </li>
                 </li>
 
                 <li th:if="${roleName=='repairman'}">
-                <li>
                     <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
                             class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
@@ -216,7 +210,6 @@
                         <li><a href="/suggestion/new">New Suggestion</a></li>
                         <li><a href="/suggestion/history">Suggestion History</a></li>
                     </ul>
-                </li>
                 </li>
             </ul>
 
@@ -312,46 +305,59 @@
                     </div>
 
                     <div class="row">
-                        <div class="row-md-4">
+                        <div class="row-lg-4">
                             <div class="ibox ">
                                 <div class="ibox-title">
                                     <h5>Change Password</h5>
                                 </div>
                                 <div class="ibox-content">
-                                    <form role="form">
-                                        <div class="row" id="pwd-container3">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="oldPassword">Username</label>
-                                                    <input type="text" class="form-control" id="oldPassword"
-                                                           placeholder="Old Password">
-                                                </div>
+                                    <p>Please notice that once the password is changed successfully, you will need to
+                                        login again with the
+                                        new password.</p>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-primary" onclick="window.open('/changePassword')">
+                                            Change Password
+                                        </button>
+                                    </div>
 
-                                                <div class="form-group">
-                                                    <label for="newPassword">Password</label>
-                                                    <input type="password" class="form-control pwdStrength"
-                                                           id="newPassword"
-                                                           placeholder="New Password">
-                                                </div>
+                                    <!--<form role="form" method="post">-->
+                                    <!--<div class="row" id="pwd-container3">-->
+                                    <!--<div class="col-sm-12">-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label for="oldPassword">Old Password</label>-->
+                                    <!--<input type="password" class="form-control"-->
+                                    <!--id="oldPassword" name="oldPassword"-->
+                                    <!--placeholder="Old Password">-->
+                                    <!--</div>-->
 
-                                                <div class="form-group">
-                                                    <label for="newPasswordConfirm">Password</label>
-                                                    <input type="password" class="form-control"
-                                                           id="newPasswordConfirm"
-                                                           placeholder="New Password Confirm">
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="pwstrength_viewport_progress"></div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label th:text="${passwordMismatchMsg}"></label>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <button class="btn btn-primary" type="submit">Submit</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <!--<div class="form-group">-->
+                                    <!--<label for="newPassword">New Password</label>-->
+                                    <!--<input type="password" class="form-control pwdStrength"-->
+                                    <!--id="newPassword" name="newPassword"-->
+                                    <!--placeholder="New Password">-->
+                                    <!--</div>-->
+
+                                    <!--<div class="form-group">-->
+                                    <!--<label for="newPasswordConfirm">New Password Confirm</label>-->
+                                    <!--<input type="password" class="form-control"-->
+                                    <!--id="newPasswordConfirm" name="newPasswordConfirm"-->
+                                    <!--placeholder="New Password Confirm">-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<div class="pwstrength_viewport_progress"></div>-->
+                                    <!--<div class="" th:text="${msg}">-->
+                                    <!--&lt;!&ndash;Invalid Username/Password.&ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                    <!--&lt;!&ndash;<label th:text="${passwordMismatchMsg}"></label>&ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--<div class="col-sm-3">-->
+                                    <!--<button class="btn btn-primary" type="submit">Submit</button>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</form>-->
                                 </div>
                             </div>
                         </div>
@@ -365,21 +371,99 @@
                             <div class="ibox-title">
                                 <h5>Profile Detail</h5>
                             </div>
-                            <div class="ibox-content">
+                            <div class="ibox-content" th:if="${roleName!='proprietor'}">
                                 <form method="get" class="form-horizontal">
+                                    <!--<div class="hr-line-dashed"></div>-->
+                                    <!--<div class="form-group"><label class="col-lg-2 control-label">Disabled</label>-->
+                                    <!--<div class="col-lg-10"><input type="text" disabled=""-->
+                                    <!--placeholder="Disabled input here..."-->
+                                    <!--class="form-control"></div>-->
+                                    <!--</div>-->
                                     <div class="hr-line-dashed"></div>
-                                    <div class="form-group"><label class="col-lg-2 control-label">Disabled</label>
-                                        <div class="col-lg-10"><input type="text" disabled=""
-                                                                      placeholder="Disabled input here..."
-                                                                      class="form-control"></div>
-                                    </div>
-                                    <div class="hr-line-dashed"></div>
-                                    <div class="form-group"><label class="col-lg-2 control-label">Static
-                                        control</label>
-                                        <div class="col-lg-10"><p class="form-control-static">email@example.com</p>
+                                    <div class="form-group"><label class="col-lg-2 control-label">ID</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${ID}">email@example.com</p>
                                         </div>
                                     </div>
                                     <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Name</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${Name}">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Gender</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${Gender}">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Address</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${Address}">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Department</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${Department}">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Position</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${Position}">email@example.com</p>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                            <div class="ibox-content" th:if="${roleName=='proprietor'}">
+                                <form method="get" class="form-horizontal">
+                                    <!--<div class="hr-line-dashed"></div>-->
+                                    <!--<div class="form-group"><label class="col-lg-2 control-label">Disabled</label>-->
+                                    <!--<div class="col-lg-10"><input type="text" disabled=""-->
+                                    <!--placeholder="Disabled input here..."-->
+                                    <!--class="form-control"></div>-->
+                                    <!--</div>-->
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">ID</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${ID}">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Name</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${Name}">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Gender</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${Gender}">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Tel</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${Tel}">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Birthday</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${Birthday}">email@example.com</p>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group"><label class="col-lg-2 control-label">Apartment</label>
+                                        <div class="col-lg-10">
+                                            <p class="form-control-static" th:text="${Apartment}">email@example.com</p>
+                                        </div>
+                                    </div>
+
                                 </form>
                             </div>
                         </div>
@@ -388,27 +472,26 @@
             </div>
         </div>
         <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
-            <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
-            </div>
+
         </div>
 
     </div>
 </div>
 
 
-<script src="../static/INSPINIA/js/jquery-3.1.1.min.js"></script>
-<script src="../static/INSPINIA/js/bootstrap.js"></script>
-<script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="../static/INSPINIA/js/inspinia.js"></script>
-<script src="../static/INSPINIA/js/plugins/pace/pace.min.js"></script>
-<script src="../static/INSPINIA/js/plugins/peity/jquery.peity.min.js"></script>
-<script src="../static/INSPINIA/js/demo/peity-demo.js"></script>
-<script src="../static/INSPINIA/js/plugins/pwstrength/pwstrength-bootstrap.min.js"></script>
+<script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
+<script src="../static/INSPINIA/js/bootstrap.js" th:src="@{/INSPINIA/js/bootstrap.js}"></script>
+<script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
+        th:src="@{/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
+        th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
+<script src="../static/INSPINIA/js/plugins/pace/pace.min.js" th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/peity/jquery.peity.min.js"
+        th:src="@{/INSPINIA/js/plugins/peity/jquery.peity.min.js}"></script>
+<script src="../static/INSPINIA/js/demo/peity-demo.js" th:src="@{/INSPINIA/js/demo/peity-demo.js}"></script>
+<script src="../static/INSPINIA/js/plugins/pwstrength/pwstrength-bootstrap.min.js"
+        th:src="@{/INSPINIA/js/plugins/pwstrength/pwstrength-bootstrap.min.js}"></script>
 
 
 <script>

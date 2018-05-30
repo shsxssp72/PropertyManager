@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function () {
+(function ()
+{
     // Shortcuts
     var C = CryptoJS;
     var C_x64 = C.x64;
@@ -17,7 +18,8 @@ code.google.com/p/crypto-js/wiki/License
      * SHA-384 hash algorithm.
      */
     var SHA384 = C_algo.SHA384 = SHA512.extend({
-        _doReset: function () {
+        _doReset: function ()
+        {
             this._hash = new X64WordArray.init([
                 new X64Word.init(0xcbbb9d5d, 0xc1059ed8), new X64Word.init(0x629a292a, 0x367cd507),
                 new X64Word.init(0x9159015a, 0x3070dd17), new X64Word.init(0x152fecd8, 0xf70e5939),
@@ -26,7 +28,8 @@ code.google.com/p/crypto-js/wiki/License
             ]);
         },
 
-        _doFinalize: function () {
+        _doFinalize: function ()
+        {
             var hash = SHA512._doFinalize.call(this);
 
             hash.sigBytes -= 16;

@@ -7,7 +7,7 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		uid,role_id
+		uid, role_id
 	</sql>
 
 	<select id="getAll" resultMap="userRole">

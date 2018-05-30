@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function () {
+(function ()
+{
     // Shortcuts
     var C = CryptoJS;
     var C_lib = C.lib;
@@ -27,12 +28,14 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var hmacHasher = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA256, key);
          */
-        init: function (hasher, key) {
+        init: function (hasher, key)
+        {
             // Init hasher
             hasher = this._hasher = new hasher.init();
 
             // Convert string to WordArray, else assume WordArray already
-            if (typeof key == 'string') {
+            if (typeof key == 'string')
+            {
                 key = Utf8.parse(key);
             }
 
@@ -41,7 +44,8 @@ code.google.com/p/crypto-js/wiki/License
             var hasherBlockSizeBytes = hasherBlockSize * 4;
 
             // Allow arbitrary length keys
-            if (key.sigBytes > hasherBlockSizeBytes) {
+            if (key.sigBytes > hasherBlockSizeBytes)
+            {
                 key = hasher.finalize(key);
             }
 
@@ -57,7 +61,8 @@ code.google.com/p/crypto-js/wiki/License
             var iKeyWords = iKey.words;
 
             // XOR keys with pad constants
-            for (var i = 0; i < hasherBlockSize; i++) {
+            for (var i = 0; i < hasherBlockSize; i++)
+            {
                 oKeyWords[i] ^= 0x5c5c5c5c;
                 iKeyWords[i] ^= 0x36363636;
             }
@@ -74,7 +79,8 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     hmacHasher.reset();
          */
-        reset: function () {
+        reset: function ()
+        {
             // Shortcut
             var hasher = this._hasher;
 
@@ -95,7 +101,8 @@ code.google.com/p/crypto-js/wiki/License
          *     hmacHasher.update('message');
          *     hmacHasher.update(wordArray);
          */
-        update: function (messageUpdate) {
+        update: function (messageUpdate)
+        {
             this._hasher.update(messageUpdate);
 
             // Chainable
@@ -116,7 +123,8 @@ code.google.com/p/crypto-js/wiki/License
          *     var hmac = hmacHasher.finalize('message');
          *     var hmac = hmacHasher.finalize(wordArray);
          */
-        finalize: function (messageUpdate) {
+        finalize: function (messageUpdate)
+        {
             // Shortcut
             var hasher = this._hasher;
 

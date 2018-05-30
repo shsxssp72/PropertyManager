@@ -8,10 +8,12 @@
 		<result column="user_password" property="user_password" jdbcType="CHAR"/>
 		<result column="salt" property="salt" jdbcType="CHAR"/>
 		<result column="state" property="state" jdbcType="INTEGER"/>
+		<result column="staff_id" property="staff_id" jdbcType="CHAR"/>
+		<result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		uid, user_name, display_name, user_password, salt, state
+		uid, user_name, display_name, user_password, salt, state, staff_id, prprt_id
 	</sql>
 
 	<select id="getAll" resultMap="userInfo">
@@ -27,10 +29,24 @@
 		WHERE user_name=#{userName}
 	</select>
 
+	<select id="getStaffIDByUid" resultType="java.lang.String">
+		SELECT staff_id
+		FROM UserInfo
+		WHERE uid=#{inputUid}
+	</select>
+
+	<select id="getPrprtIDByUid" resultType="java.lang.String">
+		SELECT prprt_id
+		FROM UserInfo
+		WHERE uid=#{inputUid}
+	</select>
+
 	<update id="updatePassword">
 		UPDATE UserInfo
 		SET user_password = #{newPassword}, salt = #{newSalt}
 		WHERE uid = #{uid}
 	</update>
+
+
 
 </mapper>

@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function () {
+(function ()
+{
     // Shortcuts
     var C = CryptoJS;
     var C_lib = C.lib;
@@ -15,7 +16,8 @@ code.google.com/p/crypto-js/wiki/License
      * RC4 stream cipher algorithm.
      */
     var RC4 = C_algo.RC4 = StreamCipher.extend({
-        _doReset: function () {
+        _doReset: function ()
+        {
             // Shortcuts
             var key = this._key;
             var keyWords = key.words;
@@ -23,12 +25,14 @@ code.google.com/p/crypto-js/wiki/License
 
             // Init sbox
             var S = this._S = [];
-            for (var i = 0; i < 256; i++) {
+            for (var i = 0; i < 256; i++)
+            {
                 S[i] = i;
             }
 
             // Key setup
-            for (var i = 0, j = 0; i < 256; i++) {
+            for (var i = 0, j = 0; i < 256; i++)
+            {
                 var keyByteIndex = i % keySigBytes;
                 var keyByte = (keyWords[keyByteIndex >>> 2] >>> (24 - (keyByteIndex % 4) * 8)) & 0xff;
 
@@ -44,16 +48,18 @@ code.google.com/p/crypto-js/wiki/License
             this._i = this._j = 0;
         },
 
-        _doProcessBlock: function (M, offset) {
+        _doProcessBlock: function (M, offset)
+        {
             M[offset] ^= generateKeystreamWord.call(this);
         },
 
-        keySize: 256/32,
+        keySize: 256 / 32,
 
         ivSize: 0
     });
 
-    function generateKeystreamWord() {
+    function generateKeystreamWord()
+    {
         // Shortcuts
         var S = this._S;
         var i = this._i;
@@ -61,7 +67,8 @@ code.google.com/p/crypto-js/wiki/License
 
         // Generate keystream word
         var keystreamWord = 0;
-        for (var n = 0; n < 4; n++) {
+        for (var n = 0; n < 4; n++)
+        {
             i = (i + 1) % 256;
             j = (j + S[i]) % 256;
 
@@ -103,11 +110,13 @@ code.google.com/p/crypto-js/wiki/License
             drop: 192
         }),
 
-        _doReset: function () {
+        _doReset: function ()
+        {
             RC4._doReset.call(this);
 
             // Drop
-            for (var i = this.cfg.drop; i > 0; i--) {
+            for (var i = this.cfg.drop; i > 0; i--)
+            {
                 generateKeystreamWord.call(this);
             }
         }

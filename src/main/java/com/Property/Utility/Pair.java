@@ -4,6 +4,7 @@ public class Pair<K extends Object,V extends Object>
 {
 	private K key;
 	private V value;
+
 	Pair(K k,V v)
 	{
 		key=k;

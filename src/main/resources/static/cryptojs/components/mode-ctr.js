@@ -7,11 +7,13 @@ code.google.com/p/crypto-js/wiki/License
 /**
  * Counter block mode.
  */
-CryptoJS.mode.CTR = (function () {
+CryptoJS.mode.CTR = (function ()
+{
     var CTR = CryptoJS.lib.BlockCipherMode.extend();
 
     var Encryptor = CTR.Encryptor = CTR.extend({
-        processBlock: function (words, offset) {
+        processBlock: function (words, offset)
+        {
             // Shortcuts
             var cipher = this._cipher
             var blockSize = cipher.blockSize;
@@ -19,7 +21,8 @@ CryptoJS.mode.CTR = (function () {
             var counter = this._counter;
 
             // Generate keystream
-            if (iv) {
+            if (iv)
+            {
                 counter = this._counter = iv.slice(0);
 
                 // Remove IV for subsequent blocks
@@ -32,7 +35,8 @@ CryptoJS.mode.CTR = (function () {
             counter[blockSize - 1] = (counter[blockSize - 1] + 1) | 0
 
             // Encrypt
-            for (var i = 0; i < blockSize; i++) {
+            for (var i = 0; i < blockSize; i++)
+            {
                 words[offset + i] ^= keystream[i];
             }
         }

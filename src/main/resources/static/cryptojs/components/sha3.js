@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function (Math) {
+(function (Math)
+{
     // Shortcuts
     var C = CryptoJS;
     var C_lib = C.lib;
@@ -16,14 +17,16 @@ code.google.com/p/crypto-js/wiki/License
 
     // Constants tables
     var RHO_OFFSETS = [];
-    var PI_INDEXES  = [];
+    var PI_INDEXES = [];
     var ROUND_CONSTANTS = [];
 
     // Compute Constants
-    (function () {
+    (function ()
+    {
         // Compute rho offset constants
         var x = 1, y = 0;
-        for (var t = 0; t < 24; t++) {
+        for (var t = 0; t < 24; t++)
+        {
             RHO_OFFSETS[x + 5 * y] = ((t + 1) * (t + 2) / 2) % 64;
 
             var newX = y % 5;
@@ -33,22 +36,28 @@ code.google.com/p/crypto-js/wiki/License
         }
 
         // Compute pi index constants
-        for (var x = 0; x < 5; x++) {
-            for (var y = 0; y < 5; y++) {
+        for (var x = 0; x < 5; x++)
+        {
+            for (var y = 0; y < 5; y++)
+            {
                 PI_INDEXES[x + 5 * y] = y + ((2 * x + 3 * y) % 5) * 5;
             }
         }
 
         // Compute round constants
         var LFSR = 0x01;
-        for (var i = 0; i < 24; i++) {
+        for (var i = 0; i < 24; i++)
+        {
             var roundConstantMsw = 0;
             var roundConstantLsw = 0;
 
-            for (var j = 0; j < 7; j++) {
-                if (LFSR & 0x01) {
+            for (var j = 0; j < 7; j++)
+            {
+                if (LFSR & 0x01)
+                {
                     var bitPosition = (1 << j) - 1;
-                    if (bitPosition < 32) {
+                    if (bitPosition < 32)
+                    {
                         roundConstantLsw ^= 1 << bitPosition;
                     } else /* if (bitPosition >= 32) */ {
                         roundConstantMsw ^= 1 << (bitPosition - 32);
@@ -56,10 +65,12 @@ code.google.com/p/crypto-js/wiki/License
                 }
 
                 // Compute next LFSR
-                if (LFSR & 0x80) {
+                if (LFSR & 0x80)
+                {
                     // Primitive polynomial over GF(2): x^8 + x^6 + x^5 + x^4 + 1
                     LFSR = (LFSR << 1) ^ 0x71;
-                } else {
+                } else
+                {
                     LFSR <<= 1;
                 }
             }
@@ -70,8 +81,10 @@ code.google.com/p/crypto-js/wiki/License
 
     // Reusable objects for temporary values
     var T = [];
-    (function () {
-        for (var i = 0; i < 25; i++) {
+    (function ()
+    {
+        for (var i = 0; i < 25; i++)
+        {
             T[i] = X64Word.create();
         }
     }());
@@ -92,49 +105,56 @@ code.google.com/p/crypto-js/wiki/License
             outputLength: 512
         }),
 
-        _doReset: function () {
+        _doReset: function ()
+        {
             var state = this._state = []
-            for (var i = 0; i < 25; i++) {
+            for (var i = 0; i < 25; i++)
+            {
                 state[i] = new X64Word.init();
             }
 
             this.blockSize = (1600 - 2 * this.cfg.outputLength) / 32;
         },
 
-        _doProcessBlock: function (M, offset) {
+        _doProcessBlock: function (M, offset)
+        {
             // Shortcuts
             var state = this._state;
             var nBlockSizeLanes = this.blockSize / 2;
 
             // Absorb
-            for (var i = 0; i < nBlockSizeLanes; i++) {
+            for (var i = 0; i < nBlockSizeLanes; i++)
+            {
                 // Shortcuts
-                var M2i  = M[offset + 2 * i];
+                var M2i = M[offset + 2 * i];
                 var M2i1 = M[offset + 2 * i + 1];
 
                 // Swap endian
                 M2i = (
-                    (((M2i << 8)  | (M2i >>> 24)) & 0x00ff00ff) |
-                    (((M2i << 24) | (M2i >>> 8))  & 0xff00ff00)
+                    (((M2i << 8) | (M2i >>> 24)) & 0x00ff00ff) |
+                    (((M2i << 24) | (M2i >>> 8)) & 0xff00ff00)
                 );
                 M2i1 = (
-                    (((M2i1 << 8)  | (M2i1 >>> 24)) & 0x00ff00ff) |
-                    (((M2i1 << 24) | (M2i1 >>> 8))  & 0xff00ff00)
+                    (((M2i1 << 8) | (M2i1 >>> 24)) & 0x00ff00ff) |
+                    (((M2i1 << 24) | (M2i1 >>> 8)) & 0xff00ff00)
                 );
 
                 // Absorb message into state
                 var lane = state[i];
                 lane.high ^= M2i1;
-                lane.low  ^= M2i;
+                lane.low ^= M2i;
             }
 
             // Rounds
-            for (var round = 0; round < 24; round++) {
+            for (var round = 0; round < 24; round++)
+            {
                 // Theta
-                for (var x = 0; x < 5; x++) {
+                for (var x = 0; x < 5; x++)
+                {
                     // Mix column lanes
                     var tMsw = 0, tLsw = 0;
-                    for (var y = 0; y < 5; y++) {
+                    for (var y = 0; y < 5; y++)
+                    {
                         var lane = state[x + 5 * y];
                         tMsw ^= lane.high;
                         tLsw ^= lane.low;
@@ -143,9 +163,10 @@ code.google.com/p/crypto-js/wiki/License
                     // Temporary values
                     var Tx = T[x];
                     Tx.high = tMsw;
-                    Tx.low  = tLsw;
+                    Tx.low = tLsw;
                 }
-                for (var x = 0; x < 5; x++) {
+                for (var x = 0; x < 5; x++)
+                {
                     // Shortcuts
                     var Tx4 = T[(x + 4) % 5];
                     var Tx1 = T[(x + 1) % 5];
@@ -154,16 +175,18 @@ code.google.com/p/crypto-js/wiki/License
 
                     // Mix surrounding columns
                     var tMsw = Tx4.high ^ ((Tx1Msw << 1) | (Tx1Lsw >>> 31));
-                    var tLsw = Tx4.low  ^ ((Tx1Lsw << 1) | (Tx1Msw >>> 31));
-                    for (var y = 0; y < 5; y++) {
+                    var tLsw = Tx4.low ^ ((Tx1Lsw << 1) | (Tx1Msw >>> 31));
+                    for (var y = 0; y < 5; y++)
+                    {
                         var lane = state[x + 5 * y];
                         lane.high ^= tMsw;
-                        lane.low  ^= tLsw;
+                        lane.low ^= tLsw;
                     }
                 }
 
                 // Rho Pi
-                for (var laneIndex = 1; laneIndex < 25; laneIndex++) {
+                for (var laneIndex = 1; laneIndex < 25; laneIndex++)
+                {
                     // Shortcuts
                     var lane = state[laneIndex];
                     var laneMsw = lane.high;
@@ -171,7 +194,8 @@ code.google.com/p/crypto-js/wiki/License
                     var rhoOffset = RHO_OFFSETS[laneIndex];
 
                     // Rotate lanes
-                    if (rhoOffset < 32) {
+                    if (rhoOffset < 32)
+                    {
                         var tMsw = (laneMsw << rhoOffset) | (laneLsw >>> (32 - rhoOffset));
                         var tLsw = (laneLsw << rhoOffset) | (laneMsw >>> (32 - rhoOffset));
                     } else /* if (rhoOffset >= 32) */ {
@@ -182,18 +206,20 @@ code.google.com/p/crypto-js/wiki/License
                     // Transpose lanes
                     var TPiLane = T[PI_INDEXES[laneIndex]];
                     TPiLane.high = tMsw;
-                    TPiLane.low  = tLsw;
+                    TPiLane.low = tLsw;
                 }
 
                 // Rho pi at x = y = 0
                 var T0 = T[0];
                 var state0 = state[0];
                 T0.high = state0.high;
-                T0.low  = state0.low;
+                T0.low = state0.low;
 
                 // Chi
-                for (var x = 0; x < 5; x++) {
-                    for (var y = 0; y < 5; y++) {
+                for (var x = 0; x < 5; x++)
+                {
+                    for (var y = 0; y < 5; y++)
+                    {
                         // Shortcuts
                         var laneIndex = x + 5 * y;
                         var lane = state[laneIndex];
@@ -203,7 +229,7 @@ code.google.com/p/crypto-js/wiki/License
 
                         // Mix rows
                         lane.high = TLane.high ^ (~Tx1Lane.high & Tx2Lane.high);
-                        lane.low  = TLane.low  ^ (~Tx1Lane.low  & Tx2Lane.low);
+                        lane.low = TLane.low ^ (~Tx1Lane.low & Tx2Lane.low);
                     }
                 }
 
@@ -211,11 +237,13 @@ code.google.com/p/crypto-js/wiki/License
                 var lane = state[0];
                 var roundConstant = ROUND_CONSTANTS[round];
                 lane.high ^= roundConstant.high;
-                lane.low  ^= roundConstant.low;;
+                lane.low ^= roundConstant.low;
+                ;
             }
         },
 
-        _doFinalize: function () {
+        _doFinalize: function ()
+        {
             // Shortcuts
             var data = this._data;
             var dataWords = data.words;
@@ -238,7 +266,8 @@ code.google.com/p/crypto-js/wiki/License
 
             // Squeeze
             var hashWords = [];
-            for (var i = 0; i < outputLengthLanes; i++) {
+            for (var i = 0; i < outputLengthLanes; i++)
+            {
                 // Shortcuts
                 var lane = state[i];
                 var laneMsw = lane.high;
@@ -246,12 +275,12 @@ code.google.com/p/crypto-js/wiki/License
 
                 // Swap endian
                 laneMsw = (
-                    (((laneMsw << 8)  | (laneMsw >>> 24)) & 0x00ff00ff) |
-                    (((laneMsw << 24) | (laneMsw >>> 8))  & 0xff00ff00)
+                    (((laneMsw << 8) | (laneMsw >>> 24)) & 0x00ff00ff) |
+                    (((laneMsw << 24) | (laneMsw >>> 8)) & 0xff00ff00)
                 );
                 laneLsw = (
-                    (((laneLsw << 8)  | (laneLsw >>> 24)) & 0x00ff00ff) |
-                    (((laneLsw << 24) | (laneLsw >>> 8))  & 0xff00ff00)
+                    (((laneLsw << 8) | (laneLsw >>> 24)) & 0x00ff00ff) |
+                    (((laneLsw << 24) | (laneLsw >>> 8)) & 0xff00ff00)
                 );
 
                 // Squeeze state to retrieve hash
@@ -263,11 +292,13 @@ code.google.com/p/crypto-js/wiki/License
             return new WordArray.init(hashWords, outputLengthBytes);
         },
 
-        clone: function () {
+        clone: function ()
+        {
             var clone = Hasher.clone.call(this);
 
             var state = clone._state = this._state.slice(0);
-            for (var i = 0; i < 25; i++) {
+            for (var i = 0; i < 25; i++)
+            {
                 state[i] = state[i].clone();
             }
 

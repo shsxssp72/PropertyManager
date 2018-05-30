@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function (undefined) {
+(function (undefined)
+{
     // Shortcuts
     var C = CryptoJS;
     var C_lib = C.lib;
@@ -30,7 +31,8 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var x64Word = CryptoJS.x64.Word.create(0x00010203, 0x04050607);
          */
-        init: function (high, low) {
+        init: function (high, low)
+        {
             this.high = high;
             this.low = low;
         }
@@ -45,10 +47,10 @@ code.google.com/p/crypto-js/wiki/License
          *     var negated = x64Word.not();
          */
         // not: function () {
-            // var high = ~this.high;
-            // var low = ~this.low;
+        // var high = ~this.high;
+        // var low = ~this.low;
 
-            // return X64Word.create(high, low);
+        // return X64Word.create(high, low);
         // },
 
         /**
@@ -63,10 +65,10 @@ code.google.com/p/crypto-js/wiki/License
          *     var anded = x64Word.and(anotherX64Word);
          */
         // and: function (word) {
-            // var high = this.high & word.high;
-            // var low = this.low & word.low;
+        // var high = this.high & word.high;
+        // var low = this.low & word.low;
 
-            // return X64Word.create(high, low);
+        // return X64Word.create(high, low);
         // },
 
         /**
@@ -81,10 +83,10 @@ code.google.com/p/crypto-js/wiki/License
          *     var ored = x64Word.or(anotherX64Word);
          */
         // or: function (word) {
-            // var high = this.high | word.high;
-            // var low = this.low | word.low;
+        // var high = this.high | word.high;
+        // var low = this.low | word.low;
 
-            // return X64Word.create(high, low);
+        // return X64Word.create(high, low);
         // },
 
         /**
@@ -99,10 +101,10 @@ code.google.com/p/crypto-js/wiki/License
          *     var xored = x64Word.xor(anotherX64Word);
          */
         // xor: function (word) {
-            // var high = this.high ^ word.high;
-            // var low = this.low ^ word.low;
+        // var high = this.high ^ word.high;
+        // var low = this.low ^ word.low;
 
-            // return X64Word.create(high, low);
+        // return X64Word.create(high, low);
         // },
 
         /**
@@ -117,15 +119,15 @@ code.google.com/p/crypto-js/wiki/License
          *     var shifted = x64Word.shiftL(25);
          */
         // shiftL: function (n) {
-            // if (n < 32) {
-                // var high = (this.high << n) | (this.low >>> (32 - n));
-                // var low = this.low << n;
-            // } else {
-                // var high = this.low << (n - 32);
-                // var low = 0;
-            // }
+        // if (n < 32) {
+        // var high = (this.high << n) | (this.low >>> (32 - n));
+        // var low = this.low << n;
+        // } else {
+        // var high = this.low << (n - 32);
+        // var low = 0;
+        // }
 
-            // return X64Word.create(high, low);
+        // return X64Word.create(high, low);
         // },
 
         /**
@@ -140,15 +142,15 @@ code.google.com/p/crypto-js/wiki/License
          *     var shifted = x64Word.shiftR(7);
          */
         // shiftR: function (n) {
-            // if (n < 32) {
-                // var low = (this.low >>> n) | (this.high << (32 - n));
-                // var high = this.high >>> n;
-            // } else {
-                // var low = this.high >>> (n - 32);
-                // var high = 0;
-            // }
+        // if (n < 32) {
+        // var low = (this.low >>> n) | (this.high << (32 - n));
+        // var high = this.high >>> n;
+        // } else {
+        // var low = this.high >>> (n - 32);
+        // var high = 0;
+        // }
 
-            // return X64Word.create(high, low);
+        // return X64Word.create(high, low);
         // },
 
         /**
@@ -163,7 +165,7 @@ code.google.com/p/crypto-js/wiki/License
          *     var rotated = x64Word.rotL(25);
          */
         // rotL: function (n) {
-            // return this.shiftL(n).or(this.shiftR(64 - n));
+        // return this.shiftL(n).or(this.shiftR(64 - n));
         // },
 
         /**
@@ -178,7 +180,7 @@ code.google.com/p/crypto-js/wiki/License
          *     var rotated = x64Word.rotR(7);
          */
         // rotR: function (n) {
-            // return this.shiftR(n).or(this.shiftL(64 - n));
+        // return this.shiftR(n).or(this.shiftL(64 - n));
         // },
 
         /**
@@ -193,11 +195,11 @@ code.google.com/p/crypto-js/wiki/License
          *     var added = x64Word.add(anotherX64Word);
          */
         // add: function (word) {
-            // var low = (this.low + word.low) | 0;
-            // var carry = (low >>> 0) < (this.low >>> 0) ? 1 : 0;
-            // var high = (this.high + word.high + carry) | 0;
+        // var low = (this.low + word.low) | 0;
+        // var carry = (low >>> 0) < (this.low >>> 0) ? 1 : 0;
+        // var high = (this.high + word.high + carry) | 0;
 
-            // return X64Word.create(high, low);
+        // return X64Word.create(high, low);
         // }
     });
 
@@ -228,12 +230,15 @@ code.google.com/p/crypto-js/wiki/License
          *         CryptoJS.x64.Word.create(0x18191a1b, 0x1c1d1e1f)
          *     ], 10);
          */
-        init: function (words, sigBytes) {
+        init: function (words, sigBytes)
+        {
             words = this.words = words || [];
 
-            if (sigBytes != undefined) {
+            if (sigBytes != undefined)
+            {
                 this.sigBytes = sigBytes;
-            } else {
+            } else
+            {
                 this.sigBytes = words.length * 8;
             }
         },
@@ -247,14 +252,16 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var x32WordArray = x64WordArray.toX32();
          */
-        toX32: function () {
+        toX32: function ()
+        {
             // Shortcuts
             var x64Words = this.words;
             var x64WordsLength = x64Words.length;
 
             // Convert
             var x32Words = [];
-            for (var i = 0; i < x64WordsLength; i++) {
+            for (var i = 0; i < x64WordsLength; i++)
+            {
                 var x64Word = x64Words[i];
                 x32Words.push(x64Word.high);
                 x32Words.push(x64Word.low);
@@ -272,7 +279,8 @@ code.google.com/p/crypto-js/wiki/License
          *
          *     var clone = x64WordArray.clone();
          */
-        clone: function () {
+        clone: function ()
+        {
             var clone = Base.clone.call(this);
 
             // Clone "words" array
@@ -280,7 +288,8 @@ code.google.com/p/crypto-js/wiki/License
 
             // Clone each X64Word object
             var wordsLength = words.length;
-            for (var i = 0; i < wordsLength; i++) {
+            for (var i = 0; i < wordsLength; i++)
+            {
                 words[i] = words[i].clone();
             }
 

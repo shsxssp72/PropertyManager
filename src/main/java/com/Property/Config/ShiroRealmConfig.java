@@ -28,6 +28,7 @@ public class ShiroRealmConfig extends AuthorizingRealm
 		SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();
 		UserInfo userInfo=(UserInfo)principalCollection.getPrimaryPrincipal();
 		authorizationInfo.addRole(userInfoService.getUserRole(userInfo.getUid()).getRole_name());
+		System.out.println("From RealmConfig: "+userInfoService.getUserRole(userInfo.getUid()).getRole_name());
 		for(SysPermission sysPermission : userInfoService.getUserPermission(userInfo.getUid()))
 		{
 			authorizationInfo.addStringPermission(sysPermission.getPermission());

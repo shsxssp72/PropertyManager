@@ -40,7 +40,6 @@ public class TestUserInfoGenerator
 		ProprietorPassword=cryptoUtil.getHashedPassword(ProprietorPassword,"Proprietor",ProprietorSalt);
 
 
-
 		System.out
 				.println("INSERT INTO UserInfo\n VALUES(0,'Manager','Manager','"+ManagerPassword+"','"+ManagerSalt+"',TRUE);\nINSERT INTO UserRole\n VALUES(0,0);");
 		System.out

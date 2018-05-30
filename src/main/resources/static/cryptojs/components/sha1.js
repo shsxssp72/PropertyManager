@@ -4,7 +4,8 @@ code.google.com/p/crypto-js
 (c) 2009-2013 by Jeff Mott. All rights reserved.
 code.google.com/p/crypto-js/wiki/License
 */
-(function () {
+(function ()
+{
     // Shortcuts
     var C = CryptoJS;
     var C_lib = C.lib;
@@ -19,7 +20,8 @@ code.google.com/p/crypto-js/wiki/License
      * SHA-1 hash algorithm.
      */
     var SHA1 = C_algo.SHA1 = Hasher.extend({
-        _doReset: function () {
+        _doReset: function ()
+        {
             this._hash = new WordArray.init([
                 0x67452301, 0xefcdab89,
                 0x98badcfe, 0x10325476,
@@ -27,7 +29,8 @@ code.google.com/p/crypto-js/wiki/License
             ]);
         },
 
-        _doProcessBlock: function (M, offset) {
+        _doProcessBlock: function (M, offset)
+        {
             // Shortcut
             var H = this._hash.words;
 
@@ -39,20 +42,26 @@ code.google.com/p/crypto-js/wiki/License
             var e = H[4];
 
             // Computation
-            for (var i = 0; i < 80; i++) {
-                if (i < 16) {
+            for (var i = 0; i < 80; i++)
+            {
+                if (i < 16)
+                {
                     W[i] = M[offset + i] | 0;
-                } else {
+                } else
+                {
                     var n = W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16];
                     W[i] = (n << 1) | (n >>> 31);
                 }
 
                 var t = ((a << 5) | (a >>> 27)) + e + W[i];
-                if (i < 20) {
+                if (i < 20)
+                {
                     t += ((b & c) | (~b & d)) + 0x5a827999;
-                } else if (i < 40) {
+                } else if (i < 40)
+                {
                     t += (b ^ c ^ d) + 0x6ed9eba1;
-                } else if (i < 60) {
+                } else if (i < 60)
+                {
                     t += ((b & c) | (b & d) | (c & d)) - 0x70e44324;
                 } else /* if (i < 80) */ {
                     t += (b ^ c ^ d) - 0x359d3e2a;
@@ -73,7 +82,8 @@ code.google.com/p/crypto-js/wiki/License
             H[4] = (H[4] + e) | 0;
         },
 
-        _doFinalize: function () {
+        _doFinalize: function ()
+        {
             // Shortcuts
             var data = this._data;
             var dataWords = data.words;
@@ -94,7 +104,8 @@ code.google.com/p/crypto-js/wiki/License
             return this._hash;
         },
 
-        clone: function () {
+        clone: function ()
+        {
             var clone = Hasher.clone.call(this);
             clone._hash = this._hash.clone();
 

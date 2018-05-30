@@ -137,7 +137,6 @@
 	</bean>
 
 
-
 	<!-- 会话ID生成器，用于生成会话ID，默认就是JavaUuidSessionIdGenerator，使用java.util.UUID生成-->
 	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
 	<!-- 会话Cookie模板，sessionManager创建会话Cookie的模板 -->
@@ -162,8 +161,6 @@
 		<!-- 表单中密码的input名称 -->
 		<property name="passwordParam" value="password"/>
 	</bean>
-
-
 
 
 </beans>

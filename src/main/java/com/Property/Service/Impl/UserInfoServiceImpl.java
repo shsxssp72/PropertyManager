@@ -1,5 +1,9 @@
 package com.Property.Service.Impl;
 
+import com.Property.Dao.ProprietorDao;
+import com.Property.Dao.StaffDao;
+import com.Property.Domain.Proprietor;
+import com.Property.Domain.Staff;
 import com.Property.Entity.SysPermission;
 import com.Property.Entity.SysRole;
 import com.Property.Entity.UserInfo;
@@ -24,6 +28,12 @@ public class UserInfoServiceImpl implements UserInfoService
 
 	@Autowired
 	SysPermissionMapper sysPermissionMapper;
+
+	@Autowired
+	StaffDao staffDao;
+
+	@Autowired
+	ProprietorDao proprietorDao;
 
 	@Override
 	public int getUidByUserName(String userName)
@@ -61,6 +71,18 @@ public class UserInfoServiceImpl implements UserInfoService
 			result.addAll(tempParentPermission);
 		}
 		return result;
+	}
+
+	@Override
+	public Staff getStaffInfoByUID(int inputUID)
+	{
+		return staffDao.getSelfInfo(userInfoMapper.getStaffIDByUid(inputUID));
+	}
+
+	@Override
+	public Proprietor getPrprtInfoByUID(int inputUID)
+	{
+		return proprietorDao.getSelfInfo(userInfoMapper.getStaffIDByUid(inputUID));
 	}
 
 	@Override
