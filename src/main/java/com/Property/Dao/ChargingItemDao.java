@@ -14,7 +14,7 @@ public interface ChargingItemDao
 	List<ChargingItem> getAll();
 
 	/*根据参数值查询*/
-	List<ChargingItem> getChargingItembyParams(Map<String,Object> params);
+	List<ChargingItem> getChargingItembyParams(Map<String, Object> params);
 
 	int addChargingItem(ChargingItem chargingItem);
 

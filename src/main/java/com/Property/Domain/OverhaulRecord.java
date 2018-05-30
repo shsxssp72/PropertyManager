@@ -2,23 +2,23 @@ package com.Property.Domain;
 
 public class OverhaulRecord
 {
-	private String ovrhaul_id;
+	private String overhaul_id;
 	private String fclt_id;
 	private String overhaul_type;
 	private String overhaul_time;
 	private String overhaul_handler;
 	private String overhaul_result;
 
-	private Facilities facilities;            //新增属性用于resultMap中联合查询
+	private Facilities facilities;			//新增属性用于resultMap中联合查询
 
-	public String getOvrhaul_id()
+	public String getOverhaul_id()
 	{
-		return ovrhaul_id;
+		return overhaul_id;
 	}
 
-	public void setOvrhaul_id(String ovrhaul_id)
+	public void setOverhaul_id(String overhaul_id)
 	{
-		this.ovrhaul_id=ovrhaul_id;
+		this.overhaul_id = overhaul_id;
 	}
 
 	public String getFclt_id()
@@ -28,7 +28,7 @@ public class OverhaulRecord
 
 	public void setFclt_id(String fclt_id)
 	{
-		this.fclt_id=fclt_id;
+		this.fclt_id = fclt_id;
 	}
 
 	public String getOverhaul_type()
@@ -38,7 +38,7 @@ public class OverhaulRecord
 
 	public void setOverhaul_type(String overhaul_type)
 	{
-		this.overhaul_type=overhaul_type;
+		this.overhaul_type = overhaul_type;
 	}
 
 	public String getOverhaul_time()
@@ -48,7 +48,7 @@ public class OverhaulRecord
 
 	public void setOverhaul_time(String overhaul_time)
 	{
-		this.overhaul_time=overhaul_time;
+		this.overhaul_time = overhaul_time;
 	}
 
 	public String getOverhaul_handler()
@@ -58,7 +58,7 @@ public class OverhaulRecord
 
 	public void setOverhaul_handler(String overhaul_handler)
 	{
-		this.overhaul_handler=overhaul_handler;
+		this.overhaul_handler = overhaul_handler;
 	}
 
 	public String getOverhaul_result()
@@ -68,16 +68,14 @@ public class OverhaulRecord
 
 	public void setOverhaul_result(String overhaul_result)
 	{
-		this.overhaul_result=overhaul_result;
+		this.overhaul_result = overhaul_result;
 	}
 
-	public Facilities getFacilities()
-	{
+	public Facilities getFacilities() {
 		return facilities;
 	}
 
-	public void setFacilities(Facilities facilities)
-	{
-		this.facilities=facilities;
+	public void setFacilities(Facilities facilities) {
+		this.facilities = facilities;
 	}
 }

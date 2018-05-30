@@ -29,7 +29,7 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		overhaul_id, fclt_id, overhaul_type, overhaul_time, overhaul_handler, overhaul_result
+		overhaul_id,fclt_id,overhaul_type,overhaul_time,overhaul_handler,overhaul_result
 	</sql>
 
 	<select id="getAll" resultMap="overhaulRecord">
@@ -37,32 +37,28 @@
 		<include refid="BaseColumnList"/>
 		FROM overhaulRecord
 	</select>
-
-	<update id="finishOverhaul">
+	
+	<update id="finishOverhaul" >
 		UPDATE overhaulRecord
 		SET overhaul_time = #{overhaul_time}, overhaul_result = #{result}
 		WHERE overhaul_id = #{overhaul_id}
 	</update>
-
+	
 	<select id="tbdOverhaul" parameterType="java.lang.String" resultMap="totalView">
-		SELECT
-			overhaulRecord.*,
-			facilities.*
-		FROM overhaulRecord, facilities
+		SELECT overhaulRecord.*,facilities.*
+		FROM overhaulRecord,facilities
 		WHERE overhaul_handler = #{id} and overhaul_result = null and overhaulRecord.fclt_id = facilities.fclt_id
 	</select>
 
 	<select id="tbdOverHaulCount" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT count(*)
 		FROM overhaulRecord
-		WHERE overhaul_handler = #{id} and overhaul_result = null
+		WHERE overhaul_handler = #{id} and overhaul_result is null
 	</select>
 
 	<select id="overhaulHistory" parameterType="java.lang.String" resultMap="totalView">
-		SELECT
-			overhaulRecord.*,
-			facilities.*
-		FROM overhaulRecord, facilities
+		SELECT overhaulRecord.*,facilities.*
+		FROM overhaulRecord,facilities
 		WHERE overhaul_handler = #{id} and overhaul_result is not null and overhaulRecord.fclt_id = facilities.fclt_id
 	</select>
 
@@ -112,18 +108,16 @@
 
 	<insert id="addOverhaulRecord" parameterType="com.Property.Domain.OverhaulRecord">
 		INSERT INTO overhaulRecord (fclt_id, overhaul_type, overhaul_time, overhaul_handler, overhaul_result)
-		VALUES (#{fclt_id}, #{overhaul_type}, #{overhaul_time}, #{overhaul_handler}, #{overhaul_result})
+				VALUES (#{fclt_id}, #{overhaul_type}, #{overhaul_time}, #{overhaul_handler}, #{overhaul_result})
 	</insert>
 
 	<delete id="deleteOverhaulRecord" parameterType="java.lang.String">
 		DELETE FROM overhaulRecord
-		WHERE overhaul_id = #{id}
+			WHERE overhaul_id = #{id}
 	</delete>
 
 	<update id="updateOverhaulRecord" parameterType="com.Property.Domain.OverhaulRecord">
-		UPDATE overhaulRecord
-		SET fclt_id          = #{fclt_id}, overhaul_type = #{overhaul_type}, overhaul_time = #{overhaul_time},
-			overhaul_handler = #{overhaul_handler}, overhaul_result = #{overhaul_result}
-		WHERE overhaul_id = #{overhaul_id}
+		UPDATE overhaulRecord SET fclt_id = #{fclt_id}, overhaul_type = #{overhaul_type}, overhaul_time = #{overhaul_time}, overhaul_handler = #{overhaul_handler}, overhaul_result = #{overhaul_result}
+			WHERE overhaul_id = #{overhaul_id}
 	</update>
 </mapper>

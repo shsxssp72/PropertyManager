@@ -9,18 +9,18 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		building_id, subarea_id, subarea_id, max_floor, max_room_num
+		building_id,subarea_id,subarea_id,max_floor,max_room_num
 	</sql>
 
 	<select id="getAll" resultMap="building">
 		SELECT
-		<include refid="BaseColumnList"/>
+			<include refid="BaseColumnList"/>
 		FROM building
 	</select>
 
 	<select id="getBuildingbyParams" resultMap="building" parameterType="java.util.HashMap">
 		SELECT
-		<include refid="BaseColumnList"/>
+			<include refid="BaseColumnList"/>
 		FROM building
 		<where>
 			1 = 1
@@ -41,18 +41,17 @@
 
 	<insert id="addBuilding" parameterType="com.Property.Domain.Building">
 		INSERT INTO building (subarea_id, max_floor, max_room_num)
-		VALUES (#{subarea_id}, #{max_floor}, #{max_room_num})
+				VALUES (#{subarea_id}, #{max_floor}, #{max_room_num})
 	</insert>
 
 	<delete id="deleteBuilding" parameterType="java.lang.String">
 		DELETE FROM building
-		WHERE building_id = #{id}
+			WHERE building_id = #{id}
 	</delete>
 
 	<update id="updateBuilding" parameterType="com.Property.Domain.Building">
-		UPDATE building
-		SET subarea_id = #{subarea_id}, max_floor = #{max_floor}, max_room_num = #{max_room_num}
-		WHERE building_id = #{building_id}
+		UPDATE building SET subarea_id = #{subarea_id}, max_floor = #{max_floor}, max_room_num = #{max_room_num}
+			WHERE building_id = #{building_id}
 	</update>
 
 </mapper>

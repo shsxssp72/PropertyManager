@@ -14,7 +14,7 @@ public interface BuildingEntranceRecordDao
 	List<BuildingEntranceRecord> getAll();
 
 	/*根据参数值查询*/
-	List<BuildingEntranceRecord> getBERbyParams(Map<String,Object> params);
+	List<BuildingEntranceRecord> getBERbyParams(Map<String, Object> params);
 
 	int addBER(BuildingEntranceRecord buildingEntranceRecord);
 

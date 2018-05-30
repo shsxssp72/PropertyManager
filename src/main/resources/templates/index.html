@@ -59,85 +59,142 @@
                 </li>
 
                 <li th:if="${roleName=='guard'}">
-                    <a href="/CarIO/permit"><i class="fa fa-file-archive-o"></i> <span
-                            class="nav-label">CarIO</span></a>
+                    <a href="/guard/carIO"><i class="fa fa-file-archive-o"></i> <span class="nav-label">CarIO</span></a>
                 </li>
 
                 <li th:if="${roleName=='cleaner'}">
-                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                    <a href="#"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/ticket/new">New Ticket</a></li>
-                        <li><a href="/ticket/history">Ticket History</a></li>
+                        <li>
+                            <a href="#">As Initiator<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="/cleaner/ticket/new">New Ticket</a>
+                                </li>
+                                <li>
+                                    <a href="/cleaner/ticket/history">Ticket History</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">As Handler<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="/cleaner/ticket/tbd">Ticket to be Done</a>
+                                </li>
+                                <li>
+                                    <a href="/cleaner/ticket/finished">Finished Ticket History</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
 
                 <li th:if="${roleName=='repairman'}">
-                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                    <a href="#"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/ticket/new">New Ticket</a></li>
-                        <li><a href="ticket/history">Ticket History</a></li>
+                        <li>
+                            <a href="#">As Initiator<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="/repairman/ticket/new">New Ticket</a>
+                                </li>
+                                <li>
+                                    <a href="/repairman/ticket/history">Ticket History</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">As Handler<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="/repairman/ticket/tbd">Ticket to be Done</a>
+                                </li>
+                                <li>
+                                    <a href="/repairman/ticket/finished">Finished Ticket History</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
 
                 <li th:if="${roleName=='proprietor'}">
-                    <a href="proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span
-                            class="nav-label">Ticket</span>
+                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="proprietor/ticket/new">New Ticket</a></li>
-                        <li><a href="proprietor/ticket/history">Ticket History</a></li>
+                        <li><a href="/proprietor/ticket/new">New Ticket</a></li>
+                        <li><a href="/proprietor/ticket/history">Ticket History</a></li>
                     </ul>
                 </li>
 
                 <li th:if="${roleName=='guard'}">
-                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                    <a href="#"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/ticket/new">New Ticket</a></li>
-                        <li><a href="ticket/history">Ticket History</a></li>
+                        <li>
+                            <a href="#">As Initiator<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="/guard/ticket/new">New Ticket</a>
+                                </li>
+                                <li>
+                                    <a href="/guard/ticket/history">Ticket History</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">As Handler<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="/guard/ticket/tbd">Ticket to be Done</a>
+                                </li>
+                                <li>
+                                    <a href="/guard/ticket/finished">Finished Ticket History</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
 
 
                 <li th:if="${roleName=='guard'}">
-                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
-                            class="nav-label">Report</span>
+                    <a href="/guard/dailytask/tbd"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">DailyTask</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/report/submit">Report To Submit</a></li>
-                        <li><a href="/report/history">Report History</a></li>
+                        <li><a href="/guard/dailytask/tbd">Task to be Done</a></li>
+                        <li><a href="/guard/dailytask/finished">Task Finished</a></li>
                     </ul>
                 </li>
 
                 <li th:if="${roleName=='cleaner'}">
-                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
-                            class="nav-label">Report</span>
+                    <a href="#"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">DailyTask</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/report/submit">Report To Submit</a></li>
-                        <li><a href="/report/history">Report History</a></li>
+                        <li><a href="/cleaner/dailytask/tbd">Task to be Done</a></li>
+                        <li><a href="/cleaner/dailytask/finished">Task Finished</a></li>
                     </ul>
                 </li>
 
                 <li th:if="${roleName=='repairman'}">
-                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
-                            class="nav-label">Report</span>
+                    <a href="/repairman/overhaul/tbd"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Overhaul</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/report/submit">Report To Submit</a></li>
-                        <li><a href="/report/history">Report History</a></li>
+                        <li><a href="/repairman/overhaul/tbd">Overhaul to be Done</a></li>
+                        <li><a href="/repairman/overhaul/finished">Overhaul finished</a></li>
                     </ul>
                 </li>
 
                 <li th:if="${roleName=='accountant'}">
-                    <a href="/account/status"><i class="fa fa-calculator"></i> <span class="nav-label">Report</span>
-                        <span class="fa arrow"></span>Account</a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="/account/status">Account Status</a></li>
-                        <li><a href="/account/modify">Modify Account</a></li>
-                    </ul>
+                    <a href="/accountant/chargingSituation"><i class="fa fa-calculator"></i> <span class="nav-label">chargingSituation</span></a>
+                </li>
+
+                <li th:if="${roleName=='accountant'}">
+                    <a href="/accountant/carCharging"><i class="fa fa-calculator"></i> <span class="nav-label">carCharging</span></a>
                 </li>
 
                 <li th:if="${roleName=='receptionist'}">
@@ -166,32 +223,29 @@
                 </li>
 
                 <li th:if="${roleName=='guard'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
-                            class="nav-label">Suggestion</span>
+                    <a href="/guard/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/suggestion/new">New Suggestion</a></li>
-                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                        <li><a href="/guard/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/guard/suggestion/history">Suggestion History</a></li>
                     </ul>
                 </li>
 
                 <li th:if="${roleName=='cleaner'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
-                            class="nav-label">Suggestion</span>
+                    <a href="/cleaner/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/suggestion/new">New Suggestion</a></li>
-                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                        <li><a href="/cleaner/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/cleaner/suggestion/history">Suggestion History</a></li>
                     </ul>
                 </li>
 
                 <li th:if="${roleName=='repairman'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
-                            class="nav-label">Suggestion</span>
+                    <a href="/cleaner/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/suggestion/new">New Suggestion</a></li>
-                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                        <li><a href="/cleaner/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/cleaner/suggestion/history">Suggestion History</a></li>
                     </ul>
                 </li>
             </ul>

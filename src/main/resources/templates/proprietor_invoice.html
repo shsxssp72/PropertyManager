@@ -84,8 +84,7 @@
                 </li>
 
                 <li th:if="${roleName=='proprietor'}">
-                    <a href="proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span
-                            class="nav-label">Ticket</span>
+                    <a href="proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="proprietor/ticket/new">New Ticket</a></li>
@@ -167,8 +166,7 @@
                 </li>
 
                 <li th:if="${roleName=='guard'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
-                            class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -177,8 +175,7 @@
                 </li>
 
                 <li th:if="${roleName=='cleaner'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
-                            class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -187,8 +184,7 @@
                 </li>
 
                 <li th:if="${roleName=='repairman'}">
-                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span
-                            class="nav-label">Suggestion</span>
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/suggestion/new">New Suggestion</a></li>
@@ -237,8 +233,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="title-action">
-                    <button class="btn btn-primary" onclick="doPrint()"><i class="fa fa-print"></i> Print Invoice
-                    </button>
+                    <button class="btn btn-primary" onclick="doPrint()"><i class="fa fa-print"></i> Print Invoice </button>
                 </div>
             </div>
         </div>
@@ -267,8 +262,7 @@
                                     <abbr title="Phone" th:text="${tel}">(120) 9000-4321</abbr>
                                 </address>
                                 <p>
-                                    <span><strong>Invoice Date:</strong> <abbr
-                                            th:text="${date}">Marh 18, 2014</abbr></span><br/>
+                                    <span><strong>Invoice Date:</strong> <abbr th:text="${date}">Marh 18, 2014</abbr></span><br/>
                                 </p>
                             </div>
                         </div>
@@ -286,10 +280,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>
-                                        <div><strong th:text="${chargingSituation.fee.chargingItem.item_title}">Admin
-                                            Theme with psd project layouts</strong></div>
-                                    </td>
+                                    <td><div><strong th:text="${chargingSituation.fee.chargingItem.item_title}">Admin Theme with psd project layouts</strong></div></td>
                                     <td>1</td>
                                     <td>￥<abbr th:text="${chargingSituation.fee.price}">26.00</abbr></td>
                                     <td>￥0</td>
@@ -355,8 +346,7 @@
 </script>
 
 <script type="text/javascript">
-    function doPrint()
-    {
+    function doPrint() {
         var bdhtml = window.document.body.innerHTML;
         var sprnstr = "<!--startprint-->"; //开始打印标识字符串有17个字符
         var eprnstr = "<!--endprint-->"; //结束打印标识字符串

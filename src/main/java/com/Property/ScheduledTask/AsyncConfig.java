@@ -10,21 +10,19 @@ import java.util.concurrent.Executor;
 
 @Configuration
 @EnableAsync
-public class AsyncConfig
-{                                      //并行任务配置类
+public class AsyncConfig {                                      //并行任务配置类
 
-	private int corePoolSize=10;
-	private int maxPoolSize=200;
-	private int queueCapacity=10;
+    private int corePoolSize = 10;
+    private int maxPoolSize = 200;
+    private int queueCapacity = 10;
 
-	@Bean
-	public Executor taskExecutor()
-	{
-		ThreadPoolTaskExecutor executor=new ThreadPoolTaskExecutor();
-		executor.setCorePoolSize(corePoolSize);
-		executor.setMaxPoolSize(maxPoolSize);
-		executor.setQueueCapacity(queueCapacity);
-		executor.initialize();
-		return executor;
-	}
+    @Bean
+    public Executor taskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(corePoolSize);
+        executor.setMaxPoolSize(maxPoolSize);
+        executor.setQueueCapacity(queueCapacity);
+        executor.initialize();
+        return executor;
+    }
 }

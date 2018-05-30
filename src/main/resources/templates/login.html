@@ -9,8 +9,7 @@
     <title>INSPINIA | Login</title>
 
     <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
-    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
-          th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
+    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet" th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
 
     <!--<link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet" th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">-->
     <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
@@ -67,15 +66,17 @@
 </textarea>
 
 
+
 <script type="text/javascript">
-    var btn = document.getElementById('submit');
+    var btn=document.getElementById('submit');
     btn.onclick = function ()
     {
 
         var encypt = new JSEncrypt({default_key_size: 2048});
-        var publickey = document.getElementById('publicKey');
-        var username = document.getElementById('UserName');
-        var password = document.getElementById('PassWord');
+        var publickey=document.getElementById('publicKey');
+        var username=document.getElementById('UserName');
+        var password=document.getElementById('PassWord');
+
 
 
         encypt.setPublicKey(publickey.value);
@@ -87,8 +88,8 @@
         // alert(publickey.value);
 
 
-        username.value = username_enc;
-        password.value = password_enc;
+        username.value=username_enc;
+        password.value=password_enc;
 
         // alert(username_enc);
         // alert(encypt.decrypt(username_enc));

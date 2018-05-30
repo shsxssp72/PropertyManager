@@ -10,7 +10,7 @@ public class ChargingSituation
 	private String collector_id;
 	private Timestamp charge_date;
 
-	private Fee fee;                    //新增属性用于resultMap中的联合查询
+	private Fee fee;					//新增属性用于resultMap中的联合查询
 	private Proprietor proprietor;
 	private Staff staff;
 
@@ -21,7 +21,7 @@ public class ChargingSituation
 
 	public void setSituation_id(String situation_id)
 	{
-		this.situation_id=situation_id;
+		this.situation_id = situation_id;
 	}
 
 	public String getFee_id()
@@ -31,7 +31,7 @@ public class ChargingSituation
 
 	public void setFee_id(String fee_id)
 	{
-		this.fee_id=fee_id;
+		this.fee_id = fee_id;
 	}
 
 	public String getPrprt_id()
@@ -41,7 +41,7 @@ public class ChargingSituation
 
 	public void setPrprt_id(String prprt_id)
 	{
-		this.prprt_id=prprt_id;
+		this.prprt_id = prprt_id;
 	}
 
 	public String getCollector_id()
@@ -51,7 +51,7 @@ public class ChargingSituation
 
 	public void setCollector_id(String collector_id)
 	{
-		this.collector_id=collector_id;
+		this.collector_id = collector_id;
 	}
 
 	public Timestamp getCharge_date()
@@ -61,36 +61,30 @@ public class ChargingSituation
 
 	public void setCharge_date(Timestamp charge_date)
 	{
-		this.charge_date=charge_date;
+		this.charge_date = charge_date;
 	}
 
-	public Fee getFee()
-	{
+	public Fee getFee() {
 		return fee;
 	}
 
-	public void setFee(Fee fee)
-	{
-		this.fee=fee;
+	public void setFee(Fee fee) {
+		this.fee = fee;
 	}
 
-	public Proprietor getProprietor()
-	{
+	public Proprietor getProprietor() {
 		return proprietor;
 	}
 
-	public void setProprietor(Proprietor proprietor)
-	{
-		this.proprietor=proprietor;
+	public void setProprietor(Proprietor proprietor) {
+		this.proprietor = proprietor;
 	}
 
-	public Staff getStaff()
-	{
+	public Staff getStaff() {
 		return staff;
 	}
 
-	public void setStaff(Staff staff)
-	{
-		this.staff=staff;
+	public void setStaff(Staff staff) {
+		this.staff = staff;
 	}
 }

@@ -7,7 +7,7 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		dept_id, dept_name
+		dept_id,dept_name
 	</sql>
 
 	<select id="getAll" resultMap="department">

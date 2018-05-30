@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PM | DailyTask</title>
+
+    <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
+    <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
+          th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
+    <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
+    <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
+    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
+
+    <link href="../static/INSPINIA/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}">
+    <link href="../static/INSPINIA/css/plugins/iCheck/custom.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/iCheck/custom.css}">
+
+    <!-- FooTable -->
+    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong
+                                    class="font-bold" th:text="${username}">David Williams</strong>
+                             </span> <span class="text-muted text-xs block" th:text="${roleName}">Art Director <b
+                                    class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a href="/mailbox">Mailbox</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        PM
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/index"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span></a>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/proprietor/payment/pay"><i class="fa fa-rmb"></i> <span class="nav-label">Invoice</span>
+                        <span class="label-warning pull-right"></span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/payment/pay">Invoice To Pay</a></li>
+                        <li><a href="/proprietor/payment/history">Invoice History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/CarIO/permit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">CarIO</span></a>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="/ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/ticket/new">New Ticket</a></li>
+                        <li><a href="/proprietor/ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/ticket/new">New Ticket</a></li>
+                        <li><a href="ticket/history">Ticket History</a></li>
+                    </ul>
+                </li>
+
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/report/submit"><i class="fa fa-file-archive-o"></i> <span
+                            class="nav-label">Report</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/report/submit">Report To Submit</a></li>
+                        <li><a href="/report/history">Report History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='accountant'}">
+                    <a href="/account/status"><i class="fa fa-calculator"></i> <span class="nav-label">Report</span>
+                        <span class="fa arrow"></span>Account</a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/account/status">Account Status</a></li>
+                        <li><a href="/account/modify">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='receptionist'}">
+                    <a href="/reception/payment"><i class="fa fa-user-circle"></i> <span
+                            class="nav-label">Reception</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/reception/payment">Account Status</a></li>
+                        <li><a href="/reception/suggestion">Modify Account</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='supervisor'}">
+                    <a href="/supervise"><i class="fa fa-address-book"></i> <span
+                            class="nav-label">Teamwork</span></a>
+                </li>
+
+
+                <li th:if="${roleName=='proprietor'}">
+                    <a href="/proprietor/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/proprietor/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/proprietor/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='guard'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='cleaner'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+
+                <li th:if="${roleName=='repairman'}">
+                    <a href="/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
+                        <span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/suggestion/new">New Suggestion</a></li>
+                        <li><a href="/suggestion/history">Suggestion History</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+
+                        <span class="m-r-sm text-muted welcome-message" th:text="|Welocme, ${username}|">Welcome to INSPINIA+ Admin Theme.</span>
+                    </li>
+
+                    <li>
+                        <a href="/logout">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>DailyTask</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/index">Home</a>
+                    </li>
+                    <li>
+                        DailyTask
+                    </li>
+                    <li>
+                        To be Done
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>To be Done</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <input type="text" class="form-control input-sm m-b-xs" id="filter1"
+                                   placeholder="Search in table">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter1>
+                                <thead>
+                                <!--<tr class="footable-filtering">
+                                    <th colspan="5">
+                                        <form role="form" class="form-inline pull-right">
+                                            <div class="form-group">
+                                                <input type="email" placeholder="Enter email" id="exampleInputEmail2"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="user_password" placeholder="Password" id="exampleInputPassword2"
+                                                       class="form-control">
+                                            </div>
+                                            <button class="btn btn-white" type="submit">Sign in</button>
+                                        </form>
+                                    </th>
+                                </tr>-->
+                                <tr>
+
+                                    <th>TaskType</th>
+                                    <th>TaskTime</th>
+                                    <th>TaskArea</th>
+                                    <th>Handler</th>
+                                    <th>Action</th>
+                                    <th data-hide="all">TicketID</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="task: ${dailyTaskList}">
+                                    <td th:text="${task.task_type}">Project - This is example of project</td>
+                                    <td th:text="${task.task_time}">Patrick Smith</td>
+                                    <td th:text="${task.task_area}">0800 051213</td>
+                                    <td th:text="${task.task_handler}"></td>
+                                    <td><a class="btn btn-primary" th:href="@{'/'+${roleName}+'/task/finish/'+${task.task_id}}">finish</a></td>
+                                    <td th:text="${task.task_id}"></td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                            <div id="modal-form" class="modal inmodal" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content animated fadeIn">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                <i class="fa fa-tasks modal-icon"></i>
+                                                <h4 class="modal-title" >Finish DailyTask</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="form-group m-md"><label th:text="'Task ID: '+${task_id}"></label></div>
+                                                    <div class="form-group m-md"><label th:text="'Task Type: '+${task_type}"></label></div>
+                                                    <div class="form-group m-md"><label th:text="'Handler: '+${username}"></label></div>
+                                                    <div class="form-group m-md"><label th:text="'Task area: '+${task_area}"></label></div>
+                                                    <form role="form" id="form" th:action="@{'/'+${roleName}+'/dailytask/tbd'}" method="post" class="wizard-big">
+                                                        <input name="taskId" th:value="${task_id}" hidden="hidden">
+                                                        <div class="form-group m-md"><label> <input name="isException" type="checkbox" class="i-checks">isException</label></div>
+                                                        <div class="form-group m-md">
+                                                            <label>Task Result *</label>
+                                                            <textarea id="taskResult" name="taskResult" type="text" class="form-control" rows="6" style="resize: none;"></textarea>
+                                                        </div>
+                                                        <div class="m-md">
+                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Submit</strong></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <input class="" id="state" th:value="${state}" hidden="hidden" />
+                <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content animated fadeIn">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <i class="fa fa-check-circle modal-icon"></i>
+                                <h4 class="modal-title" >Successfully Finished</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>You have finished this dailytask.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <div>
+                        <strong>Copyright</strong> Example Company &copy; 2014-2017
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
+    <script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
+    <script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
+            th:src="@{/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+    <script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
+            th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+
+    <script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
+    <script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
+            th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
+
+    <!-- iCheck -->
+    <script src="../static/INSPINIA/js/plugins/iCheck/icheck.min.js" th:src="@{/INSPINIA/js/plugins/iCheck/icheck.min.js}"></script>
+
+    <!-- FooTable -->
+    <script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
+
+    <!-- JSKnob -->
+    <script src="../static/INSPINIA/js/plugins/jsKnob/jquery.knob.js" th:src="@{/INSPINIA/js/plugins/jsKnob/jquery.knob.js}"></script>
+
+    <!-- Page-Level Scripts -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var state = document.getElementById("state").value;
+            if (state == "post"){
+                $("#myModal").modal("show");
+            };
+
+            if (state == "finish") {
+                $("#modal-form").modal("show");
+            };
+
+            $('.footable').footable();
+            $('.footable2').footable();
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>

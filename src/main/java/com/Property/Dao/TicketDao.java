@@ -13,19 +13,16 @@ import java.util.Map;
 
 @Component
 @Mapper
-public interface TicketDao
-{
+public interface TicketDao {
 	List<Ticket> getAll();
 
 	int prprtCallRepair(Ticket ticket);
 
 	List<Ticket> getRepairHistory(String id);
 
-	int updateRepairFB(@Param("feedback") int feedback,@Param("prprt_id") String prprt_id,
-					   @Param("ticket_id") String ticket_id);
+	int updateRepairFB(@Param("feedback") int feedback, @Param("prprt_id") String prprt_id, @Param("ticket_id") String ticket_id);
 
-	int finishTicket(@Param("handle_time") Timestamp handle_time,@Param("result") String result,
-					 @Param("ticket_id") String ticket_id);
+	int finishTicket(@Param("handle_time") Timestamp handle_time, @Param("result") String result, @Param("ticket_id") String ticket_id);
 
 	int staffTicket(Ticket ticket);
 
@@ -35,10 +32,10 @@ public interface TicketDao
 
 	List<Ticket> tbdTicket(String id);
 
-	int changeTicketHandler(@Param("new_handler") String new_handler,@Param("ticket_id") String ticket_id);
+	int changeTicketHandler(@Param("new_handler") String new_handler, @Param("ticket_id") String ticket_id);
 
 	/*根据参数值查询*/
-	List<Ticket> getTicketbyParams(Map<String,Object> params);
+	List<Ticket> getTicketbyParams(Map<String, Object> params);
 
 	int addTicket(Ticket ticket);
 

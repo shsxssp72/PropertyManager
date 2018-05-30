@@ -14,7 +14,7 @@ public class Building
 
 	public void setBuilding_id(String building_id)
 	{
-		this.building_id=building_id;
+		this.building_id = building_id;
 	}
 
 	public String getSubarea_id()
@@ -24,7 +24,7 @@ public class Building
 
 	public void setSubarea_id(String subarea_id)
 	{
-		this.subarea_id=subarea_id;
+		this.subarea_id = subarea_id;
 	}
 
 	public int getMax_floor()
@@ -34,7 +34,7 @@ public class Building
 
 	public void setMax_floor(int max_floor)
 	{
-		this.max_floor=max_floor;
+		this.max_floor = max_floor;
 	}
 
 	public int getMax_room_num()
@@ -44,6 +44,6 @@ public class Building
 
 	public void setMax_room_num(int max_room_num)
 	{
-		this.max_room_num=max_room_num;
+		this.max_room_num = max_room_num;
 	}
 }

@@ -14,37 +14,32 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class AccountantServiceImpl implements AccountantService
-{
+public class AccountantServiceImpl implements AccountantService {
 
-	@Autowired
-	private ChargingSituationDao chargingSituationDao;
-	@Autowired
-	private CarIORecordDao carIORecordDao;
-	@Autowired
-	private StaffDao staffDao;
+    @Autowired
+    private ChargingSituationDao chargingSituationDao;
+    @Autowired
+    private CarIORecordDao carIORecordDao;
+    @Autowired
+    private StaffDao staffDao;
 
-	@Override
-	public List<ChargingSituation> getAllCharging()
-	{
-		return chargingSituationDao.getAllCharging();
-	}
+    @Override
+    public List<ChargingSituation> getAllCharging() {
+        return chargingSituationDao.getAllCharging();
+    }
 
-	@Override
-	public List<CarIORecord> getExternal()
-	{
-		return carIORecordDao.getExternal();
-	}
+    @Override
+    public List<CarIORecord> getExternal() {
+        return carIORecordDao.getExternal();
+    }
 
-	@Override
-	public Staff getSelfInfo(String id)
-	{
-		return staffDao.getSelfInfo(id);
-	}
+    @Override
+    public Staff getSelfInfo(String id) {
+        return staffDao.getSelfInfo(id);
+    }
 
-	@Override
-	public List<ChargingSituation> getPaymentbyParams(Map<String,Object> params)
-	{
-		return chargingSituationDao.getPaymentbyParams(params);
-	}
+    @Override
+    public List<ChargingSituation> getPaymentbyParams(Map<String, Object> params) {
+        return chargingSituationDao.getPaymentbyParams(params);
+    }
 }

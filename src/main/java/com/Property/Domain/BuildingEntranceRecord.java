@@ -17,7 +17,7 @@ public class BuildingEntranceRecord
 
 	public void setEntrance_record_id(String entrance_record_id)
 	{
-		this.entrance_record_id=entrance_record_id;
+		this.entrance_record_id = entrance_record_id;
 	}
 
 	public String getPrprt_id()
@@ -27,7 +27,7 @@ public class BuildingEntranceRecord
 
 	public void setPrprt_id(String prprt_id)
 	{
-		this.prprt_id=prprt_id;
+		this.prprt_id = prprt_id;
 	}
 
 	public String getBuidling_id()
@@ -37,7 +37,7 @@ public class BuildingEntranceRecord
 
 	public void setBuidling_id(String buidling_id)
 	{
-		this.buidling_id=buidling_id;
+		this.buidling_id = buidling_id;
 	}
 
 	public Timestamp getAccess_time()
@@ -47,7 +47,7 @@ public class BuildingEntranceRecord
 
 	public void setAccess_time(Timestamp access_time)
 	{
-		this.access_time=access_time;
+		this.access_time = access_time;
 	}
 
 	public String getVerify_type()
@@ -57,6 +57,6 @@ public class BuildingEntranceRecord
 
 	public void setVerify_type(String verify_type)
 	{
-		this.verify_type=verify_type;
+		this.verify_type = verify_type;
 	}
 }

@@ -16,7 +16,7 @@ public class Facilities
 
 	public void setFclt_id(String fclt_id)
 	{
-		this.fclt_id=fclt_id;
+		this.fclt_id = fclt_id;
 	}
 
 	public String getFclt_type()
@@ -26,7 +26,7 @@ public class Facilities
 
 	public void setFclt_type(String fclt_type)
 	{
-		this.fclt_type=fclt_type;
+		this.fclt_type = fclt_type;
 	}
 
 	public String getSubarea_id()
@@ -36,7 +36,7 @@ public class Facilities
 
 	public void setSubarea_id(String subarea_id)
 	{
-		this.subarea_id=subarea_id;
+		this.subarea_id = subarea_id;
 	}
 
 	public String getBuilding_id()
@@ -46,7 +46,7 @@ public class Facilities
 
 	public void setBuilding_id(String building_id)
 	{
-		this.building_id=building_id;
+		this.building_id = building_id;
 	}
 
 	public int getFloor()
@@ -56,7 +56,7 @@ public class Facilities
 
 	public void setFloor(int floor)
 	{
-		this.floor=floor;
+		this.floor = floor;
 	}
 
 	public String getLocation()
@@ -66,6 +66,6 @@ public class Facilities
 
 	public void setLocation(String location)
 	{
-		this.location=location;
+		this.location = location;
 	}
 }

@@ -14,5 +14,5 @@ public interface SubareaDao
 	List<Subarea> getAll();
 
 	/*根据参数值查询*/
-	List<Subarea> getSubareabyParams(Map<String,Object> params);
+	List<Subarea> getSubareabyParams(Map<String, Object> params);
 }

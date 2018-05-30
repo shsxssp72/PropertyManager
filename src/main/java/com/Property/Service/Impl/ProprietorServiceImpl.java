@@ -17,75 +17,64 @@ import java.util.Map;
 
 
 @Service
-public class ProprietorServiceImpl implements ProprietorService
-{
+public class ProprietorServiceImpl implements ProprietorService {
 
-	@Autowired
-	private ChargingSituationDao chargingSituationDao;
-	@Autowired
-	private TicketDao ticketDao;
-	@Autowired
-	private SuggestionDao suggestionDao;
-	@Autowired
-	private ProprietorDao proprietorDao;
+    @Autowired
+    private ChargingSituationDao chargingSituationDao;
+    @Autowired
+    private TicketDao ticketDao;
+    @Autowired
+    private SuggestionDao suggestionDao;
+    @Autowired
+    private ProprietorDao proprietorDao;
 
-	@Override
-	public List<ChargingSituation> getPayment(String id)
-	{
-		return chargingSituationDao.getPayment(id);
-	}
+    @Override
+    public List<ChargingSituation> getPayment(String id) {
+        return chargingSituationDao.getPayment(id);
+    }
 
-	@Override
-	public List<ChargingSituation> getPaymentHistory(String id)
-	{
-		return chargingSituationDao.getPaymentHistory(id);
-	}
+    @Override
+    public List<ChargingSituation> getPaymentHistory(String id) {
+        return chargingSituationDao.getPaymentHistory(id);
+    }
 
-	@Override
-	public int prprtCallRepair(Ticket ticket)
-	{
-		return ticketDao.prprtCallRepair(ticket);
-	}
+    @Override
+    public int prprtCallRepair(Ticket ticket) {
+        return ticketDao.prprtCallRepair(ticket);
+    }
 
-	@Override
-	public List<Ticket> getRepairHistory(String id)
-	{
-		return ticketDao.getRepairHistory(id);
-	}
+    @Override
+    public List<Ticket> getRepairHistory(String id) {
+        return ticketDao.getRepairHistory(id);
+    }
 
-	@Override
-	public int updateRepairFB(int feedback,String prprt_id,String ticket_id)
-	{
-		return ticketDao.updateRepairFB(feedback,prprt_id,ticket_id);
-	}
+    @Override
+    public int updateRepairFB(int feedback, String prprt_id, String ticket_id) {
+        return ticketDao.updateRepairFB(feedback, prprt_id, ticket_id);
+    }
 
-	@Override
-	public int giveAdvice(Suggestion suggestion)
-	{
-		return suggestionDao.giveAdvice(suggestion);
-	}
+    @Override
+    public int giveAdvice(Suggestion suggestion) {
+        return suggestionDao.giveAdvice(suggestion);
+    }
 
-	@Override
-	public List<Suggestion> getAdviceHistory(String id)
-	{
-		return suggestionDao.getAdviceHistory(id);
-	}
+    @Override
+    public List<Suggestion> getAdviceHistory(String id) {
+        return suggestionDao.getAdviceHistory(id);
+    }
 
-	@Override
-	public Proprietor getSelfInfo(String id)
-	{
-		return proprietorDao.getSelfInfo(id);
-	}
+    @Override
+    public Proprietor getSelfInfo(String id) {
+        return proprietorDao.getSelfInfo(id);
+    }
 
-	@Override
-	public int alterTel(String tel,String id)
-	{
-		return proprietorDao.alterTel(tel,id);
-	}
+    @Override
+    public int alterTel(String tel, String id) {
+        return proprietorDao.alterTel(tel,id);
+    }
 
-	@Override
-	public List<ChargingSituation> getPaymentbyParams(Map<String,Object> params)
-	{
-		return chargingSituationDao.getPaymentbyParams(params);
-	}
+    @Override
+    public List<ChargingSituation> getPaymentbyParams(Map<String, Object> params) {
+        return chargingSituationDao.getPaymentbyParams(params);
+    }
 }

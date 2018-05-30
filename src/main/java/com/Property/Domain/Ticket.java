@@ -19,7 +19,7 @@ public class Ticket
 	private String ticket_result;
 	private int ticket_fdbk;
 
-	private Staff staff;                //新增属性用于resultMap中的联合查询
+	private Staff staff;				//新增属性用于resultMap中的联合查询
 	private Department department;
 
 	public String getTicket_id()
@@ -163,24 +163,20 @@ public class Ticket
 	}
 
 
-	public Staff getStaff()
-	{
+	public Staff getStaff() {
 		return staff;
 	}
 
-	public void setStaff(Staff staff)
-	{
-		this.staff=staff;
+	public void setStaff(Staff staff) {
+		this.staff = staff;
 	}
 
-	public Department getDepartment()
-	{
+	public Department getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(Department department)
-	{
-		this.department=department;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 }
 

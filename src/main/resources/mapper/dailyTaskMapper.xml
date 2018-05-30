@@ -12,7 +12,7 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		task_id, task_type, task_time, task_area, task_handler, task_result, isException
+		task_id,task_type,task_time,task_area,task_handler,task_result,isException
 	</sql>
 
 	<select id="getAll" resultMap="dailyTask">
@@ -20,32 +20,32 @@
 		<include refid="BaseColumnList"/>
 		FROM dailyTask
 	</select>
-
+	
 	<update id="finishTask">
 		UPDATE dailyTask
 		SET task_result = #{result}, isException = #{isException}
 		WHERE task_id = #{task_id}
 	</update>
 
-	<select id="getHistoryTask" parameterType="java.lang.String" resultMap="dailyTask">
+	<select id="getHistoryTask"  parameterType="java.lang.String" resultMap="dailyTask">
 		SELECT *
 		FROM dailyTask
 		WHERE task_handler = #{id} and task_result is not null
 	</select>
 
-	<select id="tbdTask" parameterType="java.lang.String" resultMap="dailyTask">
+	<select id="tbdTask"  parameterType="java.lang.String" resultMap="dailyTask">
 		SELECT *
 		FROM dailyTask
-		WHERE task_handler = #{id} and task_result = null
+		WHERE task_handler = #{id} and task_result is null
 	</select>
 
 	<select id="tbdTaskCount" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT count(*)
 		FROM dailyTask
-		WHERE task_handler = #{id} and task_result = null
+		WHERE task_handler = #{id} and task_result is null
 	</select>
 
-	<update id="changeTaskHandler">
+	<update id="changeTaskHandler" >
 		UPDATE dailyTask
 		SET task_handler = #{new_handler}
 		WHERE task_id = #{task_id}
@@ -79,18 +79,16 @@
 
 	<insert id="addTask" parameterType="com.Property.Domain.DailyTask">
 		INSERT INTO dailyTask (task_type, task_time, task_area, task_handler, task_result, isException)
-		VALUES (#{task_type}, #{task_time}, #{task_area}, #{task_handler}, #{task_result}, #{isException})
+				VALUES (#{task_type}, #{task_time}, #{task_area}, #{task_handler}, #{task_result}, #{isException})
 	</insert>
 
 	<delete id="deleteTask" parameterType="java.lang.String">
 		DELETE FROM dailyTask
-		WHERE task_id = #{id}
+			WHERE task_id = #{id}
 	</delete>
 
 	<update id="updateTask" parameterType="com.Property.Domain.DailyTask">
-		UPDATE dailyTask
-		SET task_type    = #{task_type}, task_time = #{task_time}, task_area = #{task_area},
-			task_handler = #{task_handler}, task_result = #{task_result}, isException = #{isException}
-		WHERE task_id = #{task_id}
+		UPDATE dailyTask SET task_type = #{task_type}, task_time = #{task_time}, task_area = #{task_area}, task_handler = #{task_handler}, task_result = #{task_result}, isException = #{isException}
+			WHERE task_id = #{task_id}
 	</update>
 </mapper>

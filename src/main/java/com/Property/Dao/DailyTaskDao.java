@@ -10,12 +10,10 @@ import java.util.Map;
 
 @Component
 @Mapper
-public interface DailyTaskDao
-{
+public interface DailyTaskDao {
 	List<DailyTask> getAll();
 
-	int finishTask(@Param("result") String result,@Param("isException") Boolean isException,
-				   @Param("task_id") String task_id);
+	int finishTask(@Param("result") String result, @Param("isException") Boolean isException, @Param("task_id") String task_id);
 
 	List<DailyTask> getHistoryTask(String id);
 
@@ -23,10 +21,10 @@ public interface DailyTaskDao
 
 	int tbdTaskCount(String id);
 
-	int changeTaskHandler(@Param("new_handler") String new_handler,@Param("task_id") String task_id);
+	int changeTaskHandler(@Param("new_handler") String new_handler, @Param("task_id") String task_id);
 
 	/*根据参数值查询*/
-	List<DailyTask> getTaskbyParams(Map<String,Object> params);
+	List<DailyTask> getTaskbyParams(Map<String, Object> params);
 
 	int addTask(DailyTask dailyTask);
 

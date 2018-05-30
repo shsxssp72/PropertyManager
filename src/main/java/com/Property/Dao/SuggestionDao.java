@@ -20,7 +20,7 @@ public interface SuggestionDao
 	int createAdvice(Suggestion suggestion);
 
 	/*根据参数值查询*/
-	List<Suggestion> getSuggestionbyParams(Map<String,Object> params);
+	List<Suggestion> getSuggestionbyParams(Map<String, Object> params);
 
 	int addSuggestion(Suggestion suggestion);
 

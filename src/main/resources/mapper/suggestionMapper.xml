@@ -9,7 +9,7 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		suggestion_id, prprt_id, suggestion_type, suggestion_detail
+		suggestion_id,prprt_id,suggestion_type,suggestion_detail
 	</sql>
 
 	<select id="getAll" resultMap="suggestion">
@@ -17,10 +17,10 @@
 		<include refid="BaseColumnList"/>
 		FROM suggestion
 	</select>
-
+	
 	<insert id="giveAdvice" parameterType="com.Property.Domain.Suggestion">
 		INSERT INTO suggestion (prprt_id, suggestion_type, suggestion_detail)
-		VALUES (#{prprt_id}, #{suggestion_type}, #{suggestion_detail})
+				VALUES (#{prprt_id}, #{suggestion_type}, #{suggestion_detail})
 	</insert>
 
 	<select id="getAdviceHistory" parameterType="java.lang.String" resultMap="suggestion">
@@ -31,7 +31,7 @@
 
 	<insert id="createAdvice" parameterType="com.Property.Domain.Suggestion">
 		INSERT INTO suggestion
-		VALUES (#{suggestion_id}, #{prprt_id}, #{suggestion_type}, #{suggestion_detail})
+				VALUES (#{suggestion_id}, #{prprt_id}, #{suggestion_type}, #{suggestion_detail})
 	</insert>
 
 	<select id="getSuggestionbyParams" resultMap="suggestion" parameterType="java.util.HashMap">
@@ -57,17 +57,16 @@
 
 	<insert id="addSuggestion" parameterType="com.Property.Domain.Suggestion">
 		INSERT INTO suggestion (prprt_id, suggestion_type, suggestion_detail)
-		VALUES (#{prprt_id}, #{suggestion_type}, #{suggestion_detail})
+				VALUES (#{prprt_id}, #{suggestion_type}, #{suggestion_detail})
 	</insert>
 
 	<delete id="deleteSuggestion" parameterType="java.lang.String">
 		DELETE FROM suggestion
-		WHERE suggestion_id = #{id}
+			WHERE suggestion_id = #{id}
 	</delete>
 
 	<update id="updateSuggestion" parameterType="com.Property.Domain.Suggestion">
-		UPDATE suggestion
-		SET prpt_id = #{prprt_id}, suggestion_type = #{suggestion_type}, suggestion_detail = #{suggestion_detail}
-		WHERE suggestion_id = #{suggestion_id}
+		UPDATE suggestion SET prpt_id = #{prprt_id}, suggestion_type = #{suggestion_type}, suggestion_detail = #{suggestion_detail}
+			WHERE suggestion_id = #{suggestion_id}
 	</update>
 </mapper>

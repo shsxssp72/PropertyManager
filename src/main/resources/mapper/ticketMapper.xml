@@ -51,7 +51,7 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		ticket_id, ticket_type, ticket_time, initiator_prprt_id, initiator_staff_id, subarea_id, aprt_building, aprt_floor, aprt_room_num, description, handler_id, handle_time, ticket_result, ticket_fdbk
+		ticket_id,ticket_type,ticket_time,initiator_prprt_id,initiator_staff_id,subarea_id,aprt_building,aprt_floor,aprt_room_num,description,handler_id,handle_time,ticket_result,ticket_fdbk
 	</sql>
 
 	<select id="getAll" resultMap="ticket">
@@ -61,25 +61,18 @@
 	</select>
 
 	<insert id="prprtCallRepair" parameterType="com.Property.Domain.Ticket">
-		INSERT INTO ticket (ticket_id, ticket_type, ticket_time, initiator_prprt_id, subarea_id, aprt_building, aprt_floor, aprt_room_num, description)
-		values (#{ticket_id}, #{ticket_type}, #{ticket_time}, #{initiator_prprt_id}, #{subarea_id}, #{aprt_building},
-				#{aprt_floor}, #{aprt_room_num}, #{description})
+		INSERT INTO ticket (ticket_id,ticket_type,ticket_time,initiator_prprt_id,subarea_id,aprt_building,aprt_floor,aprt_room_num,description)
+				values (#{ticket_id}, #{ticket_type}, #{ticket_time}, #{initiator_prprt_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description})
 	</insert>
 
 	<select id="getRepairHistory" parameterType="java.lang.String" resultMap="totalView">
-		SELECT
-			ticket.*,
-			staff.*,
-			department.*
-		FROM ticket, staff, department
-		WHERE
-			ticket.initiator_prprt_id = #{id} and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
+		SELECT ticket.*,staff.*,department.*
+		FROM ticket,staff,department
+		WHERE ticket.initiator_prprt_id = #{id} and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
 	</select>
 
 	<update id="updateRepairFB">
-		UPDATE ticket
-		SET ticket_fdbk = #{feedback}
-		WHERE initiator_prprt_id = #{prprt_id} and ticket_id = #{ticket_id}
+		UPDATE ticket SET ticket_fdbk = #{feedback} WHERE initiator_prprt_id = #{prprt_id} and ticket_id = #{ticket_id}
 	</update>
 
 	<update id="finishTicket">
@@ -89,38 +82,26 @@
 	</update>
 
 	<insert id="staffTicket" parameterType="com.Property.Domain.Ticket">
-		INSERT INTO ticket (ticket_id, ticket_type, ticket_time, initiator_staff_id, subarea_id, aprt_building, aprt_floor, aprt_room_num, description)
-		values (#{ticket_id}, #{ticket_type}, #{ticket_time}, #{initiator_staff_id}, #{subarea_id}, #{aprt_building},
-				#{aprt_floor}, #{aprt_room_num}, #{description})
+		INSERT INTO ticket (ticket_id,ticket_type,ticket_time,initiator_staff_id,subarea_id,aprt_building,aprt_floor,aprt_room_num,description)
+		values (#{ticket_id}, #{ticket_type}, #{ticket_time}, #{initiator_staff_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description})
 	</insert>
 
 	<select id="getHistoryCreated" parameterType="java.lang.String" resultMap="totalView">
-		SELECT
-			ticket.*,
-			staff.*,
-			department.*
-		FROM ticket, staff, department
+		SELECT ticket.*,staff.*,department.*
+		FROM ticket,staff,department
 		WHERE initiator_staff_id = #{id} and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
 	</select>
 
 	<select id="getHistoryFinished" parameterType="java.lang.String" resultMap="totalView">
-		SELECT
-			ticket.*,
-			staff.*,
-			department.*
-		FROM ticket, staff, department
-		WHERE handler_id = #{id} and ticket_result is not null and ticket.handler_id = staff.staff_id and
-			  staff.dept = department.dept_id
+		SELECT ticket.*,staff.*,department.*
+		FROM ticket,staff,department
+		WHERE handler_id = #{id} and ticket_result is not null and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
 	</select>
 
 	<select id="tbdTicket" parameterType="java.lang.String" resultMap="totalView">
-		SELECT
-			ticket.*,
-			staff.*,
-			department.*
-		FROM ticket, staff, department
-		WHERE handler_id = #{id} and ticket_result = null and ticket.handler_id = staff.staff_id and
-			  staff.dept = department.dept_id
+		SELECT ticket.*,staff.*,department.*
+		FROM ticket,staff,department
+		WHERE handler_id = #{id} and ticket_result is null and ticket.handler_id = staff.staff_id and staff.dept = department.dept_id
 	</select>
 
 	<update id="changeTicketHandler">
@@ -178,24 +159,19 @@
 
 	<insert id="addTicket" parameterType="com.Property.Domain.Ticket">
 		INSERT INTO ticket (ticket_type, ticket_time, initiator_prprt_id, initiator_staff_id, subarea_id, aprt_building, aprt_floor, aprt_room_num, description, handler_id, handle_time, ticket_result, ticket_fdbk)
-		VALUES (#{ticket_type}, #{ticket_time}, #{initiator_prprt_id}, #{initiator_staff_id}, #{subarea_id},
-								#{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description}, #{handler_id},
-								#{handle_time}, #{ticket_result}, #{ticket_fdbk})
+				VALUES (#{ticket_type}, #{ticket_time}, #{initiator_prprt_id}, #{initiator_staff_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description}, #{handler_id}, #{handle_time}, #{ticket_result}, #{ticket_fdbk})
 	</insert>
 
 	<delete id="deleteTicket" parameterType="java.lang.String">
 		DELETE FROM ticket
-		WHERE ticket_id = #{id}
+			WHERE ticket_id  = #{id}
 	</delete>
 
 	<update id="updateTicket" parameterType="com.Property.Domain.Ticket">
-		UPDATE ticket
-		SET ticket_type        = #{ticket_type}, ticket_time = #{ticket_time},
-			initiator_prprt_id = #{initiator_prprt_id},
-			initiator_staff_id = #{initiator_staff_id}, subarea_id = #{subarea_id}, aprt_building = #{aprt_building},
-			aprt_floor         = #{aprt_floor}, aprt_room_num = #{aprt_room_num}, description = #{description},
-			handler_id         = #{handler_id},
-			handle_time        = #{handle_time}, ticket_result = #{ticket_result}, ticket_fdbk = #{ticket_fdbk}
-		WHERE ticket_id = #{ticket_id}
+		UPDATE ticket SET ticket_type = #{ticket_type}, ticket_time = #{ticket_time}, initiator_prprt_id = #{initiator_prprt_id},
+						  initiator_staff_id  = #{initiator_staff_id}, subarea_id = #{subarea_id}, aprt_building = #{aprt_building},
+						  aprt_floor = #{aprt_floor}, aprt_room_num = #{aprt_room_num}, description = #{description}, handler_id =#{handler_id},
+						  handle_time = #{handle_time}, ticket_result = #{ticket_result}, ticket_fdbk = #{ticket_fdbk}
+			WHERE ticket_id = #{ticket_id}
 	</update>
 </mapper>

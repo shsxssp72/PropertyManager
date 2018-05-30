@@ -17,7 +17,7 @@ public interface FeeDao
 	List<Fee> getFee();
 
 	/*根据参数值查询*/
-	List<Fee> getFeebyParams(Map<String,Object> params);
+	List<Fee> getFeebyParams(Map<String, Object> params);
 
 	int addFee(Fee fee);
 

@@ -6,15 +6,14 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 
-public interface ReceptionistService
-{
+public interface ReceptionistService {
 
-	/*面对面缴费*/
-	int updateChargingSituation(String collector_id,Date charge_date,String fee_id);
+    /*面对面缴费*/
+    int updateChargingSituation(String collector_id, Date charge_date, String fee_id);
 
-	/*面对面意见*/
-	int createAdvice(Suggestion suggestion);
+    /*面对面意见*/
+    int createAdvice(Suggestion suggestion);
 
-	/*查看个人信息*/
-	Staff getSelfInfo(String id);
+    /*查看个人信息*/
+    Staff getSelfInfo(String id);
 }
