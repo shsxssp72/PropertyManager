@@ -94,7 +94,7 @@
 			<if test="subarea_id!=null and subarea_id!=''">
 				AND facilities.subarea_id = #{subarea_id,jdbcType=CHAR}
 			</if>
-			<if test="building_id!=null building_id!=''">
+			<if test="building_id!=null and building_id!=''">
 				AND facilities.building_id = #{building_id,jdbcType=CHAR}
 			</if>
 			<if test="floor!=null">

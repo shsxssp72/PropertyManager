@@ -7,30 +7,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PM | ChargingSituation</title>
+    <title>PM | TeamWork</title>
 
     <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
     <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet"
           th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
     <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
     <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
+    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
 
     <!-- FooTable -->
     <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
 
-    <link href="../static/INSPINIA/css/plugins/codemirror/codemirror.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/codemirror/codemirror.css}">
-    <link href="../static/INSPINIA/css/plugins/codemirror/ambiance.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/codemirror/ambiance.css}">
-
 </head>
 
-<body class="fixed-sidebar no-skin-config full-height-layout">
+<body>
 
 <div id="wrapper">
+
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
+
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong
                                     class="font-bold" th:text="${username}">David Williams</strong>
@@ -72,7 +72,7 @@
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/ticket/new">New Ticket</a></li>
-                        <li><a href="ticket/history">Ticket History</a></li>
+                        <li><a href="/ticket/history">Ticket History</a></li>
                     </ul>
                 </li>
 
@@ -86,11 +86,11 @@
                 </li>
 
                 <li th:if="${roleName=='proprietor'}">
-                    <a href="proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="proprietor/ticket/new">New Ticket</a></li>
-                        <li><a href="proprietor/ticket/history">Ticket History</a></li>
+                        <li><a href="/proprietor/ticket/new">New Ticket</a></li>
+                        <li><a href="/proprietor/ticket/history">Ticket History</a></li>
                     </ul>
                 </li>
 
@@ -158,6 +158,7 @@
                             class="nav-label">Teamwork</span></a>
                 </li>
 
+
                 <li th:if="${roleName=='proprietor'}">
                     <a href="/proprietor/suggestion/new"><i class="fa fa-envelope-square"></i> <span class="nav-label">Suggestion</span>
                         <span class="fa arrow"></span> </a>
@@ -193,7 +194,6 @@
                         <li><a href="/suggestion/history">Suggestion History</a></li>
                     </ul>
                 </li>
-
             </ul>
 
         </div>
@@ -205,10 +205,11 @@
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
                     </a>
+
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <!--<span class="m-r-sm text-muted welcome-message" th:text="${'Welcome, '+username}">Welcome to INSPINIA+ Admin Theme.</span>-->
+
                         <span class="m-r-sm text-muted welcome-message" th:text="|Welocme, ${username}|">Welcome to INSPINIA+ Admin Theme.</span>
                     </li>
 
@@ -223,16 +224,16 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>PaymentHistory</h2>
+                <h2>TeamWork</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="/index">Home</a>
                     </li>
                     <li>
-                        Payment
+                        TeamWork
                     </li>
-                    <li class="active">
-                        History
+                    <li>
+                        Department Staff
                     </li>
                 </ol>
             </div>
@@ -241,93 +242,90 @@
             </div>
         </div>
 
-        <div class="fh-breadcrumb">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Department Staff</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <input type="text" class="form-control input-sm m-b-xs" id="filter2"
+                                   placeholder="Search in table">
+                            <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter2>
+                                <thead>
+                                <!--<tr class="footable-filtering">
+                                    <th colspan="5">
+                                        <form role="form" class="form-inline pull-right">
+                                            <div class="form-group">
+                                                <input type="email" placeholder="Enter email" id="exampleInputEmail2"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="user_password" placeholder="Password" id="exampleInputPassword2"
+                                                       class="form-control">
+                                            </div>
+                                            <button class="btn btn-white" type="submit">Sign in</button>
+                                        </form>
+                                    </th>
+                                </tr>-->
+                                <tr>
+                                    <th>StaffName</th>
+                                    <th>Gender</th>
+                                    <th>Tel</th>
+                                    <th>Position</th>
+                                    <th>ElectricQualified</th>
+                                    <th>PlumberQualified</th>
+                                    <th>Ticket</th>
+                                    <th>Task</th>
+                                    <th data-hide="all">StaffID</th>
+                                    <th data-hide="all">Address</th>
+                                    <th data-hide="all">Salary</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="staff: ${staffList}">
+                                    <td th:text="${staff.staff_name}">Project - This is example of project</td>
+                                    <td th:text="${staff.gender}">Patrick Smith</td>
+                                    <td th:text="${staff.tel}">0800 051213</td>
+                                    <td th:text="${staff.position}"></td>
+                                    <td th:text="${staff.elec_qlfy}">tyy</td>
+                                    <td th:text="${staff.plbr_qlfy}"></td>
+                                    <td><a th:href="@{'/supervisor/ticket/'+${staff.staff_id}}"><button type="button" class="btn btn-primary btn-sm">Ticket Detail</button></a></td>
+                                    <td><a th:href="@{'/supervisor/task/'+${staff.staff_id}}"><button type="button" class="btn btn-primary btn-sm">Task Detail</button></a></td>
+                                    <td th:text="${staff.staff_id}"></td>
+                                    <td th:text="${staff.address}"></td>
+                                    <td th:text="${staff.salary}"></td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="7">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
 
-            <div class="fh-column">
-                <div class="full-height-scroll">
-                    <ul class="list-group elements-list">
-                        <li class="list-group-item" th:each="chargingItem: ${chargingItemList}">
-                            <a  th:href="@{'/accountant/chargingSituation/'+${chargingItem.item_title}}">
-                                <strong th:text="${chargingItem.item_title}">Ann Smith</strong>
-                                <div class="small m-t-xs">
-                                    <p class="m-b-none">
-                                        <i class="fa fa-eercast"></i>
-                                        <label th:text="${chargingItem.item_id}"></label>
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="full-height">
-                <div class="full-height-scroll white-bg border-left">
-                    <div class="element-detail-box">
-                        <div class="tab-content">
-                            <div id="myTab" class="tab-pane active">
-                                    <input type="text" class="form-control input-sm m-b-xs" id="filter"
-                                           placeholder="Search in table">
-                                    <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
-                                        <thead>
-                                        <!--<tr class="footable-filtering">
-                                            <th colspan="5">
-                                                <form role="form" class="form-inline pull-right">
-                                                    <div class="form-group">
-                                                        <input type="email" placeholder="Enter email" id="exampleInputEmail2"
-                                                               class="form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="user_password" placeholder="Password" id="exampleInputPassword2"
-                                                               class="form-control">
-                                                    </div>
-                                                    <button class="btn btn-white" type="submit">Sign in</button>
-                                                </form>
-                                            </th>
-                                        </tr>-->
-                                        <tr>
-                                            <th>ItemTitle</th>
-                                            <th>Proprietor</th>
-                                            <th>StartDate</th>
-                                            <th>EndDate</th>
-                                            <th>Price</th>
-                                            <th data-hide="all">Collector</th>
-                                            <th data-hide="all">ChargeDate</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="charging: ${chargingSituationList}">
-                                            <td th:text="${charging.fee.chargingItem.item_title}">Project - This is example of project</td>
-                                            <td th:text="${charging.proprietor.prprt_name}">Patrick Smith</td>
-                                            <td th:text="${charging.fee.start_date}">0800 051213</td>
-                                            <td th:text="${charging.fee.end_date}">Inceptos Hymenaeos Ltd</td>
-                                            <td><i class="fa fa-rmb"></i><abbr th:text="${charging.fee.price}"></abbr> </td>
-                                            <td th:text="${charging.staff.staff_name}"></td>
-                                            <td th:text="${charging.charge_date}"></td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <td colspan="5">
-                                                <ul class="pagination pull-right"></ul>
-                                            </td>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
             <div class="footer">
                 <div>
                     <strong>Copyright</strong> Example Company &copy; 2014-2017
                 </div>
             </div>
+        </div>
     </div>
 </div>
 
-<!-- Mainly scripts -->
 <script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
 <script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
 <script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
@@ -335,30 +333,31 @@
 <script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
         th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
 
-<!-- FooTable -->
-<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
-
-<!-- Custom and plugin javascript -->
 <script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
 <script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
         th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
 
-<script>
+<!-- FooTable -->
+<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
 
-    $(document).ready(function ()
-    {
-        $('#myTab').tab('show');
+<!-- JSKnob -->
+<script src="../static/INSPINIA/js/plugins/jsKnob/jquery.knob.js" th:src="@{/INSPINIA/js/plugins/jsKnob/jquery.knob.js}"></script>
 
-        // Add slimscroll to element
-        $('.scroll_content').slimscroll({
-            height: '200px'
-        });
+<!-- Page-Level Scripts -->
+<script type="text/javascript">
+    $(document).ready(function() {
 
         $('.footable').footable();
         $('.footable2').footable();
 
     });
 
+    $(function() {
+        $(".dial").knob();
+    });
+
 </script>
+
 </body>
+
 </html>
