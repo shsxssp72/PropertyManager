@@ -63,7 +63,7 @@ public class AccountantController {
         String item_id = chargingItemList.get(0).getItem_id();
         String item_title = chargingItemList.get(0).getItem_title();
         params.clear();
-        params.put("item_id", item_id);
+        params.put("item_title", item_title);
         List<ChargingSituation> chargingSituationList = chargingSituationDao.getPaymentbyParams(params);
 
         List<List<ChargingSituation>> chargingSituationLists = new ArrayList<>();
@@ -83,8 +83,8 @@ public class AccountantController {
         return modelAndView;
     }
 
-    @RequestMapping("/chargingSituation/{item_id}")
-    public ModelAndView chargingSituationClassify(HttpSession session, @PathVariable String item_id){
+    @RequestMapping("/chargingSituation/{item_title}")
+    public ModelAndView chargingSituationClassify(HttpSession session, @PathVariable String item_title){
         ModelAndView modelAndView = new ModelAndView("chargingsituation_classify");
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
@@ -99,9 +99,9 @@ public class AccountantController {
         List<ChargingItem> chargingItemList = chargingItemDao.getAll();
 
         params.clear();
-        params.put("item_id", item_id);
+        params.put("item_title", item_title);
         List<ChargingSituation> chargingSituationList = chargingSituationDao.getPaymentbyParams(params);
-        String item_title = chargingSituationList.get(0).getFee().getChargingItem().getItem_title();
+        /*String item_title = chargingSituationList.get(0).getFee().getChargingItem().getItem_title();*/
 
         modelAndView.addObject("chargingItemList", chargingItemList);
         modelAndView.addObject("chargingSituationList",chargingSituationList);
