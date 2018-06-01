@@ -30,6 +30,12 @@
 		WHERE staff_id = #{id}
 	</select>
 
+	<select id="getNameByID" resultType="java.lang.String">
+		SELECT staff_name
+		FROM staff
+		WHERE staff_id=#{inputID}
+	</select>
+
 	<select id="getDeptStaff" parameterType="java.lang.String" resultMap="staff">
 		SELECT *
 		FROM staff

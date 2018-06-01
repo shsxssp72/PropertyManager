@@ -27,4 +27,7 @@ public interface SuggestionDao
 	int deleteSuggestion(String id);
 
 	int updateSuggestion(Suggestion suggestion);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

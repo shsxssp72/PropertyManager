@@ -14,6 +14,8 @@ public interface ProprietorDao
 {
 	List<Proprietor> getAll();
 
+	String getIDByName(String inputName);
+
 	Proprietor getSelfInfo(String id);
 
 	int alterTel(@Param("tel")String tel, @Param("id")String id);

@@ -14,6 +14,8 @@ public interface FeeDao
 {
 	List<Fee> getAll();
 
+	Fee getById(String inputID);
+
 	List<Fee> getFee();
 
 	/*根据参数值查询*/

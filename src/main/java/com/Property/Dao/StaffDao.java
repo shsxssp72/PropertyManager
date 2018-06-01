@@ -13,6 +13,8 @@ public interface StaffDao
 {
 	List<Staff> getAll();
 
+	String getNameByID(String inputID);
+
 	Staff getSelfInfo(String id);
 
 	List<Staff> getDeptStaff(String dept);
