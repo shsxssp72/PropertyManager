@@ -15,6 +15,7 @@ import com.Property.Service.UserInfoService;
 import com.Property.Utility.CryptoUtil;
 import com.Property.Utility.Pair;
 import com.Property.Utility.TableAttrGetter;
+import com.Property.Utility.WeatherRequest;
 import io.swagger.models.auth.In;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -39,10 +40,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 //@Api(value="/Test",tags="测试用页面")
@@ -358,6 +356,46 @@ public class TestApplicationRestController
 			greeting="Good night! ";
 		String date=greeting+"Today is "+calendar.get(Calendar.YEAR)+"/"+(calendar.get(Calendar.MONTH)+1)+"/"+calendar
 				.get(Calendar.DAY_OF_MONTH)+".\n";
+
+		WeatherRequest weatherRequest = new WeatherRequest();
+		Map<String, Object> weather = null;
+		String weatherJSON = weatherRequest.getWeather();
+		weather = weatherRequest.parseJSONToWeather(weatherJSON);
+
+		String cond = weather.get("cond_txt_d").toString();
+		String cond_icon = "";
+		if (cond.equals("晴")){
+			cond_icon = "fa fa-sun-o fa-3x";
+		}else if (cond.indexOf("雪")>=0){
+			cond_icon = "fa fa-asterisk fa-3x";
+		}else if (cond.indexOf("雨")>=0){
+			cond_icon = "fa fa-tint fa-3x";
+		}else{
+			cond_icon = "fa fa-cloud fa-3x";
+		}
+
+		String tmp_min = weather.get("tmp_min").toString();
+		String tmp_max = weather.get("tmp_max").toString();
+		String pop = weather.get("pop").toString();
+		String hum = weather.get("hum").toString();
+		String wind_dir = weather.get("wind_dir").toString();
+		String weatherData = "最低温："+tmp_min+"°C  最高温："+tmp_max+"°C  降水概率："+pop+"%  相对湿度："+hum+"%  风向："+wind_dir;
+
+		Map<String, Object> lifestyle = weatherRequest.parseJSONToLifeStyle(weatherRequest.getLifeStyle());
+		String comf = "舒适度指数："+lifestyle.get("comf").toString();
+		String drsg = "穿衣指数："+lifestyle.get("drsg").toString();
+		String flu = "感冒指数："+lifestyle.get("flu").toString();
+		String sport = "运动指数："+lifestyle.get("sport").toString();
+		String air = "空气指数："+lifestyle.get("air").toString();
+
+		modelAndView.addObject("cond_icon", cond_icon);
+		modelAndView.addObject("weatherData", weatherData);
+		modelAndView.addObject("cond_txt_d", weather.get("cond_txt_d").toString());
+		modelAndView.addObject("comf",comf);
+		modelAndView.addObject("drsg",drsg);
+		modelAndView.addObject("flu",flu);
+		modelAndView.addObject("sport",sport);
+		modelAndView.addObject("air",air);
 		modelAndView.addObject("username",username);
 		modelAndView.addObject("roleName",roleName);
 		modelAndView.addObject("date",date);
