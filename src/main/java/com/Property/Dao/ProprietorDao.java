@@ -14,6 +14,10 @@ public interface ProprietorDao
 {
 	List<Proprietor> getAll();
 
+	Proprietor getByID(String inputID);
+
+	String getIDByName(String inputName);
+
 	Proprietor getSelfInfo(String id);
 
 	int alterTel(@Param("tel")String tel, @Param("id")String id);
@@ -26,4 +30,7 @@ public interface ProprietorDao
 	int deleteProprietor(String id);
 
 	int updateProprietor(Proprietor proprietor);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

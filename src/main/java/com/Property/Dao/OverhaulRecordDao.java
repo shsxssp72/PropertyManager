@@ -15,6 +15,8 @@ public interface OverhaulRecordDao
 {
 	List<OverhaulRecord> getAll();
 
+	OverhaulRecord getByID(String inputID);
+
 	int finishOverhaul(@Param("overhaul_time") Timestamp overhaul_time, @Param("result") String result, @Param("overhaul_id") String overhaul_id);
 
 	List<OverhaulRecord> tbdOverhaul(String id);
@@ -33,4 +35,7 @@ public interface OverhaulRecordDao
 	int deleteOverhaulRecord(String id);
 
 	int updateOverhaulRecord(OverhaulRecord overhaulRecord);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

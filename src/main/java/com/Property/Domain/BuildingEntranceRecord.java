@@ -6,7 +6,7 @@ public class BuildingEntranceRecord
 {
 	private String entrance_record_id;
 	private String prprt_id;
-	private String buidling_id;
+	private String building_id;
 	private Timestamp access_time;
 	private String verify_type;
 
@@ -30,14 +30,14 @@ public class BuildingEntranceRecord
 		this.prprt_id = prprt_id;
 	}
 
-	public String getBuidling_id()
+	public String getBuilding_id()
 	{
-		return buidling_id;
+		return building_id;
 	}
 
-	public void setBuidling_id(String buidling_id)
+	public void setBuilding_id(String building_id)
 	{
-		this.buidling_id = buidling_id;
+		this.building_id=building_id;
 	}
 
 	public Timestamp getAccess_time()

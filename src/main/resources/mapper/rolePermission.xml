@@ -15,4 +15,7 @@
 		<include refid="BaseColumnList"/>
 		FROM RolePermission
 	</select>
+
+
+
 </mapper>

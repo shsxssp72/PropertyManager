@@ -15,7 +15,7 @@
 		<result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
 		<result column="collector_id" property="collector_id" jdbcType="CHAR"/>
 		<result column="charge_date" property="charge_date" jdbcType="DATE"/>
-		
+
 		<association property="fee" javaType="com.Property.Domain.Fee">
 			<id column="fee_id" property="fee_id" jdbcType="CHAR"/>
 			<result column="item_id" property="item_id" jdbcType="CHAR"/>
@@ -23,16 +23,16 @@
 			<result column="end_date" property="end_date" jdbcType="DATE"/>
 			<result column="price" property="price" jdbcType="DECIMAL"/>
 			<association property="chargingItem" javaType="com.Property.Domain.ChargingItem">
-				<id column="item_id" property="item_id"></id>
-				<result column="item_title" property="item_title"></result>
+				<id column="item_id" property="item_id"/>
+				<result column="item_title" property="item_title"/>
 			</association>
 		</association>
-		
+
 		<association property="proprietor" javaType="com.Property.Domain.Proprietor">
 			<id column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
 			<result column="prprt_name" property="prprt_name" jdbcType="VARCHAR"/>
 		</association>
-		
+
 		<association property="staff" javaType="com.Property.Domain.Staff">
 			<id column="staff_id" property="staff_id" jdbcType="CHAR"/>
 			<result column="staff_name" property="staff_name" jdbcType="VARCHAR"/>
@@ -40,8 +40,32 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		chargingSituation_id,fee_id,prprt_id,collector_id,charge_date
+		chargingSituation_id, fee_id, prprt_id, collector_id, charge_date
 	</sql>
+
+	<select id="getChargingItemNameByCSID" resultType="java.lang.String">
+		SELECT item_title
+		FROM chargingItem
+		WHERE item_id = (SELECT item_id
+						 FROM fee
+						 WHERE fee_id = (SELECT fee_id
+										 FROM chargingSituation
+										 WHERE chargingSituation_id = #{inputCSID}))
+	</select>
+
+	<select id="getUnfinishedByUserId" resultMap="chargingSituation">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM chargingSituation
+		WHERE prprt_id=#{inputUID} AND charge_date IS NULL
+	</select>
+
+	<select id="getByID" resultMap="chargingSituation">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM chargingSituation
+		WHERE chargingSituation_id=#{inputID}
+	</select>
 
 	<select id="getAll" resultMap="chargingSituation">
 		SELECT
@@ -50,51 +74,72 @@
 	</select>
 
 	<select id="getPayment" resultMap="totalView" parameterType="java.lang.String">
-		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*
-		FROM chargingSituation,fee,chargingItem,staff,proprietor
-		WHERE chargingSituation.prprt_id = #{id} and chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and charge_date is null
+		SELECT
+			chargingSituation.*,
+			fee.*,
+			chargingItem.*,
+			staff.*,
+			proprietor.*
+		FROM chargingSituation, fee, chargingItem, staff, proprietor
+		WHERE chargingSituation.prprt_id = #{id} AND chargingSituation.fee_id = fee.fee_id AND
+			  fee.item_id = chargingItem.item_id AND chargingSituation.prprt_id = proprietor.prprt_id AND
+			  charge_date IS NULL
 	</select>
 
 	<select id="getLatestPayment" resultType="java.util.Date">
 		SELECT max(fee.end_date)
-		FROM chargingSituation,fee
-		WHERE chargingSituation.prprt_id = #{id} and chargingSituation.fee_id = fee.fee_id and fee.item_id = #{item_id}
+		FROM chargingSituation, fee
+		WHERE chargingSituation.prprt_id = #{id} AND chargingSituation.fee_id = fee.fee_id AND fee.item_id = #{item_id}
 	</select>
 
 	<select id="getPaymentHistory" resultMap="totalView" parameterType="java.lang.String">
-		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*
-		FROM chargingSituation,fee,chargingItem,staff,proprietor
-		WHERE chargingSituation.prprt_id = #{id} and chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and chargingSituation.collector_id = staff.staff_id
+		SELECT
+			chargingSituation.*,
+			fee.*,
+			chargingItem.*,
+			staff.*,
+			proprietor.*
+		FROM chargingSituation, fee, chargingItem, staff, proprietor
+		WHERE chargingSituation.prprt_id = #{id} AND chargingSituation.fee_id = fee.fee_id AND
+			  fee.item_id = chargingItem.item_id AND chargingSituation.prprt_id = proprietor.prprt_id AND
+			  chargingSituation.collector_id = staff.staff_id
 	</select>
 
 	<select id="getAllCharging" resultMap="totalView">
-		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*
-		FROM chargingSituation,fee,chargingItem,staff,proprietor
-		WHERE chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and chargingSituation.collector_id = staff.staff_id
+		SELECT
+			chargingSituation.*,
+			fee.*,
+			chargingItem.*,
+			staff.*,
+			proprietor.*
+		FROM chargingSituation, fee, chargingItem, staff, proprietor
+		WHERE chargingSituation.fee_id = fee.fee_id AND fee.item_id = chargingItem.item_id AND
+			  chargingSituation.prprt_id = proprietor.prprt_id AND chargingSituation.collector_id = staff.staff_id
 	</select>
 
 	<!--<update id="updateChargingSituation">-->
-		<!--UPDATE chargingSituation-->
-		<!--SET collector_id = #{collector_id}, charge_date = #{charge_date}-->
-		<!--WHERE fee_id = #{fee_id}-->
+	<!--UPDATE chargingSituation-->
+	<!--SET collector_id = #{collector_id}, charge_date = #{charge_date}-->
+	<!--WHERE fee_id = #{fee_id}-->
 	<!--</update>-->
 
 	<select id="getPaymentbyParams" resultMap="totalView" parameterType="java.util.HashMap">
 		SELECT chargingSituation.*,fee.*,chargingItem.*,staff.*,proprietor.*
 		FROM chargingSituation,fee,chargingItem,staff,proprietor
 		<where>
-			chargingSituation.fee_id = fee.fee_id and fee.item_id = chargingItem.item_id and chargingSituation.prprt_id = proprietor.prprt_id and chargingSituation.collector_id = staff.staff_id
+			chargingSituation.fee_id = fee.fee_id AND fee.item_id = chargingItem.item_id AND chargingSituation.prprt_id
+			= proprietor.prprt_id AND chargingSituation.collector_id = staff.staff_id
 			<if test="situation_id!=null and situation_id!=''">
 				AND chargingSituation.chargingSituation_id = #{situation_id,jdbcType=CHAR}
 			</if>
 			<if test="prprt_name!=null and prprt_name!=''">
-				AND proprietor.prprt_name like CONCAT(CONCAT('%',#{prprt_name,jdbcType=VARCHAR}),'%')
+				AND proprietor.prprt_name LIKE CONCAT(CONCAT('%',#{prprt_name,jdbcType=VARCHAR}),'%')
 			</if>
 			<if test="staff_name!=null and staff_name!=''">
-				AND staff.staff_name like CONCAT(CONCAT('%',#{staff_name,jdbcType=VARCHAR}),'%')
+				AND staff.staff_name LIKE CONCAT(CONCAT('%',#{staff_name,jdbcType=VARCHAR}),'%')
 			</if>
 			<if test="item_title!=null and item_title!=''">
-				AND chargingItem.item_title like CONCAT(CONCAT('%',#{item_title,jdbcType=VARCHAR}),'%')
+				AND chargingItem.item_title LIKE CONCAT(CONCAT('%',#{item_title,jdbcType=VARCHAR}),'%')
 			</if>
 			<if test="start_date!=null">
 				AND fee.start_date &gt; #{start_date,jdbcType=DATE}
@@ -112,17 +157,31 @@
 	</select>
 
 	<insert id="addChargingSituation" parameterType="com.Property.Domain.ChargingSituation">
-		INSERT INTO chargingSituation (fee_id, prprt_id, collector_id, charge_date)
-				VALUES (#{fee_id}, #{prprt_id}, #{collector_id}, #{charge_date})
+		INSERT INTO chargingSituation (chargingSituation_id,fee_id, prprt_id, collector_id, charge_date)
+		VALUES (#{chargingSituation_id},#{fee_id}, #{prprt_id}, #{collector_id}, #{charge_date})
 	</insert>
 
 	<delete id="deleteChargingSituation" parameterType="java.lang.String">
 		DELETE FROM chargingSituation
-			WHERE situation_id = #{id}
+		WHERE situation_id = #{id}
 	</delete>
 
 	<update id="updateChargingSituation" parameterType="com.Property.Domain.ChargingSituation">
-		UPDATE chargingSituation SET fee_id = #{fee_id}, prprt_id = #{prprt_id}, collector_id = #{collector_id}, charge_date = #{charge_date}
-			WHERE situation_id = #{situation_id}
+		UPDATE chargingSituation
+		SET fee_id = #{fee_id}, prprt_id = #{prprt_id}, collector_id = #{collector_id}, charge_date = #{charge_date}
+		WHERE chargingSituation_id = #{situation_id}
 	</update>
+
+	<!--<update id="updateChargingSituation">-->
+	<!--UPDATE chargingSituation-->
+	<!--SET fee_id = #{fee_id}, prprt_id = #{prprt_id}, collector_id = #{collector_id}, charge_date = #{charge_date}-->
+	<!--WHERE situation_id = #{situation_id}-->
+	<!--</update>-->
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM chargingSituation
+			  WHERE chargingSituation_id = #{inputID}) AS S
+	</select>
 </mapper>

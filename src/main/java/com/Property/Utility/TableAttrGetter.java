@@ -28,6 +28,29 @@ public class TableAttrGetter
 	private List<String> suggestionAttrList=new LinkedList<>();
 	private List<String> ticketAttrList=new LinkedList<>();
 
+
+	private int RolePermissionAttrNum;
+	private int SysPermissionAttrNum;
+	private int SysRoleAttrNum;
+	private int UserInfoAttrNum;
+	private int UserRoleAttrNum;
+	private int buildingAttrNum;
+	private int buildingEntranceRecordAttrNum;
+	private int carIORecordAttrNum;
+	private int carparkAttrNum;
+	private int chargingItemAttrNum;
+	private int chargingSituationAttrNum;
+	private int dailyTaskAttrNum;
+	private int departmentAttrNum;
+	private int facilitiesAttrNum;
+	private int feeAttrNum;
+	private int overhaulRecordAttrNum;
+	private int proprietorAttrNum;
+	private int staffAttrNum;
+	private int subareaAttrNum;
+	private int suggestionAttrNum;
+	private int ticketAttrNum;
+
 	public TableAttrGetter()
 	{
 
@@ -60,7 +83,6 @@ public class TableAttrGetter
 		UserRoleAttrList.add("role_id");
 
 		buildingAttrList.add("building_id");
-		buildingAttrList.add("subarea_id");
 		buildingAttrList.add("subarea_id");
 		buildingAttrList.add("max_floor");
 		buildingAttrList.add("max_room_num");
@@ -165,6 +187,28 @@ public class TableAttrGetter
 		ticketAttrList.add("handle_time");
 		ticketAttrList.add("ticket_result");
 		ticketAttrList.add("ticket_fdbk");
+
+		RolePermissionAttrNum=RolePermissionAttrList.size();
+		SysPermissionAttrNum=SysPermissionAttrList.size();
+		SysRoleAttrNum=SysRoleAttrList.size();
+		UserInfoAttrNum=UserInfoAttrList.size();
+		UserRoleAttrNum=UserRoleAttrList.size();
+		buildingAttrNum=buildingAttrList.size();
+		buildingEntranceRecordAttrNum=buildingEntranceRecordAttrList.size();
+		carIORecordAttrNum=carIORecordAttrList.size();
+		carparkAttrNum=carparkAttrList.size();
+		chargingItemAttrNum=chargingItemAttrList.size();
+		chargingSituationAttrNum=chargingSituationAttrList.size();
+		dailyTaskAttrNum=dailyTaskAttrList.size();
+		departmentAttrNum=departmentAttrList.size();
+		facilitiesAttrNum=facilitiesAttrList.size();
+		feeAttrNum=feeAttrList.size();
+		overhaulRecordAttrNum=overhaulRecordAttrList.size();
+		proprietorAttrNum=proprietorAttrList.size();
+		staffAttrNum=staffAttrList.size();
+		subareaAttrNum=subareaAttrList.size();
+		suggestionAttrNum=suggestionAttrList.size();
+		ticketAttrNum=ticketAttrList.size();
 	}
 
 	public List<String> getRolePermissionAttrList()
@@ -270,5 +314,110 @@ public class TableAttrGetter
 	public List<String> getTicketAttrList()
 	{
 		return ticketAttrList;
+	}
+
+	public int getRolePermissionAttrNum()
+	{
+		return RolePermissionAttrNum;
+	}
+
+	public int getSysPermissionAttrNum()
+	{
+		return SysPermissionAttrNum;
+	}
+
+	public int getSysRoleAttrNum()
+	{
+		return SysRoleAttrNum;
+	}
+
+	public int getUserInfoAttrNum()
+	{
+		return UserInfoAttrNum;
+	}
+
+	public int getUserRoleAttrNum()
+	{
+		return UserRoleAttrNum;
+	}
+
+	public int getBuildingAttrNum()
+	{
+		return buildingAttrNum;
+	}
+
+	public int getBuildingEntranceRecordAttrNum()
+	{
+		return buildingEntranceRecordAttrNum;
+	}
+
+	public int getCarIORecordAttrNum()
+	{
+		return carIORecordAttrNum;
+	}
+
+	public int getCarparkAttrNum()
+	{
+		return carparkAttrNum;
+	}
+
+	public int getChargingItemAttrNum()
+	{
+		return chargingItemAttrNum;
+	}
+
+	public int getChargingSituationAttrNum()
+	{
+		return chargingSituationAttrNum;
+	}
+
+	public int getDailyTaskAttrNum()
+	{
+		return dailyTaskAttrNum;
+	}
+
+	public int getDepartmentAttrNum()
+	{
+		return departmentAttrNum;
+	}
+
+	public int getFacilitiesAttrNum()
+	{
+		return facilitiesAttrNum;
+	}
+
+	public int getFeeAttrNum()
+	{
+		return feeAttrNum;
+	}
+
+	public int getOverhaulRecordAttrNum()
+	{
+		return overhaulRecordAttrNum;
+	}
+
+	public int getProprietorAttrNum()
+	{
+		return proprietorAttrNum;
+	}
+
+	public int getStaffAttrNum()
+	{
+		return staffAttrNum;
+	}
+
+	public int getSubareaAttrNum()
+	{
+		return subareaAttrNum;
+	}
+
+	public int getSuggestionAttrNum()
+	{
+		return suggestionAttrNum;
+	}
+
+	public int getTicketAttrNum()
+	{
+		return ticketAttrNum;
 	}
 }

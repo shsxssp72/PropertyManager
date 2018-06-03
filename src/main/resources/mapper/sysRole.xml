@@ -18,6 +18,13 @@
 		FROM SysRole
 	</select>
 
+	<select id="getByID" resultMap="sysRole">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM SysRole
+		WHERE role_id=#{inputID}
+	</select>
+
 	<select id="getByUid" resultMap="sysRole">
 		SELECT
 		<include refid="BaseColumnList"/>

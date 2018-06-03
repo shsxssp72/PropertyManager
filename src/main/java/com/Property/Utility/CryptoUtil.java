@@ -83,6 +83,19 @@ public class CryptoUtil
 		return stringBuffer.toString();
 	}
 
+	public String getRandomNumber(int length)
+	{
+		String KeyString="0123456789";
+		StringBuffer stringBuffer=new StringBuffer();
+		int len=KeyString.length();
+		SecureRandom secureRandom=new SecureRandom();
+		for(int i=0;i<length;i++)
+		{
+			stringBuffer.append(KeyString.charAt(secureRandom.nextInt(len-1)));
+		}
+		return stringBuffer.toString();
+	}
+
 
 	public Pair<RSAPrivateKey,RSAPublicKey> generateRSAKey()
 	{

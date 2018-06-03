@@ -13,6 +13,8 @@ public interface CarparkDao
 {
 	List<Carpark> getAll();
 
+	Carpark getByID(String inputID);
+
 	/*根据参数值查询*/
 	List<Carpark> getCarparkbyParams(Map<String, Object> params);
 
@@ -21,4 +23,7 @@ public interface CarparkDao
 	int deleteCarpark(String id);
 
 	int updateCarpark(Carpark carpark);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

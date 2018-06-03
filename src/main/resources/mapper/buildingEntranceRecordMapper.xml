@@ -19,6 +19,14 @@
 		FROM buildingEntranceRecord
 	</select>
 
+	<select id="getByID" resultMap="buildingEntranceRecord">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM buildingEntranceRecord
+		WHERE entrance_record_id=#{inputID}
+
+	</select>
+
 	<select id="getBERbyParams" resultMap="buildingEntranceRecord" parameterType="java.util.HashMap">
 		SELECT
 		<include refid="BaseColumnList"/>
@@ -44,8 +52,8 @@
 	</select>
 
 	<insert id="addBER" parameterType="com.Property.Domain.BuildingEntranceRecord">
-		INSERT INTO buildingEntranceRecord (prprt_id, building_id, access_time, verify_type)
-				VALUES (#{prprt_id}, #{building_id}, #{access_time}, #{verify_type})
+		INSERT INTO buildingEntranceRecord (entrance_record_id,prprt_id, building_id, access_time, verify_type)
+				VALUES (#{entrance_record_id},#{prprt_id}, #{building_id}, #{access_time}, #{verify_type})
 	</insert>
 
 	<delete id="deleteBER" parameterType="java.lang.String">
@@ -57,4 +65,11 @@
 		UPDATE buildingEntranceRecord SET prprt_id = #{prprt_id}, building_id = #{building_id}, access_time = #{access_time}, verify_type = #{verify_type}
 			WHERE entrance_record_id = #{entrance_record_id}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM buildingEntranceRecord
+			  WHERE entrance_record_id = #{inputID}) AS S
+	</select>
 </mapper>

@@ -19,6 +19,13 @@
 		<include refid="BaseColumnList"/>
 		FROM carIORecord
 	</select>
+
+	<select id="getByID" resultMap="carIORecord">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM carIORecord
+		WHERE io_record_id=#{inputID}
+	</select>
 	
 	<select id="getExternal" resultMap="carIORecord">
 		SELECT *
@@ -54,8 +61,8 @@
 	</select>
 
 	<insert id="addCarIORecord" parameterType="com.Property.Domain.CarIORecord">
-		INSERT INTO carIORecord (plate_number, prprt_id, record_in_time, record_out_time, price)
-				VALUES (#{plate_number}, #{prprt_id}, #{record_in_time}, #{record_out_time}, #{price})
+		INSERT INTO carIORecord (io_record_id,plate_number, prprt_id, record_in_time, record_out_time, price)
+				VALUES (#{io_record_id},#{plate_number}, #{prprt_id}, #{record_in_time}, #{record_out_time}, #{price})
 	</insert>
 
 	<delete id="deleteCarIORecord" parameterType="java.lang.String">
@@ -66,4 +73,11 @@
 	<update id="updateCarIORecord" parameterType="com.Property.Domain.CarIORecord">
 		UPDATE carIORecord SET plate_number = #{plate_number}, prprt_id = #{prprt_id}, record_in_time = #{record_in_time}, record_out_time = #{record_out_time}, price = #{price}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM carIORecord
+			  WHERE io_record_id = #{inputID}) AS S
+	</select>
 </mapper>

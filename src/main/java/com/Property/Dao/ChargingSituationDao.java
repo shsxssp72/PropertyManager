@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,12 @@ import java.util.Map;
 @Mapper
 public interface ChargingSituationDao
 {
+	String getChargingItemNameByCSID(String inputCSID);
+
+	List<ChargingSituation> getUnfinishedByUserId(String inputUID);
+
+	ChargingSituation getByID(String inputID);
+
 	List<ChargingSituation> getAll();
 
 	List<ChargingSituation> getPayment(String id);
@@ -33,4 +40,11 @@ public interface ChargingSituationDao
 	int deleteChargingSituation(String id);
 
 	int updateChargingSituation(ChargingSituation chargingSituation);
+
+//	int updateChargingSituation(@Param("chargingSituation_id") String chargingSituation_id,@Param("fee_id") String fee_id,
+//								@Param("prprt_id") String prprt_id,@Param("collector_id") String collector_id,@Param("charge_date") Timestamp charge_date);
+
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

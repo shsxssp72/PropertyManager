@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -14,6 +13,8 @@
           th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
     <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
     <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
+    <link href="../static/INSPINIA/css/plugins/dataTables/datatables.min.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/dataTables/datatables.min.css}">
 
 </head>
 
@@ -121,7 +122,8 @@
                 </li>
 
                 <li th:if="${roleName=='proprietor'}">
-                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span class="nav-label">Ticket</span>
+                    <a href="/proprietor/ticket/new"><i class="fa fa-handshake-o"></i> <span
+                            class="nav-label">Ticket</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="/proprietor/ticket/new">New Ticket</a></li>
@@ -198,17 +200,17 @@
                 </li>
 
                 <li th:if="${roleName=='receptionist'}">
-                    <a href="/receptionist/updateChargingSituation"><i class="fa fa-user-circle"></i> <span
+                    <a href="/reception/payment"><i class="fa fa-user-circle"></i> <span
                             class="nav-label">Reception</span>
                         <span class="fa arrow"></span> </a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="/receptionist/updateChargingSituation">Offline Payment</a></li>
-                        <li><a href="/receptionist/createAdvice">Offline Suggestion</a></li>
+                        <li><a href="/reception/payment">Offline Payment</a></li>
+                        <li><a href="/reception/suggestion">Offline Suggestion</a></li>
                     </ul>
                 </li>
 
                 <li th:if="${roleName=='supervisor'}">
-                    <a href="/supervisor/deptStaff"><i class="fa fa-address-book"></i> <span
+                    <a href="/supervise"><i class="fa fa-address-book"></i> <span
                             class="nav-label">Teamwork</span></a>
                 </li>
 
@@ -278,10 +280,13 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Home</h2>
+                <h2>Offline Payment</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="/index">Home</a>
+                    </li>
+                    <li>
+                        Offline Payment
                     </li>
                 </ol>
             </div>
@@ -290,71 +295,107 @@
             </div>
         </div>
 
-        <div class="wrapper wrapper-content animated fadeIn">
+        <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
-                        <div class="ibox-content">
-                            <h2 th:text="|Welocme, ${username}|">
-                                This is standard IN+ Panel<br/>
-                            </h2>
-                            <p>
-                            <h3 th:text="${date}">Lorem ipsum dolor</h3>
-                            You can find more option in the navigation bar on the left. </p>
-                            <p th:text="${cond_txt_d}"></p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="ibox">
                         <div class="ibox-title">
-                            <span>Weather Forecast</span>
                         </div>
                         <div class="ibox-content">
-                            <div class="p-sm">
-                            <h2 class="text-navy">
-                                <i th:class="${cond_icon}"></i>
-                                <label th:text="${cond_txt_d}"></label>
-                            </h2>
-                            </div>
-                            <div class="p-sm">
-                                <h4>
-                                    <span th:text="${weatherData}"></span>
-                                </h4>
-                            </div>
-                            <div class="p-sm">
-                                <h3>生活指数</h3>
-                                <span th:text="${comf}"></span>
-                                <br>
-                                <span th:text="${drsg}"></span>
-                                <br>
-                                <span th:text="${flu}"></span>
-                                <br>
-                                <span th:text="${sport}"></span>
-                                <br>
-                                <span th:text="${air}"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            <form role="form" class="form-inline" method="post">
+                                <div class="form-inline">
+                                    <label for="prprt_name" class="sr-only">Proprietor Name</label>
+                                    <input type="text" placeholder="Enter Proprietor Name" id="prprt_name"
+                                           name="prprt_name" class="form-control" th:value="${lastQuery}">
 
-                <div class="col-lg-4">
-                    <div class="ibox">
-                        <div class="ibox-title">
-                            <span>Alerts</span>
+                                    <button class="btn btn-primary" type="submit" name="action" value="Search">Search
+                                    </button>
+                                </div>
+
+
+
+                                <div class="" th:text="${msg}">
+                                </div>
+                            </form>
                         </div>
-                        <div class="ibox-content">
+                        <div class="ibox-content" >
+
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                    <thead>
+                                    <tr>
+                                        <th>Charging ID</th>
+                                        <th>Charging Item</th>
+                                        <th>Term</th>
+                                        <th>Proprietor Name</th>
+                                        <th>Handler Name</th>
+                                        <th>Charging Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="line:${dataList}">
+                                        <td th:each="attr:${line}" th:text="${attr}"></td>
+                                        <td>
+                                            <button class="btn btn-primary" type="submit" name="action" value="Finish"
+                                                    data-toggle="modal" data-target="#myModal" onclick="setData(this)">
+                                                Finish
+                                            </button>
+                                        </td>
+
+                                    </tr>
+
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Charging Item</th>
+                                        <th>Term</th>
+                                        <th>Proprietor Name</th>
+                                        <th>Handler Name</th>
+                                        <th>Charging Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                            <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content animated fadeInDown">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span
+                                                    aria-hidden="true">&times;</span><span
+                                                    class="sr-only">Close</span>
+                                            </button>
+                                            <i class="fa fa-usd modal-icon"></i>
+                                            <h4 class="modal-title">Confirm</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>If you are sure to update the status to <strong>FINISIHED</strong> state,
+                                                please click <strong>UPDATE</strong>.<br>
+                                                <strong>WARNING: THIS ACTION IS IRREVERSIBLE.</strong></p>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <form role="form" class="form-inline" method="post">
+                                                <input type="text" class="form-control" name="passLastQuery"
+                                                       id="passLastQuery" style="display:none" th:value="${lastQuery}">
+                                                <input type="text" class="form-control" name="CSID" id="CSID"
+                                                       style="display:none">
+                                                <button type="button" class="btn btn-white" data-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" name="action" value="Update"
+                                                        class="btn btn-primary">Update
+                                                </button>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
-                    </div>
-                </div>
-
-                <div class="footer">
-                    <div>
-                        <strong>Copyright</strong> Example Company &copy; 2014-2017
                     </div>
                 </div>
             </div>
@@ -373,53 +414,67 @@
 <script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
         th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
 
-<!-- jquery UI -->
-<script src="../static/INSPINIA/js/plugins/jquery-ui/jquery-ui.min.js" th:src="@{/INSPINIA/js/plugins/jquery-ui/jquery-ui.min.js}"></script>
-
-<!-- Touch Punch - Touch Event Support for jQuery UI -->
-<script src="../static/INSPINIA/js/plugins/touchpunch/jquery.ui.touch-punch.min.js" th:src="@{/INSPINIA/js/plugins/touchpunch/jquery.ui.touch-punch.min.js}"></script>
-
-<!-- Jvectormap -->
-<script src="../static/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js" th:src="@{/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js}"></script>
-<script src="../static/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" th:src="@{/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
-
-<!-- Flot -->
-<script src="../static/INSPINIA/js/plugins/flot/jquery.flot.js" th:src="@{/INSPINIA/js/plugins/flot/jquery.flot.js}"></script>
-<script src="../static/INSPINIA/js/plugins/flot/jquery.flot.tooltip.min.js" th:src="@{/INSPINIA/js/plugins/flot/jquery.flot.tooltip.min.js}"></script>
-<script src="../static/INSPINIA/js/plugins/flot/jquery.flot.resize.js" th:src="@{/INSPINIA/js/plugins/flot/jquery.flot.resize.js}"></script>
-
-<!-- Sparkline -->
-<script src="../static/INSPINIA/js/plugins/sparkline/jquery.sparkline.min.js" th:src="@{/INSPINIA/js/plugins/sparkline/jquery.sparkline.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/dataTables/datatables.min.js"
+        th:src="@{/INSPINIA//js/plugins/dataTables/datatables.min.js}"></script>
 
 <script>
+
     $(document).ready(function ()
     {
 
-        var sparklineCharts = function ()
-        {
-            $("#sparkline1").sparkline([21, 21, 23, 23, 24, 24, 23, 21], {
-                type: 'line',
-                width: '100%',
-                height: '100',
-                lineColor: '#1ab394',
-                fillColor: "#ffffff"
-            });
-
-        };
-
-        var sparkResize;
-
-        $(window).resize(function (e)
-        {
-            clearTimeout(sparkResize);
-            sparkResize = setTimeout(sparklineCharts, 500);
-        });
-
-        sparklineCharts();
+        // Add slimscroll to element
+        $('.scroll_content').slimscroll({
+            height: '200px'
+        })
 
     });
 
 </script>
+
+<script>
+    $(document).ready(function ()
+    {
+        $('.dataTables-example').DataTable({
+            pageLength: 10,
+            responsive: true,
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                {extend: 'copy'},
+                {extend: 'csv'},
+                {extend: 'excel', title: 'ExampleFile'},
+                {extend: 'pdf', title: 'ExampleFile'},
+
+                {
+                    extend: 'print',
+                    customize: function (win)
+                    {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+
+        });
+
+    });
+
+</script>
+
+<script>
+    var setData = function (btn)
+    {
+        var tr = btn.parentElement.parentElement;
+        var td = tr.cells[0];
+
+        document.getElementById('CSID').value = td.innerHTML;
+    }
+</script>
+
+
 </body>
 
 </html>

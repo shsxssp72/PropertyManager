@@ -24,16 +24,12 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.servlet.ShiroHttpSession;
-import org.eclipse.jetty.server.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.PrivateKey;
@@ -207,9 +203,6 @@ public class TestApplicationRestController
 	@RequiresUser
 	public ModelAndView postChangePasswd(HttpServletRequest request)
 	{
-		//TODO 注入RSA
-
-
 		HttpSession session=request.getSession();
 		CryptoUtil cryptoUtil=new CryptoUtil();
 		PrivateKey privateKey=(PrivateKey)session.getAttribute("CP_PrivateKey");

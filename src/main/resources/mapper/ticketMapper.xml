@@ -110,6 +110,13 @@
 		WHERE ticket_id = #{ticket_id}
 	</update>
 
+	<select id="getByID" resultMap="ticket">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM ticket
+		WHERE ticket_id=#{inputID}
+	</select>
+
 	<select id="getTicketbyParams" resultMap="totalView" parameterType="java.util.HashMap">
 		SELECT ticket.*,staff.*,department.*
 		FROM ticket,staff,department
@@ -158,8 +165,8 @@
 	</select>
 
 	<insert id="addTicket" parameterType="com.Property.Domain.Ticket">
-		INSERT INTO ticket (ticket_type, ticket_time, initiator_prprt_id, initiator_staff_id, subarea_id, aprt_building, aprt_floor, aprt_room_num, description, handler_id, handle_time, ticket_result, ticket_fdbk)
-				VALUES (#{ticket_type}, #{ticket_time}, #{initiator_prprt_id}, #{initiator_staff_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description}, #{handler_id}, #{handle_time}, #{ticket_result}, #{ticket_fdbk})
+		INSERT INTO ticket (ticket_id,ticket_type, ticket_time, initiator_prprt_id, initiator_staff_id, subarea_id, aprt_building, aprt_floor, aprt_room_num, description, handler_id, handle_time, ticket_result, ticket_fdbk)
+				VALUES (#{ticket_id},#{ticket_type}, #{ticket_time}, #{initiator_prprt_id}, #{initiator_staff_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description}, #{handler_id}, #{handle_time}, #{ticket_result}, #{ticket_fdbk})
 	</insert>
 
 	<delete id="deleteTicket" parameterType="java.lang.String">
@@ -174,4 +181,11 @@
 						  handle_time = #{handle_time}, ticket_result = #{ticket_result}, ticket_fdbk = #{ticket_fdbk}
 			WHERE ticket_id = #{ticket_id}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM ticket
+			  WHERE ticket_id = #{inputID}) AS S
+	</select>
 </mapper>

@@ -16,6 +16,13 @@
 		FROM chargingItem
 	</select>
 
+	<select id="getByID" resultMap="chargingItem">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM chargingItem
+		WHERE item_id=#{inputID}
+	</select>
+
 	<select id="getChargingItembyParams" resultMap="chargingItem" parameterType="java.util.HashMap">
 		SELECT
 		<include refid="BaseColumnList"/>
@@ -32,8 +39,8 @@
 	</select>
 
 	<insert id="addChargingItem" parameterType="com.Property.Domain.ChargingItem">
-		INSERT INTO chargingItem (item_title)
-				VALUES (#{item_title})
+		INSERT INTO chargingItem (item_id,item_title)
+				VALUES (#{item_id},#{item_title})
 	</insert>
 
 	<delete id="deleteChargingItem" parameterType="java.lang.String">
@@ -45,4 +52,11 @@
 		UPDATE chargingItem SET item_title = #{item_title}
 			WHERE item_id = #{item_id}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM chargingItem
+			  WHERE item_id = #{inputID}) AS S
+	</select>
 </mapper>

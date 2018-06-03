@@ -14,6 +14,8 @@ public interface FeeDao
 {
 	List<Fee> getAll();
 
+	Fee getByID(String inputID);
+
 	List<Fee> getFee();
 
 	/*根据参数值查询*/
@@ -24,4 +26,7 @@ public interface FeeDao
 	int deleteFee(String id);
 
 	int updateFee(Fee fee);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

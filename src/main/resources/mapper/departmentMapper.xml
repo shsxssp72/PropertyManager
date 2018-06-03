@@ -7,13 +7,20 @@
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		dept_id,dept_name
+		dept_id, dept_name
 	</sql>
 
 	<select id="getAll" resultMap="department">
 		SELECT
 		<include refid="BaseColumnList"/>
 		FROM department
+	</select>
+
+	<select id="getByID" resultMap="department">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM department
+		WHERE dept_id=#{inputID}
 	</select>
 
 	<select id="getDeptbyParams" resultMap="department" parameterType="java.util.HashMap">
@@ -26,9 +33,32 @@
 				AND dept_id = #{dept_id,jdbcType=CHAR}
 			</if>
 			<if test="dept_name!=null and dept_name!=''">
-				AND dept_name like CONCAT(CONCAT('%',#{dept_name,jdbcType=VARCHAR}),'%')
+				AND dept_name LIKE CONCAT(CONCAT('%',#{dept_name,jdbcType=VARCHAR}),'%')
 			</if>
 		</where>
 	</select>
 
+	<insert id="addDepartment" parameterType="com.Property.Domain.Department">
+		INSERT INTO department (dept_id, dept_name)
+		VALUES (#{dept_id}, #{dept_name})
+	</insert>
+
+
+	<delete id="deleteDepartment" parameterType="com.Property.Domain.Department">
+		DELETE FROM department
+		WHERE dept_id=#{id}
+	</delete>
+
+	<update id="updateDepartment" parameterType="com.Property.Domain.Department">
+		UPDATE Department
+		SET dept_name = #{dept_name}
+		WHERE dept_id = #{dept_id}
+	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM department
+			  WHERE dept_id = #{inputID}) AS S
+	</select>
 </mapper>

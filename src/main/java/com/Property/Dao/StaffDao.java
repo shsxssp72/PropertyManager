@@ -13,6 +13,10 @@ public interface StaffDao
 {
 	List<Staff> getAll();
 
+	Staff getByID(String inputID);
+
+	String getNameByID(String inputID);
+
 	Staff getSelfInfo(String id);
 
 	List<Staff> getDeptStaff(String dept);
@@ -25,4 +29,7 @@ public interface StaffDao
 	int deleteStaff(String id);
 
 	int updateStaff(Staff staff);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

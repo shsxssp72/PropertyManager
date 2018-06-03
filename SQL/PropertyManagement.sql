@@ -138,11 +138,11 @@ CREATE TABLE buildingEntranceRecord ##单向门禁
 (
   entrance_record_id CHAR(20) PRIMARY KEY,
   prprt_id           CHAR(20),
-  buidling_id        CHAR(20),
+  building_id        CHAR(20),
   access_time        DATETIME,
   verify_type        VARCHAR(20),
   FOREIGN KEY (prprt_id) REFERENCES proprietor (prprt_id),
-  FOREIGN KEY (buidling_id) REFERENCES building (building_id)
+  FOREIGN KEY (building_id) REFERENCES building (building_id)
 );
 
 
@@ -331,38 +331,48 @@ INSERT INTO UserRole
 VALUES (7, 7);
 
 
-
-
-
-use propertymanagement;
+USE propertymanagement;
 UPDATE UserInfo
-set staff_id='SF1723219020'
-WHERE uid=6;
+SET staff_id = 'SF1723219020'
+WHERE uid = 6;
 
 UPDATE UserInfo
-set staff_id='SF1939583739'
-WHERE uid=5;
+SET staff_id = 'SF1939583739'
+WHERE uid = 5;
 
 UPDATE UserInfo
-set staff_id='SF1040003242'
-WHERE uid=4;
+SET staff_id = 'SF1040003242'
+WHERE uid = 4;
 
 UPDATE UserInfo
-set staff_id='SF2131836294'
-WHERE uid=3;
+SET staff_id = 'SF2131836294'
+WHERE uid = 3;
 
 UPDATE UserInfo
-set staff_id='SF684900388'
-WHERE uid=2;
+SET staff_id = 'SF684900388'
+WHERE uid = 2;
 
 UPDATE UserInfo
-set staff_id='SF1939583739'
-WHERE uid=1;
+SET staff_id = 'SF1939583739'
+WHERE uid = 1;
 
 UPDATE UserInfo
-set staff_id='SF907234094'
-WHERE uid=0;
+SET staff_id = 'SF907234094'
+WHERE uid = 0;
 
 UPDATE UserInfo
-SET prprt_id='P1058531497'
-WHERE uid=7
+SET prprt_id = 'P1058531497'
+WHERE uid = 7;
+
+
+UPDATE chargingSituation
+SET charge_date = NULL
+WHERE prprt_id = 'P1000931623';
+
+
+SELECT count(*)
+FROM (SELECT *
+      FROM chargingSituation
+      WHERE collector_id = -1) as S;
+
+show TABLES

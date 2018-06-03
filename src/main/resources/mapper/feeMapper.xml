@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.Property.Dao.FeeDao">
-	<resultMap id="Fee" type="com.Property.Domain.Fee">
+	<resultMap id="fee" type="com.Property.Domain.Fee">
 		<id column="fee_id" property="fee_id" jdbcType="CHAR"/>
 		<result column="item_id" property="item_id" jdbcType="CHAR"/>
 		<result column="start_date" property="start_date" jdbcType="DATE"/>
@@ -16,33 +16,42 @@
 		<result column="end_date" property="end_date" jdbcType="DATE"/>
 		<result column="price" property="price" jdbcType="DECIMAL"/>
 		<association property="chargingItem" javaType="com.Property.Domain.ChargingItem">
-		<id column="item_id" property="item_id"></id>
-		<result column="item_title" property="item_title"></result>
+			<id column="item_id" property="item_id"></id>
+			<result column="item_title" property="item_title"></result>
 		</association>
 		<!--<association property="chargingItem" column="item_id" resultMap="chargingItem"/>-->
 	</resultMap>
 
 	<sql id="BaseColumnList">
-		fee_id,item_id,start_date,end_date,price
+		fee_id, item_id, start_date, end_date, price
 	</sql>
 
-	<select id="getAll" resultMap="Fee">
+	<select id="getAll" resultMap="fee">
 		SELECT
 		<include refid="BaseColumnList"/>
 		FROM fee
 	</select>
 
+	<select id="getByID" resultMap="fee">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM fee
+		WHERE fee_id=#{inputID}
+	</select>
+
 	<select id="getFee" resultMap="FeeMap">
-		SELECT fee.*,chargingitem.*
-		FROM fee,chargingitem
-		WHERE fee.item_id = chargingitem.item_id
+		SELECT
+			fee.*,
+			chargingItem.*
+		FROM fee, chargingItem
+		WHERE fee.item_id = chargingItem.item_id
 	</select>
 
 	<select id="getFeebyParams" resultMap="FeeMap" parameterType="java.util.HashMap">
-		SELECT fee.*,chargingitem.*
-		FROM fee,chargingitem
+		SELECT fee.*,chargingItem.*
+		FROM fee,chargingItem
 		<where>
-			fee.item_id = chargingitem.item_id
+			fee.item_id = chargingItem.item_id
 			<if test="fee_id!=null and fee_id!=''">
 				AND fee.fee_id = #{fee_id,jdbcType=CHAR}
 			</if>
@@ -50,7 +59,7 @@
 				AND fee.item_id = #{item_id,jdbcType=CHAR}
 			</if>
 			<if test="item_title!=null and item_title!=''">
-				AND chargingitem.item_title like CONCAT(CONCAT('%',#{item_title,jdbcType=VARCHAR}),'%')
+				AND chargingItem.item_title LIKE CONCAT(CONCAT('%',#{item_title,jdbcType=VARCHAR}),'%')
 			</if>
 			<if test="start_date!=null">
 				AND fee.start_date &gt; #{start_date,jdbcType=DATE}
@@ -65,18 +74,25 @@
 	</select>
 
 	<insert id="addFee" parameterType="com.Property.Domain.Fee">
-		INSERT INTO fee (item_id, start_date, end_date, price)
-				VALUES (#{item_id}, #{start_date}, #{end_date}, #{price})
+		INSERT INTO fee (fee_id,item_id, start_date, end_date, price)
+		VALUES (#{fee_id},#{item_id}, #{start_date}, #{end_date}, #{price})
 	</insert>
 
 	<delete id="deleteFee" parameterType="java.lang.String">
 		DELETE FROM fee
-			WHERE fee_id = #{id}
+		WHERE fee_id = #{id}
 	</delete>
 
 	<update id="updateFee" parameterType="com.Property.Domain.Fee">
-		UPDATE fee SET item_id = #{item_id}, start_date = #{start_date}, end_date = #{end_date}, price = #{price}
-			WHERE fee_id = #{fee_id}
+		UPDATE fee
+		SET item_id = #{item_id}, start_date = #{start_date}, end_date = #{end_date}, price = #{price}
+		WHERE fee_id = #{fee_id}
 	</update>
 
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM fee
+			  WHERE fee_id = #{inputID}) AS S
+	</select>
 </mapper>

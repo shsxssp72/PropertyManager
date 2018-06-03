@@ -13,6 +13,8 @@ public interface SuggestionDao
 {
 	List<Suggestion> getAll();
 
+	Suggestion getByID(String inputID);
+
 	int giveAdvice(Suggestion suggestion);
 
 	List<Suggestion> getAdviceHistory(String id);
@@ -27,4 +29,7 @@ public interface SuggestionDao
 	int deleteSuggestion(String id);
 
 	int updateSuggestion(Suggestion suggestion);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }
