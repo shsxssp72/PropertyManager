@@ -20,6 +20,13 @@
 		<include refid="BaseColumnList"/>
 		FROM dailyTask
 	</select>
+
+	<select id="getByID" resultMap="dailyTask">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM dailyTask
+		WHERE task_id=#{inputID}
+	</select>
 	
 	<update id="finishTask">
 		UPDATE dailyTask
@@ -78,8 +85,8 @@
 	</select>
 
 	<insert id="addTask" parameterType="com.Property.Domain.DailyTask">
-		INSERT INTO dailyTask (task_type, task_time, task_area, task_handler, task_result, isException)
-				VALUES (#{task_type}, #{task_time}, #{task_area}, #{task_handler}, #{task_result}, #{isException})
+		INSERT INTO dailyTask (task_id,task_type, task_time, task_area, task_handler, task_result, isException)
+				VALUES (#{task_id},#{task_type}, #{task_time}, #{task_area}, #{task_handler}, #{task_result}, #{isException})
 	</insert>
 
 	<delete id="deleteTask" parameterType="java.lang.String">
@@ -91,4 +98,11 @@
 		UPDATE dailyTask SET task_type = #{task_type}, task_time = #{task_time}, task_area = #{task_area}, task_handler = #{task_handler}, task_result = #{task_result}, isException = #{isException}
 			WHERE task_id = #{task_id}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM dailyTask
+			  WHERE task_id = #{inputID}) AS S
+	</select>
 </mapper>

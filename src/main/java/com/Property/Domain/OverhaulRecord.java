@@ -1,11 +1,13 @@
 package com.Property.Domain;
 
+import java.sql.Timestamp;
+
 public class OverhaulRecord
 {
 	private String overhaul_id;
 	private String fclt_id;
 	private String overhaul_type;
-	private String overhaul_time;
+	private Timestamp overhaul_time;
 	private String overhaul_handler;
 	private String overhaul_result;
 
@@ -41,12 +43,12 @@ public class OverhaulRecord
 		this.overhaul_type = overhaul_type;
 	}
 
-	public String getOverhaul_time()
+	public Timestamp getOverhaul_time()
 	{
 		return overhaul_time;
 	}
 
-	public void setOverhaul_time(String overhaul_time)
+	public void setOverhaul_time(Timestamp overhaul_time)
 	{
 		this.overhaul_time = overhaul_time;
 	}

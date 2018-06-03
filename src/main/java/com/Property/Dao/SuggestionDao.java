@@ -13,6 +13,8 @@ public interface SuggestionDao
 {
 	List<Suggestion> getAll();
 
+	Suggestion getByID(String inputID);
+
 	int giveAdvice(Suggestion suggestion);
 
 	List<Suggestion> getAdviceHistory(String id);

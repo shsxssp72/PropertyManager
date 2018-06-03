@@ -37,6 +37,13 @@
 		<include refid="BaseColumnList"/>
 		FROM overhaulRecord
 	</select>
+
+	<select id="getByID" resultMap="overhaulRecord">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM overhaulRecord
+		WHERE overhaul_id=#{inputID}
+	</select>
 	
 	<update id="finishOverhaul" >
 		UPDATE overhaulRecord
@@ -107,8 +114,8 @@
 	</select>
 
 	<insert id="addOverhaulRecord" parameterType="com.Property.Domain.OverhaulRecord">
-		INSERT INTO overhaulRecord (fclt_id, overhaul_type, overhaul_time, overhaul_handler, overhaul_result)
-				VALUES (#{fclt_id}, #{overhaul_type}, #{overhaul_time}, #{overhaul_handler}, #{overhaul_result})
+		INSERT INTO overhaulRecord (overhaul_id,fclt_id, overhaul_type, overhaul_time, overhaul_handler, overhaul_result)
+				VALUES (#{overhaul_id},#{fclt_id}, #{overhaul_type}, #{overhaul_time}, #{overhaul_handler}, #{overhaul_result})
 	</insert>
 
 	<delete id="deleteOverhaulRecord" parameterType="java.lang.String">
@@ -120,4 +127,11 @@
 		UPDATE overhaulRecord SET fclt_id = #{fclt_id}, overhaul_type = #{overhaul_type}, overhaul_time = #{overhaul_time}, overhaul_handler = #{overhaul_handler}, overhaul_result = #{overhaul_result}
 			WHERE overhaul_id = #{overhaul_id}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM overhaulRecord
+			  WHERE overhaul_id = #{inputID}) AS S
+	</select>
 </mapper>

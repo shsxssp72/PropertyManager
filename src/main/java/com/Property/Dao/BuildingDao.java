@@ -13,12 +13,17 @@ public interface BuildingDao
 {
 	List<Building> getAll();
 
+	Building getByID(String inputID);
+
 	/*根据参数值查询*/
-	List<Building> getBuildingbyParams(Map<String, Object> params);
+	List<Building> getBuildingbyParams(Map<String,Object> params);
 
 	int addBuilding(Building building);
 
 	int deleteBuilding(String id);
 
 	int updateBuilding(Building building);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

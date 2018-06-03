@@ -13,6 +13,8 @@ public interface FacilitiesDao
 {
 	List<Facilities> getAll();
 
+	Facilities getByID(String inputID);
+
 	/*根据参数值查询*/
 	List<Facilities> getFacilitiesbyParams(Map<String, Object> params);
 
@@ -21,4 +23,7 @@ public interface FacilitiesDao
 	int deleteFacility(String id);
 
 	int updateFacility(Facilities facilities);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

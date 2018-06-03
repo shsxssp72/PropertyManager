@@ -18,6 +18,13 @@
 		FROM building
 	</select>
 
+	<select id="getByID" resultMap="building">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM building
+		WHERE building_id=#{inputID}
+	</select>
+
 	<select id="getBuildingbyParams" resultMap="building" parameterType="java.util.HashMap">
 		SELECT
 			<include refid="BaseColumnList"/>
@@ -40,8 +47,8 @@
 	</select>
 
 	<insert id="addBuilding" parameterType="com.Property.Domain.Building">
-		INSERT INTO building (subarea_id, max_floor, max_room_num)
-				VALUES (#{subarea_id}, #{max_floor}, #{max_room_num})
+		INSERT INTO building (building_id,subarea_id, max_floor, max_room_num)
+				VALUES (#{building_id},#{subarea_id}, #{max_floor}, #{max_room_num})
 	</insert>
 
 	<delete id="deleteBuilding" parameterType="java.lang.String">
@@ -53,5 +60,12 @@
 		UPDATE building SET subarea_id = #{subarea_id}, max_floor = #{max_floor}, max_room_num = #{max_room_num}
 			WHERE building_id = #{building_id}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM building
+			  WHERE building_id = #{inputID}) AS S
+	</select>
 
 </mapper>

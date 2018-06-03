@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -76,7 +75,7 @@ public class ReceptionistController
 			SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String time=df.format(Calendar.getInstance().getTime());
 			Timestamp ts=Timestamp.valueOf(time);
-			ChargingSituation chargingSituation=chargingSituationDao.getById(CSID);
+			ChargingSituation chargingSituation=chargingSituationDao.getByID(CSID);
 			chargingSituation.setCharge_date(ts);
 			chargingSituation.setCollector_id(userInfoMapper.getByUserName(username).getStaff_id());
 			chargingSituationDao.updateChargingSituation(chargingSituation);
@@ -92,7 +91,7 @@ public class ReceptionistController
 			List<Object> list=new LinkedList<>();
 			list.add(each.getSituation_id());
 			list.add(chargingSituationDao.getChargingItemNameByCSID(each.getSituation_id()));
-			Fee fee=feeDao.getById(each.getFee_id());
+			Fee fee=feeDao.getByID(each.getFee_id());
 			list.add(fee.getStart_date().toString()+"/"+fee.getEnd_date().toString());
 			list.add(prprt_name);
 			list.add(staffDao.getNameByID(each.getCollector_id()));

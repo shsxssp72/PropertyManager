@@ -22,6 +22,13 @@
 		FROM UserInfo
 	</select>
 
+	<select id="getByID" resultMap="userInfo">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM UserInfo
+		WHERE uid=#{input}
+	</select>
+
 	<select id="getByUserName" parameterType="java.lang.String" resultMap="userInfo">
 		SELECT
 		<include refid="BaseColumnList"/>

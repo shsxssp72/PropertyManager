@@ -16,6 +16,7 @@
     <link href="../static/INSPINIA/css/plugins/dataTables/datatables.min.css" rel="stylesheet"
           th:href="@{/INSPINIA/css/plugins/dataTables/datatables.min.css}">
 
+
 </head>
 
 <body>
@@ -296,6 +297,16 @@
         </div>
 
         <div class="wrapper wrapper-content animated fadeInRight">
+
+            <div class="alert alert-success alert-dismissable" th:if="${isSuccess==1}">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                Successfully modified.
+            </div>
+            <div class="alert alert-danger alert-dismissable" th:if="${isFail==1}">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                Modification failed. Please check the input.
+            </div>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
@@ -304,32 +315,57 @@
                         <div class="ibox-content">
                             <form role="form" class="form-inline" method="post">
                                 <div class="form-inline">
-                                    <label for="prprt_name" class="sr-only">Proprietor Name</label>
-                                    <input type="text" placeholder="Enter Proprietor Name" id="prprt_name"
-                                           name="prprt_name" class="form-control" th:value="${lastQuery}">
+                                    <!--<label for="prprt_name" class="sr-only">Proprietor Name</label>-->
+                                    <!--<input type="text" placeholder="Enter Proprietor Name" id="prprt_name"-->
+                                    <!--name="prprt_name" class="form-control" th:value="${lastQuery}">-->
+                                    <select class="form-control" name="table_name" th:value="${lastQueryTable}">
+                                        <option id="building">building</option>
+                                        <option id="buildingEntranceRecord">buildingEntranceRecord</option>
+                                        <option id="carIORecord">carIORecord</option>
+                                        <option id="carpark">carpark</option>
+                                        <option id="chargingItem">chargingItem</option>
+                                        <option id="chargingSituation">chargingSituation</option>
+                                        <option id="dailyTask">dailyTask</option>
+                                        <option id="department">department</option>
+                                        <option id="facilities">facilities</option>
+                                        <option id="fee">fee</option>
+                                        <option id="overhaulRecord">overhaulRecord</option>
+                                        <option id="proprietor">proprietor</option>
+                                        <option id="staff">staff</option>
+                                        <option id="subarea">subarea</option>
+                                        <option id="suggestion">suggestion</option>
+                                        <option id="ticket">ticket</option>
+                                    </select>
+
+                                    <input th:each="attr:${AttrList}" th:placeholder="${attr}"
+                                           th:id="${attr}+'_orig'" th:name="${attr}" type="text" class="form-control">
 
                                     <button class="btn btn-primary" type="submit" name="action" value="Search">Search
                                     </button>
+                                    <button class="btn btn-primary" type="button" name="action" value="Add"
+                                            data-toggle="modal" data-target="#newModal">
+                                        Add
+                                    </button>
+
                                 </div>
-
-
 
                                 <div class="" th:text="${msg}">
                                 </div>
                             </form>
                         </div>
-                        <div class="ibox-content" >
+                        <div class="ibox-content">
 
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover dataTables-example">
                                     <thead>
                                     <tr>
-                                        <th>Charging ID</th>
-                                        <th>Charging Item</th>
-                                        <th>Term</th>
-                                        <th>Proprietor Name</th>
-                                        <th>Handler Name</th>
-                                        <th>Charging Time</th>
+                                        <!--<th>Charging ID</th>-->
+                                        <!--<th>Charging Item</th>-->
+                                        <!--<th>Term</th>-->
+                                        <!--<th>Proprietor Name</th>-->
+                                        <!--<th>Handler Name</th>-->
+                                        <!--<th>Charging Time</th>-->
+                                        <th th:each="attrList:${AttrList}" th:text="${attrList}">
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -338,8 +374,8 @@
                                         <td th:each="attr:${line}" th:text="${attr}"></td>
                                         <td>
                                             <button class="btn btn-primary" type="submit" name="action" value="Finish"
-                                                    data-toggle="modal" data-target="#myModal" onclick="setData(this)">
-                                                Finish
+                                                    data-toggle="modal" data-target="#updateModal" onclick="setData(this)">
+                                                Modify
                                             </button>
                                         </td>
 
@@ -348,18 +384,21 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>Charging Item</th>
-                                        <th>Term</th>
-                                        <th>Proprietor Name</th>
-                                        <th>Handler Name</th>
-                                        <th>Charging Time</th>
+                                        <!--<th>Charging Item</th>-->
+                                        <!--<th>Term</th>-->
+                                        <!--<th>Proprietor Name</th>-->
+                                        <!--<th>Handler Name</th>-->
+                                        <!--<th>Charging Time</th>-->
+                                        <!--<th>Action</th>-->
+                                        <th th:each="attrList:${AttrList}" th:text="${attrList}">
                                         <th>Action</th>
                                     </tr>
                                     </tfoot>
                                 </table>
+
                             </div>
 
-                            <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal inmodal" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content animated fadeInDown">
                                         <div class="modal-header">
@@ -367,25 +406,96 @@
                                                     aria-hidden="true">&times;</span><span
                                                     class="sr-only">Close</span>
                                             </button>
-                                            <i class="fa fa-usd modal-icon"></i>
+                                            <i class="fa fa-pencil modal-icon"></i>
                                             <h4 class="modal-title">Confirm</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>If you are sure to update the status to <strong>FINISIHED</strong> state,
-                                                please click <strong>UPDATE</strong>.<br>
-                                                <strong>WARNING: THIS ACTION IS IRREVERSIBLE.</strong></p>
+                                            <p>Please enter new values.</p>
+
                                         </div>
 
                                         <div class="modal-footer">
                                             <form role="form" class="form-inline" method="post">
-                                                <input type="text" class="form-control" name="passLastQuery"
-                                                       id="passLastQuery" style="display:none" th:value="${lastQuery}">
-                                                <input type="text" class="form-control" name="CSID" id="CSID"
-                                                       style="display:none">
-                                                <button type="button" class="btn btn-white" data-dismiss="modal">Close
+                                                <input type="text" class="form-control" style="display:none"
+                                                       name="update_lastQueryTable"
+                                                       th:value="${lastQueryTable}">
+                                                <input type="text" class="form-control" style="display:none"
+                                                       name="update_id" id="update_id">
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr th:each="attr,i:${AttrList}">
+                                                        <td th:if="${i.index}!=0">
+                                                            <label class="col-sm-4 control-label" th:for="${attr}"
+                                                                   th:text="${attr}+':'"></label>
+                                                            <input th:placeholder="${attr}"
+                                                                   th:id="${attr}"
+                                                                   th:name="${attr}+'_update'"
+                                                                   type="text"
+                                                                   class="form-control col-sm-8">
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <button type="button" class="btn btn-white" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit" name="action" value="Delete"
+                                                        class="btn btn-danger">Delete
                                                 </button>
                                                 <button type="submit" name="action" value="Update"
                                                         class="btn btn-primary">Update
+                                                </button>
+                                            </form>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal inmodal" id="newModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content animated fadeInDown">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span
+                                                    aria-hidden="true">&times;</span><span
+                                                    class="sr-only">Close</span>
+                                            </button>
+                                            <i class="fa fa-pencil modal-icon"></i>
+                                            <h4 class="modal-title">Confirm</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Please enter new values.</p>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <form role="form" class="form-inline" method="post">
+                                                <input type="text" class="form-control" style="display:none"
+                                                       name="new_lastQueryTable"
+                                                       th:value="${lastQueryTable}">
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr th:each="attr,i:${AttrList}">
+                                                        <td th:if="${i.index}!=0">
+                                                            <label class="col-sm-4 control-label" th:for="${attr}"
+                                                                   th:text="${attr}+':'"></label>
+                                                            <input th:placeholder="${attr}"
+                                                                   th:id="${attr}"
+                                                                   th:name="${attr}+'_new'"
+                                                                   type="text"
+                                                                   class="form-control col-sm-8">
+                                                        </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <button type="button" class="btn btn-white" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit" name="action" value="Insert"
+                                                        class="btn btn-primary">Insert
                                                 </button>
                                             </form>
                                         </div>
@@ -403,6 +513,16 @@
     </div>
 </div>
 
+<table class="table " hidden="hidden">
+    <tbody>
+    <tr>
+        <td th:text="${attrNum}" id="attrNum"></td>
+        <td th:each="attr:${AttrList}" th:text="${attr}"></td>
+    </tr>
+    </tbody>
+</table>
+<textarea th:text="${lastQueryTable}" hidden="hidden" id="lastQueryTable"></textarea>
+
 <script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
 <script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
 <script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
@@ -416,6 +536,11 @@
 
 <script src="../static/INSPINIA/js/plugins/dataTables/datatables.min.js"
         th:src="@{/INSPINIA//js/plugins/dataTables/datatables.min.js}"></script>
+
+<script>
+    var lastQueryTable = document.getElementById("lastQueryTable").innerText;
+    document.getElementById(lastQueryTable).selected = true;
+</script>
 
 <script>
 
@@ -470,7 +595,18 @@
         var tr = btn.parentElement.parentElement;
         var td = tr.cells[0];
 
-        document.getElementById('CSID').value = td.innerHTML;
+        var locator = document.getElementById('attrNum');
+        var attrLine = locator.parentElement;//类型为tr
+        // alert(locator.innerText);
+        var attrNumber = locator.innerText;
+
+        for (var i = 2; i <= attrNumber; i++)
+        {
+            document.getElementById(attrLine.cells[i].innerHTML).value = tr.cells[i - 1].innerHTML;
+        }
+        document.getElementById('update_id').value = tr.cells[0].innerHTML;
+
+        // document.getElementById('CSID').value = td.innerHTML;
     }
 </script>
 

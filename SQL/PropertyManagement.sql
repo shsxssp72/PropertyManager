@@ -138,11 +138,11 @@ CREATE TABLE buildingEntranceRecord ##单向门禁
 (
   entrance_record_id CHAR(20) PRIMARY KEY,
   prprt_id           CHAR(20),
-  buidling_id        CHAR(20),
+  building_id        CHAR(20),
   access_time        DATETIME,
   verify_type        VARCHAR(20),
   FOREIGN KEY (prprt_id) REFERENCES proprietor (prprt_id),
-  FOREIGN KEY (buidling_id) REFERENCES building (building_id)
+  FOREIGN KEY (building_id) REFERENCES building (building_id)
 );
 
 
@@ -374,3 +374,5 @@ SELECT count(*)
 FROM (SELECT *
       FROM chargingSituation
       WHERE collector_id = -1) as S;
+
+show TABLES

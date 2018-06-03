@@ -60,7 +60,7 @@
 		WHERE prprt_id=#{inputUID} AND charge_date IS NULL
 	</select>
 
-	<select id="getById" resultMap="chargingSituation">
+	<select id="getByID" resultMap="chargingSituation">
 		SELECT
 		<include refid="BaseColumnList"/>
 		FROM chargingSituation
@@ -157,8 +157,8 @@
 	</select>
 
 	<insert id="addChargingSituation" parameterType="com.Property.Domain.ChargingSituation">
-		INSERT INTO chargingSituation (fee_id, prprt_id, collector_id, charge_date)
-		VALUES (#{fee_id}, #{prprt_id}, #{collector_id}, #{charge_date})
+		INSERT INTO chargingSituation (chargingSituation_id,fee_id, prprt_id, collector_id, charge_date)
+		VALUES (#{chargingSituation_id},#{fee_id}, #{prprt_id}, #{collector_id}, #{charge_date})
 	</insert>
 
 	<delete id="deleteChargingSituation" parameterType="java.lang.String">
@@ -173,8 +173,15 @@
 	</update>
 
 	<!--<update id="updateChargingSituation">-->
-		<!--UPDATE chargingSituation-->
-		<!--SET fee_id = #{fee_id}, prprt_id = #{prprt_id}, collector_id = #{collector_id}, charge_date = #{charge_date}-->
-		<!--WHERE situation_id = #{situation_id}-->
+	<!--UPDATE chargingSituation-->
+	<!--SET fee_id = #{fee_id}, prprt_id = #{prprt_id}, collector_id = #{collector_id}, charge_date = #{charge_date}-->
+	<!--WHERE situation_id = #{situation_id}-->
 	<!--</update>-->
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM chargingSituation
+			  WHERE chargingSituation_id = #{inputID}) AS S
+	</select>
 </mapper>

@@ -18,7 +18,7 @@ public interface ChargingSituationDao
 
 	List<ChargingSituation> getUnfinishedByUserId(String inputUID);
 
-	ChargingSituation getById(String inputID);
+	ChargingSituation getByID(String inputID);
 
 	List<ChargingSituation> getAll();
 
@@ -43,4 +43,8 @@ public interface ChargingSituationDao
 
 //	int updateChargingSituation(@Param("chargingSituation_id") String chargingSituation_id,@Param("fee_id") String fee_id,
 //								@Param("prprt_id") String prprt_id,@Param("collector_id") String collector_id,@Param("charge_date") Timestamp charge_date);
+
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

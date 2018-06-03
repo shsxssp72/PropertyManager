@@ -13,6 +13,8 @@ public interface CarIORecordDao
 {
 	List<CarIORecord> getAll();
 
+	CarIORecord getByID(String inputID);
+
 	List<CarIORecord> getExternal();
 
 	/*根据参数值查询*/
@@ -23,4 +25,7 @@ public interface CarIORecordDao
 	int deleteCarIORecord(String id);
 
 	int updateCarIORecord(CarIORecord carIORecord);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

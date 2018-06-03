@@ -34,6 +34,8 @@ public interface TicketDao {
 
 	int changeTicketHandler(@Param("new_handler") String new_handler, @Param("ticket_id") String ticket_id);
 
+	Ticket getByID(String inputID);
+
 	/*根据参数值查询*/
 	List<Ticket> getTicketbyParams(Map<String, Object> params);
 
@@ -42,4 +44,7 @@ public interface TicketDao {
 	int deleteTicket(String id);
 
 	int updateTicket(Ticket ticket);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

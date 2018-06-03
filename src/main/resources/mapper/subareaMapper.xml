@@ -15,6 +15,13 @@
 		FROM subarea
 	</select>
 
+	<select id="getByID" resultMap="subarea">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM subarea
+		WHERE subarea_id=#{inputID}
+	</select>
+
 	<select id="getSubareabyParams" resultMap="subarea" parameterType="java.util.HashMap">
 		SELECT
 		<include refid="BaseColumnList"/>
@@ -26,4 +33,23 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="addSubarea" parameterType="com.Property.Domain.Subarea">
+		INSERT INTO subarea (subarea_id)
+				VALUES (#{subarea_id})
+	</insert>
+
+	<delete id="deleteSubarea" parameterType="com.Property.Domain.Subarea">
+		DELETE FROM subarea
+		WHERE subarea_id=#{subarea_id}
+	</delete>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM subarea_id
+			  WHERE subarea_id = #{inputID}) AS S
+	</select>
+
+
 </mapper>

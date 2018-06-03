@@ -22,6 +22,13 @@
 		FROM proprietor
 	</select>
 
+	<select id="getByID" resultMap="proprietor">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM proprietor
+		WHERE prprt_id=#{inputID}
+	</select>
+
 	<select id="getIDByName" resultType="java.lang.String">
 		SELECT prprt_id
 		FROM proprietor
@@ -75,8 +82,8 @@
 	</select>
 
 	<insert id="addProprietor" parameterType="com.Property.Domain.Proprietor">
-		INSERT INTO proprietor (prprt_name, gender, tel, birthday, aprt_building, aprt_floor, aprt_room_num)
-				values (#{prprt_name}, #{gender}, #{tel}, #{birthday}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num})
+		INSERT INTO proprietor (prprt_id,prprt_name, gender, tel, birthday, aprt_building, aprt_floor, aprt_room_num)
+				values (#{prprt_id},#{prprt_name}, #{gender}, #{tel}, #{birthday}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num})
 	</insert>
 
 	<delete id="deleteProprietor" parameterType="java.lang.String">
@@ -88,4 +95,11 @@
 		UPDATE proprietor SET prprt_name = #{prprt_name}, gender = #{gender}, tel = #{tel}, birthday = #{birthday}, aprt_building = #{aprt_building}, aprt_floor = #{aprt_floor}, aprt_room_num = #{aprt_room_num}
 			WHERE prprt_id = #{prprt_id}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM proprietor
+			  WHERE prprt_id = #{inputID}) AS S
+	</select>
 </mapper>

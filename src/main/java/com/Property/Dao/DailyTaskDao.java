@@ -13,6 +13,8 @@ import java.util.Map;
 public interface DailyTaskDao {
 	List<DailyTask> getAll();
 
+	DailyTask getByID(String inputID);
+
 	int finishTask(@Param("result") String result, @Param("isException") Boolean isException, @Param("task_id") String task_id);
 
 	List<DailyTask> getHistoryTask(String id);
@@ -31,4 +33,7 @@ public interface DailyTaskDao {
 	int deleteTask(String id);
 
 	int updateTask(DailyTask dailyTask);
+
+	//用于判定ID是否重复
+	int getIdCount(String inputID);
 }

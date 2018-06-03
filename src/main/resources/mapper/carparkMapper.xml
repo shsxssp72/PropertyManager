@@ -19,6 +19,13 @@
 		FROM carpark
 	</select>
 
+	<select id="getByID" resultMap="carpark">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM carpark
+		WHERE carpark_id=#{inputID}
+	</select>
+
 	<select id="getCarparkbyParams" resultMap="carpark" parameterType="java.util.HashMap">
 		SELECT
 		<include refid="BaseColumnList"/>
@@ -44,8 +51,8 @@
 	</select>
 
 	<insert id="addCarpark" parameterType="com.Property.Domain.Carpark">
-		INSERT INTO carpark (subarea_id, owner_id, plate_number, valid_term)
-				VALUES (#{subarea_id}, #{owner_id}, #{plate_number}, #{valid_term})
+		INSERT INTO carpark (carpark_id,subarea_id, owner_id, plate_number, valid_term)
+				VALUES (#{carpark_id},#{subarea_id}, #{owner_id}, #{plate_number}, #{valid_term})
 	</insert>
 
 	<delete id="deleteCarpark" parameterType="java.lang.String">
@@ -57,4 +64,11 @@
 		UPDATE carpark SET subarea_id = #{subarea_id}, owner_id = #{owner_id}, plate_number = #{plate_number}, valid_term = #{valid_term}
 			WHERE carpark_id = #{carpark_id}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM carpark
+			  WHERE carpark_id = #{inputID}) AS S
+	</select>
 </mapper>

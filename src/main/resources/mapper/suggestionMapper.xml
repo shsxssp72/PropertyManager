@@ -18,6 +18,13 @@
 		FROM suggestion
 	</select>
 
+	<select id="getByID" resultMap="suggestion">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM suggestion
+		WHERE suggestion_id=#{inputID}
+	</select>
+
 	<insert id="giveAdvice" parameterType="com.Property.Domain.Suggestion">
 		INSERT INTO suggestion (prprt_id, suggestion_type, suggestion_detail)
 		VALUES (#{prprt_id}, #{suggestion_type}, #{suggestion_detail})

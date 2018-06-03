@@ -24,6 +24,13 @@
 		FROM staff
 	</select>
 
+	<select id="getByID" resultMap="staff">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM staff
+		WHERE staff_id ={inputID}
+	</select>
+
 	<select id="getSelfInfo" parameterType="java.lang.String" resultMap="staff">
 		SELECT *
 		FROM staff
@@ -82,8 +89,8 @@
 	</select>
 
 	<insert id="addStaff" parameterType="com.Property.Domain.Staff">
-		INSERT INTO staff (staff_name, gender, tel, address, position, salary, dept, elec_qlfy, plbr_qlfy)
-			  	VALUES (#{staff_name}, #{gender}, #{tel}, #{address}, #{position}, #{salary}, #{dept}, #{elec_qlfy}, #{plbr_qlfy})
+		INSERT INTO staff (staff_id,staff_name, gender, tel, address, position, salary, dept, elec_qlfy, plbr_qlfy)
+			  	VALUES (#{staff_id},#{staff_name}, #{gender}, #{tel}, #{address}, #{position}, #{salary}, #{dept}, #{elec_qlfy}, #{plbr_qlfy})
 	</insert>
 
 	<delete id="deleteStaff" parameterType="java.lang.String">
@@ -95,4 +102,11 @@
 		UPDATE staff SET staff_name = #{staff_name}, gender = #{gender}, tel = #{tel}, address = #{address}, position = #{position}, salary = #{salary}, dept=#{dept}, elec_qlfy = #{elec_qlfy}, plbr_qlfy = #{plbr_qlfy}
 			  WHERE staff_id = #{staff_id}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM staff
+			  WHERE staff_id = #{inputID}) AS S
+	</select>
 </mapper>

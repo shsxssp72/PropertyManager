@@ -20,6 +20,13 @@
 		FROM facilities
 	</select>
 
+	<select id="getByID" resultMap="facilities">
+		SELECT
+		<include refid="BaseColumnList"/>
+		FROM facilities
+		WHERE fclt_id=#{inputID}
+	</select>
+
 	<select id="getFacilitiesbyParams" resultMap="facilities" parameterType="java.util.HashMap">
 		SELECT
 		<include refid="BaseColumnList"/>
@@ -48,8 +55,8 @@
 	</select>
 
 	<insert id="addFacility" parameterType="com.Property.Domain.Facilities">
-		INSERT INTO facilities (fclt_type, subarea_id, building_id, floor, location)
-				VALUES (#{fclt_type}, #{subarea_id}, #{building_id}, #{floor}, #{location})
+		INSERT INTO facilities (fclt_id,fclt_type, subarea_id, building_id, floor, location)
+				VALUES (#{fclt_id},#{fclt_type}, #{subarea_id}, #{building_id}, #{floor}, #{location})
 	</insert>
 
 	<delete id="deleteFacility" parameterType="java.lang.String">
@@ -61,4 +68,11 @@
 		UPDATE facilities SET fclt_type = #{fclt_type}, subarea_id = #{subarea_id}, building_id = #{building_id}, floor = #{floor}, location = #{location}
 			WHERE fclt_id = #{fclt_id}
 	</update>
+
+	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM (SELECT *
+			  FROM facilities
+			  WHERE fclt_id = #{inputID}) AS S
+	</select>
 </mapper>
