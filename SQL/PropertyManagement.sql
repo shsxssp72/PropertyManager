@@ -373,12 +373,19 @@ WHERE prprt_id = 'P1000931623';
 SELECT count(*)
 FROM (SELECT *
       FROM chargingSituation
-      WHERE collector_id = -1) as S;
+      WHERE collector_id = -1) AS S;
 
 ## 201806141310 修改
 UPDATE ticket
-set ticket_fdbk =ticket_fdbk *10;
+SET ticket_fdbk = ticket_fdbk * 10;
 
 UPDATE chargingSituation
-set charge_date=NULL
-WHERE YEAR(charge_date)>2050;
+SET charge_date = NULL
+WHERE YEAR(charge_date) > 2050;
+
+ALTER TABLE fee MODIFY start_date DATE;
+ALTER TABLE fee MODIFY end_date DATE;
+INSERT INTO chargingItem
+VALUES ('CI00000', '工单收费');
+INSERT INTO fee
+VALUES ('FE0000000000', 'CI00000', NULL, NULL, 100);
