@@ -287,13 +287,13 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Offline Payment</h2>
+                <h2>离线支付</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li>
-                        Offline Payment
+                        离线支付
                     </li>
                 </ol>
             </div>
@@ -311,11 +311,11 @@
                         <div class="ibox-content">
                             <form role="form" class="form-inline" method="post">
                                 <div class="form-inline">
-                                    <label for="prprt_name" class="sr-only">Proprietor Name</label>
+                                    <label for="prprt_name" class="sr-only">业主姓名</label>
                                     <input type="text" placeholder="Enter Proprietor Name" id="prprt_name"
                                            name="prprt_name" class="form-control" th:value="${lastQuery}">
 
-                                    <button class="btn btn-primary" type="submit" name="action" value="Search">Search
+                                    <button class="btn btn-primary" type="submit" name="action" value="Search">查询
                                     </button>
                                 </div>
 
@@ -346,7 +346,7 @@
                                         <td>
                                             <button class="btn btn-primary" type="submit" name="action" value="Finish"
                                                     data-toggle="modal" data-target="#myModal" onclick="setData(this)">
-                                                Finish
+                                                完成
                                             </button>
                                         </td>
 
@@ -372,15 +372,15 @@
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"><span
                                                     aria-hidden="true">&times;</span><span
-                                                    class="sr-only">Close</span>
+                                                    class="sr-only">关闭</span>
                                             </button>
                                             <i class="fa fa-usd modal-icon"></i>
-                                            <h4 class="modal-title">Confirm</h4>
+                                            <h4 class="modal-title">确认</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>If you are sure to update the status to <strong>FINISIHED</strong> state,
-                                                please click <strong>UPDATE</strong>.<br>
-                                                <strong>WARNING: THIS ACTION IS IRREVERSIBLE.</strong></p>
+                                            <p>如果您确定将状态改为 <strong>已完成</strong> 状态,
+                                                请点击 <strong>更新</strong>.<br>
+                                                <strong>警告: 此操作不可逆.</strong></p>
                                         </div>
 
                                         <div class="modal-footer">
@@ -389,10 +389,10 @@
                                                        id="passLastQuery" style="display:none" th:value="${lastQuery}">
                                                 <input type="text" class="form-control" name="CSID" id="CSID"
                                                        style="display:none">
-                                                <button type="button" class="btn btn-white" data-dismiss="modal">Close
+                                                <button type="button" class="btn btn-white" data-dismiss="modal">关闭
                                                 </button>
                                                 <button type="submit" name="action" value="Update"
-                                                        class="btn btn-primary">Update
+                                                        class="btn btn-primary">更新
                                                 </button>
                                             </form>
                                         </div>

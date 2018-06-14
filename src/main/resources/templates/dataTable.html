@@ -288,13 +288,13 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Offline Payment</h2>
+                <h2>数据管理</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li>
-                        Offline Payment
+                        数据管理
                     </li>
                 </ol>
             </div>
@@ -307,11 +307,11 @@
 
             <div class="alert alert-success alert-dismissable" th:if="${isSuccess==1}">
                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                Successfully modified.
+                修改成功
             </div>
             <div class="alert alert-danger alert-dismissable" th:if="${isFail==1}">
                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                Modification failed. Please check the input.
+                修改失败，请检查输入。
             </div>
 
             <div class="row">
@@ -347,11 +347,11 @@
                                     <input th:each="attr:${AttrList}" th:placeholder="${attr}"
                                            th:id="${attr}+'_orig'" th:name="${attr}" type="text" class="form-control">
 
-                                    <button class="btn btn-primary" type="submit" name="action" value="Search">Search
+                                    <button class="btn btn-primary" type="submit" name="action" value="Search">查询
                                     </button>
                                     <button class="btn btn-primary" type="button" name="action" value="Add"
                                             data-toggle="modal" data-target="#newModal">
-                                        Add
+                                        增加
                                     </button>
 
                                 </div>
@@ -373,7 +373,7 @@
                                         <!--<th>Handler Name</th>-->
                                         <!--<th>Charging Time</th>-->
                                         <th th:each="attrList:${AttrList}" th:text="${attrList}">
-                                        <th>Action</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -382,7 +382,7 @@
                                         <td>
                                             <button class="btn btn-primary" type="submit" name="action" value="Finish"
                                                     data-toggle="modal" data-target="#updateModal" onclick="setData(this)">
-                                                Modify
+                                                修改
                                             </button>
                                         </td>
 
@@ -411,13 +411,13 @@
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"><span
                                                     aria-hidden="true">&times;</span><span
-                                                    class="sr-only">Close</span>
+                                                    class="sr-only">关闭</span>
                                             </button>
                                             <i class="fa fa-pencil modal-icon"></i>
-                                            <h4 class="modal-title">Confirm</h4>
+                                            <h4 class="modal-title">确认</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Please enter new values.</p>
+                                            <p>请输入新值</p>
 
                                         </div>
 
@@ -445,13 +445,13 @@
                                                     </tbody>
                                                 </table>
                                                 <button type="button" class="btn btn-white" data-dismiss="modal">
-                                                    Close
+                                                    关闭
                                                 </button>
                                                 <button type="submit" name="action" value="Delete"
-                                                        class="btn btn-danger">Delete
+                                                        class="btn btn-danger">删除
                                                 </button>
                                                 <button type="submit" name="action" value="Update"
-                                                        class="btn btn-primary">Update
+                                                        class="btn btn-primary">更新
                                                 </button>
                                             </form>
                                         </div>
@@ -467,13 +467,13 @@
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"><span
                                                     aria-hidden="true">&times;</span><span
-                                                    class="sr-only">Close</span>
+                                                    class="sr-only">关闭</span>
                                             </button>
                                             <i class="fa fa-pencil modal-icon"></i>
-                                            <h4 class="modal-title">Confirm</h4>
+                                            <h4 class="modal-title">确认</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Please enter new values.</p>
+                                            <p>请输入新值</p>
 
                                         </div>
 
@@ -499,10 +499,10 @@
                                                     </tbody>
                                                 </table>
                                                 <button type="button" class="btn btn-white" data-dismiss="modal">
-                                                    Close
+                                                    关闭
                                                 </button>
                                                 <button type="submit" name="action" value="Insert"
-                                                        class="btn btn-primary">Insert
+                                                        class="btn btn-primary">插入
                                                 </button>
                                             </form>
                                         </div>

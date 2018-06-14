@@ -14,13 +14,17 @@
           th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
     <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
     <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
-    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
+    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
 
-    <link href="../static/INSPINIA/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}">
-    <link href="../static/INSPINIA/css/plugins/iCheck/custom.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/iCheck/custom.css}">
+    <link href="../static/INSPINIA/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css"
+          rel="stylesheet" th:href="@{/INSPINIA/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css}">
+    <link href="../static/INSPINIA/css/plugins/iCheck/custom.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/iCheck/custom.css}">
 
     <!-- FooTable -->
-    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
+    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
 
 </head>
 
@@ -293,16 +297,16 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>DailyTask</h2>
+                <h2>日常任务</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li>
-                        DailyTask
+                        日常任务
                     </li>
                     <li>
-                        To be Done
+                        待完成
                     </li>
                 </ol>
             </div>
@@ -359,7 +363,8 @@
                                     <td th:text="${task.task_time}">Patrick Smith</td>
                                     <td th:text="${task.task_area}">0800 051213</td>
                                     <td th:text="${task.task_handler}"></td>
-                                    <td><a class="btn btn-primary" th:href="@{'/'+${roleName}+'/task/finish/'+${task.task_id}}">finish</a></td>
+                                    <td><a class="btn btn-primary"
+                                           th:href="@{'/'+${roleName}+'/task/finish/'+${task.task_id}}">finish</a></td>
                                     <td th:text="${task.task_id}"></td>
                                 </tr>
                                 </tbody>
@@ -377,25 +382,39 @@
                                     <div class="modal-content animated fadeIn">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                <button type="button" class="close" data-dismiss="modal"><span
+                                                        aria-hidden="true">&times;</span><span
+                                                        class="sr-only">关闭</span></button>
                                                 <i class="fa fa-tasks modal-icon"></i>
-                                                <h4 class="modal-title" >Finish DailyTask</h4>
+                                                <h4 class="modal-title">完成日常任务</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="form-group m-md"><label th:text="'Task ID: '+${task_id}"></label></div>
-                                                    <div class="form-group m-md"><label th:text="'Task Type: '+${task_type}"></label></div>
-                                                    <div class="form-group m-md"><label th:text="'Handler: '+${username}"></label></div>
-                                                    <div class="form-group m-md"><label th:text="'Task area: '+${task_area}"></label></div>
-                                                    <form role="form" id="form" th:action="@{'/'+${roleName}+'/dailytask/tbd'}" method="post" class="wizard-big">
+                                                    <div class="form-group m-md"><label
+                                                            th:text="'Task ID: '+${task_id}"></label></div>
+                                                    <div class="form-group m-md"><label
+                                                            th:text="'Task Type: '+${task_type}"></label></div>
+                                                    <div class="form-group m-md"><label
+                                                            th:text="'Handler: '+${username}"></label></div>
+                                                    <div class="form-group m-md"><label
+                                                            th:text="'Task area: '+${task_area}"></label></div>
+                                                    <form role="form" id="form"
+                                                          th:action="@{'/'+${roleName}+'/dailytask/tbd'}" method="post"
+                                                          class="wizard-big">
                                                         <input name="taskId" th:value="${task_id}" hidden="hidden">
-                                                        <div class="form-group m-md"><label> <input name="isException" type="checkbox" class="i-checks">isException</label></div>
+                                                        <div class="form-group m-md"><label> <input name="isException"
+                                                                                                    type="checkbox"
+                                                                                                    class="i-checks">isException</label>
+                                                        </div>
                                                         <div class="form-group m-md">
-                                                            <label>Task Result *</label>
-                                                            <textarea id="taskResult" name="taskResult" type="text" class="form-control" rows="6" style="resize: none;"></textarea>
+                                                            <label>任务结果 *</label>
+                                                            <textarea id="taskResult" name="taskResult" type="text"
+                                                                      class="form-control" rows="6"
+                                                                      style="resize: none;"></textarea>
                                                         </div>
                                                         <div class="m-md">
-                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Submit</strong></button>
+                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs"
+                                                                    type="submit"><strong>提交</strong></button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -410,14 +429,15 @@
                 </div>
 
 
-                <input class="" id="state" th:value="${state}" hidden="hidden" />
-                <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+                <input class="" id="state" th:value="${state}" hidden="hidden"/>
+                <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content animated fadeIn">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                                        class="sr-only">Close</span></button>
                                 <i class="fa fa-check-circle modal-icon"></i>
-                                <h4 class="modal-title" >Successfully Finished</h4>
+                                <h4 class="modal-title">Successfully Finished</h4>
                             </div>
                             <div class="modal-body">
                                 <p>You have finished this dailytask.</p>
@@ -439,50 +459,58 @@
     </div>
 </div>
 
-    <script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
-    <script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
-    <script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
-            th:src="@{/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
-    <script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
-            th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script src="../static/INSPINIA/js/jquery-3.1.1.min.js" th:src="@{/INSPINIA/js/jquery-3.1.1.min.js}"></script>
+<script src="../static/INSPINIA/js/bootstrap.min.js" th:src="@{/INSPINIA/js/bootstrap.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js"
+        th:src="@{/INSPINIA/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script src="../static/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js"
+        th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
 
-    <script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
-    <script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
-            th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
+<script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>
+<script src="../static/INSPINIA/js/plugins/pace/pace.min.js"
+        th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
 
-    <!-- iCheck -->
-    <script src="../static/INSPINIA/js/plugins/iCheck/icheck.min.js" th:src="@{/INSPINIA/js/plugins/iCheck/icheck.min.js}"></script>
+<!-- iCheck -->
+<script src="../static/INSPINIA/js/plugins/iCheck/icheck.min.js"
+        th:src="@{/INSPINIA/js/plugins/iCheck/icheck.min.js}"></script>
 
-    <!-- FooTable -->
-    <script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
+<!-- FooTable -->
+<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js"
+        th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
 
-    <!-- JSKnob -->
-    <script src="../static/INSPINIA/js/plugins/jsKnob/jquery.knob.js" th:src="@{/INSPINIA/js/plugins/jsKnob/jquery.knob.js}"></script>
+<!-- JSKnob -->
+<script src="../static/INSPINIA/js/plugins/jsKnob/jquery.knob.js"
+        th:src="@{/INSPINIA/js/plugins/jsKnob/jquery.knob.js}"></script>
 
-    <!-- Page-Level Scripts -->
-    <script type="text/javascript">
-        $(document).ready(function() {
+<!-- Page-Level Scripts -->
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
 
-            var state = document.getElementById("state").value;
-            if (state == "post"){
-                $("#myModal").modal("show");
-            };
+        var state = document.getElementById("state").value;
+        if (state == "post")
+        {
+            $("#myModal").modal("show");
+        }
+        ;
 
-            if (state == "finish") {
-                $("#modal-form").modal("show");
-            };
+        if (state == "finish")
+        {
+            $("#modal-form").modal("show");
+        }
+        ;
 
-            $('.footable').footable();
-            $('.footable2').footable();
+        $('.footable').footable();
+        $('.footable2').footable();
 
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-
-
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
         });
-    </script>
+
+
+    });
+</script>
 
 </body>
 

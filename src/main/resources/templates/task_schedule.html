@@ -304,19 +304,19 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>TeamWork</h2>
+                <h2>任务分配</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li>
-                        TeamWork
+                        任务分配
                     </li>
                     <li th:if="${dailytask}">
-                        DailyTask Schedule
+                        日常任务计划
                     </li>
                     <li th:if="${overhaul}">
-                        Overhaul Schedule
+                        检修任务计划
                     </li>
                 </ol>
             </div>
@@ -330,7 +330,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Unfinished</h5>
+                            <h5>未完成</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -382,7 +382,7 @@
                                     <td th:text="${task.task_time}">Patrick Smith</td>
                                     <td th:text="${task.task_area}">0800 051213</td>
                                     <td th:text="${task.task_handler}"></td>
-                                    <td><a class="btn btn-primary" th:href="@{'/supervisor/task/'+${employee_id}+'/'+${task.task_id}}">Change Handler</a></td>
+                                    <td><a class="btn btn-primary" th:href="@{'/supervisor/task/'+${employee_id}+'/'+${task.task_id}}">更改处理者</a></td>
                                 </tr>
                                 </tbody>
                                 <tbody th:if="${overhaul}">
@@ -392,7 +392,7 @@
                                     <td th:text="${task.fclt_id}">0800 051213</td>
                                     <td th:text="${task.facilities.location}"></td>
                                     <td th:text="${task.overhaul_handler}"></td>
-                                    <td><a class="btn btn-primary" th:href="@{'/supervisor/task/'+${employee_id}+'/'+${task.overhaul_id}}">Change Handler</a></td>
+                                    <td><a class="btn btn-primary" th:href="@{'/supervisor/task/'+${employee_id}+'/'+${task.overhaul_id}}">更改处理者</a></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
@@ -409,9 +409,9 @@
                                     <div class="modal-content animated fadeIn">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
                                                 <i class="fa fa-tasks modal-icon"></i>
-                                                <h4 class="modal-title" >Change Handler</h4>
+                                                <h4 class="modal-title" >更改处理者</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row" th:if="${dailytask}">
@@ -421,15 +421,15 @@
                                                     <form role="form" id="form" th:action="@{'/supervisor/task/'+${employee_id}}" method="post" class="wizard-big">
                                                         <input name="taskId" th:value="${task_id}" hidden="hidden">
                                                         <div class="form-group m-md">
-                                                            <label>Old Handler *</label>
+                                                            <label>原处理者 *</label>
                                                             <input id="oldHandler" name="oldHandler" disabled="disabled" type="text" class="form-control" th:value="${employee_id}">
                                                         </div>
                                                         <div class="form-group m-md">
-                                                            <label>New Handler *</label>
+                                                            <label>新处理者 *</label>
                                                             <input id="newHandler" name="newHandler" type="text" class="form-control">
                                                         </div>
                                                         <div class="m-md">
-                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Submit</strong></button>
+                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>提交</strong></button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -440,15 +440,15 @@
                                                     <form role="form" id="form" th:action="@{'/supervisor/task/'+${employee_id}}" method="post" class="wizard-big">
                                                         <input name="taskId" th:value="${task_id}" hidden="hidden">
                                                         <div class="form-group m-md">
-                                                            <label>Old Handler *</label>
+                                                            <label>原处理者 *</label>
                                                             <input id="oldHandler" name="oldHandler" disabled="disabled" type="text" class="form-control" th:value="${employee_id}">
                                                         </div>
                                                         <div class="form-group m-md">
-                                                            <label>New Handler *</label>
+                                                            <label>新处理者 *</label>
                                                             <input id="newHandler" name="newHandler" type="text" class="form-control">
                                                         </div>
                                                         <div class="m-md">
-                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Submit</strong></button>
+                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>提交</strong></button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -554,15 +554,15 @@
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeIn">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
                             <i th:class="${modalIcon}"></i>
-                            <h4 class="modal-title" th:text="${modalTitle}">Evaluate Successful</h4>
+                            <h4 class="modal-title" th:text="${modalTitle}">评价成功</h4>
                         </div>
                         <div class="modal-body">
-                            <p th:text="${modalBody}">We have got your feedback, thank you for help us become better.</p>
+                            <p th:text="${modalBody}">我们已经收到了您的反馈，您的支持会让我们变得更好.</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
                         </div>
                     </div>
                 </div>

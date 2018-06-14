@@ -288,16 +288,16 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Payment</h2>
+                <h2>待支付</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li>
-                        Payment
+                        支付
                     </li>
                     <li class="active">
-                        To Be Paid
+                        待完成
                     </li>
                 </ol>
             </div>
@@ -312,7 +312,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>To Be Paid</h5>
+                            <h5>待支付</h5>
                         </div>
                         <div class="ibox-content">
                             <input type="text" class="form-control input-sm m-b-xs" id="filter"
@@ -349,7 +349,7 @@
                                     <td th:text="${charging.proprietor.prprt_name}">Patrick Smith</td>
                                     <td th:text="${charging.fee.start_date}">0800 051213</td>
                                     <td th:text="${charging.fee.end_date}">Inceptos Hymenaeos Ltd</td>
-                                    <td><a th:href="@{'/proprietor/invoice/'+${charging.situation_id}}"><button type="button" class="btn btn-primary btn-sm">Go to Payment</button></a></td>
+                                    <td><a th:href="@{'/proprietor/invoice/'+${charging.situation_id}}"><button type="button" class="btn btn-primary btn-sm">去支付</button></a></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>

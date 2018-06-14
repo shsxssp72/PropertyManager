@@ -293,16 +293,16 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Overhaul</h2>
+                <h2>检修</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li>
-                        Overhaul
+                        检修
                     </li>
                     <li>
-                        To be Done
+                        待完成
                     </li>
                 </ol>
             </div>
@@ -316,7 +316,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>To be Done</h5>
+                            <h5>待完成</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -362,7 +362,7 @@
                                     <td th:text="${record.facilities.fclt_type}"></td>
                                     <td th:text="${record.facilities.location}"></td>
                                     <td th:text="${username}"></td>
-                                    <td><a class="btn btn-primary" th:href="@{'/repairman/overhaul/finish/'+${record.overhaul_id}}">finish</a></td>
+                                    <td><a class="btn btn-primary" th:href="@{'/repairman/overhaul/finish/'+${record.overhaul_id}}">完成</a></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
@@ -379,9 +379,9 @@
                                     <div class="modal-content animated fadeIn">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
                                                 <i class="fa fa-tasks modal-icon"></i>
-                                                <h4 class="modal-title" >Finish Overhaul</h4>
+                                                <h4 class="modal-title" >完成检修</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
@@ -393,11 +393,11 @@
                                                     <form role="form" id="form" th:action="@{/repairman/overhaul/tbd}" method="post" class="wizard-big">
                                                         <input name="overhaulId" th:value="${overhaul_id}" hidden="hidden">
                                                         <div class="form-group m-md">
-                                                            <label>Overhaul Result *</label>
+                                                            <label>检修结果 *</label>
                                                             <textarea id="overhaulResult" name="overhaulResult" type="text" class="form-control" rows="6" style="resize: none;"></textarea>
                                                         </div>
                                                         <div class="m-md">
-                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Submit</strong></button>
+                                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>提交</strong></button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -417,15 +417,15 @@
                     <div class="modal-dialog">
                         <div class="modal-content animated fadeIn">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
                                 <i class="fa fa-check-circle modal-icon"></i>
-                                <h4 class="modal-title" >Successfully Finished</h4>
+                                <h4 class="modal-title" >提交成功</h4>
                             </div>
                             <div class="modal-body">
-                                <p>You have finished this Overhaul.</p>
+                                <p>您完成了该项检修任务</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
                             </div>
                         </div>
                     </div>

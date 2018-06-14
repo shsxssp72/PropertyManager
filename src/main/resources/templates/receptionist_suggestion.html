@@ -287,13 +287,13 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Home</h2>
+                <h2>离线建议</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li>
-                        Offline Suggestion
+                        离线建议
                     </li>
                 </ol>
             </div>
@@ -306,20 +306,20 @@
 
             <div class="alert alert-success alert-dismissable" th:if="${isSuccess==1}">
                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                Suggestion successfully submitted.
+                成功提交建议
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>New Suggestion </h5>
+                            <h5>新建建议 </h5>
                         </div>
                         <div class="ibox-content">
                             <form method="post" class="form-horizontal">
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Type</label>
+                                    <label class="col-sm-2 control-label">类型</label>
                                     <div class="col-sm-10">
                                         <select class="form-control m-b" name="suggestion_type">
                                             <option>Clean</option>
@@ -331,7 +331,7 @@
                                 <div class="hr-line-dashed"></div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Proprietor Name</label>
+                                    <label class="col-sm-2 control-label">业主姓名</label>
                                     <div class="col-sm-10"><input type="text" class="form-control" name="prprt_name">
                                     </div>
                                 </div>
@@ -339,7 +339,7 @@
                                 <div class="hr-line-dashed"></div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Detail</label>
+                                    <label class="col-sm-2 control-label">详情</label>
                                     <div class="col-sm-10">
                                         <!--<input type="text" class="form-control" name="detail">-->
 
@@ -352,10 +352,10 @@
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
                                         <button class="btn btn-white" type="submit" name="action" value="Cancel">
-                                            Cancel
+                                            取消
                                         </button>
                                         <button class="btn btn-primary" type="submit" name="action" value="Submit">
-                                            Submit
+                                            提交
                                         </button>
                                     </div>
                                 </div>

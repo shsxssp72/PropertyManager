@@ -16,10 +16,13 @@
     <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
 
     <!-- FooTable -->
-    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
+    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
 
-    <link href="../static/INSPINIA/css/plugins/codemirror/codemirror.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/codemirror/codemirror.css}">
-    <link href="../static/INSPINIA/css/plugins/codemirror/ambiance.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/codemirror/ambiance.css}">
+    <link href="../static/INSPINIA/css/plugins/codemirror/codemirror.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/codemirror/codemirror.css}">
+    <link href="../static/INSPINIA/css/plugins/codemirror/ambiance.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/codemirror/ambiance.css}">
 
 </head>
 
@@ -291,16 +294,16 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>PaymentHistory</h2>
+                <h2>支付历史</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li>
-                        Payment
+                        支付
                     </li>
                     <li class="active">
-                        History
+                        历史
                     </li>
                 </ol>
             </div>
@@ -315,7 +318,7 @@
                 <div class="full-height-scroll">
                     <ul class="list-group elements-list">
                         <li class="list-group-item" th:each="chargingItem: ${chargingItemList}">
-                            <a  th:href="@{'/accountant/chargingSituation/'+${chargingItem.item_title}}">
+                            <a th:href="@{'/accountant/chargingSituation/'+${chargingItem.item_title}}">
                                 <strong th:text="${chargingItem.item_title}">Ann Smith</strong>
                                 <div class="small m-t-xs">
                                     <p class="m-b-none">
@@ -334,64 +337,67 @@
                     <div class="element-detail-box">
                         <div class="tab-content">
                             <div id="myTab" class="tab-pane active">
-                                    <input type="text" class="form-control input-sm m-b-xs" id="filter"
-                                           placeholder="Search in table">
-                                    <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
-                                        <thead>
-                                        <!--<tr class="footable-filtering">
-                                            <th colspan="5">
-                                                <form role="form" class="form-inline pull-right">
-                                                    <div class="form-group">
-                                                        <input type="email" placeholder="Enter email" id="exampleInputEmail2"
-                                                               class="form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="user_password" placeholder="Password" id="exampleInputPassword2"
-                                                               class="form-control">
-                                                    </div>
-                                                    <button class="btn btn-white" type="submit">Sign in</button>
-                                                </form>
-                                            </th>
-                                        </tr>-->
-                                        <tr>
-                                            <th>ItemTitle</th>
-                                            <th>Proprietor</th>
-                                            <th>StartDate</th>
-                                            <th>EndDate</th>
-                                            <th>Price</th>
-                                            <th data-hide="all">Collector</th>
-                                            <th data-hide="all">ChargeDate</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="charging: ${chargingSituationList}">
-                                            <td th:text="${charging.fee.chargingItem.item_title}">Project - This is example of project</td>
-                                            <td th:text="${charging.proprietor.prprt_name}">Patrick Smith</td>
-                                            <td th:text="${charging.fee.start_date}">0800 051213</td>
-                                            <td th:text="${charging.fee.end_date}">Inceptos Hymenaeos Ltd</td>
-                                            <td><i class="fa fa-rmb"></i><abbr th:text="${charging.fee.price}"></abbr> </td>
-                                            <td th:text="${charging.staff.staff_name}"></td>
-                                            <td th:text="${charging.charge_date}"></td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <td colspan="5">
-                                                <ul class="pagination pull-right"></ul>
-                                            </td>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
+                                <input type="text" class="form-control input-sm m-b-xs" id="filter"
+                                       placeholder="Search in table">
+                                <table class="footable table table-stripped toggle-arrow-tiny" data-filter=#filter>
+                                    <thead>
+                                    <!--<tr class="footable-filtering">
+                                        <th colspan="5">
+                                            <form role="form" class="form-inline pull-right">
+                                                <div class="form-group">
+                                                    <input type="email" placeholder="Enter email" id="exampleInputEmail2"
+                                                           class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="user_password" placeholder="Password" id="exampleInputPassword2"
+                                                           class="form-control">
+                                                </div>
+                                                <button class="btn btn-white" type="submit">Sign in</button>
+                                            </form>
+                                        </th>
+                                    </tr>-->
+                                    <tr>
+                                        <th>ItemTitle</th>
+                                        <th>Proprietor</th>
+                                        <th>StartDate</th>
+                                        <th>EndDate</th>
+                                        <th>Price</th>
+                                        <th data-hide="all">Collector</th>
+                                        <th data-hide="all">ChargeDate</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="charging: ${chargingSituationList}">
+                                        <td th:text="${charging.fee.chargingItem.item_title}">Project - This is example
+                                            of project
+                                        </td>
+                                        <td th:text="${charging.proprietor.prprt_name}">Patrick Smith</td>
+                                        <td th:text="${charging.fee.start_date}">0800 051213</td>
+                                        <td th:text="${charging.fee.end_date}">Inceptos Hymenaeos Ltd</td>
+                                        <td><i class="fa fa-rmb"></i><abbr th:text="${charging.fee.price}"></abbr></td>
+                                        <td th:text="${charging.staff.staff_name}"></td>
+                                        <td th:text="${charging.charge_date}"></td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                            <ul class="pagination pull-right"></ul>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
             <div class="footer">
                 <div>
                     <strong>Copyright</strong> Example Company &copy; 2014-2017
                 </div>
             </div>
+        </div>
     </div>
 </div>
 
@@ -404,7 +410,8 @@
         th:src="@{/INSPINIA/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
 
 <!-- FooTable -->
-<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js"
+        th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="../static/INSPINIA/js/inspinia.js" th:src="@{/INSPINIA/js/inspinia.js}"></script>

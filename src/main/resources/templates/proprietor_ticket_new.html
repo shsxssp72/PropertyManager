@@ -288,16 +288,16 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Ticket</h2>
+                <h2>工单</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li>
-                        Ticket
+                        工单
                     </li>
                     <li>
-                        New
+                        新建
                     </li>
                 </ol>
             </div>
@@ -311,22 +311,22 @@
                 <div class="col-lg-12">
                     <div class="ibox">
                         <div class="ibox-title">
-                            <h5>New Ticket</h5>
+                            <h5>新建工单</h5>
                         </div>
                         <div class="ibox-content">
                             <h2>
-                                Complete the New Ticket
+                                填写新工单
                             </h2>
 
                             <form id="form" th:action="@{/proprietor/ticket/new}" method="post" class="wizard-big">
-                                <h1>Base</h1>
+                                <h1>基本</h1>
                                 <fieldset>
-                                    <h2>Base Information</h2>
+                                    <h2>基本信息</h2>
                                     <div class="row">
                                         <div class="col-lg-8">
                                             <div class="form-group m-md">
-                                                <label>Ticket Type *</label>
-                                                <!--<input id="userName" display_name="userName" type="text" class="form-control required">-->
+                                                <label>工单类型 *</label>
+                                                <!--<input id="userName" name="userName" type="text" class="form-control required">-->
                                                 <select id="ticketType" class="form-control m-b" name="ticketType">
                                                     <option selected>electricity</option>
                                                     <option>pipe</option>
@@ -335,7 +335,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group m-md">
-                                                <label>Initiator *</label>
+                                                <label>发起者 *</label>
                                                 <input id="initiator" name="initiator" type="text" disabled=""
                                                        class="form-control required" th:value="${username}">
                                             </div>
@@ -351,55 +351,55 @@
                                     </div>
 
                                 </fieldset>
-                                <h1>Location</h1>
+                                <h1>位置</h1>
                                 <fieldset>
-                                    <h2>Location Information</h2>
+                                    <h2>位置信息</h2>
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group m-md">
-                                                <label>Subarea *</label>
+                                                <label>子区域 *</label>
                                                 <input id="subarea" name="subarea" type="text"
                                                        class="form-control required">
                                             </div>
                                             <div class="form-group m-md">
-                                                <label>Building *</label>
+                                                <label>楼房 *</label>
                                                 <input id="building" name="building" type="text"
                                                        class="form-control required">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group m-md">
-                                                <label>Floor *</label>
+                                                <label>层数 *</label>
                                                 <input id="floor" name="floor" type="text"
                                                        class="form-control required">
                                             </div>
                                             <div class="form-group m-md">
-                                                <label>Room *</label>
+                                                <label>室号 *</label>
                                                 <input id="room" name="room" type="text" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                 </fieldset>
 
-                                <h1>Description</h1>
+                                <h1>描述</h1>
                                 <fieldset>
-                                    <h2>Detail Information</h2>
+                                    <h2>详细信息</h2>
                                     <div class="form-group m-md">
                                         <textarea id="description" name="description" type="text" class="form-control"
                                                   rows="6" style="resize: none;"></textarea>
                                     </div>
                                 </fieldset>
 
-                                <h1>Finish</h1>
+                                <h1>完成</h1>
                                 <fieldset style="overflow: auto;">
-                                    <h2>Check the Ticket</h2>
+                                    <h2>检查工单</h2>
                                     <div class="row">
                                         <div class="col-lg-8">
                                             <div class="ibox-content m-md">
                                                 <div class="form-group">
-                                                    <label>Ticket Type *</label>
+                                                    <label>工单类型 *</label>
                                                     <select id="cTicketType" disabled="" class="form-control m-b"
-                                                            display_name="cTicketType">
+                                                            name="cTicketType">
                                                         <option selected>electricity</option>
                                                         <option>pipe</option>
                                                         <option>guard</option>
@@ -407,34 +407,34 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Initiator *</label>
-                                                    <input id="cInitiator" disabled="" display_name="initiator"
+                                                    <label>发起者 *</label>
+                                                    <input id="cInitiator" disabled="" name="initiator"
                                                            type="text" class="form-control required"
                                                            th:value="${username}"/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Subarea *</label>
-                                                    <input id="cSubarea" disabled="" display_name="subarea" type="text"
+                                                    <label>子区域 *</label>
+                                                    <input id="cSubarea" disabled="" name="subarea" type="text"
                                                            class="form-control required">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Building *</label>
-                                                    <input id="cBuilding" disabled="" display_name="building"
+                                                    <label>楼房 *</label>
+                                                    <input id="cBuilding" disabled="" name="building"
                                                            type="text" class="form-control required">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Floor *</label>
-                                                    <input id="cFloor" disabled="" display_name="floor" type="text"
+                                                    <label>层数 *</label>
+                                                    <input id="cFloor" disabled="" name="floor" type="text"
                                                            class="form-control required">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Room *</label>
-                                                    <input id="cRoom" disabled="" display_name="room" type="text"
+                                                    <label>室号 *</label>
+                                                    <input id="cRoom" disabled="" name="room" type="text"
                                                            class="form-control">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Description</label>
-                                                    <textarea id="cDescription" disabled="" display_name="room"
+                                                    <label>描述</label>
+                                                    <textarea id="cDescription" disabled="" name="room"
                                                               type="text" class="form-control"
                                                               style="resize: none;"></textarea>
                                                 </div>
@@ -457,12 +457,7 @@
                                 <h4 class="modal-title" th:text="${modalTitle}">Modal title</h4>
                             </div>
                             <div class="modal-body">
-                                <p th:text="${modalContent}"><strong>Lorem Ipsum is simply dummy</strong> text of the
-                                    printing and typesetting industry. Lorem Ipsum has been the industry's standard
-                                    dummy text ever since the 1500s, when an unknown
-                                    printer took a galley of type and scrambled it to make a type specimen book. It has
-                                    survived not only five centuries, but also the leap into electronic typesetting,
-                                    remaining essentially unchanged.</p>
+                                <p th:text="${modalContent}"></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

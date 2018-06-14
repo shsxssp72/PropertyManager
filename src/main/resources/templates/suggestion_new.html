@@ -288,16 +288,16 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Suggestion</h2>
+                <h2>建议</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li>
-                        Suggestion
+                        建议
                     </li>
                     <li>
-                        New
+                        新建
                     </li>
                 </ol>
             </div>
@@ -311,13 +311,13 @@
                 <div class="col-lg-12">
                     <div class="ibox">
                         <div class="ibox-title">
-                            <h5>New Suggestion</h5>
+                            <h5>新建建议</h5>
                         </div>
                         <div class="ibox-content">
 
                             <form role="form" id="form" th:action="@{/proprietor/suggestion/new}" method="post" class="wizard-big">
                                 <div class="form-group m-md">
-                                    <label>Suggestion Type *</label>
+                                    <label>建议类型 *</label>
                                     <select id="suggestionType"  class="form-control m-b" name="suggestionType">
                                         <option selected>electricity</option>
                                         <option>pipe</option>
@@ -327,13 +327,13 @@
                                 </div>
 
                                 <div class="form-group m-md">
-                                    <label>Suggestion Detail *</label>
+                                    <label>建议详情 *</label>
                                     <textarea id="suggestionDetail" name="suggestionDetail" type="text" class="form-control" rows="6" style="resize: none;"></textarea>
                                 </div>
 
                                 <div class="m-md">
-                                    <label> <input name="anonymous" type="checkbox" class="i-checks">anonymous</label>
-                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Submit</strong></button>
+                                    <label> <input name="anonymous" type="checkbox" class="i-checks">匿名</label>
+                                    <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>提交</strong></button>
                                 </div>
 
                             </form>
@@ -345,15 +345,15 @@
                     <div class="modal-dialog">
                         <div class="modal-content animated fadeIn">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
                                 <i class="fa fa-check-circle modal-icon"></i>
-                                <h4 class="modal-title">New Suggestion Successful</h4>
+                                <h4 class="modal-title">新建建议成功</h4>
                             </div>
                             <div class="modal-body">
-                                <p>We have got your suggestion, Thank you for supporting us.</p>
+                                <p>我们已经收到了您的建议，感谢您的支持.</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
                             </div>
                         </div>
                     </div>

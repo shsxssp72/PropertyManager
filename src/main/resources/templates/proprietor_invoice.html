@@ -285,19 +285,19 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-8">
-                <h2>Invoice</h2>
+                <h2>账单</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="/index">Home</a>
+                        <a href="/index">主页</a>
                     </li>
                     <li class="active">
-                        Invoice
+                        账单
                     </li>
                 </ol>
             </div>
             <div class="col-lg-4">
                 <div class="title-action">
-                    <button class="btn btn-primary" onclick="doPrint()"><i class="fa fa-print"></i> Print Invoice </button>
+                    <button class="btn btn-primary" onclick="doPrint()"><i class="fa fa-print"></i> 打印账单 </button>
                 </div>
             </div>
         </div>
@@ -318,7 +318,7 @@
                             </div>
 
                             <div class="col-sm-6 text-right">
-                                <h4>Invoice No.</h4>
+                                <h4>账单编号:</h4>
                                 <h4 class="text-navy" th:text="${chargingSituation.situation_id}">INV-000567F7-00</h4>
                                 <span>To:</span>
                                 <address>
@@ -326,7 +326,7 @@
                                     <abbr title="Phone" th:text="${tel}">(120) 9000-4321</abbr>
                                 </address>
                                 <p>
-                                    <span><strong>Invoice Date:</strong> <abbr th:text="${date}">Marh 18, 2014</abbr></span><br/>
+                                    <span><strong>账单日期:</strong> <abbr th:text="${date}">Marh 18, 2014</abbr></span><br/>
                                 </p>
                             </div>
                         </div>
@@ -335,11 +335,11 @@
                             <table class="table invoice-table">
                                 <thead>
                                 <tr>
-                                    <th>Item List</th>
-                                    <th>Quantity</th>
-                                    <th>Unit Price</th>
-                                    <th>Tax</th>
-                                    <th>Total Price</th>
+                                    <th>项目列表</th>
+                                    <th>数量</th>
+                                    <th>单价</th>
+                                    <th>税费</th>
+                                    <th>总价</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -357,22 +357,22 @@
                         <table class="table invoice-total">
                             <tbody>
                             <tr>
-                                <td><strong>Sub Total :</strong></td>
+                                <td><strong>不含税价格:</strong></td>
                                 <td>￥<abbr th:text="${chargingSituation.fee.price}">26.00</abbr></td>
                             </tr>
                             <tr>
-                                <td><strong>TAX :</strong></td>
+                                <td><strong>税费:</strong></td>
                                 <td>￥0</td>
                             </tr>
                             <tr>
-                                <td><strong>TOTAL :</strong></td>
+                                <td><strong>总计:</strong></td>
                                 <td>￥<abbr th:text="${chargingSituation.fee.price}">26.00</abbr></td>
                             </tr>
                             </tbody>
                         </table>
                         <!--endprint-->
                         <div class="text-right">
-                            <button class="btn btn-primary"><i class="fa fa-rmb"></i> Make A Payment</button>
+                            <button class="btn btn-primary"><i class="fa fa-rmb"></i>去支付</button>
                         </div>
 
                     </div>
