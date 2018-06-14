@@ -375,4 +375,10 @@ FROM (SELECT *
       FROM chargingSituation
       WHERE collector_id = -1) as S;
 
-show TABLES
+## 201806141310 修改
+UPDATE ticket
+set ticket_fdbk =ticket_fdbk *10;
+
+UPDATE chargingSituation
+set charge_date=NULL
+WHERE YEAR(charge_date)>2050;

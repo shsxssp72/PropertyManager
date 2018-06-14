@@ -79,7 +79,7 @@ public class ManagerController
     public*/
 
 
-	@RequestMapping(value="/test", method=RequestMethod.GET)
+	@RequestMapping(value="/manageData", method=RequestMethod.GET)
 	ModelAndView getTest(HttpServletRequest request,HttpServletResponse response)
 	{
 		ModelAndView modelAndView=new ModelAndView("dataTable");
@@ -93,7 +93,7 @@ public class ManagerController
 		return modelAndView;
 	}
 
-	@RequestMapping(value="/test", method=RequestMethod.POST)
+	@RequestMapping(value="/manageData", method=RequestMethod.POST)
 	ModelAndView postTest(HttpServletRequest request,HttpServletResponse response,String action)
 	{
 		ModelAndView modelAndView=getTest(request,response);

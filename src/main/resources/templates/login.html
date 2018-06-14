@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Login</title>
+    <title>PM | Login</title>
 
     <link href="../static/INSPINIA/css/bootstrap.min.css" rel="stylesheet" th:href="@{/INSPINIA/css/bootstrap.min.css}">
     <link href="../static/INSPINIA/font-awesome/css/font-awesome.css" rel="stylesheet" th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
@@ -30,29 +30,29 @@
             <h1 class="logo-display_name">PM</h1>
 
         </div>
-        <h3>Welcome to Property Management</h3>
-        <p>A Property Management Project For Test
-            <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
-        </p>
-        <p>Login in. To see more details.</p>
+        <h2>欢迎</h2>
+        <!--<h3>Welcome to Property Management</h3>-->
+        <!--<p>A Property Management Project For Test-->
+        <!--</p>-->
+        <!--<p>Login in. To see more details.</p>-->
+        <p>登录以获取更多信息</p>
         <form class="m-t" role="form" method="post">
             <div class="" th:text="${msg}">
-                <!--Invalid Username/Password.-->
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" name="username" id="UserName" placeholder="Username"
+                <input type="text" class="form-control" name="username" id="UserName" placeholder="用户名"
                        required="">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="password" id="PassWord" placeholder="Password"
+                <input type="password" class="form-control" name="password" id="PassWord" placeholder="密码"
                        required="">
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b" id="submit">Login</button>
+            <button type="submit" class="btn btn-primary block full-width m-b" id="submit">登录</button>
 
-            <a href="#">
-                <small>Forgot user_password?</small>
-            </a>
+            <!--<a href="#">-->
+                <!--<small>Forgot user_password?</small>-->
+            <!--</a>-->
             <!--<p class="text-muted text-center"><small>Do not have an account?</small></p>-->
             <!--<a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>-->
         </form>
