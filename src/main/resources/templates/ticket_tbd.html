@@ -343,7 +343,8 @@
                                 <tr>
 
                                     <th>TicketType</th>
-                                    <th>Initiator</th>
+                                    <th>ProprietorInitiator</th>
+                                    <th>StaffInitiator</th>
                                     <th>TicketTime</th>
                                     <th>Location</th>
                                     <th>Action</th>
@@ -355,7 +356,8 @@
                                 <tbody>
                                 <tr th:each="ticket:${ticketList}">
                                     <td th:text="${ticket.ticket_type}">Project - This is example of project</td>
-                                    <td th:text="${username}">Patrick Smith</td>
+                                    <td th:text="${ticket.initiator_prprt_id}">Patrick Smith</td>
+                                    <td th:text="${ticket.initiator_staff_id}"></td>
                                     <td th:text="${ticket.ticket_time}">0800 051213</td>
                                     <td th:text="${ticket.subarea_id}+'-'+${ticket.aprt_building}+'-'+${ticket.aprt_floor}+'-'+${ticket.aprt_room_num}">Inceptos Hymenaeos Ltd</td>
                                     <td><a class="btn btn-primary" th:href="@{'/'+${roleName}+'/ticket/finish/'+${ticket.ticket_id}}">完成</a></td>
@@ -385,7 +387,7 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="form-group m-md"><label th:text="'Ticket ID: '+${ticket_id}"></label></div>
-                                                    <div class="form-group m-md"><label th:text="'Handler: '+${username}"></label></div>
+                                                    <div class="form-group m-md"><label th:text="'Handler: '+${realName}"></label></div>
                                                     <div class="form-group m-md"><label th:text="'Description: '+${description}"></label></div>
                                                     <form role="form" id="form" th:action="@{'/'+${roleName}+'/ticket/tbd'}" method="post" class="wizard-big">
                                                         <input name="ticketId" th:value="${ticket_id}" hidden="hidden">

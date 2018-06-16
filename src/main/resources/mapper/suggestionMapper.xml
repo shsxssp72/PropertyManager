@@ -26,8 +26,8 @@
 	</select>
 
 	<insert id="giveAdvice" parameterType="com.Property.Domain.Suggestion">
-		INSERT INTO suggestion (prprt_id, suggestion_type, suggestion_detail)
-		VALUES (#{prprt_id}, #{suggestion_type}, #{suggestion_detail})
+		INSERT INTO suggestion (suggestion_id, prprt_id, suggestion_type, suggestion_detail)
+		VALUES (#{suggestion_id}, #{prprt_id}, #{suggestion_type}, #{suggestion_detail})
 	</insert>
 
 	<select id="getAdviceHistory" parameterType="java.lang.String" resultMap="suggestion">

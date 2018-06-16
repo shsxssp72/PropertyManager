@@ -95,4 +95,10 @@
 			  FROM fee
 			  WHERE fee_id = #{inputID}) AS S
 	</select>
+
+	<select id="getTicketItem" resultType="java.lang.String">
+		SELECT fee_id
+		FROM fee
+		WHERE start_date is null and end_date is null
+	</select>
 </mapper>

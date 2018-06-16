@@ -51,18 +51,14 @@ public class AccountantController {
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("staff_name", username);
-        List<Staff> staff = staffDao.getStaffbyParams(params);
-
-        /*String staff_id = staff.get(0).getStaff_id();*/
-        String staff_id = "SF1707111159";
+        String staff_id = userInfoMapper.getStaffIDByUid(userInfoMapper.getByUserName(username).getUid());
+        String realName = staffDao.getSelfInfo(staff_id).getStaff_name();
 
         List<ChargingItem> chargingItemList = chargingItemDao.getAll();
 
         String item_id = chargingItemList.get(0).getItem_id();
         String item_title = chargingItemList.get(0).getItem_title();
-        params.clear();
+        Map<String, Object> params = new HashMap<>();
         params.put("item_title", item_title);
         List<ChargingSituation> chargingSituationList = chargingSituationDao.getPaymentbyParams(params);
 
@@ -89,16 +85,12 @@ public class AccountantController {
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("staff_name", username);
-        List<Staff> staff = staffDao.getStaffbyParams(params);
-
-        /*String staff_id = staff.get(0).getStaff_id();*/
-        String staff_id = "SF1707111159";
+        String staff_id = userInfoMapper.getStaffIDByUid(userInfoMapper.getByUserName(username).getUid());
+        String realName = staffDao.getSelfInfo(staff_id).getStaff_name();
 
         List<ChargingItem> chargingItemList = chargingItemDao.getAll();
 
-        params.clear();
+        Map<String,Object> params = new HashMap<String,Object>();
         params.put("item_title", item_title);
         List<ChargingSituation> chargingSituationList = chargingSituationDao.getPaymentbyParams(params);
         /*String item_title = chargingSituationList.get(0).getFee().getChargingItem().getItem_title();*/
@@ -118,12 +110,8 @@ public class AccountantController {
         String username=(String)session.getAttribute("username");
         String roleName=sysRoleMapper.getByUid(userInfoMapper.getByUserName(username).getUid()).getRole_name();
 
-        Map<String,Object> params = new HashMap<String,Object>();
-        params.put("staff_name", username);
-        List<Staff> staff = staffDao.getStaffbyParams(params);
-
-        //String staff_id = staff.get(0).getStaff_id();
-        String staff_id = "SF1707111159";
+        String staff_id = userInfoMapper.getStaffIDByUid(userInfoMapper.getByUserName(username).getUid());
+        String realName = staffDao.getSelfInfo(staff_id).getStaff_name();
 
         List<CarIORecord> carIORecords = accountantService.getExternal();
         for (int i =0; i<carIORecords.size();i++){

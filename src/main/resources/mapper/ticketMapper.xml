@@ -61,8 +61,8 @@
 	</select>
 
 	<insert id="prprtCallRepair" parameterType="com.Property.Domain.Ticket">
-		INSERT INTO ticket (ticket_id,ticket_type,ticket_time,initiator_prprt_id,subarea_id,aprt_building,aprt_floor,aprt_room_num,description)
-				values (#{ticket_id}, #{ticket_type}, #{ticket_time}, #{initiator_prprt_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description})
+		INSERT INTO ticket (ticket_id,ticket_type,ticket_time,initiator_prprt_id,subarea_id,aprt_building,aprt_floor,aprt_room_num,description,handler_id)
+				values (#{ticket_id}, #{ticket_type}, #{ticket_time}, #{initiator_prprt_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description}, #{handler_id})
 	</insert>
 
 	<select id="getRepairHistory" parameterType="java.lang.String" resultMap="totalView">
@@ -77,13 +77,13 @@
 
 	<update id="finishTicket">
 		UPDATE ticket
-		SET handle_time = #{handle_time}, handle_result = #{result}
+		SET handle_time = #{handle_time}, ticket_result = #{result}
 		WHERE ticket_id = #{ticket_id}
 	</update>
 
 	<insert id="staffTicket" parameterType="com.Property.Domain.Ticket">
-		INSERT INTO ticket (ticket_id,ticket_type,ticket_time,initiator_staff_id,subarea_id,aprt_building,aprt_floor,aprt_room_num,description)
-		values (#{ticket_id}, #{ticket_type}, #{ticket_time}, #{initiator_staff_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description})
+		INSERT INTO ticket (ticket_id,ticket_type,ticket_time,initiator_staff_id,subarea_id,aprt_building,aprt_floor,aprt_room_num,description, handler_id)
+		values (#{ticket_id}, #{ticket_type}, #{ticket_time}, #{initiator_staff_id}, #{subarea_id}, #{aprt_building}, #{aprt_floor}, #{aprt_room_num}, #{description}, #{handler_id})
 	</insert>
 
 	<select id="getHistoryCreated" parameterType="java.lang.String" resultMap="totalView">

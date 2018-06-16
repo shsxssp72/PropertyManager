@@ -107,7 +107,7 @@ CREATE TABLE ticket
   aprt_building      CHAR(20),
   aprt_floor         INT,
   aprt_room_num      INT,
-  description        VARBINARY(1000),
+  description        VARCHAR(1000),
   handler_id         CHAR(20),
   handle_time        DATETIME,
   ticket_result      VARCHAR(1000),

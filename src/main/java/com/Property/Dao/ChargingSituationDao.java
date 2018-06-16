@@ -12,39 +12,44 @@ import java.util.Map;
 
 @Component
 @Mapper
-public interface ChargingSituationDao
-{
-	String getChargingItemNameByCSID(String inputCSID);
+public interface ChargingSituationDao {
+    String getChargingItemNameByCSID(String inputCSID);
 
-	List<ChargingSituation> getUnfinishedByUserId(String inputUID);
+    List<ChargingSituation> getUnfinishedByUserId(String inputUID);
 
-	ChargingSituation getByID(String inputID);
+    ChargingSituation getByID(String inputID);
 
-	List<ChargingSituation> getAll();
+    List<ChargingSituation> getAll();
 
-	List<ChargingSituation> getPayment(String id);
+    List<ChargingSituation> getPayment(String id);
 
-	java.util.Date getLatestPayment(@Param("id") String id, @Param("item_id") String item_id);
+    java.util.Date getLatestPayment(@Param("id") String id, @Param("item_id") String item_id);
 
-	List<ChargingSituation> getPaymentHistory(String id);
+    List<ChargingSituation> getPaymentHistory(String id);
 
-	List<ChargingSituation> getAllCharging();
+    List<ChargingSituation> getAllCharging();
 
-	int updateChargingSituation(@Param("collector_id") String collector_id, @Param("charge_date") Date charge_date, @Param("fee_id") String fee_id);
+    int updateChargingSituation(@Param("collector_id") String collector_id, @Param("charge_date") Date charge_date, @Param("fee_id") String fee_id);
 
-	/*根据参数值查询*/
-	List<ChargingSituation> getPaymentbyParams(Map<String, Object> params);
+    /*根据参数值查询*/
+    List<ChargingSituation> getPaymentbyParams(Map<String, Object> params);
 
-	int addChargingSituation(ChargingSituation chargingSituation);
+    int addChargingSituation(ChargingSituation chargingSituation);
 
-	int deleteChargingSituation(String id);
+    int deleteChargingSituation(String id);
 
-	int updateChargingSituation(ChargingSituation chargingSituation);
+    int updateChargingSituation(ChargingSituation chargingSituation);
 
 //	int updateChargingSituation(@Param("chargingSituation_id") String chargingSituation_id,@Param("fee_id") String fee_id,
 //								@Param("prprt_id") String prprt_id,@Param("collector_id") String collector_id,@Param("charge_date") Timestamp charge_date);
 
 
-	//用于判定ID是否重复
-	int getIdCount(String inputID);
+    //用于判定ID是否重复
+    int getIdCount(String inputID);
+
+    //插入工单收费项
+    int generateTicketFee(ChargingSituation chargingSituation);
+
+    //定时缴费项生成
+    int addScheduledCharging(ChargingSituation chargingSituation);
 }

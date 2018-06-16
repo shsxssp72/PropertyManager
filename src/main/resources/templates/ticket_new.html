@@ -317,7 +317,7 @@
                                 填写新工单
                             </h2>
 
-                            <form id="form" th:action="@{/proprietor/ticket/new}" method="post" class="wizard-big">
+                            <form id="form" th:action="@{'/'+${roleName}+'/ticket/new'}" method="post" class="wizard-big">
                                 <h1>基本</h1>
                                 <fieldset>
                                     <h2>基本信息</h2>
@@ -335,7 +335,7 @@
                                             </div>
                                             <div class="form-group m-md">
                                                 <label>发起者 *</label>
-                                                <input id="initiator" name="initiator" type="text" disabled="" class="form-control required" th:value="${username}">
+                                                <input id="initiator" name="initiator" type="text" disabled="" class="form-control required" th:value="${realName}">
                                             </div>
                                         </div>
                                         <div class="col-lg-4">

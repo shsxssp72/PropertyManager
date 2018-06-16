@@ -1,108 +1,115 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.Property.Dao.DailyTaskDao">
-	<resultMap id="dailyTask" type="com.Property.Domain.DailyTask">
-		<id column="task_id" property="task_id" jdbcType="CHAR"/>
-		<result column="task_type" property="task_type" jdbcType="VARCHAR"/>
-		<result column="task_time" property="task_time" jdbcType="TIMESTAMP"/>
-		<result column="task_area" property="task_area" jdbcType="CHAR"/>
-		<result column="task_handler" property="task_handler" jdbcType="CHAR"/>
-		<result column="task_result" property="task_result" jdbcType="VARCHAR"/>
-		<result column="isException" property="isException" jdbcType="BOOLEAN"/>
-	</resultMap>
+    <resultMap id="dailyTask" type="com.Property.Domain.DailyTask">
+        <id column="task_id" property="task_id" jdbcType="CHAR"/>
+        <result column="task_type" property="task_type" jdbcType="VARCHAR"/>
+        <result column="task_time" property="task_time" jdbcType="TIMESTAMP"/>
+        <result column="task_area" property="task_area" jdbcType="CHAR"/>
+        <result column="task_handler" property="task_handler" jdbcType="CHAR"/>
+        <result column="task_result" property="task_result" jdbcType="VARCHAR"/>
+        <result column="isException" property="isException" jdbcType="BOOLEAN"/>
+    </resultMap>
 
-	<sql id="BaseColumnList">
-		task_id,task_type,task_time,task_area,task_handler,task_result,isException
-	</sql>
+    <sql id="BaseColumnList">
+        task_id, task_type, task_time, task_area, task_handler, task_result, isException
+    </sql>
 
-	<select id="getAll" resultMap="dailyTask">
-		SELECT
-		<include refid="BaseColumnList"/>
-		FROM dailyTask
-	</select>
+    <select id="getAll" resultMap="dailyTask">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM dailyTask
+    </select>
 
-	<select id="getByID" resultMap="dailyTask">
-		SELECT
-		<include refid="BaseColumnList"/>
-		FROM dailyTask
-		WHERE task_id=#{inputID}
-	</select>
-	
-	<update id="finishTask">
-		UPDATE dailyTask
-		SET task_result = #{result}, isException = #{isException}
-		WHERE task_id = #{task_id}
-	</update>
+    <select id="getByID" resultMap="dailyTask">
+        SELECT
+        <include refid="BaseColumnList"/>
+        FROM dailyTask
+        WHERE task_id=#{inputID}
+    </select>
 
-	<select id="getHistoryTask"  parameterType="java.lang.String" resultMap="dailyTask">
-		SELECT *
-		FROM dailyTask
-		WHERE task_handler = #{id} and task_result is not null
-	</select>
+    <update id="finishTask">
+        UPDATE dailyTask
+        SET task_result = #{result}, isException = #{isException}
+        WHERE task_id = #{task_id}
+    </update>
 
-	<select id="tbdTask"  parameterType="java.lang.String" resultMap="dailyTask">
-		SELECT *
-		FROM dailyTask
-		WHERE task_handler = #{id} and task_result is null
-	</select>
+    <select id="getHistoryTask" parameterType="java.lang.String" resultMap="dailyTask">
+        SELECT *
+        FROM dailyTask
+        WHERE task_handler = #{id} and task_result is not null
+    </select>
 
-	<select id="tbdTaskCount" parameterType="java.lang.String" resultType="java.lang.Integer">
-		SELECT count(*)
-		FROM dailyTask
-		WHERE task_handler = #{id} and task_result is null
-	</select>
+    <select id="tbdTask" parameterType="java.lang.String" resultMap="dailyTask">
+        SELECT *
+        FROM dailyTask
+        WHERE task_handler = #{id} and task_result is null
+    </select>
 
-	<update id="changeTaskHandler" >
-		UPDATE dailyTask
-		SET task_handler = #{new_handler}
-		WHERE task_id = #{task_id}
-	</update>
+    <select id="tbdTaskCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM dailyTask
+        WHERE task_handler = #{id} and task_result is null
+    </select>
 
-	<select id="getTaskbyParams" resultMap="dailyTask" parameterType="java.util.HashMap">
-		SELECT *
-		FROM dailyTask
-		<where>
-			1 = 1
-			<if test="task_id!=null and task_id!=''">
-				AND task_id = #{task_id,jdbcType=CHAR}
-			</if>
-			<if test="task_handler!=null and task_handler!=''">
-				AND task_handler = #{task_handler,jdbcType=CHAR}
-			</if>
-			<if test="task_type!=null and task_type!=''">
-				AND task_type = #{task_type,jdbcType=VARCHAR}
-			</if>
-			<if test="task_time!=null">
-				AND task_time = #{task_time,jdbcType=TIMESTAMP}
-			</if>
-			<if test="task_area!=null and task_area!=''">
-				AND task_area = #{task_area,jdbcType=CHAR}
-			</if>
-			<if test="isException!=null">
-				AND isException = #{isException,jdbcType=BOOLEAN}
-			</if>
-		</where>
-	</select>
+    <update id="changeTaskHandler">
+        UPDATE dailyTask
+        SET task_handler = #{new_handler}
+        WHERE task_id = #{task_id}
+    </update>
 
-	<insert id="addTask" parameterType="com.Property.Domain.DailyTask">
-		INSERT INTO dailyTask (task_id,task_type, task_time, task_area, task_handler, task_result, isException)
-				VALUES (#{task_id},#{task_type}, #{task_time}, #{task_area}, #{task_handler}, #{task_result}, #{isException})
-	</insert>
+    <select id="getTaskbyParams" resultMap="dailyTask" parameterType="java.util.HashMap">
+        SELECT *
+        FROM dailyTask
+        <where>
+            1 = 1
+            <if test="task_id!=null and task_id!=''">
+                AND task_id = #{task_id,jdbcType=CHAR}
+            </if>
+            <if test="task_handler!=null and task_handler!=''">
+                AND task_handler = #{task_handler,jdbcType=CHAR}
+            </if>
+            <if test="task_type!=null and task_type!=''">
+                AND task_type = #{task_type,jdbcType=VARCHAR}
+            </if>
+            <if test="task_time!=null">
+                AND task_time = #{task_time,jdbcType=TIMESTAMP}
+            </if>
+            <if test="task_area!=null and task_area!=''">
+                AND task_area = #{task_area,jdbcType=CHAR}
+            </if>
+            <if test="isException!=null">
+                AND isException = #{isException,jdbcType=BOOLEAN}
+            </if>
+        </where>
+    </select>
 
-	<delete id="deleteTask" parameterType="java.lang.String">
-		DELETE FROM dailyTask
-			WHERE task_id = #{id}
-	</delete>
+    <insert id="addTask" parameterType="com.Property.Domain.DailyTask">
+        INSERT INTO dailyTask (task_id, task_type, task_time, task_area, task_handler, task_result, isException)
+        VALUES (#{task_id}, #{task_type}, #{task_time}, #{task_area}, #{task_handler}, #{task_result}, #{isException})
+    </insert>
 
-	<update id="updateTask" parameterType="com.Property.Domain.DailyTask">
-		UPDATE dailyTask SET task_type = #{task_type}, task_time = #{task_time}, task_area = #{task_area}, task_handler = #{task_handler}, task_result = #{task_result}, isException = #{isException}
-			WHERE task_id = #{task_id}
-	</update>
+    <delete id="deleteTask" parameterType="java.lang.String">
+        DELETE FROM dailyTask
+        WHERE task_id = #{id}
+    </delete>
 
-	<select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
-		SELECT count(*)
-		FROM (SELECT *
-			  FROM dailyTask
-			  WHERE task_id = #{inputID}) AS S
-	</select>
+    <update id="updateTask" parameterType="com.Property.Domain.DailyTask">
+        UPDATE dailyTask
+        SET task_type    = #{task_type}, task_time = #{task_time}, task_area = #{task_area},
+            task_handler = #{task_handler}, task_result = #{task_result}, isException = #{isException}
+        WHERE task_id = #{task_id}
+    </update>
+
+    <select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM (SELECT *
+              FROM dailyTask
+              WHERE task_id = #{inputID}) AS S
+    </select>
+
+    <insert id="addScheduledTask" parameterType="com.Property.Domain.DailyTask">
+        INSERT INTO dailyTask (task_id, task_type, task_time, task_area, task_handler)
+        VALUES (#{task_id}, #{task_type}, #{task_time}, #{task_area}, #{task_handler})
+    </insert>
 </mapper>

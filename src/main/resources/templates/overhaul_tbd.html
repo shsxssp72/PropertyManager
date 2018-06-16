@@ -361,7 +361,7 @@
                                     <td th:text="${record.fclt_id}">0800 051213</td>
                                     <td th:text="${record.facilities.fclt_type}"></td>
                                     <td th:text="${record.facilities.location}"></td>
-                                    <td th:text="${username}"></td>
+                                    <td th:text="${realName}"></td>
                                     <td><a class="btn btn-primary" th:href="@{'/repairman/overhaul/finish/'+${record.overhaul_id}}">完成</a></td>
                                 </tr>
                                 </tbody>
@@ -388,7 +388,7 @@
                                                     <div class="form-group m-md"><label th:text="'Overhaul ID: '+${overhaul_id}"></label></div>
                                                     <div class="form-group m-md"><label th:text="'Overhaul Type: '+${overhaul_type}"></label></div>
                                                     <div class="form-group m-md"><label th:text="'Facility Type: '+${facility_type}"></label></div>
-                                                    <div class="form-group m-md"><label th:text="'Handler: '+${username}"></label></div>
+                                                    <div class="form-group m-md"><label th:text="'Handler: '+${realName}"></label></div>
                                                     <div class="form-group m-md"><label th:text="'Location: '+${location}"></label></div>
                                                     <form role="form" id="form" th:action="@{/repairman/overhaul/tbd}" method="post" class="wizard-big">
                                                         <input name="overhaulId" th:value="${overhaul_id}" hidden="hidden">

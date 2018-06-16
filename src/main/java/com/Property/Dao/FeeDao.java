@@ -29,4 +29,7 @@ public interface FeeDao
 
 	//用于判定ID是否重复
 	int getIdCount(String inputID);
+
+	//获取工单收费项
+	String getTicketItem();
 }

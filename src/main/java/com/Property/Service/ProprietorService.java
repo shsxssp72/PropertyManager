@@ -44,4 +44,7 @@ public interface ProprietorService {
 
         /*根据参数值查询缴费记录*/
         List<ChargingSituation> getPaymentbyParams(Map<String, Object> params);
+
+        /*生成工单收费项*/
+        int generateTicketFee(ChargingSituation chargingSituation);
 }

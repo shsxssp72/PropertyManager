@@ -311,7 +311,6 @@
                             <!--You can find more option in the navigation bar on the left. -->
                             您可以在左侧侧边栏找到更多选项
                             </p>
-                            <p th:text="${cond_txt_d}"></p>
 
                         </div>
                     </div>
@@ -325,10 +324,10 @@
                         </div>
                         <div class="ibox-content">
                             <div class="p-sm">
-                                <h2 class="text-navy">
-                                    <i th:class="${cond_icon}"></i>
-                                    <label th:text="${cond_txt_d}"></label>
-                                </h2>
+                            <h2 class="text-navy">
+                                <i th:class="${cond_icon}"></i>
+                                <label th:text="${cond_txt_d}"></label>
+                            </h2>
                             </div>
                             <div class="p-sm">
                                 <h4>
@@ -337,15 +336,11 @@
                             </div>
                             <div class="p-sm">
                                 <h3>生活指数</h3>
-                                <span th:text="${comf}"></span>
-                                <br>
-                                <span th:text="${drsg}"></span>
-                                <br>
-                                <span th:text="${flu}"></span>
-                                <br>
-                                <span th:text="${sport}"></span>
-                                <br>
-                                <span th:text="${air}"></span>
+                                <p th:text="${comf}" class="m-xs"></p>
+                                <p th:text="${drsg}" class="m-xs"></p>
+                                <p th:text="${flu}" class="m-xs"></p>
+                                <p th:text="${sport}" class="m-xs"></p>
+                                <p th:text="${air}" class="m-xs"></p>
                             </div>
                         </div>
                     </div>
@@ -354,10 +349,48 @@
                 <div class="col-lg-4">
                     <div class="ibox">
                         <div class="ibox-title">
-                            <span>待办事项</span>
+                            <span>注意事项</span>
                         </div>
                         <div class="ibox-content">
-
+                            <div class="p-sm">
+                                <h3 class="text-danger">
+                                    <i class="fa fa-bell fa-2x"></i>
+                                    <label>所有提醒</label>
+                                </h3>
+                            </div>
+                            <div class="p-sm">
+                            <table class="table table-stripped m-t-md">
+                                <tbody class="m-md">
+                                <tr class="m-md">
+                                    <td class="no-borders">
+                                        <i class="fa fa-circle text-danger"></i>
+                                    </td>
+                                    <td class="no-borders" th:text="${alert0}">
+                                        Nothing Special
+                                    </td>
+                                </tr>
+                                <tr class="m-md">
+                                    <td>
+                                        <i class="fa fa-circle text-danger"></i>
+                                    </td>
+                                    <td th:text="${alert1}">
+                                        Nothing Special
+                                    </td>
+                                </tr>
+                                <tr class="m-md">
+                                    <td>
+                                        <i class="fa fa-circle text-danger"></i>
+                                    </td>
+                                    <td th:text="${alert2}">
+                                        Nothing Special
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot class="pull-right" th:if="${moreAlerts}">
+                                    在侧边栏中查看更多代办事项
+                                </tfoot>
+                            </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -382,30 +415,22 @@
         th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
 
 <!-- jquery UI -->
-<script src="../static/INSPINIA/js/plugins/jquery-ui/jquery-ui.min.js"
-        th:src="@{/INSPINIA/js/plugins/jquery-ui/jquery-ui.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/jquery-ui/jquery-ui.min.js" th:src="@{/INSPINIA/js/plugins/jquery-ui/jquery-ui.min.js}"></script>
 
 <!-- Touch Punch - Touch Event Support for jQuery UI -->
-<script src="../static/INSPINIA/js/plugins/touchpunch/jquery.ui.touch-punch.min.js"
-        th:src="@{/INSPINIA/js/plugins/touchpunch/jquery.ui.touch-punch.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/touchpunch/jquery.ui.touch-punch.min.js" th:src="@{/INSPINIA/js/plugins/touchpunch/jquery.ui.touch-punch.min.js}"></script>
 
 <!-- Jvectormap -->
-<script src="../static/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"
-        th:src="@{/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js}"></script>
-<script src="../static/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"
-        th:src="@{/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
+<script src="../static/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js" th:src="@{/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" th:src="@{/INSPINIA/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
 
 <!-- Flot -->
-<script src="../static/INSPINIA/js/plugins/flot/jquery.flot.js"
-        th:src="@{/INSPINIA/js/plugins/flot/jquery.flot.js}"></script>
-<script src="../static/INSPINIA/js/plugins/flot/jquery.flot.tooltip.min.js"
-        th:src="@{/INSPINIA/js/plugins/flot/jquery.flot.tooltip.min.js}"></script>
-<script src="../static/INSPINIA/js/plugins/flot/jquery.flot.resize.js"
-        th:src="@{/INSPINIA/js/plugins/flot/jquery.flot.resize.js}"></script>
+<script src="../static/INSPINIA/js/plugins/flot/jquery.flot.js" th:src="@{/INSPINIA/js/plugins/flot/jquery.flot.js}"></script>
+<script src="../static/INSPINIA/js/plugins/flot/jquery.flot.tooltip.min.js" th:src="@{/INSPINIA/js/plugins/flot/jquery.flot.tooltip.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/flot/jquery.flot.resize.js" th:src="@{/INSPINIA/js/plugins/flot/jquery.flot.resize.js}"></script>
 
 <!-- Sparkline -->
-<script src="../static/INSPINIA/js/plugins/sparkline/jquery.sparkline.min.js"
-        th:src="@{/INSPINIA/js/plugins/sparkline/jquery.sparkline.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/sparkline/jquery.sparkline.min.js" th:src="@{/INSPINIA/js/plugins/sparkline/jquery.sparkline.min.js}"></script>
 
 <script>
     $(document).ready(function ()

@@ -77,4 +77,9 @@ public class ProprietorServiceImpl implements ProprietorService {
     public List<ChargingSituation> getPaymentbyParams(Map<String, Object> params) {
         return chargingSituationDao.getPaymentbyParams(params);
     }
+
+    @Override
+    public int generateTicketFee(ChargingSituation chargingSituation) {
+        return chargingSituationDao.generateTicketFee(chargingSituation);
+    }
 }

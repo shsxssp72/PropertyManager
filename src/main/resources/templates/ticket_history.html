@@ -442,7 +442,7 @@
                                     <td th:text="${ticket.staff.staff_name}"></td>
                                     <td th:text="${ticket.handle_time}"></td>
                                     <td>
-                                        <form id="fdbkForm"  class="form-inline"  action="/proprietor/ticket/history" method="post">
+                                        <form id="fdbkForm"  class="form-inline"  th:action="@{'/'+${roleName}+'/ticket/history'}" method="post">
                                             <input name="ticketId" th:value="${ticket.ticket_id}" hidden="hidden">
                                             <div class="form-group m-r-md">
                                                 <input name="ticketFdbk" type="text" th:value="${ticket.ticket_fdbk}" class="dial m-r" data-fgColor="#1AB394" data-width="30" data-height="30"/>
