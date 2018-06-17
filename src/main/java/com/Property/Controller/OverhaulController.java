@@ -55,7 +55,7 @@ public class OverhaulController {
         String staff_id = userInfoMapper.getStaffIDByUid(userInfoMapper.getByUserName(username).getUid());
         String realName = staffDao.getSelfInfo(staff_id).getStaff_name();
 
-        List<OverhaulRecord> overhaulRecordList = overhaulService.overhaulHistory(staff_id);
+        List<OverhaulRecord> overhaulRecordList = overhaulService.tbdOverhaul(staff_id);
 
         modelAndView.addObject("overhaulRecordList", overhaulRecordList);
         modelAndView.addObject("state", "get");
@@ -98,7 +98,7 @@ public class OverhaulController {
         String staff_id = userInfoMapper.getStaffIDByUid(userInfoMapper.getByUserName(username).getUid());
         String realName = staffDao.getSelfInfo(staff_id).getStaff_name();
 
-        List<OverhaulRecord> overhaulRecordList = overhaulService.overhaulHistory(staff_id);
+        List<OverhaulRecord> overhaulRecordList = overhaulService.tbdOverhaul(staff_id);
 
         String overhaulID = request.getParameter("overhaulId");
         String overhaulResult = request.getParameter("overhaulResult");
@@ -143,7 +143,7 @@ public class OverhaulController {
         String staff_id = userInfoMapper.getStaffIDByUid(userInfoMapper.getByUserName(username).getUid());
         String realName = staffDao.getSelfInfo(staff_id).getStaff_name();
 
-        List<Ticket> ticketList = overhaulService.getHistoryFinished(staff_id);
+        List<Ticket> ticketList = overhaulService.tbdTicket(staff_id);
 
         modelAndView.addObject("state", "get");
         modelAndView.addObject("ticketList", ticketList);

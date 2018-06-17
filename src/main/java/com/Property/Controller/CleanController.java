@@ -54,7 +54,7 @@ public class CleanController {
         String staff_id = userInfoMapper.getStaffIDByUid(userInfoMapper.getByUserName(username).getUid());
         String realName = staffDao.getSelfInfo(staff_id).getStaff_name();
 
-        List<DailyTask> dailyTaskList = cleanService.getHistoryTask(staff_id);
+        List<DailyTask> dailyTaskList = cleanService.tbdTask(staff_id);
 
         modelAndView.addObject("dailyTaskList", dailyTaskList);
         modelAndView.addObject("state", "get");
@@ -97,7 +97,7 @@ public class CleanController {
         String staff_id = userInfoMapper.getStaffIDByUid(userInfoMapper.getByUserName(username).getUid());
         String realName = staffDao.getSelfInfo(staff_id).getStaff_name();
 
-        List<DailyTask> dailyTaskList = cleanService.getHistoryTask(staff_id);
+        List<DailyTask> dailyTaskList = cleanService.tbdTask(staff_id);
 
         String taskID = request.getParameter("taskId");
         Boolean isException;

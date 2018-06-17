@@ -72,7 +72,7 @@
 	</select>
 
 	<update id="updateRepairFB">
-		UPDATE ticket SET ticket_fdbk = #{feedback} WHERE initiator_prprt_id = #{prprt_id} and ticket_id = #{ticket_id}
+		UPDATE ticket SET ticket_fdbk = #{feedback} WHERE ticket_id = #{ticket_id}
 	</update>
 
 	<update id="finishTicket">
@@ -128,8 +128,14 @@
 			<if test="staff_name!=null and staff_name!=''">
 				AND staff.staff_name like CONCAT(CONCAT('%',#{staff_name,jdbcType=VARCHAR}),'%')
 			</if>
+			<if test="staff_id!=null and staff_id!=''">
+				AND staff.staff_id like CONCAT(CONCAT('%',#{staff_id,jdbcType=VARCHAR}),'%')
+			</if>
 			<if test="dept_name!=null and dept_name!=''">
 				AND department.dept_name like CONCAT(CONCAT('%',#{dept_name,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="dept_id!=null and dept_id!=''">
+				AND department.dept_id like CONCAT(CONCAT('%',#{dept_id,jdbcType=VARCHAR}),'%')
 			</if>
 			<if test="ticket_type!=null and ticket_type!=''">
 				AND ticket.ticket_type like CONCAT(CONCAT('%',#{ticket_type,jdbcType=VARCHAR}),'%')

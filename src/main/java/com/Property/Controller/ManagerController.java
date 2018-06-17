@@ -616,7 +616,7 @@ public class ManagerController
 			if(update_lastQueryTable.equals("building"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getBuildingAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getBuildingAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getBuildingAttrList().get(i)+"_update");
 					if(result==null)
@@ -650,7 +650,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("buildingEntranceRecord"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getBuildingEntranceRecordAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getBuildingEntranceRecordAttrNum();i++)
 				{
 					String result=request
 							.getParameter(tableAttrGetter.getBuildingEntranceRecordAttrList().get(i)+"_update");
@@ -687,7 +687,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("carIORecord"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getCarIORecordAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getCarIORecordAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getCarIORecordAttrList().get(i)+"_update");
 					if(result==null)
@@ -723,7 +723,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("carpark"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getCarparkAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getCarparkAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getCarparkAttrList().get(i)+"_update");
 					if(result==null)
@@ -758,7 +758,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("chargingItem"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getChargingItemAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getChargingItemAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getChargingItemAttrList().get(i)+"_update");
 					if(result==null)
@@ -790,7 +790,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("chargingSituation"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getChargingSituationAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getChargingSituationAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getChargingSituationAttrList().get(i)+"_update");
 					if(result==null)
@@ -825,7 +825,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("dailyTask"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getDailyTaskAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getDailyTaskAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getDailyTaskAttrList().get(i)+"_update");
 					if(result==null)
@@ -862,7 +862,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("department"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getDepartmentAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getDepartmentAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getDepartmentAttrList().get(i)+"_update");
 					if(result==null)
@@ -894,7 +894,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("facilities"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getFacilitiesAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getFacilitiesAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getFacilitiesAttrList().get(i)+"_update");
 					if(result==null)
@@ -929,7 +929,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("fee"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getFeeAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getFeeAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getFeeAttrList().get(i)+"_update");
 					if(result==null)
@@ -964,7 +964,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("overhaulRecord"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getOverhaulRecordAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getOverhaulRecordAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getOverhaulRecordAttrList().get(i)+"_update");
 					if(result==null)
@@ -1000,7 +1000,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("proprietor"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getProprietorAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getProprietorAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getProprietorAttrList().get(i)+"_update");
 					if(result==null)
@@ -1038,7 +1038,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("staff"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getStaffAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getStaffAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getStaffAttrList().get(i)+"_update");
 					if(result==null)
@@ -1078,7 +1078,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("subarea"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getSubareaAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getSubareaAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getSubareaAttrList().get(i)+"_update");
 					if(result==null)
@@ -1110,7 +1110,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("suggestion"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getSuggestionAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getSuggestionAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getSuggestionAttrList().get(i)+"_update");
 					if(result==null)
@@ -1144,7 +1144,7 @@ public class ManagerController
 			else if(update_lastQueryTable.equals("ticket"))
 			{
 				boolean flag=true;
-				for(int i=0;i<tableAttrGetter.getTicketAttrNum();i++)
+				for(int i=1;i<tableAttrGetter.getTicketAttrNum();i++)
 				{
 					String result=request.getParameter(tableAttrGetter.getTicketAttrList().get(i)+"_update");
 					if(result==null)

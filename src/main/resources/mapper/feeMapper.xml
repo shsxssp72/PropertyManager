@@ -4,16 +4,16 @@
 	<resultMap id="fee" type="com.Property.Domain.Fee">
 		<id column="fee_id" property="fee_id" jdbcType="CHAR"/>
 		<result column="item_id" property="item_id" jdbcType="CHAR"/>
-		<result column="start_date" property="start_date" jdbcType="DATE"/>
-		<result column="end_date" property="end_date" jdbcType="DATE"/>
+		<result column="start_date" property="start_date" jdbcType="TIMESTAMP"/>
+		<result column="end_date" property="end_date" jdbcType="TIMESTAMP"/>
 		<result column="price" property="price" jdbcType="DECIMAL"/>
 	</resultMap>
 
 	<resultMap id="FeeMap" type="com.Property.Domain.Fee">
 		<id column="fee_id" property="fee_id" jdbcType="CHAR"/>
 		<result column="item_id" property="item_id" jdbcType="CHAR"/>
-		<result column="start_date" property="start_date" jdbcType="DATE"/>
-		<result column="end_date" property="end_date" jdbcType="DATE"/>
+		<result column="start_date" property="start_date" jdbcType="TIMESTAMP"/>
+		<result column="end_date" property="end_date" jdbcType="TIMESTAMP"/>
 		<result column="price" property="price" jdbcType="DECIMAL"/>
 		<association property="chargingItem" javaType="com.Property.Domain.ChargingItem">
 			<id column="item_id" property="item_id"></id>
@@ -62,10 +62,10 @@
 				AND chargingItem.item_title LIKE CONCAT(CONCAT('%',#{item_title,jdbcType=VARCHAR}),'%')
 			</if>
 			<if test="start_date!=null">
-				AND fee.start_date &gt; #{start_date,jdbcType=DATE}
+				AND fee.start_date &gt; #{start_date,jdbcType=TIMESTAMP}
 			</if>
 			<if test="end_date!=null">
-				AND fee.end_date &lt; #{end_date,jdbcType=DATE}
+				AND fee.end_date &lt; #{end_date,jdbcType=TIMESTAMP}
 			</if>
 			<if test="price!=null">
 				AND fee.price = #{price,jdbcType=DECIMAL}

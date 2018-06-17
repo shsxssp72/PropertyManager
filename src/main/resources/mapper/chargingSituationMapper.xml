@@ -6,7 +6,7 @@
         <result column="fee_id" property="fee_id" jdbcType="CHAR"/>
         <result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
         <result column="collector_id" property="collector_id" jdbcType="CHAR"/>
-        <result column="charge_date" property="charge_date" jdbcType="DATE"/>
+        <result column="charge_date" property="charge_date" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <resultMap id="totalView" type="com.Property.Domain.ChargingSituation">
@@ -14,13 +14,13 @@
         <result column="fee_id" property="fee_id" jdbcType="CHAR"/>
         <result column="prprt_id" property="prprt_id" jdbcType="CHAR"/>
         <result column="collector_id" property="collector_id" jdbcType="CHAR"/>
-        <result column="charge_date" property="charge_date" jdbcType="DATE"/>
+        <result column="charge_date" property="charge_date" jdbcType="TIMESTAMP"/>
 
         <association property="fee" javaType="com.Property.Domain.Fee">
             <id column="fee_id" property="fee_id" jdbcType="CHAR"/>
             <result column="item_id" property="item_id" jdbcType="CHAR"/>
-            <result column="start_date" property="start_date" jdbcType="DATE"/>
-            <result column="end_date" property="end_date" jdbcType="DATE"/>
+            <result column="start_date" property="start_date" jdbcType="TIMESTAMP"/>
+            <result column="end_date" property="end_date" jdbcType="TIMESTAMP"/>
             <result column="price" property="price" jdbcType="DECIMAL"/>
             <association property="chargingItem" javaType="com.Property.Domain.ChargingItem">
                 <id column="item_id" property="item_id"/>
@@ -135,20 +135,29 @@
             <if test="prprt_name!=null and prprt_name!=''">
                 AND proprietor.prprt_name LIKE CONCAT(CONCAT('%',#{prprt_name,jdbcType=VARCHAR}),'%')
             </if>
+            <if test="fee_id!=null and fee_id!=''">
+                AND fee.fee_id LIKE CONCAT(CONCAT('%',#{fee_id,jdbcType=CHAR}),'%')
+            </if>
+            <if test="prprt_id!=null and prprt_id!=''">
+                AND proprietor.prprt_id LIKE CONCAT(CONCAT('%',#{prprt_id,jdbcType=CHAR}),'%')
+            </if>
             <if test="staff_name!=null and staff_name!=''">
                 AND staff.staff_name LIKE CONCAT(CONCAT('%',#{staff_name,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="staff_id!=null and staff_id!=''">
+                AND staff.staff_id LIKE CONCAT(CONCAT('%',#{staff_id,jdbcType=VARCHAR}),'%')
             </if>
             <if test="item_title!=null and item_title!=''">
                 AND chargingItem.item_title LIKE CONCAT(CONCAT('%',#{item_title,jdbcType=VARCHAR}),'%')
             </if>
             <if test="start_date!=null">
-                AND fee.start_date &gt; #{start_date,jdbcType=DATE}
+                AND fee.start_date &gt; #{start_date,jdbcType=TIMESTAMP}
             </if>
             <if test="end_date!=null">
-                AND fee.end_date &lt; #{end_date,jdbcType=DATE}
+                AND fee.end_date &lt; #{end_date,jdbcType=TIMESTAMP}
             </if>
             <if test="charge_date!=null">
-                AND chargingSituation.charge_date = #{charge_date,jdbcType=DATE}
+                AND chargingSituation.charge_date = #{charge_date,jdbcType=TIMESTAMP}
             </if>
             <if test="price!=null">
                 AND fee.price = #{price,jdbcType=DECIMAL}
@@ -173,8 +182,8 @@
     </update>
 
     <insert id="generateTicketFee" parameterType="com.Property.Domain.ChargingSituation">
-        INSERT INTO chargingSituation (chargingSituation_id, fee_id, prprt_id)
-        VALUES (#{situation_id}, #{fee_id}, #{prprt_id})
+        INSERT INTO chargingSituation (chargingSituation_id, fee_id, prprt_id,collector_id)
+        VALUES (#{situation_id}, #{fee_id}, #{prprt_id},#{collector_id})
     </insert>
 
     <select id="getIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
