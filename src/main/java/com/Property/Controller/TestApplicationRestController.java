@@ -425,11 +425,13 @@ public class TestApplicationRestController {
             }
             modelAndView.addObject("moreAlerts", moreAlerts);
         } else {
-            for (int i = 0; i < 3; i++) {
-                String name = "alert" + i;
-                modelAndView.addObject(name, staffHints[i]);
-                i++;
+            int j=0;
+            while(j<=2){
+                String name = "alert"+j;
+                modelAndView.addObject(name, staffHints[j]);
+                j++;
             }
+            modelAndView.addObject("moreAlerts", false);
         }
 
         modelAndView.addObject("cond_icon", cond_icon);

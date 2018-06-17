@@ -358,7 +358,7 @@
                                     </th>
                                 </tr>-->
                                 <tr>
-
+                                    <th>DailyTaskId</th>
                                     <th>DailyTaskType</th>
                                     <th>DailyTaskTime</th>
                                     <th>Location</th>
@@ -368,6 +368,7 @@
                                 </thead>
                                 <thead th:if="${overhaul}">
                                 <tr>
+                                    <th>OverhaulId</th>
                                     <th>OverhaulType</th>
                                     <th>OverhaulTime</th>
                                     <th>FacilityID</th>
@@ -378,6 +379,7 @@
                                 </thead>
                                 <tbody th:if="${dailytask}">
                                 <tr th:each="task:${tbdTaskList}">
+                                    <td th:text="${task.task_id}"></td>
                                     <td th:text="${task.task_type}">Project - This is example of project</td>
                                     <td th:text="${task.task_time}">Patrick Smith</td>
                                     <td th:text="${task.task_area}">0800 051213</td>
@@ -387,6 +389,7 @@
                                 </tbody>
                                 <tbody th:if="${overhaul}">
                                 <tr th:each="task:${tbdOverhaulList}">
+                                    <td th:text="${task.overhaul_id}"></td>
                                     <td th:text="${task.overhaul_type}">Project - This is example of project</td>
                                     <td th:text="${task.overhaul_time}">Patrick Smith</td>
                                     <td th:text="${task.fclt_id}">0800 051213</td>
@@ -495,6 +498,7 @@
                                     </th>
                                 </tr>-->
                                 <tr>
+                                    <th>TaskId</th>
                                     <th>TaskType</th>
                                     <th>TaskTime</th>
                                     <th>TaskArea</th>
@@ -515,6 +519,7 @@
                                 </thead>
                                 <tbody th:if="${dailytask}">
                                 <tr th:each="task: ${finishedTaskList}">
+                                    <td th:text="${task.task_id}"></td>
                                     <td th:text="${task.task_type}">Project - This is example of project</td>
                                     <td th:text="${task.task_time}">Patrick Smith</td>
                                     <td th:text="${task.task_area}">0800 051213</td>

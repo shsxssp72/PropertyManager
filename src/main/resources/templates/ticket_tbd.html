@@ -341,7 +341,7 @@
                                     </th>
                                 </tr>-->
                                 <tr>
-
+                                    <th>TicketId</th>
                                     <th>TicketType</th>
                                     <th>ProprietorInitiator</th>
                                     <th>StaffInitiator</th>
@@ -355,6 +355,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="ticket:${ticketList}">
+                                    <td th:text="${ticket.ticket_id}"></td>
                                     <td th:text="${ticket.ticket_type}">Project - This is example of project</td>
                                     <td th:text="${ticket.initiator_prprt_id}">Patrick Smith</td>
                                     <td th:text="${ticket.initiator_staff_id}"></td>

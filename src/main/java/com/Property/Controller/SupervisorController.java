@@ -213,7 +213,7 @@ public class SupervisorController {
                 tbdTaskList = guardService.tbdTask(employee_id);
                 finishedTaskList = guardService.getHistoryTask(employee_id);
 
-                tbdTaskList = finishedTaskList;
+                /*tbdTaskList = finishedTaskList;*/
 
                 modelAndView.addObject("tbdTaskList", tbdTaskList);
                 modelAndView.addObject("finishedTaskList", finishedTaskList);
@@ -222,7 +222,7 @@ public class SupervisorController {
                 tbdTaskList = cleanService.tbdTask(employee_id);
                 finishedTaskList = cleanService.getHistoryTask(employee_id);
 
-                tbdTaskList = finishedTaskList;
+                /*tbdTaskList = finishedTaskList;*/
 
                 modelAndView.addObject("tbdTaskList", tbdTaskList);
                 modelAndView.addObject("finishedTaskList", finishedTaskList);
@@ -231,7 +231,7 @@ public class SupervisorController {
                 List<OverhaulRecord> tbdOverhaulList = overhaulService.tbdOverhaul(employee_id);
                 List<OverhaulRecord> finishedOverhaulList = overhaulService.overhaulHistory(employee_id);
 
-                tbdOverhaulList = finishedOverhaulList;
+                /*tbdOverhaulList = finishedOverhaulList;*/
 
                 modelAndView.addObject("tbdOverhaulList", tbdOverhaulList);
                 modelAndView.addObject("finishedOverhaulList", finishedOverhaulList);
@@ -280,7 +280,7 @@ public class SupervisorController {
                 tbdTaskList = guardService.tbdTask(employee_id);
                 finishedTaskList = guardService.getHistoryTask(employee_id);
 
-                tbdTaskList = finishedTaskList;
+                /*tbdTaskList = finishedTaskList;*/
 
                 modelAndView.addObject("tbdTaskList", tbdTaskList);
                 modelAndView.addObject("finishedTaskList", finishedTaskList);
@@ -289,7 +289,7 @@ public class SupervisorController {
                 tbdTaskList = cleanService.tbdTask(employee_id);
                 finishedTaskList = cleanService.getHistoryTask(employee_id);
 
-                tbdTaskList = finishedTaskList;
+                /*tbdTaskList = finishedTaskList;*/
 
                 modelAndView.addObject("tbdTaskList", tbdTaskList);
                 modelAndView.addObject("finishedTaskList", finishedTaskList);
@@ -298,7 +298,7 @@ public class SupervisorController {
                 List<OverhaulRecord> tbdOverhaulList = overhaulService.tbdOverhaul(employee_id);
                 List<OverhaulRecord> finishedOverhaulList = overhaulService.overhaulHistory(employee_id);
 
-                tbdOverhaulList = finishedOverhaulList;
+                /*tbdOverhaulList = finishedOverhaulList;*/
 
                 modelAndView.addObject("tbdOverhaulList", tbdOverhaulList);
                 modelAndView.addObject("finishedOverhaulList", finishedOverhaulList);
@@ -387,7 +387,7 @@ public class SupervisorController {
                 tbdTaskList = guardService.tbdTask(employee_id);
                 finishedTaskList = guardService.getHistoryTask(employee_id);
 
-                tbdTaskList = finishedTaskList;
+//                tbdTaskList = finishedTaskList;
 
                 modelAndView.addObject("tbdTaskList", tbdTaskList);
                 modelAndView.addObject("finishedTaskList", finishedTaskList);
@@ -396,7 +396,7 @@ public class SupervisorController {
                 tbdTaskList = cleanService.tbdTask(employee_id);
                 finishedTaskList = cleanService.getHistoryTask(employee_id);
 
-                tbdTaskList = finishedTaskList;
+//                tbdTaskList = finishedTaskList;
 
                 modelAndView.addObject("tbdTaskList", tbdTaskList);
                 modelAndView.addObject("finishedTaskList", finishedTaskList);
@@ -405,7 +405,7 @@ public class SupervisorController {
                 List<OverhaulRecord> tbdOverhaulList = overhaulService.tbdOverhaul(employee_id);
                 List<OverhaulRecord> finishedOverhaulList = overhaulService.overhaulHistory(employee_id);
 
-                tbdOverhaulList = finishedOverhaulList;
+//                tbdOverhaulList = finishedOverhaulList;
 
                 modelAndView.addObject("tbdOverhaulList", tbdOverhaulList);
                 modelAndView.addObject("finishedOverhaulList", finishedOverhaulList);

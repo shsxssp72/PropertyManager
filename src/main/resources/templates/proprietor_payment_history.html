@@ -335,6 +335,7 @@
                                     </th>
                                 </tr>-->
                                 <tr>
+                                    <th>SituationId</th>
                                     <th>ItemTitle</th>
                                     <th>Proprietor</th>
                                     <th>StartDate</th>
@@ -346,6 +347,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="charging: ${chargingSituationList}">
+                                    <td th:text="${charging.situation_id}"></td>
                                     <td th:text="${charging.fee.chargingItem.item_title}">Project - This is example of project</td>
                                     <td th:text="${charging.proprietor.prprt_name}">Patrick Smith</td>
                                     <td th:text="${charging.fee.start_date}">0800 051213</td>

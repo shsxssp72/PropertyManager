@@ -348,7 +348,7 @@
                                     </th>
                                 </tr>-->
                                 <tr>
-
+                                    <th>TaskId</th>
                                     <th>TaskType</th>
                                     <th>TaskTime</th>
                                     <th>TaskArea</th>
@@ -359,6 +359,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="task: ${dailyTaskList}">
+                                    <td th:text="${task.task_id}"></td>
                                     <td th:text="${task.task_type}">Project - This is example of project</td>
                                     <td th:text="${task.task_time}">Patrick Smith</td>
                                     <td th:text="${task.task_area}">0800 051213</td>
@@ -484,18 +485,15 @@
 
 <!-- Page-Level Scripts -->
 <script type="text/javascript">
-    $(document).ready(function ()
-    {
+    $(document).ready(function () {
 
         var state = document.getElementById("state").value;
-        if (state == "post")
-        {
+        if (state == "post") {
             $("#myModal").modal("show");
         }
         ;
 
-        if (state == "finish")
-        {
+        if (state == "finish") {
             $("#modal-form").modal("show");
         }
         ;

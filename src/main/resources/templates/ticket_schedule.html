@@ -355,7 +355,7 @@
                                     </th>
                                 </tr>-->
                                 <tr>
-
+                                    <th>TicketId</th>
                                     <th>TicketType</th>
                                     <th>Initiator</th>
                                     <th>TicketTime</th>
@@ -368,6 +368,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="ticket:${tbdTicketList}">
+                                    <td th:text="${ticket.ticket_id}"></td>
                                     <td th:text="${ticket.ticket_type}">Project - This is example of project</td>
                                     <td th:text="${ticket.initiator_prprt_id}" th:if="${ticket.initiator_prprt_id!=null}">Patrick Smith</td>
                                     <td th:text="${ticket.initiator_staff_id}" th:if="${ticket.initiator_staff_id!=null}">Patrick Smith</td>
@@ -459,6 +460,7 @@
                                     </th>
                                 </tr>-->
                                 <tr>
+                                    <th>TicketId</th>
                                     <th>TicketType</th>
                                     <th>Initiator</th>
                                     <th>TicketTime</th>
@@ -472,6 +474,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="ticket: ${finishedTicketList}">
+                                    <td th:text="${ticket.ticket_id}"></td>
                                     <td th:text="${ticket.ticket_type}">Project - This is example of project</td>
                                     <td th:text="${username}">Patrick Smith</td>
                                     <td th:text="${ticket.ticket_time}">0800 051213</td>

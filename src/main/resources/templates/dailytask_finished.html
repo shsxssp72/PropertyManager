@@ -14,10 +14,12 @@
           th:href="@{/INSPINIA/font-awesome/css/font-awesome.css}">
     <link href="../static/INSPINIA/css/animate.css" rel="stylesheet" th:href="@{/INSPINIA/css/animate.css}">
     <link href="../static/INSPINIA/css/style.css" rel="stylesheet" th:href="@{/INSPINIA/css/style.css}">
-    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
+    <link href="../static/INSPINIA/css/plugins/steps/jquery.steps.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/steps/jquery.steps.css}">
 
     <!-- FooTable -->
-    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet" th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
+    <link href="../static/INSPINIA/css/plugins/footable/footable.core.css" rel="stylesheet"
+          th:href="@{/INSPINIA/css/plugins/footable/footable.core.css}">
 
 </head>
 
@@ -341,6 +343,7 @@
                                     </th>
                                 </tr>-->
                                 <tr>
+                                    <th>TaskId</th>
                                     <th>TaskType</th>
                                     <th>TaskTime</th>
                                     <th>TaskArea</th>
@@ -351,6 +354,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="task: ${dailyTaskList}">
+                                    <td th:text="${task.task_id}"></td>
                                     <td th:text="${task.task_type}">Project - This is example of project</td>
                                     <td th:text="${task.task_time}">Patrick Smith</td>
                                     <td th:text="${task.task_area}">0800 051213</td>
@@ -394,21 +398,23 @@
         th:src="@{/INSPINIA/js/plugins/pace/pace.min.js}"></script>
 
 <!-- FooTable -->
-<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js" th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
+<script src="../static/INSPINIA/js/plugins/footable/footable.all.min.js"
+        th:src="@{/INSPINIA/js/plugins/footable/footable.all.min.js}"></script>
 
 <!-- JSKnob -->
-<script src="../static/INSPINIA/js/plugins/jsKnob/jquery.knob.js" th:src="@{/INSPINIA/js/plugins/jsKnob/jquery.knob.js}"></script>
+<script src="../static/INSPINIA/js/plugins/jsKnob/jquery.knob.js"
+        th:src="@{/INSPINIA/js/plugins/jsKnob/jquery.knob.js}"></script>
 
 <!-- Page-Level Scripts -->
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $('.footable').footable();
         $('.footable2').footable();
 
     });
 
-    $(function() {
+    $(function () {
         $(".dial").knob();
     });
 
